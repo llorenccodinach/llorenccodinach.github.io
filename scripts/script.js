@@ -1009,9 +1009,10 @@ function getCompetitor(e) {
                     });
 
                     popupCreate.remove();
-                    popup.querySelector(".products-created").querySelector(".card-create-product").remove()
+                    popup.querySelector(".products-created").querySelector(".card-create-product").style.display = "none";
                     saveToStorage("productsCreated",popup.querySelector(".products-created").innerHTML)
                     console.log("productsCreated",popup.querySelector(".products-created").innerHTML)
+                    popup.querySelector(".products-created").querySelector(".card-create-product").style.display = "flex";
                 }
             });
             }
