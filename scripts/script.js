@@ -1376,7 +1376,7 @@ function renderWindows(){
     for (let i = 0; i < windows.length; i++) {
         
         const Content = `
-            <h3 style="margin-top:20px;margin-left:15px;margin-right: 15px;">${windows[i].name}</h3>
+            <h3 style="margin-top:8px">${windows[i].name}</h3>
         `
         const div = document.createElement("div")
         div.classList.add("windows-click")
@@ -1393,7 +1393,7 @@ function renderWindows(){
             for (let j = 0; j < windows[i].competitors.length; j++) {
                 let competitor = addCompetitor(windows[i].competitors[j].name)
                 competitor.querySelector(".input-discount").value = windows[i].competitors[j].discount
-                getCompetitor(competitor,false)
+                if(windows[i].competitors[j].name != "COMPETIDOR") getCompetitor(competitor,false)
                 competitor.querySelector(".products-container").innerHTML = windows[i].competitors[j].content
             }
         });
@@ -1813,7 +1813,6 @@ fetch(fileUrl)
     for (let i = 0; i < a.length; i++) {
         a[i].addEventListener("change", loadPrice);
     }
-
     
 
     
@@ -1823,22 +1822,6 @@ fetch(fileUrl)
         document.getElementById("load").style.display = "none";
     }, 5000);*/
     setInterval(saveWindow, 5000);
-});
 
-function imprimir() {
-    closePopup()
-    let a = document.querySelectorAll("button")
-    for (let i = 0; i < a.length; i++) {
-        a[i].style.display = "none"
-    }
     
-    a = document.querySelectorAll("input")
-    for (let i = 0; i < a.length; i++) {
-        a[i].disabled = true
-    }
-
-    a = document.querySelectorAll("select")
-    for (let i = 0; i < a.length; i++) {
-        a[i].disabled = true
-    }
-}
+});

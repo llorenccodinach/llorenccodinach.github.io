@@ -12,9 +12,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-.windows-click{
-    cursor: pointer;height: 40px; min-width: 50px; background-color: white;border-radius: 10px;display: flex;justify-content: center;align-items: center;border: solid 1px black;
-}
+
 
 ::-webkit-scrollbar{
     width: 15px;
@@ -65,7 +63,7 @@ textarea:focus, input:focus{
 .comparador{
     margin-top: 10px;
     display: flex;
-    height: calc(100% - 150px);
+    height: calc(100% - 180px);
     align-items: center;
 }
 
@@ -183,7 +181,6 @@ textarea:focus, input:focus{
 }
 
 .quantity-product{
-    align-items: center;
     font-size: 15px;
     border: solid 1px black;
     padding-left: 20px;
@@ -394,8 +391,6 @@ input[type=number]::-webkit-inner-spin-button {
 /* Para Firefox */
 .input-discount {
     --moz-appearance: textfield;
-    justify-content: center;
-    align-items: center;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -582,4 +577,22 @@ option{
   transform: translateY(-50%) !important;
   left: 25px;
   font-size: 0.8rem;
+}
+
+.windows-elements{
+    max-width: calc(100% - 60px);
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.windows-click{
+    cursor: pointer;
+    display: inline-block; /* Ajusta el ancho al contenido */
+    border: 1px solid black;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.windows-click h3{
+    white-space: nowrap;
 }
