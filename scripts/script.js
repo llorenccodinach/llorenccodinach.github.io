@@ -1312,6 +1312,12 @@ function blurFunc() {
     }
 }
 
+function newWindow(){
+    cleanWindow();
+    windowName = createName();
+    saveWindow();
+}
+
 function saveWindow(){
     console.log("SAVE WINDOW")
     let windowsBefore = loadFromStorage("windows")
