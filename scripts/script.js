@@ -1186,6 +1186,15 @@ function getCompetitor(e) {
                                 <h4 id="netprice" class="netprice-product">XX.XX¤</h4>
                                 <p id="price-unit-netprice" style="right:27px" class="ppu-netprice-product">XX.XX¤/u</p>
                             </div>
+                            <div style="height: 120px;width: 35px;position: absolute;right: 230px;">
+                                
+                                <p id="price-unit" class="ppu-product" style="
+    left: 0px;
+    top: 30px;
+">pvp:</p>
+                                
+                                <p id="price-unit-netprice" style="left: 0px;bottom: 23px;" class="ppu-netprice-product">neto:</p>
+                            </div>
                 `
                 card_product.addEventListener('mouseover', changeColor);
                 card_product.addEventListener('mouseout', changeColor);
