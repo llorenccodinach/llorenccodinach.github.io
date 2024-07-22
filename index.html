@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bofill - Comparador de preus</title>
+    <link rel="shortcut icon" href="./logobofill .png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    
+</head>
+<body>
+    <div id="load" style="height: 100%; width: 100%;align-items: center; justify-content: center; display: flex;">
+        <div>
+            <style>
+                .loader {
+                  width: 60px;
+                  aspect-ratio: 2;
+                  --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
+                  background: 
+                    var(--_g) 0%   50%,
+                    var(--_g) 50%  50%,
+                    var(--_g) 100% 50%;
+                  background-size: calc(100%/3) 50%;
+                  animation: l3 1s infinite linear;
+                }
+                @keyframes l3 {
+                    20%{background-position:0%   0%, 50%  50%,100%  50%}
+                    40%{background-position:0% 100%, 50%   0%,100%  50%}
+                    60%{background-position:0%  50%, 50% 100%,100%   0%}
+                    80%{background-position:0%  50%, 50%  50%,100% 100%}
+                }
+            </style>
+            <div class="loader"></div>
+        </div>
+    </div>
+    <div id="page" style="height: 100%; width: 100%; display: none;">
+        <div style="height: 100px; width: 100%;display: flex;justify-content: center;">
+            
+            <h1 style="font-size: 50px;margin-top: 30px;">Bofill Pricing Tool</h1>
+            <img loading="lazy" style="position: absolute;left: 10px;top: 10px;height: 80px;" src="https://ffbofill.com/wp-content/uploads/2015/11/logobofill.png" alt="">
+            <p style="position: absolute;top: 5px;right: 5px;cursor: pointer;text-decoration-line:underline;">Read the terms and conditions</p>
+        </div>
+        <div class="windows" style="height: 50px; width: 100%;background-color: white;display: flex;padding: 5px;gap:10px;">
+            <div class="windows-elements" style="display: flex; gap: 10px;">
+                <div class="windows-click">
+                    <h3 style="margin-top:20px;margin-left:15px;margin-right: 15px;">Pressupost Carles</h3>
+                </div>
+                <div id="jero" onclick="PROVApresujeroni()" class="windows-click">
+                    <h3 style="margin-top:20px;margin-left:15px;margin-right: 15px;">Pressupost Jeroni</h3>
+                </div>
+            </div>
+            
+            <button onclick="PROVAadd()" style="height: 40px; width: 40px; background-color: white;border-radius: 10px;display: flex;justify-content: center;align-items: center;border: solid 1px black;position: relative;" class="cross">
+                <span style="transform: translateX(-52%) rotate(0deg);width: 1.2em;" class="cross-X"></span>
+                <span style="transform: translateX(-52%) rotate(90deg);width: 1.2em;" class="cross-Y"></span>
+            </button>
+        </div>
+        <div style="height: 50px; width: 100%;align-items: center;display: flex;">
+            
+            <input id="title" placeholder="TÍTULO" type="text" style="font-family: 'Gotham-title';margin-left: 20px;font-weight: 700;font-size: 30px;background-color: transparent;height: 40px;border: none;width: 100%;">
+            <label for="" id="label-title" style="visibility: hidden;"></label>
+        </div>
+        <div class="comparador">
+            <div class="container">
+                <div id="Bofill" style="min-width: 710px;position: relative;" class="card-container">
+                    <h3>BOFILL</h3>
+                    <div style="position:absolute; top:15px; right:15px; border: solid 1px; height: 40px;width: 90px;border-radius: 10px;">
+                        <h3 style="font-size: 20px; margin-top: 5px;margin-left: 10px;">-</h3>
+                        <input id="discount-bofill" class="input-discount" type="number" name="discount" min="0" max="99" value="0" id="">
+                        <h3 style="position: absolute;top: 10px;right: 0px;font-size: 20px; margin-top: -4px;margin-left: 10px;">%</h3>
+                    </div>
+                    
+                    <script src="scripts/script.js"></script>
+                    <div class="products-container">
+                    </div>
+                    <div class="div-add-product">
+                        <button id="button-add-product" style="background-color: #b2b2b2;" class="cross">
+                            <span style="transform: translateX(-52%) rotate(0deg);" class="cross-X"></span>
+                            <span style="transform: translateX(-52%) rotate(90deg);" class="cross-Y"></span>
+                        </button>
+                    </div>
+                    <div class="div-total-price" style="bottom: 60px;">
+                        <h4>Total PVP:</h4>
+                        <h4 id="total-pvpprice">XX.XX¤</h4>
+                    </div>
+                    <div class="div-total-price" style="color: #105378;">
+                        <h4>Total precio neto:</h4>
+                        <h4 id="total-netprice">XX.XX¤</h4>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="comparar-mes">
+                <button onclick="addCompetitor()" style="background-color: #b2b2b2;" class="cross">
+                    <span style="transform: translateX(-52%) rotate(0deg);" class="cross-X"></span>
+                    <span style="transform: translateX(-52%) rotate(90deg);" class="cross-Y"></span>
+                </button>
+            </div>
+        </div>
+        
+        <div id="popup" class="popup" style="visibility:hidden;">
+            <div id="popup-card" class="popup-card">
+                <h3 style="font-size: 30px;margin: 40px;">BOFILL</h3>
+                <button id="closePopupBofill" onclick="closePopup()" style="top:30px;right: 30px;" class="cross">
+                    <span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
+                    <span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
+                </button>
+                <div id="popup-filtre">
+                    <div id="div-nombre" onclick="color(this)" class="filtre">
+                        <input id="nombre" placeholder="NOMBRE" type="text">
+                    </div>
+                    <div id="div-referencia" onclick="color(this)" class="filtre">
+                        <input id="referencia" placeholder="REFERENCIA" type="text">
+                    </div>
+                    <div id="div-filtre" class="filtre" onclick="color(this)">
+                        <select id="filtre-categoria" class="select-filtre" name="CATEGORIA" title="CATEGORIA">
+                            <option value="" disabled selected>CATEGORÍA</option>
+                            <option value="DOBLE PARED">DOBLE PARED</option>
+                            <option value="CONCÉNTRICO">CONCÉNTRICO</option>
+                            <option value="SIMPLE PARED">SIMPLE PARED</option>
+                            <option value="FLEXIBLE">FLEXIBLE</option>
+                        </select>
+                        <select id="filtre-familia" class="select-filtre" name="FAMILIA" title="FAMILIA">
+                            <option value="" disabled selected>FAMILIA</option>
+                        </select>
+                        <select id="filtre-subfamilia" class="select-filtre" name="SUBFAMILIA" title="SUBFAMILIA">
+                            <option value="" disabled selected>SUBFAMILIA</option>
+                        </select>
+                        <select id="filtre-diametro" class="select-filtre" name="DIAMETRO" title="DIAMETRO">
+                            <option value="" selected>DIÁMETRO</option>
+                            <option value="080">Ø080</option>
+                            <option value="100">Ø100</option>
+                            <option value="120">Ø120</option>
+                            <option value="125">Ø125</option>
+                            <option value="130">Ø130</option>
+                            <option value="150">Ø150</option>
+                            <option value="175">Ø175</option>
+                            <option value="180">Ø180</option>
+                            <option value="200">Ø200</option>
+                            <option value="250">Ø250</option>
+                            <option value="300">Ø300</option>
+                            <option value="350">Ø350</option>
+                            <option value="400">Ø400</option>
+                            <option value="450">Ø450</option>
+                            <option value="500">Ø500</option>
+                            <option value="550">Ø550</option>
+                            <option value="600">Ø600</option>
+                            <option value="650">Ø650</option>
+                            <option value="700">Ø700</option>
+                        </select>
+                    </div>
+                    <div id="div-codigoean" onclick="color(this)" class="filtre">
+                        <input id="codigoean" placeholder="CÓDIGO EAN" type="text">
+                    </div>
+                    <button id="deleteFilters" class="filtre-delete">
+                        <img loading="lazy" style="height: 30px;" src="./img/borrar-filtres.svg" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt="">
+                    </button>
+                </div>
+                <div id="products" class="products" style="overflow-y: scroll;height: 573px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; margin-block: 2em; gap: 2rem;">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div id="popup-error" class="popup" style="visibility:hidden;">
+            <div id="popup-card-error">
+                <h3 style="font-size: 30px;margin: 40px; text-align: center;">ERROR</h3>
+                <button onclick="closePopupError()" style="margin-left: 700px;top: 400px;" class="cross">
+                    <span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
+                    <span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
+                </button>
+            </div>
+        </div>
+
+        
+    </div>
+    
+    <script src="scripts/script.js"></script>
+    
+
+    
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+{
+    "bofill": {
+        "imgName": "B",
+        "name": "C",
+        "description": "D",
+        "eanCode": "G",
+        "reference": "J",
+        "pvp": "S",
+        "family": "K",
+        "subfamily": "M",
+        "diameter": "Z",
+        "inletDiameter": "AA",
+        "outletDiameter": "AB"
+    },
+    "exojo": {
+        "startingRow" : 11,
+        "name": "",
+        "description": "C",
+        "eanCode": "E",
+        "reference": "A",
+        "pvp": "G",
+        "family": "D",
+        "subfamily": "",
+        "diameter": "",
+        "inletDiameter": "",
+        "outletDiameter": ""
+    },
+    "ros": {
+        "startingRow" : 2,
+        "name": "",
+        "description": "B",
+        "eanCode": "",
+        "reference": "A",
+        "pvp": "D",
+        "family": "E",
+        "subfamily": "",
+        "diameter": "",
+        "inletDiameter": "",
+        "outletDiameter": ""
+    },
+    "dinak": {
+        "startingRow" : 5,
+        "name": "",
+        "description": "C",
+        "eanCode": "E",
+        "reference": "A",
+        "pvp": "B",
+        "family": "G",
+        "subfamily": "",
+        "diameter": "F",
+        "inletDiameter": "",
+        "outletDiameter": ""
+    },
+    "jeremias": {
+        "startingRow" : 3,
+        "name": "",
+        "description": "B",
+        "eanCode": "",
+        "reference": "A",
+        "pvp": "D",
+        "family": "C",
+        "subfamily": "",
+        "diameter": "",
+        "inletDiameter": "",
+        "outletDiameter": ""
+    },
+    "convesa": {
+        "startingRow" : 3,
+        "name": "D",
+        "description": "",
+        "eanCode": "J",
+        "reference": "B",
+        "pvp": "C",
+        "family": "G",
+        "subfamily": "",
+        "diameter": "",
+        "inletDiameter": "H",
+        "outletDiameter": "I"
+    }
+}
