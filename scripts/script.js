@@ -870,7 +870,6 @@ function getCompetitor(e) {
                     let searchedFam = popup.querySelector("#filtre-familia").value
                     for (let i = 0; i < families.length; i++) {
                         if(families[i] == searchedFam){
-                            console.log("aveure aixo",haveDiameter,popup.querySelector("#filtre-diametro").value != "")
                             if((haveInletdiameter || haveOutletdiameter || haveDiameter) && popup.querySelector("#filtre-diametro").value != ""){
                                 console.log("entra aqui???")
                                 if(diameters[i] == popup.querySelector("#filtre-diametro").value){
