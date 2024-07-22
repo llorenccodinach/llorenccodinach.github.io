@@ -1028,9 +1028,9 @@ function getCompetitor(e) {
                 
                 popup.style.visibility = "visible";
 
-                popup.querySelector(".add").addEventListener('click', (event) => {
+                /*popup.querySelector(".add").addEventListener('click', (event) => {
                     OpenPopupCreate(e);
-                });
+                });*/
 
                 addFirstElements()
 
