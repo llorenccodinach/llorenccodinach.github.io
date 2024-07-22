@@ -373,7 +373,7 @@ function getCompetitor(e) {
                 deleteFilters()
             });
 
-            popup.querySelector(".products-created").innerHTML = loadFromStorage("productsCreated")
+            //popup.querySelector(".products-created").innerHTML += loadFromStorage("productsCreated")
 
             
 
@@ -1010,7 +1010,7 @@ function getCompetitor(e) {
 
                     popupCreate.remove();
 
-                    saveToStorage("productsCreated",popup.querySelector(".products-created").innerHTML)
+                    saveToStorage("productsCreated",popup.querySelector(".products-created").innerHTML.querySelector(".card-create-product").remove())
                     console.log(loadFromStorage("productsCreated"))
                 }
             });
