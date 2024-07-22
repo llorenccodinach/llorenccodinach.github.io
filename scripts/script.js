@@ -348,7 +348,12 @@ function getCompetitor(e) {
             </div>
             <div style="overflow-y: scroll;height: 573px; width: 100%;margin-top: 2em;">
                 <div class="products-created" style="width: 500px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;">
-                    
+                    <div class="card-create-product">
+                        <button style="background-color: #b2b2b2;position: relative;" class="cross add">
+                            <span style="transform: translateX(-52%) rotate(0deg);" class="cross-X"></span>
+                            <span style="transform: translateX(-52%) rotate(90deg);" class="cross-Y"></span>
+                        </button>
+                    </div>
                 </div>
                 <hr style="background-color: #333;height: 5px;margin-left: 5%; width: 90%; margin-top: 30px;margin-bottom: 30px;">
                 <div class="products-competitor" >
@@ -1028,9 +1033,9 @@ function getCompetitor(e) {
                 
                 popup.style.visibility = "visible";
 
-                /*popup.querySelector(".add").addEventListener('click', (event) => {
+                popup.querySelector(".add").addEventListener('click', (event) => {
                     OpenPopupCreate(e);
-                });*/
+                });
 
                 addFirstElements()
 
