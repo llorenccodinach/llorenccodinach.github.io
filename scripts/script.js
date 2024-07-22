@@ -1023,7 +1023,9 @@ function getCompetitor(e) {
                 for (let i = 0; i < y.length; i++) {
                     y[i].remove()
                 }
-                popup.querySelector(".products-created").innerHTML += loadFromStorage("productsCreated")
+                const storage = loadFromStorage("productsCreated");
+                console.log("this is storage", storage)
+                popup.querySelector(".products-created").innerHTML += storage
                 popup.querySelector("hr").style.display = "block";
                 popup.querySelector(".products-created").style.display = "flex";
 
