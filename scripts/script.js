@@ -1009,7 +1009,7 @@ function getCompetitor(e) {
                     });
 
                     popupCreate.remove();
-                    let prof = popup.querySelector(".products-created").querySelector(".card-create-product").remove()
+                    popup.querySelector(".products-created").querySelector(".card-create-product").remove()
                     saveToStorage("productsCreated",popup.querySelector(".products-created").innerHTML)
                     console.log("productsCreated",popup.querySelector(".products-created").innerHTML)
                 }
