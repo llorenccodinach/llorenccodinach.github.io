@@ -825,6 +825,7 @@ function getCompetitor(e) {
                         popup.style.visibility = "hidden";
                     });
                 }
+                addEventCLickProducts()
             }
 
             function searchByNAME(name){
@@ -843,6 +844,7 @@ function getCompetitor(e) {
                         }
                     }
                 }
+                addEventCLickProducts();
             }
 
             function searchByFILTRE(){
@@ -880,6 +882,7 @@ function getCompetitor(e) {
                         }
                     }
                 }
+                addEventCLickProducts()
             }
 
             function deleteFilters(){
@@ -902,6 +905,7 @@ function getCompetitor(e) {
                 for (let index = 2; index < 104; index++) {
                     addElements(index)
                 }
+                addEventCLickProducts();
             }
 
             function OpenPopupCreate(e){
@@ -1035,7 +1039,10 @@ function getCompetitor(e) {
                     console.log("hola?",productsStoraged[i].querySelector("#delete-product"))
                     productsStoraged[i].querySelector("#delete-product").addEventListener("click", (event) => {
                         productsStoraged[i].remove()
+                        popup.querySelector(".products-created").querySelector(".card-create-product").style.display = "none";
                         saveToStorage("productsCreated",popup.querySelector(".products-created").innerHTML)
+                        console.log("productsCreated",popup.querySelector(".products-created").innerHTML)
+                        popup.querySelector(".products-created").querySelector(".card-create-product").style.display = "flex";
                     });
                 }
                 
@@ -1047,12 +1054,18 @@ function getCompetitor(e) {
 
                 addFirstElements()
 
-                const allProducts = popup.querySelectorAll(".card-product")
+                productEdit = e.target
+                addEventCLickProducts(e)
+
+                
+            }
+            function addEventCLickProducts(e){
+                const allProducts = popup.querySelector(".products-competitor").querySelectorAll(".card-product")
                 for (let i = 0; i < allProducts.length; i++) {
                     allProducts[i].addEventListener('click', (event) => {
-                        e.target.closest(".product-card").querySelector(".name-product").innerHTML = allProducts[i].querySelector("#name").innerHTML
-                        e.target.closest(".product-card").querySelector(".fam-product").innerHTML = allProducts[i].querySelector("#fam").innerHTML
-                        e.target.closest(".product-card").querySelector(".ref-product").innerHTML = allProducts[i].querySelector("#ref").innerHTML
+                        productEdit.closest(".product-card").querySelector(".name-product").innerHTML = allProducts[i].querySelector("#name").innerHTML
+                        productEdit.closest(".product-card").querySelector(".fam-product").innerHTML = allProducts[i].querySelector("#fam").innerHTML
+                        productEdit.closest(".product-card").querySelector(".ref-product").innerHTML = allProducts[i].querySelector("#ref").innerHTML
 
                         let price = parseFloat(allProducts[i].querySelector("#pvp").innerHTML.slice(0, -1));
                         let netprice = price*(100-discount.value)/100;
@@ -1062,52 +1075,52 @@ function getCompetitor(e) {
                         let difPer;
                         const productes = document.getElementById("Bofill").querySelectorAll(".product-card")
                         for (let i = 0; i < productes.length; i++) {
-                            if(productes[i].id == e.target.closest(".product-card").id){
+                            if(productes[i].id == productEdit.closest(".product-card").id){
                                 netpriceBofill = productes[i].querySelector(".netprice-product")
                                 quantity = productes[i].querySelector(".quantity-product").value
                                 productes[i].querySelector(".quantity-product").addEventListener('change', (event) => {
                                     quantity = productes[i].querySelector(".quantity-product").value
-                                    e.target.closest(".product-card").querySelector(".pvp-product").innerHTML = `${(price*quantity).toLocaleString('es-ES', numberOptions)}¤`
-                                    e.target.closest(".product-card").querySelector(".netprice-product").innerHTML = `${(netprice*quantity).toLocaleString('es-ES', numberOptions)}¤`
+                                    productEdit.closest(".product-card").querySelector(".pvp-product").innerHTML = `${(price*quantity).toLocaleString('es-ES', numberOptions)}¤`
+                                    productEdit.closest(".product-card").querySelector(".netprice-product").innerHTML = `${(netprice*quantity).toLocaleString('es-ES', numberOptions)}¤`
                                     console.log("quantitat")
                                     console.log(quantity)
                                     difAbs = (quantity*netprice)-parseFloat(netpriceBofill.innerHTML.slice(0,-1));
                                     difPer = difAbs/parseFloat(netpriceBofill.innerHTML.slice(0,-1))*100;
                                     if(difAbs >=0 ){
-                                        e.target.closest(".product-card").querySelector(".difference-absolute").innerHTML = `+${difAbs.toFixed(1)}¤`
-                                        e.target.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `+${difPer.toFixed(1)}%`
-                                        e.target.closest(".product-card").querySelector(".difference-absolute").style.color = "#980a0a"
-                                        e.target.closest(".product-card").querySelector(".difference-percentatge").style.color = "#980a0a"
+                                        productEdit.closest(".product-card").querySelector(".difference-absolute").innerHTML = `+${difAbs.toFixed(1)}¤`
+                                        productEdit.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `+${difPer.toFixed(1)}%`
+                                        productEdit.closest(".product-card").querySelector(".difference-absolute").style.color = "#980a0a"
+                                        productEdit.closest(".product-card").querySelector(".difference-percentatge").style.color = "#980a0a"
                                     }else{
-                                        e.target.closest(".product-card").querySelector(".difference-absolute").innerHTML = `${difAbs.toFixed(1)}¤`
-                                        e.target.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `${difPer.toFixed(1)}%`
-                                        e.target.closest(".product-card").querySelector(".difference-absolute").style.color = "#0f890c"
-                                        e.target.closest(".product-card").querySelector(".difference-percentatge").style.color = "#0f890c"
+                                        productEdit.closest(".product-card").querySelector(".difference-absolute").innerHTML = `${difAbs.toFixed(1)}¤`
+                                        productEdit.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `${difPer.toFixed(1)}%`
+                                        productEdit.closest(".product-card").querySelector(".difference-absolute").style.color = "#0f890c"
+                                        productEdit.closest(".product-card").querySelector(".difference-percentatge").style.color = "#0f890c"
                                     }
                                 });
                             }
                         }
-                        e.target.closest(".product-card").querySelector(".ppu-product").innerHTML = `${price.toLocaleString('es-ES', numberOptions)}¤/u`
-                        e.target.closest(".product-card").querySelector(".pvp-product").innerHTML = `${(price*quantity).toLocaleString('es-ES', numberOptions)}¤`
+                        productEdit.closest(".product-card").querySelector(".ppu-product").innerHTML = `${price.toLocaleString('es-ES', numberOptions)}¤/u`
+                        productEdit.closest(".product-card").querySelector(".pvp-product").innerHTML = `${(price*quantity).toLocaleString('es-ES', numberOptions)}¤`
 
                         discount.addEventListener('change', (event) => {
                             netprice = price*(100-discount.value)/100
-                            e.target.closest(".product-card").querySelector(".ppu-netprice-product").innerHTML = `${netprice.toLocaleString('es-ES', numberOptions)}¤/u`
-                            e.target.closest(".product-card").querySelector(".netprice-product").innerHTML = `${(netprice*quantity).toLocaleString('es-ES', numberOptions)}¤`
+                            productEdit.closest(".product-card").querySelector(".ppu-netprice-product").innerHTML = `${netprice.toLocaleString('es-ES', numberOptions)}¤/u`
+                            productEdit.closest(".product-card").querySelector(".netprice-product").innerHTML = `${(netprice*quantity).toLocaleString('es-ES', numberOptions)}¤`
                             difAbs = (quantity*netprice)-parseFloat(netpriceBofill.innerHTML.slice(0,-1));
                             difPer = difAbs/parseFloat(netpriceBofill.innerHTML.slice(0,-1))*100;
                             console.log("discount")
                             console.log(difAbs,difPer)
                             if(difAbs >=0 ){
-                                e.target.closest(".product-card").querySelector(".difference-absolute").innerHTML = `+${difAbs.toFixed(1)}¤`
-                                e.target.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `+${difPer.toFixed(1)}%`
-                                e.target.closest(".product-card").querySelector(".difference-absolute").style.color = "#980a0a"
-                                e.target.closest(".product-card").querySelector(".difference-percentatge").style.color = "#980a0a"
+                                productEdit.closest(".product-card").querySelector(".difference-absolute").innerHTML = `+${difAbs.toFixed(1)}¤`
+                                productEdit.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `+${difPer.toFixed(1)}%`
+                                productEdit.closest(".product-card").querySelector(".difference-absolute").style.color = "#980a0a"
+                                productEdit.closest(".product-card").querySelector(".difference-percentatge").style.color = "#980a0a"
                             }else{
-                                e.target.closest(".product-card").querySelector(".difference-absolute").innerHTML = `${difAbs.toFixed(1)}¤`
-                                e.target.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `${difPer.toFixed(1)}%`
-                                e.target.closest(".product-card").querySelector(".difference-absolute").style.color = "#0f890c"
-                                e.target.closest(".product-card").querySelector(".difference-percentatge").style.color = "#0f890c"
+                                productEdit.closest(".product-card").querySelector(".difference-absolute").innerHTML = `${difAbs.toFixed(1)}¤`
+                                productEdit.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `${difPer.toFixed(1)}%`
+                                productEdit.closest(".product-card").querySelector(".difference-absolute").style.color = "#0f890c"
+                                productEdit.closest(".product-card").querySelector(".difference-percentatge").style.color = "#0f890c"
                             }
                         });
 
@@ -1115,34 +1128,34 @@ function getCompetitor(e) {
                             difAbs = (quantity*netprice)-parseFloat(netpriceBofill.innerHTML.slice(0,-1));
                             difPer = difAbs/parseFloat(netpriceBofill.innerHTML.slice(0,-1))*100;
                             if(difAbs >=0 ){
-                                e.target.closest(".product-card").querySelector(".difference-absolute").innerHTML = `+${difAbs.toFixed(1)}¤`
-                                e.target.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `+${difPer.toFixed(1)}%`
-                                e.target.closest(".product-card").querySelector(".difference-absolute").style.color = "#980a0a"
-                                e.target.closest(".product-card").querySelector(".difference-percentatge").style.color = "#980a0a"
+                                productEdit.closest(".product-card").querySelector(".difference-absolute").innerHTML = `+${difAbs.toFixed(1)}¤`
+                                productEdit.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `+${difPer.toFixed(1)}%`
+                                productEdit.closest(".product-card").querySelector(".difference-absolute").style.color = "#980a0a"
+                                productEdit.closest(".product-card").querySelector(".difference-percentatge").style.color = "#980a0a"
                             }else{
-                                e.target.closest(".product-card").querySelector(".difference-absolute").innerHTML = `${difAbs.toFixed(1)}¤`
-                                e.target.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `${difPer.toFixed(1)}%`
-                                e.target.closest(".product-card").querySelector(".difference-absolute").style.color = "#0f890c"
-                                e.target.closest(".product-card").querySelector(".difference-percentatge").style.color = "#0f890c"
+                                productEdit.closest(".product-card").querySelector(".difference-absolute").innerHTML = `${difAbs.toFixed(1)}¤`
+                                productEdit.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `${difPer.toFixed(1)}%`
+                                productEdit.closest(".product-card").querySelector(".difference-absolute").style.color = "#0f890c"
+                                productEdit.closest(".product-card").querySelector(".difference-percentatge").style.color = "#0f890c"
                             }
                         });
 
                         difAbs = (quantity*netprice)-parseFloat(netpriceBofill.innerHTML.slice(0,-1));
                         difPer = difAbs/parseFloat(netpriceBofill.innerHTML.slice(0,-1))*100;
                         if(difAbs >=0 ){
-                            e.target.closest(".product-card").querySelector(".difference-absolute").innerHTML = `+${difAbs.toFixed(1)}¤`
-                            e.target.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `+${difPer.toFixed(1)}%`
-                            e.target.closest(".product-card").querySelector(".difference-absolute").style.color = "#980a0a"
-                            e.target.closest(".product-card").querySelector(".difference-percentatge").style.color = "#980a0a"
+                            productEdit.closest(".product-card").querySelector(".difference-absolute").innerHTML = `+${difAbs.toFixed(1)}¤`
+                            productEdit.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `+${difPer.toFixed(1)}%`
+                            productEdit.closest(".product-card").querySelector(".difference-absolute").style.color = "#980a0a"
+                            productEdit.closest(".product-card").querySelector(".difference-percentatge").style.color = "#980a0a"
                         }else{
-                            e.target.closest(".product-card").querySelector(".difference-absolute").innerHTML = `${difAbs.toFixed(1)}¤`
-                            e.target.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `${difPer.toFixed(1)}%`
-                            e.target.closest(".product-card").querySelector(".difference-absolute").style.color = "#0f890c"
-                            e.target.closest(".product-card").querySelector(".difference-percentatge").style.color = "#0f890c"
+                            productEdit.closest(".product-card").querySelector(".difference-absolute").innerHTML = `${difAbs.toFixed(1)}¤`
+                            productEdit.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `${difPer.toFixed(1)}%`
+                            productEdit.closest(".product-card").querySelector(".difference-absolute").style.color = "#0f890c"
+                            productEdit.closest(".product-card").querySelector(".difference-percentatge").style.color = "#0f890c"
                         }
 
-                        e.target.closest(".product-card").querySelector(".ppu-netprice-product").innerHTML = `${netprice.toLocaleString('es-ES', numberOptions)}¤/u`
-                        e.target.closest(".product-card").querySelector(".netprice-product").innerHTML = `${(netprice*quantity).toLocaleString('es-ES', numberOptions)}¤`
+                        productEdit.closest(".product-card").querySelector(".ppu-netprice-product").innerHTML = `${netprice.toLocaleString('es-ES', numberOptions)}¤/u`
+                        productEdit.closest(".product-card").querySelector(".netprice-product").innerHTML = `${(netprice*quantity).toLocaleString('es-ES', numberOptions)}¤`
                         popup.style.visibility = "hidden";
                     });
                 }
@@ -1166,7 +1179,7 @@ function getCompetitor(e) {
                     card_product.setAttribute('id',`${name}`);
                 }
                 const ContentProduct = `
-                            <div style="height: 100%;width: auto; align-items: center; display: flex;margin-left:10px; max-width:230px; overflow-x:hidden;">
+                            <div style="height: 100%;width: auto; align-items: center; display: flex;margin-left:10px; max-width:calc(100% - 320px); overflow-x:hidden;">
                                 <div>
                                     <h5 class="fam-product">FAMILIA</h5>
                                     <h4 class="name-product">NOMBRE</h4>

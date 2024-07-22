@@ -14,7 +14,7 @@
     },
     "exojo": {
         "startingRow" : 11,
-        "name": "",
+        "name": "C",
         "description": "C",
         "eanCode": "E",
         "reference": "A",
@@ -27,7 +27,7 @@
     },
     "ros": {
         "startingRow" : 2,
-        "name": "",
+        "name": "B",
         "description": "B",
         "eanCode": "",
         "reference": "A",
@@ -40,7 +40,7 @@
     },
     "dinak": {
         "startingRow" : 5,
-        "name": "",
+        "name": "C",
         "description": "C",
         "eanCode": "E",
         "reference": "A",
@@ -53,7 +53,7 @@
     },
     "jeremias": {
         "startingRow" : 3,
-        "name": "",
+        "name": "B",
         "description": "B",
         "eanCode": "",
         "reference": "A",
