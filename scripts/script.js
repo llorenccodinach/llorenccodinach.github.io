@@ -1009,15 +1009,20 @@ function getCompetitor(e) {
                     });
 
                     popupCreate.remove();
-
-                    saveToStorage("productsCreated",popup.querySelector(".products-created").innerHTML.querySelector(".card-create-product").remove())
+                    let prof = popup.querySelector(".products-created").innerHTML.querySelector(".card-create-product").remove()
+                    saveToStorage("productsCreated",prof)
                     console.log(loadFromStorage("productsCreated"))
                 }
             });
             }
 
             function editProduct(e){
-                popup.querySelector(".products-created").innerHTML = loadFromStorage("productsCreated")
+                const y = popup.querySelector(".products-created").querySelectorAll(".card-product")
+
+                for (let i = 0; i < y.length; i++) {
+                    y[i].remove()
+                }
+                popup.querySelector(".products-created").innerHTML += loadFromStorage("productsCreated")
                 popup.querySelector("hr").style.display = "block";
                 popup.querySelector(".products-created").style.display = "flex";
 
