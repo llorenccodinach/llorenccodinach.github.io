@@ -1278,6 +1278,7 @@ function blurFunc() {
 }
 
 function newWindow(){
+    saveWindow();
     cleanWindow();
     windowDateCreated = createName();
     windowName = createName();
@@ -1307,20 +1308,20 @@ function saveWindow(){
     }
     let discountBofill = document.querySelector("#discount-bofill").value
     let contentBofill = document.querySelector("#Bofill").querySelector(".products-container").innerHTML
+    console.log("win name",windowName)
     if(windowName != ""){
-        windowsBefore.push({date: windowDateCreated, name: windowName, id_product: id_product, bofill:{discount: discountBofill, content: contentBofill}, competitors:arrayCompetitors})
+        windowsBefore.unshift({date: windowDateCreated, name: windowName, id_product: id_product, bofill:{discount: discountBofill, content: contentBofill}, competitors:arrayCompetitors})
         saveToStorage("windows", windowsBefore)
     }
     console.log("DATECREATED:",windowDateCreated)
 }
 
 function cleanWindow(){
-    saveWindow();
     let allWindows = this.document.querySelectorAll(".windows-input")
     for (let i = 0; i < allWindows.length; i++) {
         allWindows[i].style.backgroundColor = "white";
+        allWindows[i].closest("div").querySelector("button").style.visibility = "hidden";
     }
-    windowName = createName()
     document.querySelector("#Bofill").querySelector(".products-container").innerHTML = "";
     let cardContainer = this.document.querySelectorAll(".card-container")
     for (let j = 0; j < cardContainer.length; j++) {
@@ -1349,15 +1350,21 @@ function renderWindows(){
     document.querySelector(".windows-elements").innerHTML = "";
 
     for (let i = 0; i < windows.length; i++) {
+        const div2 = document.createElement("div")
         const div = document.createElement("input")
         div.type = "text";
         div.value = windows[i].name
         div.innerHTML = `<p id="date" style="display: none;">${windows[i].date}</p> <p id="id_product" style="display: none;">${windows[i].id_product}</p>`
         div.classList.add("windows-input")
-        document.querySelector(".windows-elements").appendChild(div);
+        div2.style.position = "relative"
+        div2.innerHTML = `<button style="background: rgb(178, 178, 178);width: 30px;height: 38px;top: 1px;right: 1px;border-radius: 10px;visibility: hidden;" class="cross">
+        <span style="width: 1em;transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
+        <span style="width: 1em;transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
+        </button>`
+        div2.appendChild(div)
+        document.querySelector(".windows-elements").appendChild(div2);
         div.addEventListener('input',adjustWidth)
         div.addEventListener("change", (event) => {
-            windowName = div.value
             saveWindow()
             renderWindows()
         });
@@ -1366,13 +1373,53 @@ function renderWindows(){
         div.style.width = `${width}px`;
 
         if(windows[i].name == windowName) div.style.backgroundColor = "#b2b2b2";
-        
+        console.log(div2.querySelector("button"))
+        div2.querySelector("button").addEventListener("click", deleteWindow);
         div.addEventListener("click", openWindow);
+        div.addEventListener("click", focusWindow);
     }
 }
 
-function openWindow(e){
+function deleteWindow(e){
     let windows = loadFromStorage("windows")
+    let date = e.target.closest("div").querySelector("#date").innerHTML
+    for (let i = 0; i < windows.length; i++) {
+        if(windows[i].date == date){
+            console.log("hi?")
+            windows.splice(i,1)
+            windowName = "";
+        }
+    }
+    saveToStorage("windows",windows)
+    console.log(windows)
+    cleanWindow();
+    renderWindows();
+}
+
+function focusWindow(e){
+    console.log("HO FA")
+    e.target.closest("div").querySelector("button").style.visibility = "visible"
+}
+
+function blurWindow(e){
+    console.log("HO FA")
+    e.target.closest("div").querySelector("button").style.visibility = "hidden"
+}
+
+function openWindow(e){
+    let inputs = document.querySelector(".windows-elements").querySelectorAll(".windows-input")
+    for (let i = 0; i < inputs.length; i++) {
+        measureSpan.textContent = inputs[i].value || inputs[i].placeholder || '';
+        const width = measureSpan.offsetWidth + 22;
+        inputs[i].style.width = `${width}px`;
+    }
+    measureSpan.textContent = e.target.value || e.target.placeholder || '';
+    let more = 42;
+    const width = measureSpan.offsetWidth + more;
+    e.target.style.width = `${width}px`;
+
+    let windows = loadFromStorage("windows")
+    saveWindow();
     cleanWindow();
     e.target.style.backgroundColor = "#b2b2b2";
     windowName = e.target.value;
@@ -1395,7 +1442,9 @@ function openWindow(e){
 function adjustWidth(e) {
     windowName = e.target.value
     measureSpan.textContent = e.target.value || e.target.placeholder || '';
-    const width = measureSpan.offsetWidth + 22;
+    let more = 22;
+    if(e.target.style.backgroundColor == "rgb(178, 178, 178)") more = 42;
+    const width = measureSpan.offsetWidth + more;
     e.target.style.width = `${width}px`;
 }
 
