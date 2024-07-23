@@ -583,6 +583,7 @@ option{
     max-width: calc(100% - 60px);
     overflow-x: scroll;
     overflow-y: hidden;
+    white-space: nowrap;
 }
 
 .windows-click{
@@ -595,4 +596,16 @@ option{
 
 .windows-click h3{
     white-space: nowrap;
+}
+
+.windows-input{
+    flex: 0 0 auto; 
+    background-color: transparent;
+    cursor: pointer;
+    border: 1px solid black;
+    height: 40px;
+    border-radius: 10px;
+    padding: 0 10px; /* Agrega padding para que haya espacio a los lados */
+    font-size: 1.17em;
+    font-family: 'Gotham-title';
 }
