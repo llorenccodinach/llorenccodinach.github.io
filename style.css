@@ -160,6 +160,7 @@ textarea:focus, input:focus{
     margin-top: 2px;
     font-size: 20px;
     margin-bottom: 0px;
+    line-height: 1.1;
 }
 
 .ref-product{
@@ -193,7 +194,7 @@ textarea:focus, input:focus{
 .pvp-product{
     font-size: 28px;
     position: absolute;
-    top: 28px;
+    top: 25px;
     right: 5px;
     font-family: 'Gotham-title';
 }
@@ -471,7 +472,7 @@ option{
 }
 
 .popup-filtre-competitor{
-    margin-left: 20px;display:flex;height: 70px; padding: 5px;
+    margin-left: 20px;display:flex;height: 70px; padding: 5px;gap: 10px;
 }
 
 .edit-product-competitor{

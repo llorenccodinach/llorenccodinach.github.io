@@ -2,12 +2,22 @@ let competitors;
 let competitorsJSON;
 let filtersJSON;
 
-
-
-const numberOptions = {
+const numberOptionsEU = {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
     useGrouping: true
+};
+
+const numberOptionsEU1 = {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+    useGrouping: true
+};
+
+const numberOptionsEN = {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+    useGrouping: false
 };
 
 function saveToStorage(category, data) {
@@ -78,6 +88,7 @@ function addCompetitor(name){
                         <input class="input-discount" type="number" name="discount" min="0" max="99" value="0" id="">
                         <h3 style="position: absolute;top: 10px;right: 0px;font-size: 20px; margin-top: -4px;margin-left: 10px;">%</h3>
                     </div>
+                    <div style="position: absolute;top: 27px;right: 200px;width: 40px;display:none" class="loader"></div>
     <button onclick="removeCompetitor(this)" class="button-competitor cross">
         <span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
         <span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
@@ -89,16 +100,16 @@ function addCompetitor(name){
     margin-top: 7px;
 ">XX.XX¤</h4>
     <div style="width: 60px;height: 100%;position: absolute;right: 10px;display:flex;justify-content:center;flex-direction:column;align-items:center;">
-                                <h4 id="" style="position: relative;font-size:15px;color:#980a0a;right: 0px;" class="difference-percentatge">+XX,X%</h4>
-                                <h4 id="" style="margin: 0px;position: relative;right: 0px;font-size:15px;color:#980a0a;" class="difference-absolute">+XX,X¤</h4>
+                                <h4 id="pvp-difference-percentatge" style="position: relative;font-size:15px;color:#980a0a;right: 0px;" class="difference-percentatge">+XX,X%</h4>
+                                <h4 id="pvp-difference-absolute" style="margin: 0px;position: relative;right: 0px;font-size:15px;color:#980a0a;" class="difference-absolute">+XX,X¤</h4>
                             </div></div>
     <div class="total-competitor" style="color: #105378;">
         <h4 id="total-netprice" style="
     margin-top: 7px;
 ">XX.XX¤</h4>
         <div style="width: 60px;height: 100%;position: absolute;right: 10px;display:flex;justify-content:center;flex-direction:column;align-items:center;">
-                                <h4 id="" style="position: relative;font-size:15px;color:#980a0a;right: 0px;" class="difference-percentatge">+XX,X%</h4>
-                                <h4 id="" style="margin: 0px;position: relative;right: 0px;font-size:15px;color:#980a0a;" class="difference-absolute">+XX,X¤</h4>
+                                <h4 id="netprice-difference-percentatge" style="position: relative;font-size:15px;color:#980a0a;right: 0px;" class="difference-percentatge">+XX,X%</h4>
+                                <h4 id="netprice-difference-absolute" style="margin: 0px;position: relative;right: 0px;font-size:15px;color:#980a0a;" class="difference-absolute">+XX,X¤</h4>
                             </div>
     </div>
     `
@@ -150,16 +161,18 @@ function closePopupError(){
 }
 
 function loadPrice(e){
+    console.log("laodprice",e.target)
     const card = e.target.closest(".product-card")
     const a = card.querySelector("#price-unit").innerHTML
-    const price = (e.target.value * a.substring(0, a.length - 3)).toLocaleString('es-ES', numberOptions);
-    card.querySelector("#price").innerHTML = `${price}¤`
+    const price = (e.target.value * parseFloat(a.substring(0, a.length - 3).toLocaleString('en-EN',numberOptionsEN)));
+    card.querySelector("#price").innerHTML = `${price.toLocaleString('es-ES', numberOptionsEU)}¤`
     let discount = document.getElementById("discount-bofill").value
     if(discount >= 100 || discount < 0){
         document.getElementById("discount-bofill").value = 0
         discount = 0
     }
-    card.querySelector("#netprice").innerHTML = `${(price*(100-discount)/100).toLocaleString('es-ES', numberOptions)}¤`
+    card.querySelector("#netprice").innerHTML = `${(price*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤`
+    card.querySelector("#price-unit-netprice").innerHTML = `${(parseFloat(a.substring(0, a.length - 3).toLocaleString('en-EN',numberOptionsEN))*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤/u`
     loadTotal()
 }
 
@@ -168,15 +181,11 @@ function loadTotal(){
     var totalPvpPrice = 0.0;
     var totalNetPrice = 0.0;
     for (let i = 0; i < a.length; i++) {
-        let pvp = a[i].querySelector('#price').innerHTML
-        let net = a[i].querySelector('#netprice').innerHTML
-        var pvpprice = pvp.substring(0, pvp.length - 1)
-        var netprice = net.substring(0, net.length - 1)
-        totalPvpPrice += parseFloat(pvpprice);
-        totalNetPrice += parseFloat(netprice);
+        totalPvpPrice += parseFloat(a[i].querySelector('#price').innerHTML.slice(0, -1).replace(/\./g, '').replace(/,/g, '.'));
+        totalNetPrice += parseFloat(a[i].querySelector('#netprice').innerHTML.slice(0, -1).replace(/\./g, '').replace(/,/g, '.'));
     }
-    document.getElementById('total-pvpprice').innerHTML = `${totalPvpPrice.toLocaleString('es-ES', numberOptions)}¤`
-    document.getElementById('total-netprice').innerHTML = `${totalNetPrice.toLocaleString('es-ES', numberOptions)}¤`
+    document.getElementById('total-pvpprice').innerHTML = `${totalPvpPrice.toLocaleString('es-ES', numberOptionsEU)}¤`
+    document.getElementById('total-netprice').innerHTML = `${totalNetPrice.toLocaleString('es-ES', numberOptionsEU)}¤`
 }
 
 function addProduct(e){
@@ -186,11 +195,14 @@ function addProduct(e){
     const name = card.querySelector("#name").innerHTML
     const ref = card.querySelector("#ref").innerHTML
     const fam = card.querySelector("#fam").innerHTML
-    const pvp = parseFloat(card.querySelector("#pvp").innerHTML).toLocaleString('es-ES', numberOptions)
-    const np = (pvp*(100-document.getElementById("discount-bofill").value)/100).toLocaleString('es-ES', numberOptions)
+    const pvp = parseFloat(card.querySelector("#pvp").innerHTML)
+    const np = (pvp*(100-document.getElementById("discount-bofill").value)/100)
     const diam = card.querySelector("#desc").innerHTML.split(' ')[card.querySelector("#desc").innerHTML.split(' ').length - 1].substring(1);
     const bofill = document.querySelector("#Bofill")
     const parent = bofill.querySelector(".products-container")
+
+    console.log("pvp:",pvp)
+    console.log("np:",pvp*(100-document.getElementById("discount-bofill").value)/100)
     
     const id_sel = `select-${id_product}`
     const id_quantity = `price-${id_product}`
@@ -236,10 +248,10 @@ function addProduct(e){
                                 <input id="${id_quantity}" class="quantity-product" type="number" min="1" max="999" value="1" name="">
                             </div>
                             <div style="height: 120px;width: 150px;position: absolute;right: 155px;">
-                                <h4 id="price" style="right:5px" class="pvp-product">${pvp}¤</h4>
-                                <p id="price-unit" style="right:27px" class="ppu-product">${pvp}¤/u</p>
-                                <h4 id="netprice" style="right:5px" class="netprice-product">${np}¤</h4>
-                                <p id="price-unit-netprice" style="right:27px" class="ppu-netprice-product">${np}¤/u</p>
+                                <h4 id="price" style="right:5px" class="pvp-product">${pvp.toLocaleString('es-ES', numberOptionsEU)}¤</h4>
+                                <p id="price-unit" style="right:27px" class="ppu-product">${pvp.toLocaleString('es-ES', numberOptionsEU)}¤/u</p>
+                                <h4 id="netprice" style="right:5px" class="netprice-product">${np.toLocaleString('es-ES', numberOptionsEU)}¤</h4>
+                                <p id="price-unit-netprice" style="right:27px" class="ppu-netprice-product">${np.toLocaleString('es-ES', numberOptionsEU)}¤/u</p>
                             </div>
                             <button onclick="" class="cart-product">
                                 <img loading="lazy" style="width:40px" src="./img/cart.png" onerror="this.onerror=null; this.src=&#39;https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg&#39;" alt="">
@@ -249,6 +261,7 @@ function addProduct(e){
                                 <span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
                             </button>
     `
+    console.log("this is np:",np)
     card_product = document.createElement("div")
     card_product.setAttribute('id',`product-${id_product}`);
     card_product.innerHTML = Content_bofill;
@@ -260,7 +273,7 @@ function addProduct(e){
 
     loadTotal()
     document.getElementById(id_sel).value = diam;
-    document.getElementById(id_quantity).addEventListener("change", loadPrice);
+    document.getElementById(id_quantity).addEventListener("input", loadPrice);
 }
 
 function removeProduct(e){
@@ -320,67 +333,19 @@ function getCompetitor(a,putFirstProducts) {
     fetch(fileUrl)
         .then(response => response.arrayBuffer())
         .then(data => {
-
+            a.querySelector(".loader").style.display = "block";
             const discount = a.querySelector(".input-discount")
             a.querySelector(".select-competitor").disabled = true;
 
             let competitorInfo = competitorsJSON[a.querySelector(".select-competitor").value]
 
-            const Content = `
-            <div class="popup-card">
-            <h3 style="font-size: 30px;margin: 40px;">${a.querySelector(".select-competitor").value.toUpperCase()}</h3>
-            <button style="top:30px;right: 30px;" class="cross close">
-                <span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
-                <span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
-            </button>
-            <div class="popup-filtre-competitor">
-            <div id="div-filtre" class="filtre">
-                        <select id="filtre-familia" class="select-filtre" name="FAMILIA" title="FAMILIA">
-                            <option value="" disabled="" selected="">FAMILIA</option>
-                        </select>
-                        <select id="filtre-subfamilia" class="select-filtre" name="SUBFAMILIA" title="SUBFAMILIA">
-                            <option value="" disabled="" selected="">SUBFAMILIA</option>
-                        </select>
-                        <select id="filtre-diametro" class="select-filtre" name="DIAMETRO" title="DIAMETRO">
-                            <option value="" selected="">DIÁMETRO</option>
-                        </select>
-                    </div>
-                <div id="reference" class="filtre" style="margin-left: 10px;">
-                    <input id="referencia" placeholder="REFERENCIA" type="text">
-                </div>
-                <div id="name" class="filtre" style="margin-left: 10px;">
-                    <input id="nombre" style="text-transform:none;" placeholder="NOMBRE" type="text">
-                </div>
-                <div id="ean" class="filtre" style="margin-left: 10px;">
-                        <input id="codigoean" placeholder="CÓDIGO EAN" type="text">
-                    </div>
-                <button class="filtre-delete">
-                    <img loading="lazy" style="height: 30px;" src="./img/borrar-filtres.svg" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt="">
-                </button>
-            </div>
-            <div style="overflow-y: scroll;height: 573px; width: 100%;margin-top: 2em;">
-                <div class="products-created" style="width: 500px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;">
-                    <div class="card-create-product">
-                        <button style="background-color: #b2b2b2;position: relative;" class="cross add">
-                            <span style="transform: translateX(-52%) rotate(0deg);" class="cross-X"></span>
-                            <span style="transform: translateX(-52%) rotate(90deg);" class="cross-Y"></span>
-                        </button>
-                    </div>
-                </div>
-                <hr style="background-color: #333;height: 5px;margin-left: 5%; width: 90%; margin-top: 30px;margin-bottom: 30px;">
-                <div class="products-competitor" >
-                
-                </div>
-            </div>
-        </div>
-            `
+            const Content = `<div class="popup-card"><h3 style="font-size: 30px;margin: 40px;">${a.querySelector(".select-competitor").value.toUpperCase()}</h3><button style="top:30px;right: 30px;" class="cross close"><span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span><span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span></button><div class="popup-filtre-competitor"><div id="name" class="filtre"><input id="nombre" style="text-transform:none;" placeholder="NOMBRE" type="text"></div><div id="reference" class="filtre"><input id="referencia" placeholder="REFERENCIA" type="text"></div><div id="div-filtre" class="filtre"><select id="filtre-familia" class="select-filtre" name="FAMILIA" title="FAMILIA"><option value="" disabled="" selected="">FAMILIA</option></select><select id="filtre-subfamilia" class="select-filtre" name="SUBFAMILIA" title="SUBFAMILIA"><option value="" disabled="" selected="">SUBFAMILIA</option></select><select id="filtre-diametro" class="select-filtre" name="DIAMETRO" title="DIAMETRO"><option value="" selected="">DIÁMETRO</option></select></div><div id="ean" class="filtre"><input id="codigoean" placeholder="CÓDIGO EAN" type="text"></div><button class="filtre-delete"><img loading="lazy" style="height: 30px;" src="./img/borrar-filtres.svg" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt=""></button></div><div style="overflow-y: scroll;height: 573px; width: 100%;margin-top: 2em;"><div class="products-created" style="width: 500px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;"><div class="card-create-product"><button style="background-color: #b2b2b2;position: relative;" class="cross add"><span style="transform: translateX(-52%) rotate(0deg);" class="cross-X"></span><span style="transform: translateX(-52%) rotate(90deg);" class="cross-Y"></span></button></div></div><hr style="background-color: #333;height: 5px;margin-left: 5%; width: 90%; margin-top: 30px;margin-bottom: 30px;"><div class="products-competitor"></div></div></div>`
             const popup = document.createElement("div");
             popup.setAttribute("id", `popup-${a.id}`)
             popup.setAttribute("class", "popup")
             popup.innerHTML = Content;
             document.getElementById("page").append(popup);
             popup.querySelector(".close").addEventListener('click',closePopup)
-            
             popup.querySelector(".filtre-delete").addEventListener("click", (event) => {
                 deleteFilters()
             });
@@ -419,10 +384,8 @@ function getCompetitor(a,putFirstProducts) {
             const worker = new Worker('./scripts/worker.js');
             worker.postMessage(data);
             worker.onmessage = function (e) {
-                const workbook = e.data;
-                const firstSheetName = workbook.SheetNames[0];
-                const worksheet = workbook.Sheets[firstSheetName];
-                const range = XLSX.utils.decode_range(worksheet['!ref']);
+                const worksheet = e.data.worksheet;
+                const range = e.data.range;
 
                 if(haveName){
                     colIndex = columnLetterToNumber(competitorInfo.name)
@@ -629,6 +592,7 @@ function getCompetitor(a,putFirstProducts) {
                         });
                     }
                 }
+                a.querySelector(".loader").style.display = "none";
             };
             worker.onerror = function (error) {
                 console.error('Worker error: ', error);
@@ -651,8 +615,7 @@ function getCompetitor(a,putFirstProducts) {
                 const cellContentPVP = pvps[row]
                 const cellContentFAM = families[row]
                 const cellContentSFAM = subfamilies[row]
-                let diam;
-                diam = diameters[row]
+                let diam = diameters[row]
 
                 const element = document.createElement('div')
                 const Content = `
@@ -692,8 +655,6 @@ function getCompetitor(a,putFirstProducts) {
                 popup.querySelector("hr").style.display = "none";
                 if(ref == ""){
                     addFirstElements();
-                    popup.querySelector(".products-created").style.display = "flex";
-                popup.querySelector("hr").style.display = "block";
                 }else{
                     removeElements()
                     for (let i = 0; i < references.length; i++) {
@@ -701,101 +662,6 @@ function getCompetitor(a,putFirstProducts) {
                             addElements(i)
                         }
                     }
-                }
-                const allProducts = popup.querySelectorAll(".card-product")
-                for (let i = 0; i < allProducts.length; i++) {
-                    allProducts[i].addEventListener('click', (event) => {
-                        a.querySelector(".name-product").innerHTML = allProducts[i].querySelector("#name").innerHTML
-                        a.querySelector(".fam-product").innerHTML = allProducts[i].querySelector("#fam").innerHTML
-                        a.querySelector(".ref-product").innerHTML = allProducts[i].querySelector("#ref").innerHTML
-
-                        let price = parseFloat(allProducts[i].querySelector("#pvp").innerHTML.slice(0, -1));
-                        let netprice = price*(100-discount.value)/100;
-                        let quantity;
-                        let netpriceBofill;
-                        let difAbs;
-                        let difPer;
-                        const productes = document.getElementById("Bofill").querySelectorAll(".product-card")
-                        for (let i = 0; i < productes.length; i++) {
-                            if(productes[i].id == a.id){
-                                netpriceBofill = productes[i].querySelector(".netprice-product")
-                                quantity = productes[i].querySelector(".quantity-product").value
-                                productes[i].querySelector(".quantity-product").addEventListener('change', (event) => {
-                                    quantity = productes[i].querySelector(".quantity-product").value
-                                    a.querySelector(".pvp-product").innerHTML = `${(price*quantity).toLocaleString('es-ES', numberOptions)}¤`
-                                    a.querySelector(".netprice-product").innerHTML = `${(netprice*quantity).toLocaleString('es-ES', numberOptions)}¤`
-                                    difAbs = (quantity*netprice)-parseFloat(netpriceBofill.innerHTML.slice(0,-1));
-                                    difPer = difAbs/parseFloat(netpriceBofill.innerHTML.slice(0,-1))*100;
-                                    if(difAbs >=0 ){
-                                        a.querySelector(".difference-absolute").innerHTML = `+${difAbs.toFixed(1)}¤`
-                                        a.querySelector(".difference-percentatge").innerHTML = `+${difPer.toFixed(1)}%`
-                                        a.querySelector(".difference-absolute").style.color = "#980a0a"
-                                        a.querySelector(".difference-percentatge").style.color = "#980a0a"
-                                    }else{
-                                        a.querySelector(".difference-absolute").innerHTML = `${difAbs.toFixed(1)}¤`
-                                        a.querySelector(".difference-percentatge").innerHTML = `${difPer.toFixed(1)}%`
-                                        a.querySelector(".difference-absolute").style.color = "#0f890c"
-                                        a.querySelector(".difference-percentatge").style.color = "#0f890c"
-                                    }
-                                });
-                            }
-                        }
-                        a.querySelector(".ppu-product").innerHTML = `${price.toLocaleString('es-ES', numberOptions)}¤/u`
-                        a.querySelector(".pvp-product").innerHTML = `${(price*quantity).toLocaleString('es-ES', numberOptions)}¤`
-
-                        discount.addEventListener('change', (event) => {
-                            netprice = price*(100-discount.value)/100
-                            a.querySelector(".ppu-netprice-product").innerHTML = `${netprice.toLocaleString('es-ES', numberOptions)}¤/u`
-                            a.querySelector(".netprice-product").innerHTML = `${(netprice*quantity).toLocaleString('es-ES', numberOptions)}¤`
-                            difAbs = (quantity*netprice)-parseFloat(netpriceBofill.innerHTML.slice(0,-1));
-                            difPer = difAbs/parseFloat(netpriceBofill.innerHTML.slice(0,-1))*100;
-                            if(difAbs >=0 ){
-                                a.querySelector(".difference-absolute").innerHTML = `+${difAbs.toFixed(1)}¤`
-                                a.querySelector(".difference-percentatge").innerHTML = `+${difPer.toFixed(1)}%`
-                                a.querySelector(".difference-absolute").style.color = "#980a0a"
-                                a.querySelector(".difference-percentatge").style.color = "#980a0a"
-                            }else{
-                                a.querySelector(".difference-absolute").innerHTML = `${difAbs.toFixed(1)}¤`
-                                a.querySelector(".difference-percentatge").innerHTML = `${difPer.toFixed(1)}%`
-                                a.querySelector(".difference-absolute").style.color = "#0f890c"
-                                a.querySelector(".difference-percentatge").style.color = "#0f890c"
-                            }
-                        });
-
-                        document.getElementById('discount-bofill').addEventListener('change', (event) => {
-                            difAbs = (quantity*netprice)-parseFloat(netpriceBofill.innerHTML.slice(0,-1));
-                            difPer = difAbs/parseFloat(netpriceBofill.innerHTML.slice(0,-1))*100;
-                            if(difAbs >=0 ){
-                                a.querySelector(".difference-absolute").innerHTML = `+${difAbs.toFixed(1)}¤`
-                                a.querySelector(".difference-percentatge").innerHTML = `+${difPer.toFixed(1)}%`
-                                a.querySelector(".difference-absolute").style.color = "#980a0a"
-                                a.querySelector(".difference-percentatge").style.color = "#980a0a"
-                            }else{
-                                a.querySelector(".difference-absolute").innerHTML = `${difAbs.toFixed(1)}¤`
-                                a.querySelector(".difference-percentatge").innerHTML = `${difPer.toFixed(1)}%`
-                                a.querySelector(".difference-absolute").style.color = "#0f890c"
-                                a.querySelector(".difference-percentatge").style.color = "#0f890c"
-                            }
-                        });
-
-                        difAbs = (quantity*netprice)-parseFloat(netpriceBofill.innerHTML.slice(0,-1));
-                        difPer = difAbs/parseFloat(netpriceBofill.innerHTML.slice(0,-1))*100;
-                        if(difAbs >=0 ){
-                            a.querySelector(".difference-absolute").innerHTML = `+${difAbs.toFixed(1)}¤`
-                            a.querySelector(".difference-percentatge").innerHTML = `+${difPer.toFixed(1)}%`
-                            a.querySelector(".difference-absolute").style.color = "#980a0a"
-                            a.querySelector(".difference-percentatge").style.color = "#980a0a"
-                        }else{
-                            a.querySelector(".difference-absolute").innerHTML = `${difAbs.toFixed(1)}¤`
-                            a.querySelector(".difference-percentatge").innerHTML = `${difPer.toFixed(1)}%`
-                            a.querySelector(".difference-absolute").style.color = "#0f890c"
-                            a.querySelector(".difference-percentatge").style.color = "#0f890c"
-                        }
-
-                        a.querySelector(".ppu-netprice-product").innerHTML = `${netprice.toLocaleString('es-ES', numberOptions)}¤/u`
-                        a.querySelector(".netprice-product").innerHTML = `${(netprice*quantity).toLocaleString('es-ES', numberOptions)}¤`
-                        popup.style.visibility = "hidden";
-                    });
                 }
                 addEventCLickProducts()
             }
@@ -870,7 +736,9 @@ function getCompetitor(a,putFirstProducts) {
             }
 
             function addFirstElements(){
-                removeElements()
+                removeElements();
+                popup.querySelector(".products-created").style.display = "flex";
+                popup.querySelector("hr").style.display = "block";
                 for (let index = 2; index < 104; index++) {
                     addElements(index)
                 }
@@ -878,115 +746,48 @@ function getCompetitor(a,putFirstProducts) {
             }
 
             function OpenPopupCreate(e){
-                const Content = `
-                <div class="popup-card" style="width: 500px;height: auto; position: relative; display: flex; justify-content: center; align-items: center;flex-direction: column; ">
-                    <h3 style="position: absolute;top: 20px;left: 20px;">CREAR PRODUCTO</h3>
-                    <button id="close-popup-create" onclick="closePopupCreate()" style="right: 20px;top: 20px;" class="cross">
-                        <span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
-                        <span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
-                    </button>
-    
-                        <div class="input-container" style="margin-top: 85px;">
-                            <input type="text" id="create-name" name="name" class="input">
-                            <label id="name-label" for="">NOMBRE</label>
-                            <span>NOMBRE</span>
-                        </div>
-                        <div class="input-container">
-                            <textarea class="input" name="description" id="create-description" style="height: 100px;
-                            resize: vertical;
-                            overflow: auto;min-height:50px;max-height:205px;"></textarea>
-                            <label id="description-label" for="">DESCRIPCIÓN</label>
-                            <span>DESCRIPCIÓN</span>
-                        </div>
-                        <div class="input-container">
-                            <input id="create-ean" type="text" name="ean" class="input">
-                            <label for="">CÓDIGO EAN</label>
-                            <span>CÓDIGO EAN</span>
-                        </div>
-                        <div class="input-container">
-                            <input id="create-reference" type="text" name="reference" class="input">
-                            <label for="">REFERENCIA</label>
-                            <span>REFERENCIA</span>
-                        </div>
-                        
-                        <div class="input-container">
-                            <input id="create-family" type="text" name="family" class="input">
-                            <label for="">FAMILIA</label>
-                            <span>FAMILIA</span>
-                        </div>
-                        <div class="input-container">
-                            <input id="create-subfamily" type="text" name="subfamily" class="input">
-                            <label for="">SUBFAMILIA</label>
-                            <span>SUBFAMILIA</span>
-                        </div>
-                        <div class="input-container">
-                            <input id="create-diameter" type="text" name="diameter" class="input">
-                            <label for="">DIÁMETRO</label>
-                            <span>DIÁMETRO</span>
-                        </div>
-                        <div class="input-container">
-                            <input id="create-price" type="number" name="price" class="input">
-                            <label for="">PRECIO PVP</label>
-                            <span>PRECIO PVP</span>
-                        </div>
-                    <button id="button-create-product" style="margin: 20px;width: 80%;outline: none;border: 1px solid black;background: #ebebeb;padding: 0.6rem 1.2rem;color: #105378;font-weight: bold;font-size: 0.95rem;letter-spacing: 0.5px;border-radius: 25px;cursor: pointer;font-family: 'Gotham-title';">
-                        CREAR
-                    </button>
-                </div>
-            `
-            const popupCreate = document.createElement("div")
-            popupCreate.classList.add("popup")
-            popupCreate.style.zIndex = 200;
-            popupCreate.style.visibility = "visible";
-            popupCreate.innerHTML = Content;
-            const inputs = popupCreate.querySelectorAll(".input");
+                const Content = `<div class="popup-card" style="width: 500px;height: auto; position: relative; display: flex; justify-content: center; align-items: center;flex-direction: column; "><h3 style="position: absolute;top: 20px;left: 20px;">CREAR PRODUCTO</h3><button id="close-popup-create" onclick="closePopupCreate()" style="right: 20px;top: 20px;" class="cross"><span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span><span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span></button><div class="input-container" style="margin-top: 85px;"><input type="text" id="create-name" name="name" class="input"><label id="name-label" for="">NOMBRE</label><span>NOMBRE</span></div><div class="input-container"><textarea class="input" name="description" id="create-description" style="height: 100px;resize: vertical;overflow: auto;min-height:50px;max-height:205px;"></textarea><label id="description-label" for="">DESCRIPCIÓN</label><span>DESCRIPCIÓN</span></div><div class="input-container"><input id="create-ean" type="text" name="ean" class="input"><label for="">CÓDIGO EAN</label><span>CÓDIGO EAN</span></div><div class="input-container"><input id="create-reference" type="text" name="reference" class="input"><label for="">REFERENCIA</label><span>REFERENCIA</span></div><div class="input-container"><input id="create-family" type="text" name="family" class="input"><label for="">FAMILIA</label><span>FAMILIA</span></div><div class="input-container"><input id="create-subfamily" type="text" name="subfamily" class="input"><label for="">SUBFAMILIA</label><span>SUBFAMILIA</span></div><div class="input-container"><input id="create-diameter" type="text" name="diameter" class="input"><label for="">DIÁMETRO</label><span>DIÁMETRO</span></div><div class="input-container"><input id="create-price" type="number" name="price" class="input"><label for="">PRECIO PVP</label><span>PRECIO PVP</span></div><button id="button-create-product" style="margin: 20px;width: 80%;outline: none;border: 1px solid black;background: #ebebeb;padding: 0.6rem 1.2rem;color: #105378;font-weight: bold;font-size: 0.95rem;letter-spacing: 0.5px;border-radius: 25px;cursor: pointer;font-family: 'Gotham-title';">CREAR</button></div>`
+                const popupCreate = document.createElement("div")
+                popupCreate.classList.add("popup")
+                popupCreate.style.zIndex = 200;
+                popupCreate.style.visibility = "visible";
+                popupCreate.innerHTML = Content;
+                document.getElementById("page").appendChild(popupCreate)
+                
+                const inputs = popupCreate.querySelectorAll(".input");
+                inputs.forEach((input) => {
+                    input.addEventListener("focus", focusFunc);
+                    input.addEventListener("blur", blurFunc);
+                });
 
-            inputs.forEach((input) => {
-                input.addEventListener("focus", focusFunc);
-                input.addEventListener("blur", blurFunc);
-            });
+                popupCreate.querySelector("#close-popup-create").addEventListener('click', (event) => {
+                    popupCreate.remove()
+                });
 
-            document.getElementById("page").appendChild(popupCreate)
+                popupCreate.querySelector("#button-create-product").addEventListener('click', (event) => {
+                    if(popupCreate.querySelector("#create-price").value == ""){
+                        popupCreate.querySelector("#create-price").style.borderColor = "red";
+                        popupCreate.querySelector("#create-price").style.backgroundColor = "#ff000029";
+                    }else{
+                        const Content = `<button id="delete-product" style="right: 5px;top: 5px;height:20px;width:20px;" class="cross"><span style="transform: translateX(-50%) rotate(45deg);width: 1em;" class="cross-X"></span><span style="transform: translateX(-50%) rotate(-45deg);width: 1em;" class="cross-Y"></span></button><p id="fam" style="font-size:15px">${popupCreate.querySelector("#create-family").value}</p><p id="sfam" style="font-size:10px">${popupCreate.querySelector("#create-subfamily").value}</p><h5 id="name" style="font-size: 20px;">${popupCreate.querySelector("#create-name").value}</h5><p id="desc" style="font-size: 10px;">${popupCreate.querySelector("#create-description").value}</p><p id="pvp" style="font-size: 25px; margin-top:10px;margin-bottom:20px">${popupCreate.querySelector("#create-price").value}¤</p><p id="ref" style="font-size: 12px;left: 10px;position:absolute; bottom:7px;">${popupCreate.querySelector("#create-reference").value}</p><p id="diam" style="font-size: 12px;right: 10px;position:absolute; bottom:7px;">Ø${popupCreate.querySelector("#create-diameter").value}</p><p id="ean" style="display:none;">${popupCreate.querySelector("#create-ean")}</p>`
+                        const element = document.createElement("div")
+                        element.classList.add("card-product")
+                        element.style.height = "auto"
+                        element.style.padding = "0";
+                        element.innerHTML = Content
+                        popup.querySelector(".products-created").appendChild(element)
 
-            popupCreate.querySelector("#close-popup-create").addEventListener('click', (event) => {
-                popupCreate.remove()
-            });
+                        element.querySelector("#delete-product").addEventListener('click', (event) => {
+                            element.remove()
+                            
+                        });
 
-            popupCreate.querySelector("#button-create-product").addEventListener('click', (event) => {
-                if(popupCreate.querySelector("#create-price").value == ""){
-                    popupCreate.querySelector("#create-price").style.borderColor = "red";
-                    popupCreate.querySelector("#create-price").style.backgroundColor = "#ff000029";
-                }else{
-                    const Content = `
-                        <button id="delete-product" style="right: 5px;top: 5px;height:20px;width:20px;" class="cross">
-                            <span style="transform: translateX(-50%) rotate(45deg);width: 1em;" class="cross-X"></span>
-                            <span style="transform: translateX(-50%) rotate(-45deg);width: 1em;" class="cross-Y"></span>
-                        </button>
-                        <p id="fam" style="font-size:15px">${popupCreate.querySelector("#create-family").value}</p>
-                        <p id="sfam" style="font-size:10px">${popupCreate.querySelector("#create-subfamily").value}</p>
-                        <h5 id="name" style="font-size: 20px;">${popupCreate.querySelector("#create-name").value}</h5>
-                        <p id="desc" style="font-size: 10px;">${popupCreate.querySelector("#create-description").value}</p>
-                        <p id="pvp" style="font-size: 25px; margin-top:10px;margin-bottom:20px">${popupCreate.querySelector("#create-price").value}¤</p>
-                        <p id="ref" style="font-size: 12px;left: 10px;position:absolute; bottom:7px;">${popupCreate.querySelector("#create-reference").value}</p>
-                        <p id="diam" style="font-size: 12px;right: 10px;position:absolute; bottom:7px;">Ø${popupCreate.querySelector("#create-diameter").value}</p>
-                        <p id="ean" style="display:none;">${popupCreate.querySelector("#create-ean")}</p>
-                    `
-                    const element = document.createElement("div")
-                    element.classList.add("card-product")
-                    element.style.height = "auto"
-                    element.innerHTML = Content
-                    popup.querySelector(".products-created").appendChild(element)
-
-                    element.querySelector("#delete-product").addEventListener('click', (event) => {
-                        element.remove()
-                    });
-
-                    popupCreate.remove();
-                    popup.querySelector(".products-created").querySelector(".card-create-product").style.display = "none";
-                    saveToStorage("productsCreated",popup.querySelector(".products-created").innerHTML)
-                    popup.querySelector(".products-created").querySelector(".card-create-product").style.display = "flex";
-                }
-            });
+                        popupCreate.remove();
+                        popup.querySelector(".products-created").querySelector(".card-create-product").style.display = "none";
+                        saveToStorage("productsCreated",popup.querySelector(".products-created").innerHTML)
+                        popup.querySelector(".products-created").querySelector(".card-create-product").style.display = "flex";
+                    }
+                });
             }
 
             function editProduct(e){
@@ -1024,15 +825,98 @@ function getCompetitor(a,putFirstProducts) {
                 addEventCLickProducts()
             }
 
+            function loadPrice(){
+                let netpriceBofill
+                let quantity
+                console.log("loadprice",a.querySelector(".input-discount").value)
+                let allProducts = a.querySelector(".products-container").querySelectorAll(".product-card")
+                const discount = a.querySelector(".input-discount").value
+                for (let i = 0; i < allProducts.length; i++) {
+                    const unitpricePvp = parseFloat(allProducts[i].querySelector(".ppu-product").innerHTML.substring(0, allProducts[i].querySelector(".ppu-product").innerHTML.length - 3).replace(/\./g, '').replace(/,/g, '.'))
+                    const unitpriceNet = unitpricePvp*(100-discount)/100;
+                    let productsBofill = document.getElementById("Bofill").querySelectorAll(".product-card")
+                    console.log("aqui aqui aqui",unitpricePvp)
+                    for (let j = 0; j < productsBofill.length; j++) {
+                        if(productsBofill[j].id == allProducts[i].id){
+                            quantity = parseInt(productsBofill[j].querySelector(".quantity-product").value)
+                            netpriceBofill = parseFloat(productsBofill[j].querySelector(".netprice-product").innerHTML.slice(0, -1).replace(/\./g, '').replace(/,/g, '.'))
+                        }
+                    }
+                    let difAbs = (unitpriceNet*quantity - netpriceBofill);
+                    let difPer = difAbs/(netpriceBofill)*100
+                    allProducts[i].querySelector(".pvp-product").innerHTML = `${isNaN(unitpricePvp*quantity) ? "XX,XX" : (unitpricePvp*quantity).toLocaleString('es-ES', numberOptionsEU)}¤`
+                    allProducts[i].querySelector(".ppu-netprice-product").innerHTML = `${isNaN(unitpriceNet) ? "XX,XX" : unitpriceNet.toLocaleString('es-ES', numberOptionsEU)}¤/u`
+                    allProducts[i].querySelector(".netprice-product").innerHTML = `${isNaN(unitpriceNet*quantity) ? "XX,XX" : (unitpriceNet*quantity).toLocaleString('es-ES', numberOptionsEU)}¤`
+                    
+                    if(difAbs >= 0 || isNaN(difAbs)){
+                        allProducts[i].querySelector(".difference-absolute").innerHTML = `+${isNaN(difAbs) ? "XX,XX" : difAbs.toLocaleString('es-ES', numberOptionsEU1)}¤`;
+                        allProducts[i].querySelector(".difference-absolute").style.color = '#980a0a';
+                        allProducts[i].querySelector(".difference-percentatge").innerHTML = `+${isNaN(difPer) ? "XX,XX" : difPer.toLocaleString('es-ES', numberOptionsEU1)}%`;
+                        allProducts[i].querySelector(".difference-percentatge").style.color = '#980a0a';
+                    }else{
+                        allProducts[i].querySelector(".difference-absolute").innerHTML = `${isNaN(difAbs) ? "XX,XX" : difAbs.toLocaleString('es-ES', numberOptionsEU1)}¤`;
+                        allProducts[i].querySelector(".difference-absolute").style.color = 'rgb(15, 137, 12)';
+                        allProducts[i].querySelector(".difference-percentatge").innerHTML = `${isNaN(difPer) ? "XX,XX" : difPer.toLocaleString('es-ES', numberOptionsEU1)}%`;
+                        allProducts[i].querySelector(".difference-percentatge").style.color = 'rgb(15, 137, 12)';
+                    }
+                }
+                loadTotal();
+            }
+
+            function loadTotal(){
+                let allProducts = a.querySelectorAll('.product-card')
+                var totalPvpPrice = 0.0;
+                var totalNetPrice = 0.0; 
+                for (let i = 0; i < allProducts.length; i++) { 
+                    totalPvpPrice += parseFloat(allProducts[i].querySelector('#price').innerHTML.slice(0, -1).replace(/\./g, '').replace(/,/g, '.'));
+                    totalNetPrice += parseFloat(allProducts[i].querySelector('#netprice').innerHTML.slice(0, -1).replace(/\./g, '').replace(/,/g, '.'));
+                    console.log("aixo q es aveure", parseFloat(allProducts[i].querySelector('#price').innerHTML.slice(0, -1).replace(/\./g, '').replace(/,/g, '.')))
+                }
+                a.querySelector("#total-pvpprice").innerHTML = `${isNaN(totalPvpPrice) ? "XX,XX" : totalPvpPrice.toLocaleString('es-ES', numberOptionsEU)}¤`
+                a.querySelector("#total-netprice").innerHTML = `${isNaN(totalNetPrice) ? "XX,XX" : totalNetPrice.toLocaleString('es-ES', numberOptionsEU)}¤`
+                netpriceBofill = parseFloat(document.getElementById("Bofill").querySelector("#total-netprice").innerHTML.slice(0, -1).replace(/\./g, '').replace(/,/g, '.'))
+                let difAbs = totalNetPrice - netpriceBofill;
+                let difPer = difAbs/(netpriceBofill)*100;
+                if(difAbs >= 0 || isNaN(difAbs)){
+                    a.querySelector("#netprice-difference-absolute").innerHTML = `+${isNaN(difAbs) ? "XX,X" : difAbs.toLocaleString('es-ES', numberOptionsEU1)}¤`
+                    a.querySelector("#netprice-difference-absolute").style.color = "#980a0a"
+                    a.querySelector("#netprice-difference-percentatge").innerHTML = `+${isNaN(difPer) ? "XX,X" : difPer.toLocaleString('es-ES', numberOptionsEU1)}%`
+                    a.querySelector("#netprice-difference-percentatge").style.color = "#980a0a"
+                }else{
+                    a.querySelector("#netprice-difference-absolute").innerHTML = `${isNaN(difAbs) ? "XX,X" : difAbs.toLocaleString('es-ES', numberOptionsEU1)}¤`
+                    a.querySelector("#netprice-difference-absolute").style.color = "rgb(15, 137, 12)"
+                    a.querySelector("#netprice-difference-percentatge").innerHTML = `${isNaN(difPer) ? "XX,X" : difPer.toLocaleString('es-ES', numberOptionsEU1)}%`
+                    a.querySelector("#netprice-difference-percentatge").style.color = "rgb(15, 137, 12)"
+                }
+                pvppriceBofill = parseFloat(document.getElementById("Bofill").querySelector("#total-pvpprice").innerHTML.slice(0, -1).replace(/\./g, '').replace(/,/g, '.'))
+                difAbs = totalPvpPrice - pvppriceBofill;
+                difPer = difAbs/(pvppriceBofill)*100;
+
+                if(difAbs >= 0 || isNaN(difAbs)){
+                    a.querySelector("#pvp-difference-absolute").innerHTML = `+${isNaN(difAbs) ? "XX,X" : difAbs.toLocaleString('es-ES', numberOptionsEU1)}¤`
+                    a.querySelector("#pvp-difference-absolute").style.color = "#980a0a"
+                    a.querySelector("#pvp-difference-percentatge").innerHTML = `+${isNaN(difPer) ? "XX,X" : difPer.toLocaleString('es-ES', numberOptionsEU1)}%`
+                    a.querySelector("#pvp-difference-percentatge").style.color = "#980a0a"
+                }else{
+                    a.querySelector("#pvp-difference-absolute").innerHTML = `${isNaN(difAbs) ? "XX,X" : difAbs.toLocaleString('es-ES', numberOptionsEU1)}¤`
+                    a.querySelector("#pvp-difference-absolute").style.color = "rgb(15, 137, 12)"
+                    a.querySelector("#pvp-difference-percentatge").innerHTML = `${isNaN(difPer) ? "XX,X" : difPer.toLocaleString('es-ES', numberOptionsEU1)}%`
+                    a.querySelector("#pvp-difference-percentatge").style.color = "rgb(15, 137, 12)"
+                }
+                
+            }
+
             function addEventCLickProducts(){
-                const allProducts = popup.querySelector(".products-competitor").querySelectorAll(".card-product")
+                let allProducts = popup.querySelector(".products-competitor").querySelectorAll(".card-product")
+                
                 for (let i = 0; i < allProducts.length; i++) {
                     allProducts[i].addEventListener('click', (event) => {
-                        productEdit.closest(".product-card").querySelector(".name-product").innerHTML = allProducts[i].querySelector("#name").innerHTML
-                        productEdit.closest(".product-card").querySelector(".fam-product").innerHTML = allProducts[i].querySelector("#fam").innerHTML
-                        productEdit.closest(".product-card").querySelector(".ref-product").innerHTML = allProducts[i].querySelector("#ref").innerHTML
+                        productEdit.closest(".product-card").querySelector(".name-product").innerHTML = allProducts[i].querySelector("#name").innerHTML || "";
+                        productEdit.closest(".product-card").querySelector(".fam-product").innerHTML = allProducts[i].querySelector("#fam").innerHTML || "";
+                        productEdit.closest(".product-card").querySelector(".ref-product").innerHTML = allProducts[i].querySelector("#ref").innerHTML || "";
 
-                        let price = parseFloat(allProducts[i].querySelector("#pvp").innerHTML.slice(0, -1));
+                        let price = parseFloat(allProducts[i].querySelector("#pvp").innerHTML.slice(0, -1).toLocaleString('en-EN', numberOptionsEN));
+                        console.log("price:",price)
                         let netprice = price*(100-discount.value)/100;
                         let quantity;
                         let netpriceBofill;
@@ -1041,82 +925,26 @@ function getCompetitor(a,putFirstProducts) {
                         const productes = document.getElementById("Bofill").querySelectorAll(".product-card")
                         for (let i = 0; i < productes.length; i++) {
                             if(productes[i].id == productEdit.closest(".product-card").id){
-                                netpriceBofill = productes[i].querySelector(".netprice-product")
-                                quantity = productes[i].querySelector(".quantity-product").value
-                                productes[i].querySelector(".quantity-product").addEventListener('change', (event) => {
-                                    quantity = productes[i].querySelector(".quantity-product").value
-                                    productEdit.closest(".product-card").querySelector(".pvp-product").innerHTML = `${(price*quantity).toLocaleString('es-ES', numberOptions)}¤`
-                                    productEdit.closest(".product-card").querySelector(".netprice-product").innerHTML = `${(netprice*quantity).toLocaleString('es-ES', numberOptions)}¤`
-                                    difAbs = (quantity*netprice)-parseFloat(netpriceBofill.innerHTML.slice(0,-1));
-                                    difPer = difAbs/parseFloat(netpriceBofill.innerHTML.slice(0,-1))*100;
-                                    if(difAbs >=0 ){
-                                        productEdit.closest(".product-card").querySelector(".difference-absolute").innerHTML = `+${difAbs.toFixed(1)}¤`
-                                        productEdit.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `+${difPer.toFixed(1)}%`
-                                        productEdit.closest(".product-card").querySelector(".difference-absolute").style.color = "#980a0a"
-                                        productEdit.closest(".product-card").querySelector(".difference-percentatge").style.color = "#980a0a"
-                                    }else{
-                                        productEdit.closest(".product-card").querySelector(".difference-absolute").innerHTML = `${difAbs.toFixed(1)}¤`
-                                        productEdit.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `${difPer.toFixed(1)}%`
-                                        productEdit.closest(".product-card").querySelector(".difference-absolute").style.color = "#0f890c"
-                                        productEdit.closest(".product-card").querySelector(".difference-percentatge").style.color = "#0f890c"
-                                    }
+                                productes[i].querySelector(".quantity-product").addEventListener('input', (event) => {
+                                    loadPrice();
+                                });
+                                productes[i].querySelector(".cross").addEventListener('click', (event) => {
+                                    console.log("123456789")
+                                    loadPrice();
                                 });
                             }
                         }
-                        productEdit.closest(".product-card").querySelector(".ppu-product").innerHTML = `${price.toLocaleString('es-ES', numberOptions)}¤/u`
-                        productEdit.closest(".product-card").querySelector(".pvp-product").innerHTML = `${(price*quantity).toLocaleString('es-ES', numberOptions)}¤`
-
-                        discount.addEventListener('change', (event) => {
-                            netprice = price*(100-discount.value)/100
-                            productEdit.closest(".product-card").querySelector(".ppu-netprice-product").innerHTML = `${netprice.toLocaleString('es-ES', numberOptions)}¤/u`
-                            productEdit.closest(".product-card").querySelector(".netprice-product").innerHTML = `${(netprice*quantity).toLocaleString('es-ES', numberOptions)}¤`
-                            difAbs = (quantity*netprice)-parseFloat(netpriceBofill.innerHTML.slice(0,-1));
-                            difPer = difAbs/parseFloat(netpriceBofill.innerHTML.slice(0,-1))*100;
-                            if(difAbs >=0 ){
-                                productEdit.closest(".product-card").querySelector(".difference-absolute").innerHTML = `+${difAbs.toFixed(1)}¤`
-                                productEdit.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `+${difPer.toFixed(1)}%`
-                                productEdit.closest(".product-card").querySelector(".difference-absolute").style.color = "#980a0a"
-                                productEdit.closest(".product-card").querySelector(".difference-percentatge").style.color = "#980a0a"
-                            }else{
-                                productEdit.closest(".product-card").querySelector(".difference-absolute").innerHTML = `${difAbs.toFixed(1)}¤`
-                                productEdit.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `${difPer.toFixed(1)}%`
-                                productEdit.closest(".product-card").querySelector(".difference-absolute").style.color = "#0f890c"
-                                productEdit.closest(".product-card").querySelector(".difference-percentatge").style.color = "#0f890c"
-                            }
+                        productEdit.closest(".product-card").querySelector(".ppu-product").innerHTML = `${price.toLocaleString('es-ES', numberOptionsEU)}¤/u`
+                        discount.addEventListener('input', (event) => {
+                            loadPrice();
                         });
 
-                        document.getElementById('discount-bofill').addEventListener('change', (event) => {
-                            difAbs = (quantity*netprice)-parseFloat(netpriceBofill.innerHTML.slice(0,-1));
-                            difPer = difAbs/parseFloat(netpriceBofill.innerHTML.slice(0,-1))*100;
-                            if(difAbs >=0 ){
-                                productEdit.closest(".product-card").querySelector(".difference-absolute").innerHTML = `+${difAbs.toFixed(1)}¤`
-                                productEdit.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `+${difPer.toFixed(1)}%`
-                                productEdit.closest(".product-card").querySelector(".difference-absolute").style.color = "#980a0a"
-                                productEdit.closest(".product-card").querySelector(".difference-percentatge").style.color = "#980a0a"
-                            }else{
-                                productEdit.closest(".product-card").querySelector(".difference-absolute").innerHTML = `${difAbs.toFixed(1)}¤`
-                                productEdit.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `${difPer.toFixed(1)}%`
-                                productEdit.closest(".product-card").querySelector(".difference-absolute").style.color = "#0f890c"
-                                productEdit.closest(".product-card").querySelector(".difference-percentatge").style.color = "#0f890c"
-                            }
+                        document.getElementById('discount-bofill').addEventListener('input', (event) => {
+                            loadPrice();
                         });
 
-                        difAbs = (quantity*netprice)-parseFloat(netpriceBofill.innerHTML.slice(0,-1));
-                        difPer = difAbs/parseFloat(netpriceBofill.innerHTML.slice(0,-1))*100;
-                        if(difAbs >=0 ){
-                            productEdit.closest(".product-card").querySelector(".difference-absolute").innerHTML = `+${difAbs.toFixed(1)}¤`
-                            productEdit.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `+${difPer.toFixed(1)}%`
-                            productEdit.closest(".product-card").querySelector(".difference-absolute").style.color = "#980a0a"
-                            productEdit.closest(".product-card").querySelector(".difference-percentatge").style.color = "#980a0a"
-                        }else{
-                            productEdit.closest(".product-card").querySelector(".difference-absolute").innerHTML = `${difAbs.toFixed(1)}¤`
-                            productEdit.closest(".product-card").querySelector(".difference-percentatge").innerHTML = `${difPer.toFixed(1)}%`
-                            productEdit.closest(".product-card").querySelector(".difference-absolute").style.color = "#0f890c"
-                            productEdit.closest(".product-card").querySelector(".difference-percentatge").style.color = "#0f890c"
-                        }
+                        loadPrice();
 
-                        productEdit.closest(".product-card").querySelector(".ppu-netprice-product").innerHTML = `${netprice.toLocaleString('es-ES', numberOptions)}¤/u`
-                        productEdit.closest(".product-card").querySelector(".netprice-product").innerHTML = `${(netprice*quantity).toLocaleString('es-ES', numberOptions)}¤`
                         popup.style.visibility = "hidden";
                     });
                 }
@@ -1139,42 +967,13 @@ function getCompetitor(a,putFirstProducts) {
                 }else{
                     card_product.setAttribute('id',`${name}`);
                 }
-                const ContentProduct = `
-                            <div style="height: 100%;width: auto; align-items: center; display: flex;margin-left:10px; max-width:calc(100% - 320px); overflow-x:hidden;">
-                                <div>
-                                    <h5 class="fam-product">FAMILIA</h5>
-                                    <h4 class="name-product">NOMBRE</h4>
-                                    <p class="ref-product">CÓDIGO</p>
-                                </div>
-                            </div>
-                            <button class="edit-product-competitor">
-                                    <img loading="lazy" src="./img/edit.svg" style="height: 30px; width: 30px;" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt="">
-                                </button>
-                            <div style="width: 70px;position: absolute;right: 10px;bottom:17px;display:flex;justify-content:center;flex-direction:column;align-items:center;">
-                                <h4 id="" style="font-size:15px;color:#980a0a;" class="difference-percentatge">+XX,X%</h4>
-                                <h4 id="" style="font-size:15px;color:#980a0a;" class="difference-absolute">+XX,X¤</h4>
-                            </div>
-                            <div style="height: 120px;width: 150px;position: absolute;right: 80px;">
-                                <h4 id="price" class="pvp-product">XX.XX¤</h4>
-                                <p id="price-unit" class="ppu-product">XX.XX¤/u</p>
-                                <h4 id="netprice" class="netprice-product">XX.XX¤</h4>
-                                <p id="price-unit-netprice" style="right:27px" class="ppu-netprice-product">XX.XX¤/u</p>
-                            </div>
-                            <div style="height: 120px;width: 35px;position: absolute;right: 230px;">
-                                
-                                <p id="price-unit" class="ppu-product" style="
-    left: 0px;
-    top: 30px;
-">pvp:</p>
-                                
-                                <p id="price-unit-netprice" style="left: 0px;bottom: 23px;" class="ppu-netprice-product">neto:</p>
-                            </div>
-                `
+                const ContentProduct = `<div style="height: 100%;width: auto; align-items: center; display: flex;margin-left:10px; max-width:calc(100% - 320px); overflow-x:hidden;"><div><h5 class="fam-product">FAMILIA</h5><h4 class="name-product">NOMBRE</h4><p class="ref-product">CÓDIGO</p></div></div><button class="edit-product-competitor"><img loading="lazy" src="./img/edit.svg" style="height: 30px; width: 30px;" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt=""></button><div style="width: 70px;position: absolute;right: 10px;bottom:17px;display:flex;justify-content:center;flex-direction:column;align-items:center;"><h4 id="" style="font-size:15px;color:#980a0a;" class="difference-percentatge">+XX,X%</h4><h4 id="" style="font-size:15px;color:#980a0a;" class="difference-absolute">+XX,X¤</h4></div><div style="height: 120px;width: 150px;position: absolute;right: 80px;"><h4 id="price" class="pvp-product">XX.XX¤</h4><p id="price-unit" class="ppu-product">XX.XX¤/u</p><h4 id="netprice" class="netprice-product">XX.XX¤</h4><p id="price-unit-netprice" style="right:27px" class="ppu-netprice-product">XX.XX¤/u</p></div><div style="height: 120px;width: 35px;position: absolute;right: 230px;"><p id="price-unit" class="ppu-product" style="left: 0px;top: 30px;">pvp:</p><p id="price-unit-netprice" style="left: 0px;bottom: 23px;" class="ppu-netprice-product">neto:</p></div>`
                 card_product.addEventListener('mouseover', changeColor);
                 card_product.addEventListener('mouseout', changeColor);
                 card_product.innerHTML = ContentProduct;
                 a.querySelector(".products-container").append(card_product)
                 card_product.querySelector(".edit-product-competitor").addEventListener("click", editProduct)
+                loadPrice();
             }
 
             if(putFirstProducts){
@@ -1357,7 +1156,7 @@ function renderWindows(){
         div.innerHTML = `<p id="date" style="display: none;">${windows[i].date}</p> <p id="id_product" style="display: none;">${windows[i].id_product}</p>`
         div.classList.add("windows-input")
         div2.style.position = "relative"
-        div2.innerHTML = `<button style="background: rgb(178, 178, 178);width: 30px;height: 38px;top: 1px;right: 1px;border-radius: 10px;visibility: hidden;" class="cross">
+        div2.innerHTML = `<button style="background: rgb(178, 178, 178);width: 30px;height: 35px;top: 1px;right: 1px;border-radius: 10px;visibility: hidden;" class="cross">
         <span style="width: 1em;transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
         <span style="width: 1em;transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
         </button>`
@@ -1429,14 +1228,25 @@ function openWindow(e){
         if(windows[i].date == windowDateCreated){
             document.querySelector("#discount-bofill").value = windows[i].bofill.discount
             document.querySelector("#Bofill").querySelector(".products-container").innerHTML = windows[i].bofill.content
+            let allProductsBofill = document.querySelector("#Bofill").querySelectorAll(".product-card");
+            for (let j = 0; j < allProductsBofill.length; j++) {
+                allProductsBofill[j].addEventListener('mouseover', changeColor);
+                allProductsBofill[j].addEventListener('mouseout', changeColor);
+            }
             for (let j = 0; j < windows[i].competitors.length; j++) {
                 let competitor = addCompetitor(windows[i].competitors[j].name)
                 competitor.querySelector(".input-discount").value = windows[i].competitors[j].discount
                 if(windows[i].competitors[j].name != "COMPETIDOR") getCompetitor(competitor,false)
                 competitor.querySelector(".products-container").innerHTML = windows[i].competitors[j].content
+                let allProductsCompetitor = competitor.querySelectorAll(".product-card");
+                for (let k = 0; k < allProductsCompetitor.length; k++) {
+                    allProductsCompetitor[k].addEventListener('mouseover', changeColor);
+                    allProductsCompetitor[k].addEventListener('mouseout', changeColor);
+                }
             }
         }
     }
+    loadTotal();
 }
 
 function adjustWidth(e) {
@@ -1486,66 +1296,59 @@ fetch(fileUrl)
         const columnInletDiameter = competitorsJSON["bofill"].inletDiameter;
         const columnOutletDiameter = competitorsJSON["bofill"].outletDiameter;
 
-        let workbook;
-        let firstSheetName;
-        let worksheet;
-        let range
-
-        const worker = new Worker('./scripts/worker.js');
-            worker.postMessage(data);
-            worker.onmessage = function (e) {
-                workbook = e.data;
-                firstSheetName = workbook.SheetNames[0];
-                worksheet = workbook.Sheets[firstSheetName];
-                range = XLSX.utils.decode_range(worksheet['!ref']);
-            };
-            worker.onerror = function (error) {
-                console.error('Worker error: ', error);
-            };
-
-            workbook = XLSX.read(data, { type: 'array' });
-            firstSheetName = workbook.SheetNames[0];
-            worksheet = workbook.Sheets[firstSheetName];
-            range = XLSX.utils.decode_range(worksheet['!ref']);
-            
-
         var colIndex;
         var cell;
         const products = [];
 
-        for (let row = range.s.r+1; row <= range.e.r; row++) {
+        let range;
+        let worksheet;
 
-            colIndex = columnLetterToNumber(columnName);
-            cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
-            const Name = cell ? cell.v : ''
+        const worker = new Worker('./scripts/worker.js');
+            worker.postMessage(data);
+            worker.onmessage = function (e) {
+                range = e.data.range
+                worksheet = e.data.worksheet
+                
+                for (let row = range.s.r+1; row <= range.e.r; row++) {
 
-            colIndex = columnLetterToNumber(columnFamily);
-            cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
-            const Family = cell ? cell.v : ''
+                    colIndex = columnLetterToNumber(columnName);
+                    cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
+                    const Name = cell ? cell.v : ''
+        
+                    colIndex = columnLetterToNumber(columnFamily);
+                    cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
+                    const Family = cell ? cell.v : ''
+        
+                    colIndex = columnLetterToNumber(columnSubfamily);
+                    cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
+                    const Subfamily = cell ? cell.v : ''
+        
+                    colIndex = columnLetterToNumber(columnReference);
+                    cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
+                    const Reference = cell ? cell.v : ''
+        
+                    colIndex = columnLetterToNumber(columnEanCode);
+                    cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
+                    const Ean = cell ? cell.v : ''
+        
+                    const Product = {
+                        name: Name,
+                        family: Family,
+                        subfamily: Subfamily,
+                        reference: Reference,
+                        ean: Ean
+                    }
+        
+                    products.push(Product)
+    
 
-            colIndex = columnLetterToNumber(columnSubfamily);
-            cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
-            const Subfamily = cell ? cell.v : ''
-
-            colIndex = columnLetterToNumber(columnReference);
-            cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
-            const Reference = cell ? cell.v : ''
-
-            colIndex = columnLetterToNumber(columnEanCode);
-            cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
-            const Ean = cell ? cell.v : ''
-
-            const Product = {
-                name: Name,
-                family: Family,
-                subfamily: Subfamily,
-                reference: Reference,
-                ean: Ean
-            }
-
-            products.push(Product)
-
-        }
+                }
+                addFirstElements();
+                document.getElementById("Bofill").querySelector(".loader").style.display = "none";
+            };
+            worker.onerror = function (error) {
+                console.error('Worker error: ', error);
+            };
 
         document.getElementById("filtre-categoria").addEventListener("change", getCategoria)
         document.getElementById("filtre-familia").addEventListener("change", getFamilia)
@@ -1762,8 +1565,6 @@ fetch(fileUrl)
             document.getElementById("popup").querySelector("#products").innerHTML = "";
         }
 
-        addFirstElements()
-
         function deleteFilters(){
             removeElements();
             addFirstElements();
@@ -1837,7 +1638,7 @@ fetch(fileUrl)
 
     
 
-    this.document.getElementById("discount-bofill").addEventListener("change", (event) => {
+    this.document.getElementById("discount-bofill").addEventListener("input", (event) => {
         let discount = document.getElementById("discount-bofill").value
         if(discount >= 100 || discount < 0){
             document.getElementById("discount-bofill").value = 0;
@@ -1845,9 +1646,13 @@ fetch(fileUrl)
         }
         let a = this.document.getElementById("Bofill").querySelectorAll(".product-card")
         for (let i = 0; i < a.length; i++) {
-            const priceunit = a[i].querySelector("#price-unit").innerHTML
-            const price = (a[i].querySelector(".quantity-product").value * priceunit.substring(0, priceunit.length - 3));
-            a[i].querySelector("#netprice").innerHTML = `${(price*(100-discount)/100).toLocaleString('es-ES', numberOptions)}¤`
+            const priceunit = parseFloat(a[i].querySelector("#price-unit").innerHTML.slice(0,-3).toLocaleString('en-EN', numberOptionsEN))
+            console.log("price unit",priceunit)
+            const price = (a[i].querySelector(".quantity-product").value * priceunit);
+            console.log("price",price)
+            a[i].querySelector("#price").innerHTML = `${price.toLocaleString('es-ES', numberOptionsEU)}¤`
+            a[i].querySelector("#netprice").innerHTML = `${(price*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤`
+            a[i].querySelector("#price-unit-netprice").innerHTML = `${(priceunit*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤`
             loadTotal()
         }
     });
@@ -1859,8 +1664,10 @@ fetch(fileUrl)
     }
     a = document.querySelectorAll('.quantity-product')
     for (let i = 0; i < a.length; i++) {
-        a[i].addEventListener("change", loadPrice);
+        a[i].addEventListener("input", loadPrice);
     }
+
+    
     
     
     setInterval(saveWindow, 5000);
