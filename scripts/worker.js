@@ -1,4 +1,4 @@
-importScripts("https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js")
+importScripts("./xlsx.full.min.js")
 
 self.onmessage = function (e) {
     const data = e.data;

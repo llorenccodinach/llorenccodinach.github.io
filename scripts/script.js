@@ -3,8 +3,8 @@ let competitorsJSON;
 let filtersJSON;
 
 const numberOptionsEU = {
-    minimumFractionDigits: 1,
-    maximumFractionDigits: 1,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
     useGrouping: true
 };
 
@@ -226,7 +226,7 @@ function addProduct(e){
                                     <p class="ref-product">${ref}</p>
                                 </div>
                             </div>
-                            <div style="width: 80px;display: flex;align-items: center;justify-content: center;position: absolute;right: 235px;flex-direction:column;gap:10px">
+                            <div style="width: 80px;display: flex;align-items: center;justify-content: center;position: absolute;right: 285px;flex-direction:column;gap:10px">
                                 <select id="${id_sel}" class="diam-product" name="diameter">
                                     <option value="080">Ø080</option>
                                     <option value="100">Ø100</option>
@@ -249,13 +249,21 @@ function addProduct(e){
                                 </select>
                                 <input id="${id_quantity}" class="quantity-product" type="number" min="1" max="999" value="1" name="">
                             </div>
-                            <div style="height: 120px;width: 150px;position: absolute;right: 85px;">
+                            <div style="height: 120px;width: 35px;position: absolute;right: 240px;"><p style="font-size: 17px;
+                            position: absolute;
+                            right: 27px;
+                            font-family: 'Gotham-title';left: 0px;top: 26px">PVP:</p><p style="left: 0px;bottom: 26px;font-size: 17px;
+                            position: absolute;
+                            right: 27px;
+                            color: #105378;
+                            font-family: 'Gotham-title';" >NETO:</p></div>
+                            <div style="height: 120px;width: 150px;position: absolute;right: 65px;">
                                 <h4 id="price" style="right:5px" class="pvp-product">${pvp.toLocaleString('es-ES', numberOptionsEU)}¤</h4>
                                 <p id="price-unit" style="right:27px" class="ppu-product">${pvp.toLocaleString('es-ES', numberOptionsEU)}¤/u</p>
                                 <h4 id="netprice" style="right:5px" class="netprice-product">${np.toLocaleString('es-ES', numberOptionsEU)}¤</h4>
                                 <p id="price-unit-netprice" style="right:27px" class="ppu-netprice-product">${np.toLocaleString('es-ES', numberOptionsEU)}¤/u</p>
                             </div>
-                            <button onclick="removeProduct(this)" style="position: absolute;right: 20px;" class="cross">
+                            <button onclick="removeProduct(this)" style="position: absolute;right: 10px;" class="cross">
                                 <span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
                                 <span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
                             </button>
@@ -1004,7 +1012,7 @@ function getCompetitor(a,putFirstProducts) {
                 }else{
                     card_product.setAttribute('id',`${name}`);
                 }
-                const ContentProduct = `<div style="height: 100%;width: auto; align-items: center; display: flex;margin-left:10px; max-width:calc(100% - 320px); overflow-x:hidden;"><div><h5 class="fam-product">FAMILIA</h5><h4 class="name-product">NOMBRE</h4><p class="ref-product">CÓDIGO</p></div></div><button class="edit-product-competitor"><img loading="lazy" src="./img/edit.svg" style="height: 30px; width: 30px;" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt=""></button><div style="width: 70px;position: absolute;right: 10px;bottom:17px;display:flex;justify-content:center;flex-direction:column;align-items:center;"><h4 id="" style="font-size:15px;color:#980a0a;" class="difference-percentatge">+XX,X%</h4><h4 id="" style="font-size:15px;color:#980a0a;" class="difference-absolute">+XX,X¤</h4></div><div style="height: 120px;width: 150px;position: absolute;right: 80px;"><h4 id="price" class="pvp-product">XX.XX¤</h4><p id="price-unit" class="ppu-product">XX.XX¤/u</p><h4 id="netprice" class="netprice-product">XX.XX¤</h4><p id="price-unit-netprice" style="right:27px" class="ppu-netprice-product">XX.XX¤/u</p></div><div style="height: 120px;width: 35px;position: absolute;right: 230px;"><p id="price-unit" class="ppu-product" style="left: 0px;top: 30px;">PVP:</p><p id="price-unit-netprice" style="left: 0px;bottom: 23px;" class="ppu-netprice-product">NETO:</p></div>`
+                const ContentProduct = `<div style="height: 100%;width: auto; align-items: center; display: flex;margin-left:10px; max-width:calc(100% - 320px); overflow-x:hidden;"><div><h5 class="fam-product">FAMILIA</h5><h4 class="name-product">NOMBRE</h4><p class="ref-product">CÓDIGO</p></div></div><button class="edit-product-competitor"><img loading="lazy" src="./img/edit.svg" style="height: 30px; width: 30px;" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt=""></button><div style="width: 70px;position: absolute;right: 10px;bottom:19px;display:flex;justify-content:center;flex-direction:column;align-items:center;"><h4 id="" style="font-size:15px;color:#980a0a;" class="difference-percentatge">+XX,X%</h4><h4 id="" style="font-size:15px;color:#980a0a;" class="difference-absolute">+XX,X¤</h4></div><div style="height: 120px;width: 150px;position: absolute;right: 80px;"><h4 id="price" class="pvp-product">XX.XX¤</h4><p id="price-unit" class="ppu-product">XX.XX¤/u</p><h4 id="netprice" class="netprice-product">XX.XX¤</h4><p id="price-unit-netprice" style="right:27px" class="ppu-netprice-product">XX.XX¤/u</p></div><div style="height: 120px;width: 35px;position: absolute;right: 230px;"><p id="price-unit" class="ppu-product" style="left: 0px;top: 30px;">PVP:</p><p id="price-unit-netprice" style="left: 0px;bottom: 23px;" class="ppu-netprice-product">NETO:</p></div>`
                 card_product.addEventListener('mouseover', changeColor);
                 card_product.addEventListener('mouseout', changeColor);
                 card_product.innerHTML = ContentProduct;

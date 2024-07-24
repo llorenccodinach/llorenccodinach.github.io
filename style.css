@@ -194,7 +194,7 @@ textarea:focus, input:focus{
 .pvp-product{
     font-size: 28px;
     position: absolute;
-    top: 25px;
+    top: 23px;
     right: 5px;
     font-family: 'Gotham-title';
 }
@@ -210,7 +210,7 @@ textarea:focus, input:focus{
 .netprice-product{
     font-size: 28px;
     position: absolute;
-    bottom: 25px;
+    bottom: 27px;
     right: 5px;
     color: #105378;
     font-family: 'Gotham-title';
@@ -222,6 +222,7 @@ textarea:focus, input:focus{
     bottom: 5px;
     right: 27px;
     color: #105378;
+    font-family: 'Gotham-title';
 }
 
 .cart-product{
@@ -292,6 +293,10 @@ input[type=number]::-webkit-inner-spin-button {
     background-color: white;padding: 10px;height: auto; width: 200px;display: flex; flex-direction: column;border: solid 1px #333;border-radius: 10px;cursor: pointer; position: relative;
     align-items: center;
     overflow: hidden;
+}
+
+.card-product:hover{
+    background: #ebebeb;
 }
 
 .card-product>img{
