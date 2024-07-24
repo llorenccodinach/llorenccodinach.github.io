@@ -3,8 +3,8 @@ let competitorsJSON;
 let filtersJSON;
 
 const numberOptionsEU = {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
     useGrouping: true
 };
 
@@ -189,7 +189,9 @@ function loadTotal(){
 }
 
 function addProduct(e){
-    closePopup()
+    console.log("addproduct",e.target.id)
+    if(e.target.id != "favorite" && e.target.id != "favorites-white"){
+        closePopup()
     const input = e.target
     const card = input.closest(".card-product")
     const name = card.querySelector("#name").innerHTML
@@ -274,6 +276,7 @@ function addProduct(e){
     loadTotal()
     document.getElementById(id_sel).value = diam;
     document.getElementById(id_quantity).addEventListener("input", loadPrice);
+    }
 }
 
 function removeProduct(e){
@@ -326,6 +329,19 @@ function color(e){
         a[i].style.borderWidth = "1px"
     }
     e.style.borderWidth = "3px"
+}
+
+function addFavorite(e){
+    console.log("addfavorite",e.target)
+    console.log(e.target.src)
+    if(e.target.id == "favorite"){
+        e.target.src = "./img/favorites-white.svg"
+        e.target.id = "favorites-white"
+    } 
+    else {
+        e.target.src = "./img/favorites-yellow.svg"
+        e.target.id = "favorite";
+    }
 }
 
 function getCompetitor(a,putFirstProducts) {
@@ -606,6 +622,19 @@ function getCompetitor(a,putFirstProducts) {
             function removeElements() {
                 popup.querySelector(".products-competitor").innerHTML = "";
             }
+            
+            function addFavorite(e){
+                console.log("addfavorite",e.target)
+                console.log(e.target.closest(".card-product"))
+                if(e.target.id == "favorite"){
+                    e.target.src = "./img/favorites-white.svg"
+                    e.target.id = "favorites-white"
+                } 
+                else {
+                    e.target.src = "./img/favorites-yellow.svg"
+                    e.target.id = "favorite";
+                }
+            }
 
             function addElements(row) {
                 const cellContentNAME = names[row]
@@ -619,6 +648,11 @@ function getCompetitor(a,putFirstProducts) {
 
                 const element = document.createElement('div')
                 const Content = `
+                <button style="align-items: center;
+                justify-content: center;display: flex;height: 20px;width:20px;position:absolute;top:10px;right:10px;cursor:pointer;background:transparent;border:none;">
+                    <img style=";height: 20px;width:20px;" id="favorites-white" src="./img/favorites-white.svg" alt="">
+                </button>
+                
                 <p id="fam" style="font-size:15px">${families[row]}</p>
                 <p id="sfam" style="font-size:10px">${subfamilies[row]}</p>
                 <h5 id="name" style="font-size: 20px;">${names[row]}</h5>
@@ -631,6 +665,7 @@ function getCompetitor(a,putFirstProducts) {
                 element.classList.add("card-product")
                 element.style.height = "auto"
                 element.innerHTML = Content
+                element.querySelector("button").addEventListener('click', addFavorite)
                 popup.querySelector(".products-competitor").appendChild(element)
 
                 if (families[row] == undefined) {
@@ -911,7 +946,9 @@ function getCompetitor(a,putFirstProducts) {
                 
                 for (let i = 0; i < allProducts.length; i++) {
                     allProducts[i].addEventListener('click', (event) => {
-                        productEdit.closest(".product-card").querySelector(".name-product").innerHTML = allProducts[i].querySelector("#name").innerHTML || "";
+                        console.log(event.target)
+                        if(event.target != allProducts[i].querySelector("img")){
+                            productEdit.closest(".product-card").querySelector(".name-product").innerHTML = allProducts[i].querySelector("#name").innerHTML || "";
                         productEdit.closest(".product-card").querySelector(".fam-product").innerHTML = allProducts[i].querySelector("#fam").innerHTML || "";
                         productEdit.closest(".product-card").querySelector(".ref-product").innerHTML = allProducts[i].querySelector("#ref").innerHTML || "";
 
@@ -946,6 +983,8 @@ function getCompetitor(a,putFirstProducts) {
                         loadPrice();
 
                         popup.style.visibility = "hidden";
+                        }
+                        
                     });
                 }
             }
@@ -967,7 +1006,7 @@ function getCompetitor(a,putFirstProducts) {
                 }else{
                     card_product.setAttribute('id',`${name}`);
                 }
-                const ContentProduct = `<div style="height: 100%;width: auto; align-items: center; display: flex;margin-left:10px; max-width:calc(100% - 320px); overflow-x:hidden;"><div><h5 class="fam-product">FAMILIA</h5><h4 class="name-product">NOMBRE</h4><p class="ref-product">CÓDIGO</p></div></div><button class="edit-product-competitor"><img loading="lazy" src="./img/edit.svg" style="height: 30px; width: 30px;" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt=""></button><div style="width: 70px;position: absolute;right: 10px;bottom:17px;display:flex;justify-content:center;flex-direction:column;align-items:center;"><h4 id="" style="font-size:15px;color:#980a0a;" class="difference-percentatge">+XX,X%</h4><h4 id="" style="font-size:15px;color:#980a0a;" class="difference-absolute">+XX,X¤</h4></div><div style="height: 120px;width: 150px;position: absolute;right: 80px;"><h4 id="price" class="pvp-product">XX.XX¤</h4><p id="price-unit" class="ppu-product">XX.XX¤/u</p><h4 id="netprice" class="netprice-product">XX.XX¤</h4><p id="price-unit-netprice" style="right:27px" class="ppu-netprice-product">XX.XX¤/u</p></div><div style="height: 120px;width: 35px;position: absolute;right: 230px;"><p id="price-unit" class="ppu-product" style="left: 0px;top: 30px;">pvp:</p><p id="price-unit-netprice" style="left: 0px;bottom: 23px;" class="ppu-netprice-product">neto:</p></div>`
+                const ContentProduct = `<div style="height: 100%;width: auto; align-items: center; display: flex;margin-left:10px; max-width:calc(100% - 320px); overflow-x:hidden;"><div><h5 class="fam-product">FAMILIA</h5><h4 class="name-product">NOMBRE</h4><p class="ref-product">CÓDIGO</p></div></div><button class="edit-product-competitor"><img loading="lazy" src="./img/edit.svg" style="height: 30px; width: 30px;" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt=""></button><div style="width: 70px;position: absolute;right: 10px;bottom:17px;display:flex;justify-content:center;flex-direction:column;align-items:center;"><h4 id="" style="font-size:15px;color:#980a0a;" class="difference-percentatge">+XX,X%</h4><h4 id="" style="font-size:15px;color:#980a0a;" class="difference-absolute">+XX,X¤</h4></div><div style="height: 120px;width: 150px;position: absolute;right: 80px;"><h4 id="price" class="pvp-product">XX.XX¤</h4><p id="price-unit" class="ppu-product">XX.XX¤/u</p><h4 id="netprice" class="netprice-product">XX.XX¤</h4><p id="price-unit-netprice" style="right:27px" class="ppu-netprice-product">XX.XX¤/u</p></div><div style="height: 120px;width: 35px;position: absolute;right: 230px;"><p id="price-unit" class="ppu-product" style="left: 0px;top: 30px;">PVP:</p><p id="price-unit-netprice" style="left: 0px;bottom: 23px;" class="ppu-netprice-product">NETO:</p></div>`
                 card_product.addEventListener('mouseover', changeColor);
                 card_product.addEventListener('mouseout', changeColor);
                 card_product.innerHTML = ContentProduct;
@@ -1109,7 +1148,7 @@ function saveWindow(){
     let contentBofill = document.querySelector("#Bofill").querySelector(".products-container").innerHTML
     console.log("win name",windowName)
     if(windowName != ""){
-        windowsBefore.unshift({date: windowDateCreated, name: windowName, id_product: id_product, bofill:{discount: discountBofill, content: contentBofill}, competitors:arrayCompetitors})
+        windowsBefore.unshift({date: windowDateCreated, name: windowName, id_product: (id_product+1), bofill:{discount: discountBofill, content: contentBofill}, competitors:arrayCompetitors})
         saveToStorage("windows", windowsBefore)
     }
     console.log("DATECREATED:",windowDateCreated)
@@ -1217,15 +1256,16 @@ function openWindow(e){
     const width = measureSpan.offsetWidth + more;
     e.target.style.width = `${width}px`;
 
-    let windows = loadFromStorage("windows")
+    
     saveWindow();
+    let windows = loadFromStorage("windows")
     cleanWindow();
     e.target.style.backgroundColor = "#b2b2b2";
     windowName = e.target.value;
     windowDateCreated = e.target.querySelector("#date").innerHTML
-    id_product = e.target.querySelector("#id_product").innerHTML
     for (let i = 0; i < windows.length; i++) {
         if(windows[i].date == windowDateCreated){
+            id_product = windows[i].id_product+1
             document.querySelector("#discount-bofill").value = windows[i].bofill.discount
             document.querySelector("#Bofill").querySelector(".products-container").innerHTML = windows[i].bofill.content
             let allProductsBofill = document.querySelector("#Bofill").querySelectorAll(".product-card");
@@ -1404,6 +1444,7 @@ fetch(fileUrl)
 
             const element = document.createElement('div')
             const Content = `
+            <button id="favorites-white" style="align-items: center; justify-content: center;display: flex;height: 20px;width:20px;position:absolute;top:10px;right:10px;cursor:pointer;background:transparent;border:none;"> <img style=";height: 20px;width:20px;" id="favorites-white" src="./img/favorites-white.svg" alt=""> </button>
             <img loading="lazy" src="./img/FOTOS ${cellContentFAM}/${cellContentIMAGE}.png" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt="">
             <h5 id="name" style="font-size: 20px;white-space: nowrap;">${cellContentNAME}</h5>
             <p id="desc" style="font-size: 10px;margin-bottom: 20px;">${cellContentDESC}</p>
@@ -1416,6 +1457,7 @@ fetch(fileUrl)
             `
             element.classList.add("card-product")
             element.innerHTML = Content
+            element.querySelector("button").addEventListener('click', addFavorite)
             element.addEventListener("click", addProduct);
             document.getElementById("products").appendChild(element)
         }

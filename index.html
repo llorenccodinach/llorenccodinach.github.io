@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script src="./scripts/html2pdf.bundle.min.js"></script>
 
     <style>
         .loader {
@@ -45,8 +45,10 @@
             <img style="position: absolute;left: 10px;top: 10px;height: 80px;" src="./img/logobofill.png" alt="">
             <p style="position: absolute;top: 5px;right: 5px;cursor: pointer;text-decoration-line:underline;">Read the terms and conditions</p>
             <button style="position: absolute;right: 10px; top: 35px;background-color: transparent;border: none;cursor: pointer;" id="download"><img style="height: 50px;" src="./img/download.svg" alt=""></button>
+            <div id="loader-download" style="position: absolute;width: 30px;right:90px;top: 50px;display: none;" class="loader"></div>
         <script>
             document.getElementById('download').addEventListener('click', function() {
+                document.getElementById("loader-download").style.display = "block";
                 var element = document.getElementById('page');
                 var opt = {
                     margin:       [0.5, 0.5, 0.5, 0.5], // Márgenes: [superior, izquierda, inferior, derecha] en pulgadas
@@ -56,8 +58,14 @@
                     jsPDF:        { unit: 'in', format: 'b2', orientation: 'portrait' } // Formato de página y orientación
                 };
                 html2pdf().from(element).set(opt).save();
+                setTimeout(hiddenLoaderDownload, 1000); 
+                function hiddenLoaderDownload(){
+                    document.getElementById("loader-download").style.display = "none";
+                }
             });
         </script>
+        
+        
         </div>
         <div class="windows" style="height: 70px; width: 100%;background-color: white;display: flex;padding: 5px;gap:10px;">
             <div class="windows-elements" style="display: flex; gap: 10px;">

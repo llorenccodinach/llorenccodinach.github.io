@@ -200,10 +200,11 @@ textarea:focus, input:focus{
 }
 
 .ppu-product{
-    font-size: 13px;
+    font-size: 17px;
     position: absolute;
     top: 45px;
     right: 27px;
+    font-family: 'Gotham-title';
 }
 
 .netprice-product{
@@ -216,7 +217,7 @@ textarea:focus, input:focus{
 }
 
 .ppu-netprice-product{
-    font-size: 13px;
+    font-size: 17px;
     position: absolute;
     bottom: 5px;
     right: 27px;
