@@ -172,9 +172,9 @@ textarea:focus, input:focus{
     -moz-appearance: none;
     appearance: none;
     background-color: rgb(238, 238, 238);
-    border-radius: 22px;
+    border-radius: 10px;
     width: 70px;
-    height: 44px;
+    height: 30px;
     padding-left: 14px;
     font-size: 15px;
     cursor: pointer;
@@ -186,9 +186,9 @@ textarea:focus, input:focus{
     border: solid 1px black;
     padding-left: 20px;
     background-color: rgb(238, 238, 238);
-    border-radius: 22px;
+    border-radius: 10px;
     width: 70px;
-    height: 44px;
+    height: 30px;
 }
 
 .pvp-product{

@@ -226,7 +226,7 @@ function addProduct(e){
                                     <p class="ref-product">${ref}</p>
                                 </div>
                             </div>
-                            <div style="width: 80px;display: flex;align-items: center;justify-content: center;position: absolute;right: 305px;flex-direction:column;gap:10px">
+                            <div style="width: 80px;display: flex;align-items: center;justify-content: center;position: absolute;right: 235px;flex-direction:column;gap:10px">
                                 <select id="${id_sel}" class="diam-product" name="diameter">
                                     <option value="080">Ø080</option>
                                     <option value="100">Ø100</option>
@@ -249,15 +249,12 @@ function addProduct(e){
                                 </select>
                                 <input id="${id_quantity}" class="quantity-product" type="number" min="1" max="999" value="1" name="">
                             </div>
-                            <div style="height: 120px;width: 150px;position: absolute;right: 155px;">
+                            <div style="height: 120px;width: 150px;position: absolute;right: 85px;">
                                 <h4 id="price" style="right:5px" class="pvp-product">${pvp.toLocaleString('es-ES', numberOptionsEU)}¤</h4>
                                 <p id="price-unit" style="right:27px" class="ppu-product">${pvp.toLocaleString('es-ES', numberOptionsEU)}¤/u</p>
                                 <h4 id="netprice" style="right:5px" class="netprice-product">${np.toLocaleString('es-ES', numberOptionsEU)}¤</h4>
                                 <p id="price-unit-netprice" style="right:27px" class="ppu-netprice-product">${np.toLocaleString('es-ES', numberOptionsEU)}¤/u</p>
                             </div>
-                            <button onclick="" class="cart-product">
-                                <img loading="lazy" style="width:40px" src="./img/cart.png" onerror="this.onerror=null; this.src=&#39;https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg&#39;" alt="">
-                            </button>
                             <button onclick="removeProduct(this)" style="position: absolute;right: 20px;" class="cross">
                                 <span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
                                 <span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
@@ -629,6 +626,7 @@ function getCompetitor(a,putFirstProducts) {
                 if(e.target.id == "favorite"){
                     e.target.src = "./img/favorites-white.svg"
                     e.target.id = "favorites-white"
+
                 } 
                 else {
                     e.target.src = "./img/favorites-yellow.svg"
