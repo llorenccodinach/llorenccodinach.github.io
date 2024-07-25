@@ -994,7 +994,6 @@ function getCompetitor(a,putFirstProducts) {
                         addElement.querySelector(".add").addEventListener('click', (event) => {
                             OpenPopupCreate(e);
                         });
-                        addEventCLickProducts();
                     }
                 });
             }
@@ -1032,6 +1031,7 @@ function getCompetitor(a,putFirstProducts) {
                 });
 
                 productEdit = e.target
+                addEventCLickProducts();
             }
 
             function loadPrice(){
