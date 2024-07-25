@@ -996,6 +996,7 @@ function getCompetitor(a,putFirstProducts) {
                         });
                     }
                 });
+                addEventCLickProducts();
             }
 
             function editProduct(e){
