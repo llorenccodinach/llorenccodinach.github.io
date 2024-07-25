@@ -994,6 +994,7 @@ function getCompetitor(a,putFirstProducts) {
                         addElement.querySelector(".add").addEventListener('click', (event) => {
                             OpenPopupCreate(e);
                         });
+                        addEventCLickProducts();
                     }
                 });
             }
