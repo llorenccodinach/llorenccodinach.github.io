@@ -39,12 +39,13 @@
     </div>
     
     <div id="page" style="height: 100%; width: 100%; display: none;">
+
         <div style="height: 100px; width: 100%;display: flex;justify-content: center;">
             
             <h1 style="font-size: 50px;margin-top: 30px;">Bofill Pricing Tool</h1>
             <img style="position: absolute;left: 10px;top: 10px;height: 80px;" src="./img/logobofill.png" alt="">
             <p style="position: absolute;top: 5px;right: 5px;cursor: pointer;text-decoration-line:underline;">Read the terms and conditions</p>
-            <button style="position: absolute;right: 10px; top: 35px;background-color: transparent;border: none;cursor: pointer;" id="download"><img style="height: 50px;" src="./img/download.svg" alt=""></button>
+            <button title="Imprimir/Descargar" style="position: absolute;right: 10px; top: 35px;background-color: transparent;border: none;cursor: pointer;" id="download"><img style="height: 50px;" src="./img/download.svg" alt=""></button>
             <div id="loader-download" style="position: absolute;width: 30px;right:90px;top: 50px;display: none;" class="loader"></div>
         <script>
             document.getElementById('download').addEventListener('click', function() {
@@ -72,7 +73,7 @@
 
             </div>
             
-            <button onclick="newWindow()" style="height: 40px; width: 40px; background-color: white;border-radius: 10px;display: flex;justify-content: center;align-items: center;border: solid 1px black;position: relative;" class="cross">
+            <button title="Nueva ventana" onclick="newWindow()" style="height: 40px; width: 40px; background-color: white;border-radius: 10px;display: flex;justify-content: center;align-items: center;border: solid 1px black;position: relative;" class="cross">
                 <span style="transform: translateX(-52%) rotate(0deg);width: 1.2em;" class="cross-X"></span>
                 <span style="transform: translateX(-52%) rotate(90deg);width: 1.2em;" class="cross-Y"></span>
             </button>
@@ -91,7 +92,7 @@
                     <div class="products-container">
                     </div>
                     <div class="div-add-product">
-                        <button id="button-add-product" style="background-color: #b2b2b2;" class="cross">
+                        <button title="Añadir producto" id="button-add-product" style="background-color: #b2b2b2;" class="cross">
                             <span style="transform: translateX(-52%) rotate(0deg);" class="cross-X"></span>
                             <span style="transform: translateX(-52%) rotate(90deg);" class="cross-Y"></span>
                         </button>
@@ -108,7 +109,7 @@
                 </div>
             </div>
             <div class="comparar-mes">
-                <button onclick="addCompetitor()" style="background-color: #b2b2b2;" class="cross">
+                <button title="Añadir competidor" onclick="addCompetitor()" style="background-color: #b2b2b2;" class="cross">
                     <span style="transform: translateX(-52%) rotate(0deg);" class="cross-X"></span>
                     <span style="transform: translateX(-52%) rotate(90deg);" class="cross-Y"></span>
                 </button>
@@ -173,9 +174,35 @@
                         <img loading="lazy" style="height: 30px;" src="./img/borrar-filtres.svg" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt="">
                     </button>
                 </div>
-                <div id="products" class="products" style="overflow-y: scroll;height: 573px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; margin-block: 2em; gap: 2rem;">
-                    
+                <div id="all-products-popup" style="max-height: 573px; overflow-y: scroll;margin-block: 2em;">
+                    <div class="products-favorites" style="width: 500px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;">
+                        <div class="card-product">
+                            <button id="favorites-white" style="align-items: center; justify-content: center;display: flex;height: 20px;width:20px;position:absolute;top:10px;right:10px;cursor:pointer;background:transparent;border:none;"> <img style=";height: 20px;width:20px;" id="favorites-white" src="./img/favorites-white.svg" alt=""> </button>
+                            <img loading="lazy" src="./img/FOTOS DW GE/ADPBR.png" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt="">
+                            <h5 id="name" style="font-size: 20px;white-space: nowrap;">ADPBR300</h5>
+                            <p id="desc" style="font-size: 10px;margin-bottom: 20px;">Acoplamiento con brida DW GE Ø300</p>
+                            <p id="ref" style="font-size: 10px;left: 10px;position:absolute; bottom:7px;">93020300</p>
+                            <p id="diam" style="font-size: 10px;right: 10px;position:absolute; bottom:7px;">Ø300</p>
+                            <p id="fam" style="display:none;">DW GE</p>
+                            <p id="sfam" style="display:none;">20</p>
+                            <p id="pvp" style="display:none;">268.8</p>
+                            <p id="ean" style="display:none;">8435002863933</p>
+                            </div>
+                    </div>
+                    <hr style="background-color: rgb(51, 51, 51); height: 5px; margin-left: 5%; width: 90%; margin-top: 30px; margin-bottom: 30px; display: block;">
+                    <div id="products" class="products" style="width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;">
+                        
+                    </div>
+                    <div class="products-favorites" style="height: 100px;width: 100%;display: flex;flex-wrap: wrap;justify-content: center;gap: 2rem;align-items: center;">
+                        <button title="Página anterior" id="page-before" style="opacity: 50%;height: 50px;width: 50px;background: #b2b2b2;border: none;border-radius: 25px;cursor: pointer;">
+                            <img style="height: 50px; width: 50px;" src="./img/arrow-left.svg" alt="">
+                        </button>
+                        <button title="Página siguiente" id="page-next" style="height: 50px;width: 50px;background: #b2b2b2;border: none;border-radius: 25px;cursor: pointer;">
+                            <img style="height: 50px; width: 50px;" src="./img/arrow-right.svg" alt="">
+                        </button>
+                    </div>
                 </div>
+                
             </div>
         </div>
 

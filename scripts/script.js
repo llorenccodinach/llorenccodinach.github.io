@@ -80,7 +80,7 @@ function removeCompetitor(e){
 
 function addCompetitor(name){
     const Content = `
-    <select class="select-competitor" name="competitors">
+    <select title="Seleccionar competidor" class="select-competitor" name="competitors">
         <option value="COMPETIDOR">COMPETIDOR</option>
     </select>
     <div style="position:absolute; top:15px; right:80px; border: solid 1px; height: 40px;width: 90px;border-radius: 10px;">
@@ -336,31 +336,20 @@ function color(e){
     e.style.borderWidth = "3px"
 }
 
-function addFavorite(e){
-    console.log("addfavorite",e.target)
-    console.log(e.target.src)
-    if(e.target.id == "favorite"){
-        e.target.src = "./img/favorites-white.svg"
-        e.target.id = "favorites-white"
-    } 
-    else {
-        e.target.src = "./img/favorites-yellow.svg"
-        e.target.id = "favorite";
-    }
-}
-
 function getCompetitor(a,putFirstProducts) {
     var fileUrl = `../${a.querySelector(".select-competitor").value}.xlsx`;
     fetch(fileUrl)
         .then(response => response.arrayBuffer())
         .then(data => {
+
+            let productsAdd = [];
             a.querySelector(".loader").style.display = "block";
             const discount = a.querySelector(".input-discount")
             a.querySelector(".select-competitor").disabled = true;
 
             let competitorInfo = competitorsJSON[a.querySelector(".select-competitor").value]
 
-            const Content = `<div class="popup-card"><h3 style="font-size: 30px;margin: 40px;">${a.querySelector(".select-competitor").value.toUpperCase()}</h3><button style="top:30px;right: 30px;" class="cross close"><span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span><span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span></button><div class="popup-filtre-competitor"><div id="name" class="filtre"><input id="nombre" style="text-transform:none;" placeholder="NOMBRE" type="text"></div><div id="reference" class="filtre"><input id="referencia" placeholder="REFERENCIA" type="text"></div><div id="div-filtre" class="filtre"><select id="filtre-familia" class="select-filtre" name="FAMILIA" title="FAMILIA"><option value="" disabled="" selected="">FAMILIA</option></select><select id="filtre-subfamilia" class="select-filtre" name="SUBFAMILIA" title="SUBFAMILIA"><option value="" disabled="" selected="">SUBFAMILIA</option></select><select id="filtre-diametro" class="select-filtre" name="DIAMETRO" title="DIAMETRO"><option value="" selected="">DIÁMETRO</option></select></div><div id="ean" class="filtre"><input id="codigoean" placeholder="CÓDIGO EAN" type="text"></div><button class="filtre-delete"><img loading="lazy" style="height: 30px;" src="./img/borrar-filtres.svg" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt=""></button></div><div style="overflow-y: scroll;height: 573px; width: 100%;margin-top: 2em;"><div class="products-created" style="width: 500px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;"><div class="card-create-product"><button style="background-color: #b2b2b2;position: relative;" class="cross add"><span style="transform: translateX(-52%) rotate(0deg);" class="cross-X"></span><span style="transform: translateX(-52%) rotate(90deg);" class="cross-Y"></span></button></div></div><hr style="background-color: #333;height: 5px;margin-left: 5%; width: 90%; margin-top: 30px;margin-bottom: 30px;"><div class="products-competitor"></div></div></div>`
+            const Content = `<div class="popup-card"><h3 style="font-size: 30px;margin: 40px;">${a.querySelector(".select-competitor").value.toUpperCase()}</h3><button style="top:30px;right: 30px;" class="cross close"><span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span><span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span></button><div class="popup-filtre-competitor"><div id="name" class="filtre"><input id="nombre" style="text-transform:none;" placeholder="NOMBRE" type="text"></div><div id="reference" class="filtre"><input id="referencia" placeholder="REFERENCIA" type="text"></div><div id="div-filtre" class="filtre"><select id="filtre-familia" class="select-filtre" name="FAMILIA" title="FAMILIA"><option value="" disabled="" selected="">FAMILIA</option></select><select id="filtre-subfamilia" class="select-filtre" name="SUBFAMILIA" title="SUBFAMILIA"><option value="" disabled="" selected="">SUBFAMILIA</option></select><select id="filtre-diametro" class="select-filtre" name="DIAMETRO" title="DIAMETRO"><option value="" selected="">DIÁMETRO</option></select></div><div id="ean" class="filtre"><input id="codigoean" placeholder="CÓDIGO EAN" type="text"></div><button class="filtre-delete"><img loading="lazy" style="height: 30px;" src="./img/borrar-filtres.svg" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt=""></button></div><div id="all-products-popup" style="overflow-y: scroll;height: 573px; width: 100%;margin-top: 2em;"><div class="products-created" style="width: 500px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;"><div class="card-create-product"><button style="background-color: #b2b2b2;position: relative;" class="cross add"><span style="transform: translateX(-52%) rotate(0deg);" class="cross-X"></span><span style="transform: translateX(-52%) rotate(90deg);" class="cross-Y"></span></button></div></div><hr style="background-color: #333;height: 5px;margin-left: 5%; width: 90%; margin-top: 30px;margin-bottom: 30px;"><div class="products-favorites" style="width: 500px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;"></div><hr class="hr-favorites" style="background-color: rgb(51, 51, 51); height: 5px; margin-left: 5%; width: 90%; margin-top: 30px; margin-bottom: 30px; display: block;"><div class="products-competitor"></div> <div class="products-favorites" style="height: 100px;width: 100%;display: flex;flex-wrap: wrap;justify-content: center;gap: 2rem;align-items: center;"><button title="Página anterior" id="page-before" style="opacity: 50%;height: 50px;width: 50px;background: #b2b2b2;border: none;border-radius: 25px;cursor: pointer;"><img style="height: 50px; width: 50px;" src="./img/arrow-left.svg" alt=""></button><button title="Página siguiente" id="page-next" style="height: 50px; width: 50px; background: rgb(178, 178, 178); border: none; border-radius: 25px; cursor: pointer; opacity: 1;"><img style="height: 50px; width: 50px;" src="./img/arrow-right.svg" alt=""></button></div></div></div>`
             const popup = document.createElement("div");
             popup.setAttribute("id", `popup-${a.id}`)
             popup.setAttribute("class", "popup")
@@ -370,6 +359,7 @@ function getCompetitor(a,putFirstProducts) {
             popup.querySelector(".filtre-delete").addEventListener("click", (event) => {
                 deleteFilters()
             });
+            
             
             let haveName = false;
             if(competitorInfo.name != "") haveName = true;
@@ -447,6 +437,7 @@ function getCompetitor(a,putFirstProducts) {
                         references.push(cell ? cell.v : '');
                     }
                 }
+                console.log(references)
 
                 if(havePvp){
                     colIndex = columnLetterToNumber(competitorInfo.pvp)
@@ -614,6 +605,7 @@ function getCompetitor(a,putFirstProducts) {
                     }
                 }
                 a.querySelector(".loader").style.display = "none";
+                addFirstElements();
             };
             worker.onerror = function (error) {
                 console.error('Worker error: ', error);
@@ -629,65 +621,219 @@ function getCompetitor(a,putFirstProducts) {
             }
             
             function addFavorite(e){
-                console.log("addfavorite",e.target)
-                console.log(e.target.closest(".card-product"))
+                let favorites = loadFromStorage(a.querySelector(".select-competitor").value);
+                if(favorites == undefined) favorites = [];
+
                 if(e.target.id == "favorite"){
+
+                    let indice = favorites.indexOf(e.target.closest(".card-product").querySelector("#ref").innerHTML);
+
+                    if (indice !== -1) {
+                        favorites.splice(indice, 1);
+                    }
                     e.target.src = "./img/favorites-white.svg"
                     e.target.id = "favorites-white"
-
                 } 
                 else {
+                    favorites.push(e.target.closest(".card-product").querySelector("#ref").innerHTML)
                     e.target.src = "./img/favorites-yellow.svg"
                     e.target.id = "favorite";
+                    
+                }
+
+                const allProducts = popup.querySelector(".products-competitor").querySelectorAll(".card-product");
+                for (let i = 0; i < allProducts.length; i++) {
+                    allProducts[i].querySelector("img").src = "./img/favorites-white.svg"
+                    allProducts[i].querySelector("img").id = "favorites-white";
+                    for (let j = 0; j < favorites.length; j++) {
+                        if(allProducts[i].querySelector("#ref").innerHTML == favorites[j]){
+                            allProducts[i].querySelector("img").src = "./img/favorites-yellow.svg"
+                            allProducts[i].querySelector("img").id = "favorite";
+                        }
+                    }
+                }
+
+                saveToStorage(a.querySelector(".select-competitor").value,favorites);
+
+                
+                renderFavorites();
+            }
+
+            function renderFavorites(){
+                let favorites = loadFromStorage(a.querySelector(".select-competitor").value);
+                if(favorites == undefined) favorites = [];
+
+                if(favorites.length <= 0){
+                    popup.querySelector(".hr-favorites").style.display = "none";
+                }else{
+                    popup.querySelector(".hr-favorites").style.display = "block";
+                }
+
+                popup.querySelector(".products-favorites").innerHTML = "";
+                for (let i = 0; i < favorites.length; i++) {
+                    let row = 0;
+                    for (let j = 0; j < references.length; j++) {
+                        if((references[j].toString()) == favorites[i].toString()){
+                            row = j;
+                            break;
+                        }
+                    }
+                    const element = document.createElement('div')
+                    const Content = `
+                    <button style="align-items: center;
+                    justify-content: center;display: flex;height: 20px;width:20px;position:absolute;top:10px;right:10px;cursor:pointer;background:transparent;border:none;">
+                        <img style=";height: 20px;width:20px;" id="favorite" src="./img/favorites-yellow.svg" alt="">
+                    </button>
+                    
+                    <p id="fam" style="font-size:15px">${families[row]}</p>
+                    <p id="sfam" style="font-size:10px">${subfamilies[row]}</p>
+                    <h5 id="name" style="font-size: 20px;">${names[row]}</h5>
+                    <p id="desc" style="font-size: 10px;">${descriptions[row]}</p>
+                    <p id="pvp" style="font-size: 25px; margin-top:10px;margin-bottom:20px">${pvps[row]}¤</p>
+                    <p id="ref" style="font-size: 12px;left: 10px;position:absolute; bottom:7px;">${references[row]}</p>
+                    <p id="diam" style="font-size: 12px;right: 10px;position:absolute; bottom:7px;">Ø${diameters[row]}</p>
+                    <p id="ean" style="display:none;">${eans[row]}</p>
+                    `
+                    element.classList.add("card-product")
+                    element.style.height = "auto"
+                    element.innerHTML = Content
+                    element.querySelector("button").addEventListener('click', addFavorite)
+                    popup.querySelector(".products-favorites").appendChild(element)
+
+                    if (families[row] == undefined) {
+                        element.querySelector("#fam").style.display = "none"
+                    }if (subfamilies[row] == undefined) {
+                        element.querySelector("#sfam").style.display = "none" //asdf f
+                    }if (names[row] == undefined) {
+                        element.querySelector("#name").style.display = "none"
+                    }if (descriptions[row] == undefined) {
+                        element.querySelector("#desc").style.display = "none"
+                    }if (pvps[row] == undefined) {
+                        element.querySelector("#pvp").style.display = "none"
+                    }if (references[row] == undefined) {
+                        element.querySelector("#ref").style.display = "none"
+                    }if (diam == undefined) {
+                        element.querySelector("#diam").style.display = "none"
+                    }
+                }
+                addEventCLickProducts();
+            }
+
+            let page = 0;
+            let maxpages;
+
+            function addElements() {
+                page = 0;
+                maxpages = Math.ceil(productsAdd.length/105);
+                
+                print();
+
+                console.log("MAXPAGES, PAGE:", maxpages, page)
+
+                if(maxpages-1 == page || maxpages == 0){
+                    popup.querySelector("#page-next").style.opacity = "50%";
+                }else{
+                    popup.querySelector("#page-next").style.opacity = "100%";
                 }
             }
 
-            function addElements(row) {
-                const cellContentNAME = names[row]
-                const cellContentDESC = descriptions[row]
-                const cellContentEAN = eans[row]
-                const cellContentREF = references[row]
-                const cellContentPVP = pvps[row]
-                const cellContentFAM = families[row]
-                const cellContentSFAM = subfamilies[row]
-                let diam = diameters[row]
+            popup.querySelector("#page-next").addEventListener("click", (event) => {
+                if(maxpages-1 == page){
+                    
+                }else{
+                    ++page;
+                    popup.querySelector("#page-before").style.opacity = "100%";
+                    print()
+                    if(maxpages-1 == page){
+                        popup.querySelector("#page-next").style.opacity = "50%";
+                    }
+                }
+                console.log("maxpages:", maxpages)
+                console.log("page", page)
+            });
+            
+            popup.querySelector("#page-before").addEventListener("click", (event) => {
+                if(page == 0){
+                    
+                }else{
+                    --page;
+                    popup.querySelector("#page-next").style.opacity = "100%";
+                    print()
+                    if(page == 0){
+                        popup.querySelector("#page-before").style.opacity = "50%";
+                    }
+                }
+                console.log("maxpages:", maxpages)
+                console.log("page", page)
+            });
 
-                const element = document.createElement('div')
-                const Content = `
-                <button style="align-items: center;
-                justify-content: center;display: flex;height: 20px;width:20px;position:absolute;top:10px;right:10px;cursor:pointer;background:transparent;border:none;">
-                    <img style=";height: 20px;width:20px;" id="favorites-white" src="./img/favorites-white.svg" alt="">
-                </button>
-                
-                <p id="fam" style="font-size:15px">${families[row]}</p>
-                <p id="sfam" style="font-size:10px">${subfamilies[row]}</p>
-                <h5 id="name" style="font-size: 20px;">${names[row]}</h5>
-                <p id="desc" style="font-size: 10px;">${descriptions[row]}</p>
-                <p id="pvp" style="font-size: 25px; margin-top:10px;margin-bottom:20px">${pvps[row]}¤</p>
-                <p id="ref" style="font-size: 12px;left: 10px;position:absolute; bottom:7px;">${references[row]}</p>
-                <p id="diam" style="font-size: 12px;right: 10px;position:absolute; bottom:7px;">Ø${diam}</p>
-                <p id="ean" style="display:none;">${eans[row]}</p>
-                `
-                element.classList.add("card-product")
-                element.style.height = "auto"
-                element.innerHTML = Content
-                element.querySelector("button").addEventListener('click', addFavorite)
-                popup.querySelector(".products-competitor").appendChild(element)
+            function print(){
+                console.log("print-competitor")
+                popup.querySelector("#all-products-popup").scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                if(productsAdd.length >= (page+1)*105){
+                    end = (page+1)*105;
+                }else{
+                    end = productsAdd.length
+                }
+                console.log(page,end,productsAdd.length)
+                popup.querySelector(".products-competitor").innerHTML = ""
+                for (let i = page*105; i < end; i++) {
+                    console.log("0909090909090909090090")
+                    let row = productsAdd[i];
 
-                if (families[row] == undefined) {
-                    element.querySelector("#fam").style.display = "none"
-                }if (subfamilies[row] == undefined) {
-                    element.querySelector("#sfam").style.display = "none"
-                }if (names[row] == undefined) {
-                    element.querySelector("#name").style.display = "none"
-                }if (descriptions[row] == undefined) {
-                    element.querySelector("#desc").style.display = "none"
-                }if (pvps[row] == undefined) {
-                    element.querySelector("#pvp").style.display = "none"
-                }if (references[row] == undefined) {
-                    element.querySelector("#ref").style.display = "none"
-                }if (diam == undefined) {
-                    element.querySelector("#diam").style.display = "none"
+                    let imgFavorite = './img/favorites-white.svg'
+                    let idFavorite = 'favorites-white'
+                    let favorites = loadFromStorage(a.querySelector(".select-competitor").value);
+                    if(favorites == undefined) favorites = [];
+
+                    for (let k = 0; k < favorites.length; k++) {
+                        if(favorites[k] == references[row]){
+                            imgFavorite = './img/favorites-yellow.svg'
+                            idFavorite = 'favorite'
+                            break;
+                        }
+                    }
+
+                    const element = document.createElement('div')
+                    const Content = `
+                    <button style="align-items: center;
+                    justify-content: center;display: flex;height: 20px;width:20px;position:absolute;top:10px;right:10px;cursor:pointer;background:transparent;border:none;">
+                        <img style=";height: 20px;width:20px;" id="${idFavorite}" src="${imgFavorite}" alt="">
+                    </button>
+
+                    <p id="fam" style="font-size:15px">${families[row]}</p>
+                    <p id="sfam" style="font-size:10px">${subfamilies[row]}</p>
+                    <h5 id="name" style="font-size: 20px;">${names[row]}</h5>
+                    <p id="desc" style="font-size: 10px;">${descriptions[row]}</p>
+                    <p id="pvp" style="font-size: 25px; margin-top:10px;margin-bottom:20px">${pvps[row]}¤</p>
+                    <p id="ref" style="font-size: 12px;left: 10px;position:absolute; bottom:7px;">${references[row]}</p>
+                    <p id="diam" style="font-size: 12px;right: 10px;position:absolute; bottom:7px;">Ø${diameters[row]}</p>
+                    <p id="ean" style="display:none;">${eans[row]}</p>
+                    `
+                    element.classList.add("card-product")
+                    element.style.height = "auto"
+                    element.innerHTML = Content
+                    element.querySelector("button").addEventListener('click', addFavorite)
+                    popup.querySelector(".products-competitor").appendChild(element)
+
+                    if (families[row] == undefined) {
+                        element.querySelector("#fam").style.display = "none"
+                    }if (subfamilies[row] == undefined) {
+                        element.querySelector("#sfam").style.display = "none"
+                    }if (names[row] == undefined) {
+                        element.querySelector("#name").style.display = "none"
+                    }if (descriptions[row] == undefined) {
+                        element.querySelector("#desc").style.display = "none"
+                    }if (pvps[row] == undefined) {
+                        element.querySelector("#pvp").style.display = "none"
+                    }if (references[row] == undefined) {
+                        element.querySelector("#ref").style.display = "none"
+                    }if (diam == undefined) {
+                        element.querySelector("#diam").style.display = "none"
+                    }
                 }
             }
 
@@ -698,11 +844,13 @@ function getCompetitor(a,putFirstProducts) {
                     addFirstElements();
                 }else{
                     removeElements()
+                    productsAdd = [];
                     for (let i = 0; i < references.length; i++) {
                         if((references[i].toString()).startsWith(ref.toString())){
-                            addElements(i)
+                            productsAdd.push(i)
                         }
                     }
+                    addElements();
                 }
                 addEventCLickProducts()
             }
@@ -715,12 +863,14 @@ function getCompetitor(a,putFirstProducts) {
                     popup.querySelector(".products-created").style.display = "flex";
                     popup.querySelector("hr").style.display = "block";
                 }else{
-                    removeElements()
+                    removeElements();
+                    productsAdd = [];
                     for (let i = 0; i < names.length; i++) {
                         if((names[i].toString()).toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").startsWith(name.toString().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))){
-                            addElements(i)
+                            productsAdd.push(i)
                         }
                     }
+                    addElements()
                 }
                 addEventCLickProducts();
             }
@@ -731,32 +881,36 @@ function getCompetitor(a,putFirstProducts) {
                 popup.querySelector("hr").style.display = "none";
                 
                 if(haveFamily && haveSubfamily && popup.querySelector("#filtre-subfamilia").value != ""){
+                    productsAdd = [];
                     let searchedFam = popup.querySelector("#filtre-familia").value
                     let searchedSubfam = popup.querySelector("#filtre-subfamilia").value
                     for (let i = 0; i < families.length; i++) {
                         if(families[i] == searchedFam && subfamilies[i] == searchedSubfam){
                             if(haveDiameter && popup.querySelector("#filtre-diametro").value != ""){
                                 if(diameters[i] == popup.querySelector("#filtre-diametro").value){
-                                    addElements(i);
+                                    productsAdd.push(i);
                                 }
                             }else{
-                                addElements(i);
+                                productsAdd.push(i);
                             }
                         }
                     }
+                    addElements();
                 }else if(haveFamily && popup.querySelector("#filtre-familia").value != ""){
+                    productsAdd = [];
                     let searchedFam = popup.querySelector("#filtre-familia").value
                     for (let i = 0; i < families.length; i++) {
                         if(families[i] == searchedFam){
                             if((haveInletdiameter || haveOutletdiameter || haveDiameter) && popup.querySelector("#filtre-diametro").value != ""){
                                 if(diameters[i] == popup.querySelector("#filtre-diametro").value){
-                                    addElements(i);
+                                    productsAdd.push(i);
                                 }
                             }else{
-                                addElements(i);
+                                productsAdd.push(i);
                             }
                         }
                     }
+                    addElements()
                 }
                 addEventCLickProducts()
             }
@@ -778,11 +932,14 @@ function getCompetitor(a,putFirstProducts) {
 
             function addFirstElements(){
                 removeElements();
+                productsAdd = [];
                 popup.querySelector(".products-created").style.display = "flex";
                 popup.querySelector("hr").style.display = "block";
-                for (let index = 2; index < 104; index++) {
-                    addElements(index)
+                for (let index = 2; index < references.length; index++) {
+                    productsAdd.push(index)
                 }
+                console.log("addfirstelemetns:",references.length)
+                addElements();
                 addEventCLickProducts();
             }
 
@@ -810,7 +967,7 @@ function getCompetitor(a,putFirstProducts) {
                         popupCreate.querySelector("#create-price").style.borderColor = "red";
                         popupCreate.querySelector("#create-price").style.backgroundColor = "#ff000029";
                     }else{
-                        const Content = `<button id="delete-product" style="right: 5px;top: 5px;height:20px;width:20px;" class="cross"><span style="transform: translateX(-50%) rotate(45deg);width: 1em;" class="cross-X"></span><span style="transform: translateX(-50%) rotate(-45deg);width: 1em;" class="cross-Y"></span></button><p id="fam" style="font-size:15px">${popupCreate.querySelector("#create-family").value}</p><p id="sfam" style="font-size:10px">${popupCreate.querySelector("#create-subfamily").value}</p><h5 id="name" style="font-size: 20px;">${popupCreate.querySelector("#create-name").value}</h5><p id="desc" style="font-size: 10px;">${popupCreate.querySelector("#create-description").value}</p><p id="pvp" style="font-size: 25px; margin-top:10px;margin-bottom:20px">${popupCreate.querySelector("#create-price").value}¤</p><p id="ref" style="font-size: 12px;left: 10px;position:absolute; bottom:7px;">${popupCreate.querySelector("#create-reference").value}</p><p id="diam" style="font-size: 12px;right: 10px;position:absolute; bottom:7px;">Ø${popupCreate.querySelector("#create-diameter").value}</p><p id="ean" style="display:none;">${popupCreate.querySelector("#create-ean")}</p>`
+                        const Content = `<button id="delete-product" style="right: 5px;top: 5px;height:20px;width:20px;" class="cross"><span style="transform: translateX(-50%) rotate(45deg);width: 1em;" class="cross-X"></span><span style="transform: translateX(-50%) rotate(-45deg);width: 1em;" class="cross-Y"></span></button><p id="fam" style="font-size:15px">${popupCreate.querySelector("#create-family").value}</p><p id="sfam" style="font-size:10px">${popupCreate.querySelector("#create-subfamily").value}</p><h5 id="name" style="font-size: 20px;">${popupCreate.querySelector("#create-name").value}</h5><p id="desc" style="font-size: 10px;">${popupCreate.querySelector("#create-description").value}</p><p id="pvp" style="font-size: 25px; margin-top:10px;margin-bottom:20px">${(popupCreate.querySelector("#create-price").value)}¤</p><p id="ref" style="font-size: 12px;left: 10px;position:absolute; bottom:7px;">${popupCreate.querySelector("#create-reference").value}</p><p id="diam" style="font-size: 12px;right: 10px;position:absolute; bottom:7px;">Ø${popupCreate.querySelector("#create-diameter").value}</p><p id="ean" style="display:none;">${popupCreate.querySelector("#create-ean")}</p>`
                         const element = document.createElement("div")
                         element.classList.add("card-product")
                         element.style.height = "auto"
@@ -820,18 +977,29 @@ function getCompetitor(a,putFirstProducts) {
 
                         element.querySelector("#delete-product").addEventListener('click', (event) => {
                             element.remove()
-                            
                         });
 
                         popupCreate.remove();
-                        popup.querySelector(".products-created").querySelector(".card-create-product").style.display = "none";
+                        popup.querySelector(".card-create-product").remove(); //asdf
+
                         saveToStorage("productsCreated",popup.querySelector(".products-created").innerHTML)
-                        popup.querySelector(".products-created").querySelector(".card-create-product").style.display = "flex";
+                        
+                        const ContentAdd = `<button style="background-color: #b2b2b2;position: relative;" class="cross add"><span style="transform: translateX(-52%) rotate(0deg);" class="cross-X"></span><span style="transform: translateX(-52%) rotate(90deg);" class="cross-Y"></span></button>`
+                        const addElement = document.createElement("div")
+                        addElement.classList.add('card-create-product')
+                        addElement.innerHTML = ContentAdd;
+
+                        popup.querySelector(".products-created").insertBefore(addElement, popup.querySelector(".products-created").firstElementChild);
+                        
+                        addElement.querySelector(".add").addEventListener('click', (event) => {
+                            OpenPopupCreate(e);
+                        });
                     }
                 });
             }
 
             function editProduct(e){
+                renderFavorites();
                 const y = popup.querySelector(".products-created").querySelectorAll(".card-product")
 
                 for (let i = 0; i < y.length; i++) {
@@ -846,6 +1014,8 @@ function getCompetitor(a,putFirstProducts) {
                 const productsStoraged = popup.querySelector(".products-created").querySelectorAll(".card-product");
 
                 for (let i = 0; i < productsStoraged.length; i++) {
+
+                    console.log(productsStoraged[i])
                     productsStoraged[i].querySelector("#delete-product").addEventListener("click", (event) => {
                         productsStoraged[i].remove()
                         popup.querySelector(".products-created").querySelector(".card-create-product").style.display = "none";
@@ -860,10 +1030,7 @@ function getCompetitor(a,putFirstProducts) {
                     OpenPopupCreate(e);
                 });
 
-                addFirstElements()
-
                 productEdit = e.target
-                addEventCLickProducts()
             }
 
             function loadPrice(){
@@ -948,12 +1115,12 @@ function getCompetitor(a,putFirstProducts) {
             }
 
             function addEventCLickProducts(){
-                let allProducts = popup.querySelector(".products-competitor").querySelectorAll(".card-product")
+                let allProducts = popup.querySelectorAll(".card-product")
                 
                 for (let i = 0; i < allProducts.length; i++) {
                     allProducts[i].addEventListener('click', (event) => {
                         console.log(event.target)
-                        if(event.target != allProducts[i].querySelector("img")){
+                        if(event.target.tagName != 'SPAN' && event.target.tagName != 'BUTTON' && event.target.tagName != 'IMG'){
                             productEdit.closest(".product-card").querySelector(".name-product").innerHTML = allProducts[i].querySelector("#name").innerHTML || "";
                         productEdit.closest(".product-card").querySelector(".fam-product").innerHTML = allProducts[i].querySelector("#fam").innerHTML || "";
                         productEdit.closest(".product-card").querySelector(".ref-product").innerHTML = allProducts[i].querySelector("#ref").innerHTML || "";
@@ -1027,6 +1194,7 @@ function getCompetitor(a,putFirstProducts) {
                     addProductCompetitor(products[i].id)
                 }
             }
+            addFirstElements();
         })
         .catch(error => {
             console.error('Error al leer el archivo:', error);
@@ -1330,6 +1498,8 @@ fetch(fileUrl)
 
         document.getElementById("div-referencia").addEventListener("click", searchByREF)
 
+        const popup = this.document.getElementById("popup");
+
         const columnImage = competitorsJSON["bofill"].imgName;
         const columnName = competitorsJSON["bofill"].name
         const columnDescription = competitorsJSON["bofill"].description;
@@ -1402,113 +1572,209 @@ fetch(fileUrl)
         //document.getElementById("filtre-diametro").addEventListener("change", getDiametro)
 
         
-    
-        function addElements(row) {
-            var cellAddress = `${columnImage}${row}`;
-            var desiredCell = worksheet[cellAddress];
-            const cellContentIMAGE = desiredCell ? desiredCell.v : 'IMAGE';
+        let productsAdd = []
+        let maxpages = 1;
+        let page = 0;
+        
+        function print(){
+            popup.querySelector(".products").innerHTML = "";
+            popup.querySelector("#all-products-popup").scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            if(productsAdd.length >= (page+1)*105){
+                end = (page+1)*105;
+            }else{
+                end = productsAdd.length
+            }
+            for (let i = page*105; i < end; i++) {
+                let row = productsAdd[i]
+                //console.log(row)
 
-            var cellAddress = `${columnName}${row}`;
-            var desiredCell = worksheet[cellAddress];
-            const cellContentNAME = desiredCell ? desiredCell.v : 'NAME';
+                let favorites = loadFromStorage("bofill")
+                if(favorites == undefined) favorites = [];
 
-            cellAddress = `${columnDescription}${row}`
-            desiredCell = worksheet[cellAddress];
-            const cellContentDESC = desiredCell ? desiredCell.v : 'DESCRIPTION';
-            
-            cellAddress = `${columnReference}${row}`
-            desiredCell = worksheet[cellAddress];
-            const cellContentREF = desiredCell ? desiredCell.v : 'REFERENCE';
-            
-            cellAddress = `${columnFamily}${row}`
-            desiredCell = worksheet[cellAddress];
-            const cellContentFAM = desiredCell ? desiredCell.v : 'FAMILY';
-            
-            cellAddress = `${columnSubfamily}${row}`
-            desiredCell = worksheet[cellAddress];
-            const cellContentSFAM = desiredCell ? desiredCell.v : 'SUBFAMILY';
-            
-            cellAddress = `${columnPvp}${row}`
-            desiredCell = worksheet[cellAddress];
-            const cellContentPVP = desiredCell ? desiredCell.v : 'PVP';
-            
-            cellAddress = `${columnEanCode}${row}`
-            desiredCell = worksheet[cellAddress];
-            const cellContentEAN = desiredCell ? desiredCell.v : 'EANCODE';
+                var cellAddress = `${columnImage}${row}`;
+                var desiredCell = worksheet[cellAddress];
+                const cellContentIMAGE = desiredCell ? desiredCell.v : 'IMAGE';
 
-            cellAddress = `${columnDiameter}${row}`
-            desiredCell = worksheet[cellAddress];
-            const cellContentDIAMETER = desiredCell ? desiredCell.v : 'DIAMETER';
+                var cellAddress = `${columnName}${row}`;
+                var desiredCell = worksheet[cellAddress];
+                const cellContentNAME = desiredCell ? desiredCell.v : 'NAME';
 
-            cellAddress = `${columnInletDiameter}${row}`
-            desiredCell = worksheet[cellAddress];
-            const cellContentINLETDIAMETER = desiredCell ? desiredCell.v : 'INLETDIAMETER';
+                cellAddress = `${columnDescription}${row}`
+                desiredCell = worksheet[cellAddress];
+                const cellContentDESC = desiredCell ? desiredCell.v : 'DESCRIPTION';
+                
+                cellAddress = `${columnReference}${row}`
+                desiredCell = worksheet[cellAddress];
+                const cellContentREF = desiredCell ? desiredCell.v : 'REFERENCE';
+                
+                cellAddress = `${columnFamily}${row}`
+                desiredCell = worksheet[cellAddress];
+                const cellContentFAM = desiredCell ? desiredCell.v : 'FAMILY';
+                
+                cellAddress = `${columnSubfamily}${row}`
+                desiredCell = worksheet[cellAddress];
+                const cellContentSFAM = desiredCell ? desiredCell.v : 'SUBFAMILY';
+                
+                cellAddress = `${columnPvp}${row}`
+                desiredCell = worksheet[cellAddress];
+                const cellContentPVP = desiredCell ? desiredCell.v : 'PVP';
+                
+                cellAddress = `${columnEanCode}${row}`
+                desiredCell = worksheet[cellAddress];
+                const cellContentEAN = desiredCell ? desiredCell.v : 'EANCODE';
 
-            cellAddress = `${columnOutletDiameter}${row}`
-            desiredCell = worksheet[cellAddress];
-            const cellContentOUTLETDIAMETER = desiredCell ? desiredCell.v : 'OUTLETDIAMETER';
+                cellAddress = `${columnDiameter}${row}`
+                desiredCell = worksheet[cellAddress];
+                const cellContentDIAMETER = desiredCell ? desiredCell.v : 'DIAMETER';
 
-            const element = document.createElement('div')
-            const Content = `
-            <button id="favorites-white" style="align-items: center; justify-content: center;display: flex;height: 20px;width:20px;position:absolute;top:10px;right:10px;cursor:pointer;background:transparent;border:none;"> <img style=";height: 20px;width:20px;" id="favorites-white" src="./img/favorites-white.svg" alt=""> </button>
-            <img loading="lazy" src="./img/FOTOS ${cellContentFAM}/${cellContentIMAGE}.png" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt="">
-            <h5 id="name" style="font-size: 20px;white-space: nowrap;">${cellContentNAME}</h5>
-            <p id="desc" style="font-size: 10px;margin-bottom: 20px;">${cellContentDESC}</p>
-            <p id="ref" style="font-size: 10px;left: 10px;position:absolute; bottom:7px;">${cellContentREF}</p>
-            <p id="diam" style="font-size: 10px;right: 10px;position:absolute; bottom:7px;">Ø${cellContentDIAMETER}</p>
-            <p id="fam" style="display:none;">${cellContentFAM}</p>
-            <p id="sfam" style="display:none;">${cellContentSFAM}</p>
-            <p id="pvp" style="display:none;">${cellContentPVP}</p>
-            <p id="ean" style="display:none;">${cellContentEAN}</p>
-            `
-            element.classList.add("card-product")
-            element.innerHTML = Content
-            element.querySelector("button").addEventListener('click', addFavorite)
-            element.addEventListener("click", addProduct);
-            document.getElementById("products").appendChild(element)
+                cellAddress = `${columnInletDiameter}${row}`
+                desiredCell = worksheet[cellAddress];
+                const cellContentINLETDIAMETER = desiredCell ? desiredCell.v : 'INLETDIAMETER';
+
+                cellAddress = `${columnOutletDiameter}${row}`
+                desiredCell = worksheet[cellAddress];
+                const cellContentOUTLETDIAMETER = desiredCell ? desiredCell.v : 'OUTLETDIAMETER';
+
+                let imgFavorite = "./img/favorites-white.svg";
+                let idFavorite = "favorites-white";
+                for (let i = 0; i < favorites.length; i++) {
+                    if(favorites[i] == cellContentREF){
+                        imgFavorite = "./img/favorites-yellow.svg";
+                        idFavorite = "favorite";
+                    }
+                }
+
+                const element = document.createElement('div')
+                const Content = `
+                <button id="favorites-white" style="align-items: center; justify-content: center;display: flex;height: 20px;width:20px;position:absolute;top:10px;right:10px;cursor:pointer;background:transparent;border:none;"> <img style=";height: 20px;width:20px;" id="${idFavorite}" src="${imgFavorite}" alt=""> </button>
+                <img loading="lazy" src="./img/FOTOS ${cellContentFAM}/${cellContentIMAGE}.png" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt="">
+                <h5 id="name" style="font-size: 20px;white-space: nowrap;">${cellContentNAME}</h5>
+                <p id="desc" style="font-size: 10px;margin-bottom: 20px;">${cellContentDESC}</p>
+                <p id="ref" style="font-size: 10px;left: 10px;position:absolute; bottom:7px;">${cellContentREF}</p>
+                <p id="diam" style="font-size: 10px;right: 10px;position:absolute; bottom:7px;">Ø${cellContentDIAMETER}</p>
+                <p id="fam" style="display:none;">${cellContentFAM}</p>
+                <p id="sfam" style="display:none;">${cellContentSFAM}</p>
+                <p id="pvp" style="display:none;">${cellContentPVP}</p>
+                <p id="ean" style="display:none;">${cellContentEAN}</p>
+                `
+                element.classList.add("card-product")
+                element.innerHTML = Content
+                element.querySelector("button").addEventListener('click', addFavorite)
+                element.addEventListener("click", addProduct);
+                document.getElementById("products").appendChild(element)
+            }
         }
 
+        function addElements(products) {
+            page = 0;
+            
+            maxpages = Math.ceil(products.length/105);
+
+            print()
+
+            popup.querySelector("#page-before").style.opacity = "50%";
+            
+            if(maxpages-1 == page){
+                popup.querySelector("#page-next").style.opacity = "50%";
+            }else{
+                popup.querySelector("#page-next").style.opacity = "100%";
+            }
+        }
+
+        popup.querySelector("#page-next").addEventListener("click", (event) => {
+            if(maxpages-1 == page){
+                
+            }else{
+                ++page;
+                popup.querySelector("#page-before").style.opacity = "100%";
+                print()
+                if(maxpages-1 == page){
+                    popup.querySelector("#page-next").style.opacity = "50%";
+                }
+            }
+            console.log("maxpages:", maxpages)
+            console.log("page", page)
+        });
+        
+        popup.querySelector("#page-before").addEventListener("click", (event) => {
+            if(page == 0){
+                
+            }else{
+                --page;
+                popup.querySelector("#page-next").style.opacity = "100%";
+                print()
+                if(page == 0){
+                    popup.querySelector("#page-before").style.opacity = "50%";
+                }
+            }
+            console.log("maxpages:", maxpages)
+            console.log("page", page)
+        });
+
+        let favorites = loadFromStorage("bofill")
+        if(favorites == undefined) favorites = []
+        console.log(favorites.length)
+        if(favorites.length == 0) popup.querySelector("hr").style.display = "none"
+
         function searchByREF(ref){
+            popup.querySelector("hr").style.display = "none";
+            popup.querySelector(".products-favorites").style.display = "none";
             if(ref == ""){
                 addFirstElements();
                 return;
             }
+            productsAdd = []
             for (let i = 0; i < products.length; i++) {
                 if((products[i].reference.toString()).startsWith(ref.toString())){
-                    addElements(i+2)
+                    productsAdd.push(i+2)
                 }
             }
+            addElements(productsAdd)
         }
 
         function searchByEAN(code){
+            popup.querySelector("hr").style.display = "none";
+            popup.querySelector(".products-favorites").style.display = "none";
             if(code == ""){
                 addFirstElements();
                 return;
             }
+            productsAdd = []
             for (let i = 0; i < products.length; i++) {
                 if((products[i].ean.toString()).startsWith(code.toString())){
-                    addElements(i+2)
+                    productsAdd.push(i+2)
                 }
             }
+            addElements(productsAdd)
         }
 
         function searchByNAME(name){
+            popup.querySelector("hr").style.display = "none";
+            popup.querySelector(".products-favorites").style.display = "none";
             if(name == ""){
                 addFirstElements();
                 return;
             }
+            productsAdd = []
             for (let i = 0; i < products.length; i++) {
                 if((products[i].name.toString()).startsWith(name.toString().toUpperCase())){
-                    addElements(i+2)
+                    productsAdd.push(i+2)
                 }
             }
+            addElements(productsAdd)
         }
 
         function searchByFILTRE(){
+            popup.querySelector("hr").style.display = "none";
+            popup.querySelector(".products-favorites").style.display = "none";
             let category = document.getElementById('filtre-categoria')
             let family = document.getElementById('filtre-familia')
             let subfamily = document.getElementById('filtre-subfamilia')
             let diameter = document.getElementById('filtre-diametro')
+            productsAdd = [];
             if(subfamily.value != ""){
                 removeElements()
                 let subfamsShow = filtersJSON[category.value][family.value][subfamily.value]
@@ -1518,7 +1784,7 @@ fetch(fileUrl)
                     if(products[i].family == famShow){
                         for (let j = 0; j < subfamsShow.length; j++) {
                             if(products[i].subfamily == subfamsShow[j]){
-                                addElements(i+2);
+                                productsAdd.push(i+2);
                             }
                         }
                     }
@@ -1528,7 +1794,7 @@ fetch(fileUrl)
                 let famShow = family.value
                 for (let i = 2; i < products.length; i++) {
                     if(products[i].family == famShow){
-                        addElements(i+2)
+                        productsAdd.push(i+2)
                     }
                 }
             }else if(category.value != ""){
@@ -1537,15 +1803,15 @@ fetch(fileUrl)
                 for (let i = 0; i < products.length; i++) {
                     for (let j = 0; j < famsShow.length; j++) {
                         if(products[i].family == famsShow[j][0]){
-                            addElements(i+2)
+                            productsAdd.push(i+2)
                         }
                     }
                 }
-                
             }else{
                 addFirstElements();
+                return;
             }
-
+            addElements(productsAdd);
         }
 
         function getCategoria(){
@@ -1603,10 +1869,16 @@ fetch(fileUrl)
         }
 
         function addFirstElements(){
+            popup.querySelector("hr").style.display = "block";
+            popup.querySelector(".products-favorites").style.display = "flex";
             removeElements()
-            for (let index = 2; index < 104; index++) {
-                addElements(index)
+            let index = 0;
+            productsAdd = []
+            while(index < products.length){
+                productsAdd.push(index+2)
+                ++index;
             }
+            addElements(productsAdd)
         }
 
         function removeElements() {
@@ -1629,7 +1901,122 @@ fetch(fileUrl)
             document.getElementById("codigoean").value = "";
         }
 
+        function renderFavorites(){
+            let refsFavorites = loadFromStorage("bofill")
+            if(refsFavorites == undefined) refsFavorites = [];
+            document.getElementById("popup").querySelector(".products-favorites").innerHTML = "";
+            if(refsFavorites.length <= 0){
+                document.getElementById("popup").querySelector("hr").style.display = "none";
+            }else{
+                document.getElementById("popup").querySelector("hr").style.display = "block";
+            }
+            for (let i = 0; i < refsFavorites.length; i++) {
+                for (let j = 0; j < products.length; j++) {
+                    if(refsFavorites[i] == products[j].reference){
+                        let row = j+2;
+
+                        var cellAddress = `${columnImage}${row}`;
+                        var desiredCell = worksheet[cellAddress];
+                        const cellContentIMAGE = desiredCell ? desiredCell.v : 'IMAGE';
+                        var cellAddress = `${columnName}${row}`;
+                        var desiredCell = worksheet[cellAddress];
+                        const cellContentNAME = desiredCell ? desiredCell.v : 'NAME';
+                        cellAddress = `${columnDescription}${row}`
+                        desiredCell = worksheet[cellAddress];
+                        const cellContentDESC = desiredCell ? desiredCell.v : 'DESCRIPTION';
+
+                        cellAddress = `${columnReference}${row}`
+                        desiredCell = worksheet[cellAddress];
+                        const cellContentREF = desiredCell ? desiredCell.v : 'REFERENCE';
+
+                        cellAddress = `${columnFamily}${row}`
+                        desiredCell = worksheet[cellAddress];
+                        const cellContentFAM = desiredCell ? desiredCell.v : 'FAMILY';
+
+                        cellAddress = `${columnSubfamily}${row}`
+                        desiredCell = worksheet[cellAddress];
+                        const cellContentSFAM = desiredCell ? desiredCell.v : 'SUBFAMILY';
+
+                        cellAddress = `${columnPvp}${row}`
+                        desiredCell = worksheet[cellAddress];
+                        const cellContentPVP = desiredCell ? desiredCell.v : 'PVP';
+
+                        cellAddress = `${columnEanCode}${row}`
+                        desiredCell = worksheet[cellAddress];
+                        const cellContentEAN = desiredCell ? desiredCell.v : 'EANCODE';
+                        cellAddress = `${columnDiameter}${row}`
+                        desiredCell = worksheet[cellAddress];
+                        const cellContentDIAMETER = desiredCell ? desiredCell.v : 'DIAMETER';
+                        cellAddress = `${columnInletDiameter}${row}`
+                        desiredCell = worksheet[cellAddress];
+                        const cellContentINLETDIAMETER = desiredCell ? desiredCell.v : 'INLETDIAMETER';
+                        cellAddress = `${columnOutletDiameter}${row}`
+                        desiredCell = worksheet[cellAddress];
+                        const cellContentOUTLETDIAMETER = desiredCell ? desiredCell.v : 'OUTLETDIAMETER';
+                        const element = document.createElement('div')
+                        const Content = `
+                        <button id="favorites-white" style="align-items: center; justify-content: center;display: flex;height: 20px;width:20px;position:absolute;top:10px;right:10px;cursor:pointer;background:transparent;border:none;"> <img style=";height: 20px;width:20px;" id="favorite" src="./img/favorites-yellow.svg" alt=""> </button>
+                        <img loading="lazy" src="./img/FOTOS ${cellContentFAM}/${cellContentIMAGE}.png" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt="">
+                        <h5 id="name" style="font-size: 20px;white-space: nowrap;">${cellContentNAME}</h5>
+                        <p id="desc" style="font-size: 10px;margin-bottom: 20px;">${cellContentDESC}</p>
+                        <p id="ref" style="font-size: 10px;left: 10px;position:absolute; bottom:7px;">${cellContentREF}</p>
+                        <p id="diam" style="font-size: 10px;right: 10px;position:absolute; bottom:7px;">Ø${cellContentDIAMETER}</p>
+                        <p id="fam" style="display:none;">${cellContentFAM}</p>
+                        <p id="sfam" style="display:none;">${cellContentSFAM}</p>
+                        <p id="pvp" style="display:none;">${cellContentPVP}</p>
+                        <p id="ean" style="display:none;">${cellContentEAN}</p>
+                        `
+                        element.classList.add("card-product")
+                        element.innerHTML = Content
+                        element.querySelector("button").addEventListener('click', addFavorite)
+                        element.addEventListener("click", addProduct);
+                        document.getElementById("popup").querySelector(".products-favorites").appendChild(element)
+
+                        break;
+                    }
+                }
+            }
+        }
+
+        function addFavorite(e){
+            let favorites = loadFromStorage("bofill");
+            if(favorites == undefined) favorites = [];
+
+            if(e.target.id == "favorite"){
+
+                let indice = favorites.indexOf(e.target.closest(".card-product").querySelector("#ref").innerHTML);
+
+                if (indice !== -1) {
+                    favorites.splice(indice, 1);
+                }
+
+                e.target.src = "./img/favorites-white.svg"
+                e.target.id = "favorites-white"
+            } 
+            else {
+                favorites.push(e.target.closest(".card-product").querySelector("#ref").innerHTML)
+                e.target.src = "./img/favorites-yellow.svg"
+                e.target.id = "favorite";
+            }
+
+            const allProducts = document.getElementById("popup").querySelectorAll(".card-product");
+            for (let i = 0; i < allProducts.length; i++) {
+                allProducts[i].querySelector("button").querySelector("img").src = "./img/favorites-white.svg"
+                allProducts[i].querySelector("button").querySelector("img").id = "favorites-white";
+                for (let j = 0; j < favorites.length; j++) {
+                    if(allProducts[i].querySelector("#ref").innerHTML == favorites[j]){
+                        allProducts[i].querySelector("button").querySelector("img").src = "./img/favorites-yellow.svg"
+                        allProducts[i].querySelector("button").querySelector("img").id = "favorite";
+                    }
+                }
+            }
+
+            saveToStorage("bofill",favorites)
+            renderFavorites();
+        }
+
         function openPopup(name){
+            renderFavorites()
             if(name == "bofill"){
                 removeElements()
                 addFirstElements()
