@@ -324,7 +324,7 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 .total-competitor{
-    width: 100%;
+    width: 90%;
     height: 50px;
     color: #333;
     bottom: 15px;
@@ -333,10 +333,6 @@ input[type=number]::-webkit-inner-spin-button {
     position: absolute; 
     font-size: 30px;
     margin-bottom: 15px;
-}
-
-.total-competitor h4{
-    right: 80px; position: absolute;
 }
 
 #popup-filtre{
@@ -434,7 +430,7 @@ input[type=number]::-webkit-inner-spin-button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: calc(100% - 150px);
+    width: 90%;
     color: #333;
     font-size: 30px;
     position: absolute;
@@ -474,7 +470,7 @@ option{
 }
 
 .products-competitor{
-    width: 100%;display: flex; flex-wrap: wrap;justify-content: center; margin-block: 2em; gap: 2rem;
+    width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;
 }
 
 .popup-filtre-competitor{

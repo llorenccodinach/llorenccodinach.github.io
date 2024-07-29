@@ -20,6 +20,19 @@ const numberOptionsEN = {
     useGrouping: false
 };
 
+document.getElementById("sumDiscount").addEventListener("click",  (e) => {
+    console.log("sum discount",e.target.closest("#div-discount-bofill").querySelector("input"))
+    if(e.target.closest("#div-discount-bofill").querySelector("input").value < 99){
+        e.target.closest("#div-discount-bofill").querySelector("input").value++;
+    }
+});
+document.getElementById("restDiscount").addEventListener("click",  (e) => {
+    console.log("sum discount",e.target.closest("#div-discount-bofill").querySelector("input"))
+    if(e.target.closest("#div-discount-bofill").querySelector("input").value > 0){
+        e.target.closest("#div-discount-bofill").querySelector("input").value--;
+    }
+});
+
 function saveToStorage(category, data) {
     let save = JSON.parse(localStorage.getItem('BPricingTool')) || {};
     save[category] = data;
@@ -83,11 +96,16 @@ function addCompetitor(name){
     <select title="Seleccionar competidor" class="select-competitor" name="competitors">
         <option value="COMPETIDOR">COMPETIDOR</option>
     </select>
-    <div style="position:absolute; top:15px; right:80px; border: solid 1px; height: 40px;width: 90px;border-radius: 10px;">
-                        <h3 style="font-size: 20px; margin-top: 5px;margin-left: 10px;">-</h3>
-                        <input class="input-discount" type="number" name="discount" min="0" max="99" value="0" id="">
-                        <h3 style="position: absolute;top: 10px;right: 0px;font-size: 20px; margin-top: -4px;margin-left: 10px;">%</h3>
-                    </div>
+    <div id="div-discount" style="position:absolute; top:15px; right:80px; border: solid 1px; height: 40px;width: 105px;border-radius: 10px;">
+        <h3 style="font-size: 20px; margin-top: 5px;margin-left: 10px;">-</h3>
+        <input class="input-discount" type="number" name="discount" min="0" max="99" value="0" id="">
+        
+        <h3 style="position: absolute;top: 10px;right: 15px;font-size: 20px; margin-top: -4px;margin-left: 10px;">%</h3>
+        <div style="z-index: 50;cursor: pointer;flex-direction: column;display: flex;gap: 0px;width: 20px;height: 100%;position: absolute;top: 0px;right: 5px;">
+            <button id="sumDiscountCompetitor" style="background: transparent;border: none;height: 19px;width: 19px;cursor: pointer;"><img style="height: 19px;width: 19px;" src="./img/arrow-top.svg" alt=""></button>
+            <button id="restDiscountCompetitor" style="background: transparent;border: none;height: 19px;width: 19px;cursor: pointer;"><img style="height: 19px;width: 19px;" src="./img/arrow-bottom.svg" alt=""></button>
+        </div>
+    </div>
                     <div style="position: absolute;top: 27px;right: 200px;width: 40px;display:none" class="loader"></div>
     <button onclick="removeCompetitor(this)" class="button-competitor cross">
         <span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
@@ -95,28 +113,99 @@ function addCompetitor(name){
     </button>
     <div class="products-container">
     </div>
-    <div class="total-competitor" style="bottom: 73px;">
-        <h4 id="total-pvpprice" style="
-    margin-top: 7px;
-">XX.XX¤</h4>
-    <div style="width: 60px;height: 100%;position: absolute;right: 10px;display:flex;justify-content:center;flex-direction:column;align-items:center;">
-                                <h4 id="pvp-difference-percentatge" style="position: relative;font-size:15px;color:#980a0a;right: 0px;" class="difference-percentatge">+XX,X%</h4>
-                                <h4 id="pvp-difference-absolute" style="margin: 0px;position: relative;right: 0px;font-size:15px;color:#980a0a;" class="difference-absolute">+XX,X¤</h4>
-                            </div></div>
-    <div class="total-competitor" style="color: #105378;">
-        <h4 id="total-netprice" style="
-    margin-top: 7px;
-">XX.XX¤</h4>
-        <div style="width: 60px;height: 100%;position: absolute;right: 10px;display:flex;justify-content:center;flex-direction:column;align-items:center;">
-                                <h4 id="netprice-difference-percentatge" style="position: relative;font-size:15px;color:#980a0a;right: 0px;" class="difference-percentatge">+XX,X%</h4>
-                                <h4 id="netprice-difference-absolute" style="margin: 0px;position: relative;right: 0px;font-size:15px;color:#980a0a;" class="difference-absolute">+XX,X¤</h4>
-                            </div>
+    <div style="width: 90%;height: 50px;color: #333;right: 0px;display: flex;position: absolute;font-size: 30px;margin-bottom: 15px;margin-right: 4%;align-items: center;justify-content: center;gap: 10%;bottom: 145px;">
+            <div style="width: 158px;justify-content: center;align-items: center;display: flex;"></div>
+            <div style="width: calc(10% + 320px);justify-content: center;align-items: center;display: flex;"><h4 id="competitorvsbofill" style="font-size: 20px;">COMPETIDOR VS BOFILL</h4></div>
+            
+        </div>
+        <div style="width: 90%;height: 50px;color: #333;right: 0px;display: flex;position: absolute;font-size: 30px;margin-bottom: 15px;margin-right: 4%;align-items: center;justify-content: center;gap: 10%;bottom: 110px;">
+        <div style="
+
+width: 160px;
+justify-content: center;
+align-items: center;
+display: flex;
+"></div>
+        <div style="
+
+width: 160px;
+justify-content: center;
+align-items: center;
+display: flex;
+"><h4 style="font-size: 18px;">%</h4></div>
+        <div style="
+
+width: 160px;
+justify-content: center;
+align-items: center;
+display: flex;
+"><h4 style="font-size: 18px;">¤</h4></div>
     </div>
+    <div class="total-competitor" style="margin-right: 4%;align-items: center;justify-content: center;gap: 10%;bottom: 73px;">
+            <div style="
+
+    width: 160px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+"><h4 id="total-pvpprice">XX,XX¤</h4></div>
+            <div style="
+
+    width: 160px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+"><h4 id="pvp-difference-percentatge" style="font-size: 30px; color: rgb(152, 10, 10);" class="difference-percentatge">+XX,X%</h4></div>
+            <div style="
+
+    width: 160px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+"><h4 id="pvp-difference-absolute" style="font-size: 30px; color: rgb(152, 10, 10);" class="difference-absolute">+XX,X¤</h4></div>
+        </div>
+    <div class="total-competitor" style="margin-right: 4%;align-items: center;justify-content: center;gap: 10%;">
+            <div style="
+
+    width: 160px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+"><h4 id="total-netprice" style="color:#105378">XX,XX¤</h4></div>
+            <div style="
+
+    width: 160px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+"><h4 id="netprice-difference-percentatge" style="font-size: 30px; color: rgb(152, 10, 10);" class="difference-percentatge">+XX,X%</h4></div>
+            <div style="
+
+    width: 160px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+"><h4 id="netprice-difference-absolute" style="font-size: 30px; color: rgb(152, 10, 10);" class="difference-absolute">+XX,X¤</h4></div>
+        </div>
+        
     `
     const card_container = document.createElement("div")
     card_container.classList.add("card-container")
     card_container.innerHTML = Content;
     const parent = document.querySelector(".container")
+    console.log(card_container.querySelector("#restDiscountCompetitor"))
+    card_container.querySelector("#sumDiscountCompetitor").addEventListener("click",  (e) => {
+        console.log("sum discount",e.target.closest("#div-discount").querySelector("input"))
+        if(e.target.closest("#div-discount").querySelector("input").value < 99){
+            e.target.closest("#div-discount").querySelector("input").value++;
+        }
+    });
+    card_container.querySelector("#restDiscountCompetitor").addEventListener("click",  (e) => {
+        console.log("sum discount",e.target.closest("#div-discount").querySelector("input"))
+        if(e.target.closest("#div-discount").querySelector("input").value > 0){
+            e.target.closest("#div-discount").querySelector("input").value--;
+        }
+    });
 
     const select = card_container.querySelector(".select-competitor")
     for (let i = 0; i < competitors.length; i++) {
@@ -161,10 +250,10 @@ function closePopupError(){
 }
 
 function loadPrice(e){
-    console.log("laodprice",e.target)
+    e.target.closest(".product-card").querySelector("#value-input").innerHTML = e.target.value;
     const card = e.target.closest(".product-card")
     const a = card.querySelector("#price-unit").innerHTML
-    const price = (e.target.value * parseFloat(a.substring(0, a.length - 3).toLocaleString('en-EN',numberOptionsEN)));
+    const price = (e.target.value * parseFloat(a.substring(0, a.length - 3).replace(/\./g, '').replace(/,/g, '.')));
     card.querySelector("#price").innerHTML = `${price.toLocaleString('es-ES', numberOptionsEU)}¤`
     let discount = document.getElementById("discount-bofill").value
     if(discount >= 100 || discount < 0){
@@ -172,7 +261,7 @@ function loadPrice(e){
         discount = 0
     }
     card.querySelector("#netprice").innerHTML = `${(price*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤`
-    card.querySelector("#price-unit-netprice").innerHTML = `${(parseFloat(a.substring(0, a.length - 3).toLocaleString('en-EN',numberOptionsEN))*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤/u`
+    card.querySelector("#price-unit-netprice").innerHTML = `${(parseFloat(a.substring(0, a.length - 3).replace(/\./g, '').replace(/,/g, '.'))*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤/u`
     loadTotal()
 }
 
@@ -186,102 +275,6 @@ function loadTotal(){
     }
     document.getElementById('total-pvpprice').innerHTML = `${totalPvpPrice.toLocaleString('es-ES', numberOptionsEU)}¤`
     document.getElementById('total-netprice').innerHTML = `${totalNetPrice.toLocaleString('es-ES', numberOptionsEU)}¤`
-}
-
-function addProduct(e){
-    console.log("addproduct",e.target.id)
-    if(e.target.id != "favorite" && e.target.id != "favorites-white"){
-        closePopup()
-    const input = e.target
-    const card = input.closest(".card-product")
-    const name = card.querySelector("#name").innerHTML
-    const ref = card.querySelector("#ref").innerHTML
-    const fam = card.querySelector("#fam").innerHTML
-    const pvp = parseFloat(card.querySelector("#pvp").innerHTML)
-    const np = (pvp*(100-document.getElementById("discount-bofill").value)/100)
-    const diam = card.querySelector("#desc").innerHTML.split(' ')[card.querySelector("#desc").innerHTML.split(' ').length - 1].substring(1);
-    const bofill = document.querySelector("#Bofill")
-    const parent = bofill.querySelector(".products-container")
-
-    console.log("pvp:",pvp)
-    console.log("np:",pvp*(100-document.getElementById("discount-bofill").value)/100)
-    
-    const id_sel = `select-${id_product}`
-    const id_quantity = `price-${id_product}`
-    let caracter = name[name.length - 6];
-    let nameImg;
-    if(name.startsWith("CODPRP")){
-        nameImg = "CODPRP"
-    }else if(!isNaN(caracter) && caracter >= '0' && caracter <= '9'){
-        nameImg = name.slice(0, -6);
-    }else{
-        nameImg = name.slice(0, -3);
-    }
-    const Content_bofill = `
-                            <img loading="lazy" style="height: 90px;margin-left:5px" src="./img/FOTOS ${fam}/${nameImg}.png" onerror="this.onerror=null; this.src=&#39;https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg&#39;" alt="">
-                            <div style="height: 100%;width: 210px; align-items: center; display: flex;margin-left:10px;max-width:205px; overflow-x:visible;">
-                                <div>
-                                    <h5 class="fam-product">${fam.toUpperCase()}</h5>
-                                    <h4 class="name-product">${name.toUpperCase()}</h4>
-                                    <p class="ref-product">${ref}</p>
-                                </div>
-                            </div>
-                            <div style="width: 80px;display: flex;align-items: center;justify-content: center;position: absolute;right: 285px;flex-direction:column;gap:10px">
-                                <select id="${id_sel}" class="diam-product" name="diameter">
-                                    <option value="080">Ø080</option>
-                                    <option value="100">Ø100</option>
-                                    <option value="125">Ø125</option>
-                                    <option value="130">Ø130</option>
-                                    <option value="150">Ø150</option>
-                                    <option value="175">Ø175</option>
-                                    <option value="180">Ø180</option>
-                                    <option value="200">Ø200</option>
-                                    <option value="250">Ø250</option>
-                                    <option value="300">Ø300</option>
-                                    <option value="350">Ø350</option>
-                                    <option value="400">Ø400</option>
-                                    <option value="450">Ø450</option>
-                                    <option value="500">Ø500</option>
-                                    <option value="550">Ø550</option>
-                                    <option value="600">Ø600</option>
-                                    <option value="650">Ø650</option>
-                                    <option value="700">Ø700</option>
-                                </select>
-                                <input id="${id_quantity}" class="quantity-product" type="number" min="1" max="999" value="1" name="">
-                            </div>
-                            <div style="height: 120px;width: 35px;position: absolute;right: 240px;"><p style="font-size: 17px;
-                            position: absolute;
-                            right: 27px;
-                            font-family: 'Gotham-title';left: 0px;top: 26px">PVP:</p><p style="left: 0px;bottom: 26px;font-size: 17px;
-                            position: absolute;
-                            right: 27px;
-                            color: #105378;
-                            font-family: 'Gotham-title';" >NETO:</p></div>
-                            <div style="height: 120px;width: 150px;position: absolute;right: 65px;">
-                                <h4 id="price" style="right:5px" class="pvp-product">${pvp.toLocaleString('es-ES', numberOptionsEU)}¤</h4>
-                                <p id="price-unit" style="right:27px" class="ppu-product">${pvp.toLocaleString('es-ES', numberOptionsEU)}¤/u</p>
-                                <h4 id="netprice" style="right:5px" class="netprice-product">${np.toLocaleString('es-ES', numberOptionsEU)}¤</h4>
-                                <p id="price-unit-netprice" style="right:27px" class="ppu-netprice-product">${np.toLocaleString('es-ES', numberOptionsEU)}¤/u</p>
-                            </div>
-                            <button onclick="removeProduct(this)" style="position: absolute;right: 10px;" class="cross">
-                                <span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
-                                <span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
-                            </button>
-    `
-    console.log("this is np:",np)
-    card_product = document.createElement("div")
-    card_product.setAttribute('id',`product-${id_product}`);
-    card_product.innerHTML = Content_bofill;
-    card_product.classList.add("product-card")
-    card_product.addEventListener('mouseover', changeColor);
-    card_product.addEventListener('mouseout', changeColor);
-    parent.append(card_product)
-    id_product++
-
-    loadTotal()
-    document.getElementById(id_sel).value = diam;
-    document.getElementById(id_quantity).addEventListener("input", loadPrice);
-    }
 }
 
 function removeProduct(e){
@@ -341,23 +334,28 @@ function getCompetitor(a,putFirstProducts) {
     fetch(fileUrl)
         .then(response => response.arrayBuffer())
         .then(data => {
-
+            a.querySelector("#competitorvsbofill").innerHTML = `${a.querySelector(".select-competitor").value.toUpperCase()} VS BOFILL`
+            let diametersWithoutDuplicatesC = [];
             let productsAdd = [];
+            document.body.style.cursor = 'wait';
             a.querySelector(".loader").style.display = "block";
             const discount = a.querySelector(".input-discount")
             a.querySelector(".select-competitor").disabled = true;
 
             let competitorInfo = competitorsJSON[a.querySelector(".select-competitor").value]
 
-            const Content = `<div class="popup-card"><h3 style="font-size: 30px;margin: 40px;">${a.querySelector(".select-competitor").value.toUpperCase()}</h3><button style="top:30px;right: 30px;" class="cross close"><span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span><span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span></button><div class="popup-filtre-competitor"><div id="name" class="filtre"><input id="nombre" style="text-transform:none;" placeholder="NOMBRE" type="text"></div><div id="reference" class="filtre"><input id="referencia" placeholder="REFERENCIA" type="text"></div><div id="div-filtre" class="filtre"><select id="filtre-familia" class="select-filtre" name="FAMILIA" title="FAMILIA"><option value="" disabled="" selected="">FAMILIA</option></select><select id="filtre-subfamilia" class="select-filtre" name="SUBFAMILIA" title="SUBFAMILIA"><option value="" disabled="" selected="">SUBFAMILIA</option></select><select id="filtre-diametro" class="select-filtre" name="DIAMETRO" title="DIAMETRO"><option value="" selected="">DIÁMETRO</option></select></div><div id="ean" class="filtre"><input id="codigoean" placeholder="CÓDIGO EAN" type="text"></div><button class="filtre-delete"><img loading="lazy" style="height: 30px;" src="./img/borrar-filtres.svg" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt=""></button></div><div id="all-products-popup" style="overflow-y: scroll;height: 573px; width: 100%;margin-top: 2em;"><div class="products-created" style="width: 500px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;"><div class="card-create-product"><button style="background-color: #b2b2b2;position: relative;" class="cross add"><span style="transform: translateX(-52%) rotate(0deg);" class="cross-X"></span><span style="transform: translateX(-52%) rotate(90deg);" class="cross-Y"></span></button></div></div><hr style="background-color: #333;height: 5px;margin-left: 5%; width: 90%; margin-top: 30px;margin-bottom: 30px;"><div class="products-favorites" style="width: 500px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;"></div><hr class="hr-favorites" style="background-color: rgb(51, 51, 51); height: 5px; margin-left: 5%; width: 90%; margin-top: 30px; margin-bottom: 30px; display: block;"><div class="products-competitor"></div> <div class="products-favorites" style="height: 100px;width: 100%;display: flex;flex-wrap: wrap;justify-content: center;gap: 2rem;align-items: center;"><button title="Página anterior" id="page-before" style="opacity: 50%;height: 50px;width: 50px;background: #b2b2b2;border: none;border-radius: 25px;cursor: pointer;"><img style="height: 50px; width: 50px;" src="./img/arrow-left.svg" alt=""></button><button title="Página siguiente" id="page-next" style="height: 50px; width: 50px; background: rgb(178, 178, 178); border: none; border-radius: 25px; cursor: pointer; opacity: 1;"><img style="height: 50px; width: 50px;" src="./img/arrow-right.svg" alt=""></button></div></div></div>`
+            const Content = `<div class="popup-card"><h3 style="font-size: 30px;margin: 40px;">${a.querySelector(".select-competitor").value.toUpperCase()}</h3><button style="top:30px;right: 30px;" class="cross close"><span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span><span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span></button><div class="popup-filtre-competitor"><div id="name" class="filtre"><input id="nombre" style="text-transform:none;" placeholder="NOMBRE" type="text"></div><div id="reference" class="filtre"><input id="referencia" placeholder="REFERENCIA" type="text"></div><div id="div-filtre" class="filtre"><select id="filtre-familia" class="select-filtre" name="FAMILIA" title="FAMILIA"><option value="" disabled="" selected="">FAMILIA</option></select><select id="filtre-subfamilia" class="select-filtre" name="SUBFAMILIA" title="SUBFAMILIA"><option value="" disabled="" selected="">SUBFAMILIA</option></select><select id="filtre-diametro" class="select-filtre" name="DIAMETRO" title="DIAMETRO"><option value="" selected="">DIÁMETRO</option></select></div><div id="ean" class="filtre"><input id="codigoean" placeholder="CÓDIGO EAN" type="text"></div><button class="filtre-delete"><img loading="lazy" style="height: 30px;" src="./img/borrar-filtres.svg" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt=""></button></div><div id="all-products-popup" style="overflow-y: scroll;height: 573px; width: 100%;margin-top: 2em;"><div class="products-created" style="width: 500px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;"><div class="card-create-product"><button style="background-color: #b2b2b2;position: relative;" class="cross add"><span style="transform: translateX(-52%) rotate(0deg);" class="cross-X"></span><span style="transform: translateX(-52%) rotate(90deg);" class="cross-Y"></span></button></div></div><hr class="hr-created" style="background-color: #333;height: 5px;margin-left: 5%; width: 90%; margin-top: 30px;margin-bottom: 30px;"><div class="products-favorites" style="width: 500px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;"></div><hr class="hr-favorites" style="background-color: rgb(51, 51, 51); height: 5px; margin-left: 5%; width: 90%; margin-top: 30px; margin-bottom: 30px; display: block;"><div class="products-competitor"></div> <div class="products-favorites" style="height: 100px;width: 100%;display: flex;flex-wrap: wrap;justify-content: center;gap: 2rem;align-items: center;"><button title="Página anterior" id="page-before" style="opacity: 50%;height: 50px;width: 50px;background: #b2b2b2;border: none;border-radius: 25px;cursor: pointer;"><img style="height: 50px; width: 50px;" src="./img/arrow-left.svg" alt=""></button><button title="Página siguiente" id="page-next" style="height: 50px; width: 50px; background: rgb(178, 178, 178); border: none; border-radius: 25px; cursor: pointer; opacity: 1;"><img style="height: 50px; width: 50px;" src="./img/arrow-right.svg" alt=""></button></div></div></div>`
             const popup = document.createElement("div");
             popup.setAttribute("id", `popup-${a.id}`)
             popup.setAttribute("class", "popup")
             popup.innerHTML = Content;
             document.getElementById("page").append(popup);
             popup.querySelector(".close").addEventListener('click',closePopup)
-            popup.querySelector(".filtre-delete").addEventListener("click", (event) => {
-                deleteFilters()
+            popup.querySelector(".filtre-delete").addEventListener("mousedown", (event) => {
+                deleteFilters();
+            });
+            popup.querySelector(".filtre-delete").addEventListener("mouseup", (event) => {
+                popup.querySelector(".filtre-delete").style.borderWidth = "1px";
             });
             
             
@@ -391,6 +389,8 @@ function getCompetitor(a,putFirstProducts) {
             let families = []
             let subfamilies = []
             let diameters = []
+
+            
 
             const worker = new Worker('./scripts/worker.js');
             worker.postMessage(data);
@@ -437,7 +437,6 @@ function getCompetitor(a,putFirstProducts) {
                         references.push(cell ? cell.v : '');
                     }
                 }
-                console.log(references)
 
                 if(havePvp){
                     colIndex = columnLetterToNumber(competitorInfo.pvp)
@@ -484,6 +483,8 @@ function getCompetitor(a,putFirstProducts) {
                                 const cellAddress3 = XLSX.utils.encode_cell({ r: row, c: colIndex3 - 1 });
                                 const cell3 = worksheet[cellAddress3];
                                 diameters.push(`${cell2 ? cell2.v : ''}-${cell3 ? cell3.v : ''}`);
+                            }else{
+                                diameters.push(cell ? cell.v : '');
                             }
                         }
                     }else if(!haveDiameter){
@@ -522,7 +523,10 @@ function getCompetitor(a,putFirstProducts) {
                 if (!haveReference) {
                     popup.querySelector("#reference").remove()
                 }else{
-                    popup.querySelector("#referencia").addEventListener("change", (event) => {
+                    popup.querySelector("#referencia").addEventListener("input", (event) => {
+                        searchByREF(popup.querySelector("#referencia").value)
+                    });
+                    popup.querySelector("#reference").addEventListener("mousedown", (event) => {
                         searchByREF(popup.querySelector("#referencia").value)
                     });
                 }
@@ -530,7 +534,10 @@ function getCompetitor(a,putFirstProducts) {
                 if (!haveName) {
                     popup.querySelector("#name").remove()
                 }else{
-                    popup.querySelector("#nombre").addEventListener("change", (event) => {
+                    popup.querySelector("#nombre").addEventListener("input", (event) => {
+                        searchByNAME(popup.querySelector("#nombre").value)
+                    });
+                    popup.querySelector("#name").addEventListener("mousedown", (event) => {
                         searchByNAME(popup.querySelector("#nombre").value)
                     });
                 }
@@ -538,16 +545,24 @@ function getCompetitor(a,putFirstProducts) {
                 if (!haveEan) {
                     popup.querySelector("#ean").remove()
                 }else{
-                    popup.querySelector("#ean").addEventListener("change", (event) => {
-                        searchByEAN(popup.querySelector("#ean").value)
+                    popup.querySelector("#codigoean").addEventListener("input", (event) => {
+                        searchByEAN(popup.querySelector("#codigoean").value);
+                    });
+                    popup.querySelector("#ean").addEventListener("mousedown", (event) => {
+                        searchByEAN(popup.querySelector("#codigoean").value);
                     });
                 }
+
+                
                 
                 if (!haveDiameter && !haveSubfamily && !haveFamily && !haveInletdiameter && !haveOutletdiameter) {
                     popup.querySelector("#div-filtre").remove()
                 }else{
+                    popup.querySelector("#div-filtre").addEventListener("mousedown", (event) => {
+                        searchByFILTRE();
+                    });
                     if(!haveDiameter && !haveInletdiameter && !haveOutletdiameter){
-                        popup.querySelector("#filtre-diametro").remove()
+                        popup.querySelector("#filtre-diametro").style.display = "none";
                     }else{
                         const arrayDiam = Array.from(new Set(diameters))
                         const numbers = arrayDiam.filter(item => typeof item === 'number');
@@ -556,14 +571,16 @@ function getCompetitor(a,putFirstProducts) {
                         numbers.sort((a, b) => a - b);
                         strings.sort();
 
-                        const diametersWithoutDuplicates = [...numbers, ...strings];
+                        diametersWithoutDuplicatesC = [...numbers, ...strings];
 
                         let inputDiameter = popup.querySelector("#filtre-diametro");
 
-                        for (let i = 0; i < diametersWithoutDuplicates.length; i++) {
+                        inputDiameter.innerHTML = `<option value="">DIÁMETRO</option>`;
+
+                        for (let i = 0; i < diametersWithoutDuplicatesC.length; i++) {
                             const newOption = document.createElement('option');
-                            newOption.value = diametersWithoutDuplicates[i];
-                            newOption.text = diametersWithoutDuplicates[i];
+                            newOption.value = diametersWithoutDuplicatesC[i];
+                            newOption.text = `Ø${diametersWithoutDuplicatesC[i]}`;
                             inputDiameter.appendChild(newOption)
                         }
                         inputDiameter.addEventListener("change", (event) => {
@@ -571,7 +588,7 @@ function getCompetitor(a,putFirstProducts) {
                         });
                     }
                     if(!haveSubfamily){
-                        popup.querySelector("#filtre-subfamilia").remove()
+                        popup.querySelector("#filtre-subfamilia").style.display = "none";
                     }else{
                         const subfamiliesWithoutDuplicates = Array.from(new Set(subfamilies))
 
@@ -583,11 +600,12 @@ function getCompetitor(a,putFirstProducts) {
                             inputSubfamilies.appendChild(newOption)
                         }
                         inputSubfamilies.addEventListener("change", (event) => {
+                            popup.querySelector("#filtre-diametro").value = "";
                             searchByFILTRE();
                         });
                     }
                     if(!haveFamily){
-                        popup.querySelector("#filtre-familia").remove()
+                        popup.querySelector("#filtre-familia").style.display = "none";
                     }else{
                         const familiesWithoutDuplicates = Array.from(new Set(families))
 
@@ -600,12 +618,68 @@ function getCompetitor(a,putFirstProducts) {
                             inputFamilies.appendChild(newOption)
                         }
                         popup.querySelector("#filtre-familia").addEventListener("change", (event) => {
+                            popup.querySelector("#filtre-diametro").value = "";
+                            let diametersRepetits = [];
+                    
+                            let searchedFam = popup.querySelector("#filtre-familia").value
+                            for (let i = 0; i < families.length; i++) {
+                                if(families[i] == searchedFam && (haveDiameter || (haveInletdiameter && haveOutletdiameter))){
+                                    diametersRepetits.push(diameters[i])
+                                }
+                            }
+                            const arrayDiam = Array.from(new Set(diametersRepetits))
+                            const numbers = arrayDiam.filter(item => typeof item === 'number');
+                            const strings = arrayDiam.filter(item => typeof item === 'string');
+                            numbers.sort((a, b) => a - b);
+                            strings.sort();
+                            const diametersWithoutDuplicates = [...numbers, ...strings];
+
+                            let inputDiameter = popup.querySelector("#filtre-diametro");
+                        
+                            inputDiameter.innerHTML = `<option value="">DIÁMETRO</option>`;
+                        
+                            for (let i = 0; i < diametersWithoutDuplicates.length; i++) {
+                                const newOption = document.createElement('option');
+                                newOption.value = diametersWithoutDuplicates[i];
+                                newOption.text = `Ø${diametersWithoutDuplicates[i]}`;
+                                inputDiameter.appendChild(newOption)
+                            }
                             searchByFILTRE();
                         });
                     }
                 }
+                document.body.style.cursor = 'default';
                 a.querySelector(".loader").style.display = "none";
                 addFirstElements();
+
+                const productes = document.getElementById("Bofill").querySelectorAll(".product-card")
+                const productesCompetitor = a.querySelectorAll(".product-card");
+                for (let i = 0; i < productes.length; i++) {
+                    for (let j = 0; j < productesCompetitor.length; j++) {
+                        if(productes[i].id == productesCompetitor[j].id){
+                            productes[i].querySelector(".quantity-product").addEventListener('input', (event) => {
+                                loadPrice();
+                            });
+                            productes[i].querySelector(".diam-product").addEventListener('change', (event) => {
+                                loadPrice();
+                            });
+                            productes[i].querySelector(".cross").addEventListener('click', (event) => {
+                                loadPrice();
+                            });
+                            document.querySelector("#discount-bofill").addEventListener('input', (event) => {
+                                loadPrice();
+                            });
+                            a.querySelector(".input-discount").addEventListener('input', (event) => {
+                                loadPrice();
+                            });
+                            const eventoClick = new Event('input');
+    
+                            // Despachar el evento en el elemento
+                            a.querySelector(".input-discount").dispatchEvent(eventoClick);
+                        }
+                    }
+                }
+                loadTotal();
             };
             worker.onerror = function (error) {
                 console.error('Worker error: ', error);
@@ -618,7 +692,7 @@ function getCompetitor(a,putFirstProducts) {
 
             function removeElements() {
                 popup.querySelector(".products-competitor").innerHTML = "";
-            }
+            }   
             
             function addFavorite(e){
                 let favorites = loadFromStorage(a.querySelector(".select-competitor").value);
@@ -663,9 +737,16 @@ function getCompetitor(a,putFirstProducts) {
                 let favorites = loadFromStorage(a.querySelector(".select-competitor").value);
                 if(favorites == undefined) favorites = [];
 
-                if(favorites.length <= 0){
+                let filtres = popup.querySelectorAll(".filtre")
+                let havefilter = false;
+                for (let i = 0; i < filtres.length; i++) {
+                    if(filtres[i].style.borderWidth == "3px"){
+                        havefilter = true;
+                    }
+                }
+                if(favorites.length == 0){
                     popup.querySelector(".hr-favorites").style.display = "none";
-                }else{
+                }else if(!havefilter){
                     popup.querySelector(".hr-favorites").style.display = "block";
                 }
 
@@ -724,11 +805,10 @@ function getCompetitor(a,putFirstProducts) {
 
             function addElements() {
                 page = 0;
+                popup.querySelector("#page-before").style.opacity = "50%";
                 maxpages = Math.ceil(productsAdd.length/105);
                 
                 print();
-
-                console.log("MAXPAGES, PAGE:", maxpages, page)
 
                 if(maxpages-1 == page || maxpages == 0){
                     popup.querySelector("#page-next").style.opacity = "50%";
@@ -748,8 +828,6 @@ function getCompetitor(a,putFirstProducts) {
                         popup.querySelector("#page-next").style.opacity = "50%";
                     }
                 }
-                console.log("maxpages:", maxpages)
-                console.log("page", page)
             });
             
             popup.querySelector("#page-before").addEventListener("click", (event) => {
@@ -763,12 +841,9 @@ function getCompetitor(a,putFirstProducts) {
                         popup.querySelector("#page-before").style.opacity = "50%";
                     }
                 }
-                console.log("maxpages:", maxpages)
-                console.log("page", page)
             });
 
             function print(){
-                console.log("print-competitor")
                 popup.querySelector("#all-products-popup").scrollTo({
                     top: 0,
                     behavior: 'smooth'
@@ -778,10 +853,8 @@ function getCompetitor(a,putFirstProducts) {
                 }else{
                     end = productsAdd.length
                 }
-                console.log(page,end,productsAdd.length)
                 popup.querySelector(".products-competitor").innerHTML = ""
                 for (let i = page*105; i < end; i++) {
-                    console.log("0909090909090909090090")
                     let row = productsAdd[i];
 
                     let imgFavorite = './img/favorites-white.svg'
@@ -831,7 +904,7 @@ function getCompetitor(a,putFirstProducts) {
                         element.querySelector("#pvp").style.display = "none"
                     }if (references[row] == undefined) {
                         element.querySelector("#ref").style.display = "none"
-                    }if (diam == undefined) {
+                    }if (diameters[row] == undefined) {
                         element.querySelector("#diam").style.display = "none"
                     }
                 }
@@ -839,7 +912,17 @@ function getCompetitor(a,putFirstProducts) {
 
             function searchByREF(ref){
                 popup.querySelector(".products-created").style.display = "none";
-                popup.querySelector("hr").style.display = "none";
+                popup.querySelector(".hr-created").style.display = "none";
+                popup.querySelector(".products-favorites").style.display = "none";
+                popup.querySelector(".hr-favorites").style.display = "none";
+
+                const filtersDiv = popup.querySelectorAll(".filtre");
+                for (let i = 0; i < filtersDiv.length; i++) {
+                    filtersDiv[i].style.borderWidth = "1px";
+                }
+
+                popup.querySelector("#reference").style.borderWidth = "3px";
+
                 if(ref == ""){
                     addFirstElements();
                 }else{
@@ -855,13 +938,48 @@ function getCompetitor(a,putFirstProducts) {
                 addEventCLickProducts()
             }
 
-            function searchByNAME(name){
+            function searchByEAN(ref){
                 popup.querySelector(".products-created").style.display = "none";
-                popup.querySelector("hr").style.display = "none";
+                popup.querySelector(".hr-created").style.display = "none";
+                popup.querySelector(".products-favorites").style.display = "none";
+                popup.querySelector(".hr-favorites").style.display = "none";
+
+                const filtersDiv = popup.querySelectorAll(".filtre");
+                for (let i = 0; i < filtersDiv.length; i++) {
+                    filtersDiv[i].style.borderWidth = "1px";
+                }
+
+                popup.querySelector("#ean").style.borderWidth = "3px";
+
+                if(ref == ""){
+                    addFirstElements();
+                }else{
+                    removeElements()
+                    productsAdd = [];
+                    for (let i = 0; i < eans.length; i++) {
+                        if((eans[i].toString()).startsWith(ref.toString())){
+                            productsAdd.push(i)
+                        }
+                    }
+                    addElements();
+                }
+                addEventCLickProducts()
+            }
+
+            function searchByNAME(name){
+                const filtersDiv = popup.querySelectorAll(".filtre");
+                for (let i = 0; i < filtersDiv.length; i++) {
+                    filtersDiv[i].style.borderWidth = "1px";
+                }
+
+                popup.querySelector("#name").style.borderWidth = "3px";
+
+                popup.querySelector(".products-created").style.display = "none";
+                popup.querySelector(".hr-created").style.display = "none";
+                popup.querySelector(".products-favorites").style.display = "none";
+                popup.querySelector(".hr-favorites").style.display = "none";
                 if(name == ""){
                     addFirstElements();
-                    popup.querySelector(".products-created").style.display = "flex";
-                    popup.querySelector("hr").style.display = "block";
                 }else{
                     removeElements();
                     productsAdd = [];
@@ -878,8 +996,58 @@ function getCompetitor(a,putFirstProducts) {
             function searchByFILTRE(){
                 removeElements();
                 popup.querySelector(".products-created").style.display = "none";
-                popup.querySelector("hr").style.display = "none";
+                popup.querySelector(".hr-created").style.display = "none";
+                popup.querySelector(".products-favorites").style.display = "none";
+                popup.querySelector(".hr-favorites").style.display = "none";
+                const filtersDiv = popup.querySelectorAll(".filtre");
+                    for (let i = 0; i < filtersDiv.length; i++) {
+                        filtersDiv[i].style.borderWidth = "1px";
+                    }
+
+                    popup.querySelector("#div-filtre").style.borderWidth = "3px";
+                if(popup.querySelector("#filtre-subfamilia").value == "" && popup.querySelector("#filtre-familia").value == "" && popup.querySelector("#filtre-diametro").value == ""){
+                    
+
+                    addFirstElements();
+                }
+                productsAdd = [];
+
+                let productsAddF = [];
+
+                if(haveFamily && popup.querySelector("#filtre-familia").value != ""){                    
+                    let searchedFam = popup.querySelector("#filtre-familia").value
+                    for (let i = 0; i < families.length; i++) {
+                        if(families[i] == searchedFam){
+                            productsAddF.push(i);
+                        }
+                    }
+                }
+
+                if((haveDiameter || (haveInletdiameter && haveOutletdiameter)) && popup.querySelector("#filtre-diametro").value != ""){
+                    let searchedDiam = popup.querySelector("#filtre-diametro").value
+                    if(haveFamily && popup.querySelector("#filtre-familia").value == ""){
+                        for (let i = 0; i < diameters.length; i++) {
+                            if(diameters[i] == searchedDiam){
+                                productsAdd.push(i)
+                            }
+                        }
+                    }else{
+                        for (let i = 0; i < productsAddF.length; i++) {
+                            if(diameters[productsAddF[i]] == searchedDiam){
+                                productsAdd.push(productsAddF[i])
+                            }
+                        }
+                    }
+                }else{
+                    productsAdd = productsAddF;
+                }
+
+
                 
+
+                addElements();
+                if(productsAdd.length == 0) addFirstElements()
+                /*
                 if(haveFamily && haveSubfamily && popup.querySelector("#filtre-subfamilia").value != ""){
                     productsAdd = [];
                     let searchedFam = popup.querySelector("#filtre-familia").value
@@ -911,22 +1079,41 @@ function getCompetitor(a,putFirstProducts) {
                         }
                     }
                     addElements()
-                }
+                }*/
                 addEventCLickProducts()
             }
 
             function deleteFilters(){
+                const filtersDiv = popup.querySelectorAll(".filtre");
+                for (let i = 0; i < filtersDiv.length; i++) {
+                    filtersDiv[i].style.borderWidth = "1px";
+                }
+
+                let inputDiameter = popup.querySelector("#filtre-diametro");
+
+                inputDiameter.innerHTML = `<option value="">DIÁMETRO</option>`;
+
+                for (let i = 0; i < diametersWithoutDuplicatesC.length; i++) {
+                    const newOption = document.createElement('option');
+                    newOption.value = diametersWithoutDuplicatesC[i];
+                    newOption.text = `Ø${diametersWithoutDuplicatesC[i]}`;
+                    inputDiameter.appendChild(newOption)
+                }
+
+                popup.querySelector(".filtre-delete").style.borderWidth = "3px";
                 addFirstElements();
-                popup.querySelector(".products-created").style.display = "flex";
-                popup.querySelector("hr").style.display = "block";
 
                 let a = popup.querySelectorAll(".filtre")
                 for (let i = 0; i < a.length; i++) {
                     a[i].style.borderWidth = "1px"
                 }
-                let inputs = popup.querySelector(".popup-filtre-competitor").querySelectorAll("input")
+                let inputs = popup.querySelectorAll("input")
                 for (let i = 0; i < inputs.length; i++) {
                     inputs[i].value = "";
+                }
+                let selects = popup.querySelectorAll("select")
+                for (let i = 0; i < selects.length; i++) {
+                    selects[i].value = "";
                 }
             }
 
@@ -934,11 +1121,18 @@ function getCompetitor(a,putFirstProducts) {
                 removeElements();
                 productsAdd = [];
                 popup.querySelector(".products-created").style.display = "flex";
-                popup.querySelector("hr").style.display = "block";
+                popup.querySelector(".hr-created").style.display = "block";
+
+                let favorites = loadFromStorage(a.querySelector(".select-competitor").value);
+                if(favorites == undefined) favorites = [];
+                if(favorites.length > 0){
+                    popup.querySelector(".products-favorites").style.display = "flex";
+                    popup.querySelector(".hr-favorites").style.display = "block";
+                }
+
                 for (let index = 2; index < references.length; index++) {
                     productsAdd.push(index)
                 }
-                console.log("addfirstelemetns:",references.length)
                 addElements();
                 addEventCLickProducts();
             }
@@ -994,9 +1188,10 @@ function getCompetitor(a,putFirstProducts) {
                         addElement.querySelector(".add").addEventListener('click', (event) => {
                             OpenPopupCreate(e);
                         });
+                        addEventCLickProducts();
                     }
                 });
-                addEventCLickProducts();
+                
             }
 
             function editProduct(e){
@@ -1008,15 +1203,12 @@ function getCompetitor(a,putFirstProducts) {
                 }
                 let storage = loadFromStorage("productsCreated");
                 if(storage == undefined) storage = "";
-                popup.querySelector(".products-created").innerHTML += storage
-                popup.querySelector("hr").style.display = "block";
-                popup.querySelector(".products-created").style.display = "flex";
+                popup.querySelector(".products-created").innerHTML += storage;
 
                 const productsStoraged = popup.querySelector(".products-created").querySelectorAll(".card-product");
 
                 for (let i = 0; i < productsStoraged.length; i++) {
 
-                    console.log(productsStoraged[i])
                     productsStoraged[i].querySelector("#delete-product").addEventListener("click", (event) => {
                         productsStoraged[i].remove()
                         popup.querySelector(".products-created").querySelector(".card-create-product").style.display = "none";
@@ -1036,16 +1228,15 @@ function getCompetitor(a,putFirstProducts) {
             }
 
             function loadPrice(){
-                let netpriceBofill
-                let quantity
-                console.log("loadprice",a.querySelector(".input-discount").value)
+
+                let netpriceBofill;
+                let quantity;
                 let allProducts = a.querySelector(".products-container").querySelectorAll(".product-card")
                 const discount = a.querySelector(".input-discount").value
                 for (let i = 0; i < allProducts.length; i++) {
                     const unitpricePvp = parseFloat(allProducts[i].querySelector(".ppu-product").innerHTML.substring(0, allProducts[i].querySelector(".ppu-product").innerHTML.length - 3).replace(/\./g, '').replace(/,/g, '.'))
                     const unitpriceNet = unitpricePvp*(100-discount)/100;
                     let productsBofill = document.getElementById("Bofill").querySelectorAll(".product-card")
-                    console.log("aqui aqui aqui",unitpricePvp)
                     for (let j = 0; j < productsBofill.length; j++) {
                         if(productsBofill[j].id == allProducts[i].id){
                             quantity = parseInt(productsBofill[j].querySelector(".quantity-product").value)
@@ -1080,7 +1271,6 @@ function getCompetitor(a,putFirstProducts) {
                 for (let i = 0; i < allProducts.length; i++) { 
                     totalPvpPrice += parseFloat(allProducts[i].querySelector('#price').innerHTML.slice(0, -1).replace(/\./g, '').replace(/,/g, '.'));
                     totalNetPrice += parseFloat(allProducts[i].querySelector('#netprice').innerHTML.slice(0, -1).replace(/\./g, '').replace(/,/g, '.'));
-                    console.log("aixo q es aveure", parseFloat(allProducts[i].querySelector('#price').innerHTML.slice(0, -1).replace(/\./g, '').replace(/,/g, '.')))
                 }
                 a.querySelector("#total-pvpprice").innerHTML = `${isNaN(totalPvpPrice) ? "XX,XX" : totalPvpPrice.toLocaleString('es-ES', numberOptionsEU)}¤`
                 a.querySelector("#total-netprice").innerHTML = `${isNaN(totalNetPrice) ? "XX,XX" : totalNetPrice.toLocaleString('es-ES', numberOptionsEU)}¤`
@@ -1121,14 +1311,12 @@ function getCompetitor(a,putFirstProducts) {
                 
                 for (let i = 0; i < allProducts.length; i++) {
                     allProducts[i].addEventListener('click', (event) => {
-                        console.log(event.target)
                         if(event.target.tagName != 'SPAN' && event.target.tagName != 'BUTTON' && event.target.tagName != 'IMG'){
                             productEdit.closest(".product-card").querySelector(".name-product").innerHTML = allProducts[i].querySelector("#name").innerHTML || "";
                         productEdit.closest(".product-card").querySelector(".fam-product").innerHTML = allProducts[i].querySelector("#fam").innerHTML || "";
                         productEdit.closest(".product-card").querySelector(".ref-product").innerHTML = allProducts[i].querySelector("#ref").innerHTML || "";
 
                         let price = parseFloat(allProducts[i].querySelector("#pvp").innerHTML.slice(0, -1).toLocaleString('en-EN', numberOptionsEN));
-                        console.log("price:",price)
                         let netprice = price*(100-discount.value)/100;
                         let quantity;
                         let netpriceBofill;
@@ -1141,7 +1329,6 @@ function getCompetitor(a,putFirstProducts) {
                                     loadPrice();
                                 });
                                 productes[i].querySelector(".cross").addEventListener('click', (event) => {
-                                    console.log("123456789")
                                     loadPrice();
                                 });
                             }
@@ -1157,9 +1344,15 @@ function getCompetitor(a,putFirstProducts) {
 
                         loadPrice();
 
+                        if(productEdit.closest(".product-card").querySelector(".name-product").clientHeight >= 80 || productEdit.closest(".product-card").querySelector(".name-product").clientWidth >= 200){
+                            productEdit.closest(".product-card").querySelector(".name-product").style.fontSize = "15px";
+                        }
+                        if(productEdit.closest(".product-card").querySelector(".name-product").clientWidth >= 400){
+                            productEdit.closest(".product-card").querySelector(".name-product").style.fontSize = "12px";
+                        }
+
                         popup.style.visibility = "hidden";
                         }
-                        
                     });
                 }
             }
@@ -1322,19 +1515,18 @@ function saveWindow(){
     }
     let discountBofill = document.querySelector("#discount-bofill").value
     let contentBofill = document.querySelector("#Bofill").querySelector(".products-container").innerHTML
-    console.log("win name",windowName)
     if(windowName != ""){
         windowsBefore.unshift({date: windowDateCreated, name: windowName, id_product: (id_product+1), bofill:{discount: discountBofill, content: contentBofill}, competitors:arrayCompetitors})
         saveToStorage("windows", windowsBefore)
     }
-    console.log("DATECREATED:",windowDateCreated)
 }
 
 function cleanWindow(){
     let allWindows = this.document.querySelectorAll(".windows-input")
     for (let i = 0; i < allWindows.length; i++) {
         allWindows[i].style.backgroundColor = "white";
-        allWindows[i].closest("div").querySelector("button").style.visibility = "hidden";
+        allWindows[i].closest("div").querySelector(".cross").style.display = "none";
+        allWindows[i].closest("div").querySelector(".edit-name-window").style.right = "1px";
     }
     document.querySelector("#Bofill").querySelector(".products-container").innerHTML = "";
     let cardContainer = this.document.querySelectorAll(".card-container")
@@ -1359,7 +1551,6 @@ document.body.appendChild(measureSpan);
 
 function renderWindows(){
     let windows = loadFromStorage("windows")
-    console.log(windows)
     if(windows == undefined) windows = [];
     document.querySelector(".windows-elements").innerHTML = "";
 
@@ -1368,28 +1559,38 @@ function renderWindows(){
         const div = document.createElement("input")
         div.type = "text";
         div.value = windows[i].name
-        div.innerHTML = `<p id="date" style="display: none;">${windows[i].date}</p> <p id="id_product" style="display: none;">${windows[i].id_product}</p>`
+        div.innerHTML = `<p id="date" placeholder="Título..." style="display: none;">${windows[i].date}</p>
+        <p id="id_product" style="display: none;">${windows[i].id_product}</p>`
         div.classList.add("windows-input")
         div2.style.position = "relative"
-        div2.innerHTML = `<button style="background: rgb(178, 178, 178);width: 30px;height: 35px;top: 1px;right: 1px;border-radius: 10px;visibility: hidden;" class="cross">
+        div2.innerHTML = `<button class="edit-name-window" style="cursor:pointer;background: transparent;border:none;width: 30px;height: 35px;top: 1px;right: 1px;border-radius: 10px;position:absolute">
+        <img src="./img/edit.svg" style="width: 20px;height: 20px;margin-top:3px" alt=""> </button>
+        <button style="background: rgb(178, 178, 178);width: 30px;height: 35px;top: 1px;right: 1px;border-radius: 10px;display:none;" class="cross">
         <span style="width: 1em;transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
         <span style="width: 1em;transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
         </button>`
         div2.appendChild(div)
         document.querySelector(".windows-elements").appendChild(div2);
-        div.addEventListener('input',adjustWidth)
+        div.addEventListener("input", (event) => {
+            adjustWidth(div);
+        });
         div.addEventListener("change", (event) => {
             saveWindow()
-            renderWindows()
         });
         measureSpan.textContent = div.value || div.placeholder || '';
-        const width = measureSpan.offsetWidth + 22;
+        const width = measureSpan.offsetWidth + 44;
         div.style.width = `${width}px`;
 
         if(windows[i].name == windowName) div.style.backgroundColor = "#b2b2b2";
-        console.log(div2.querySelector("button"))
-        div2.querySelector("button").addEventListener("click", deleteWindow);
-        div.addEventListener("click", openWindow);
+        div2.querySelector(".cross").addEventListener("click", deleteWindow);
+        div2.querySelector(".edit-name-window").addEventListener("click", (event) => {
+            openWindow(div);
+            editNameWindow(event);
+        });
+        div.addEventListener("click", (event) => {
+            
+            openWindow(div);
+        });
         div.addEventListener("click", focusWindow);
     }
 }
@@ -1399,46 +1600,47 @@ function deleteWindow(e){
     let date = e.target.closest("div").querySelector("#date").innerHTML
     for (let i = 0; i < windows.length; i++) {
         if(windows[i].date == date){
-            console.log("hi?")
             windows.splice(i,1)
             windowName = "";
         }
     }
     saveToStorage("windows",windows)
-    console.log(windows)
     cleanWindow();
     renderWindows();
 }
 
-function focusWindow(e){
-    console.log("HO FA")
-    e.target.closest("div").querySelector("button").style.visibility = "visible"
+function editNameWindow(e){
+    e.target.closest("div").querySelector("input").value = "";
+    e.target.closest("div").querySelector("input").focus()
+    e.target.closest("div").querySelector("input").placeholder = "Título..."
+    e.target.closest("div").querySelector("input").style.width = "120px"
+    if(window.getComputedStyle(e.target.closest("div").querySelector(".cross")).display != "none") e.target.closest("div").querySelector("input").style.width = "150px"
 }
 
-function blurWindow(e){
-    console.log("HO FA")
-    e.target.closest("div").querySelector("button").style.visibility = "hidden"
+function focusWindow(e){
+    e.target.closest("div").querySelector(".cross").style.display = "block"
+    e.target.closest("div").querySelector(".edit-name-window").style.right = "30px"
 }
 
 function openWindow(e){
     let inputs = document.querySelector(".windows-elements").querySelectorAll(".windows-input")
     for (let i = 0; i < inputs.length; i++) {
         measureSpan.textContent = inputs[i].value || inputs[i].placeholder || '';
-        const width = measureSpan.offsetWidth + 22;
+        const width = measureSpan.offsetWidth + 44;
         inputs[i].style.width = `${width}px`;
     }
-    measureSpan.textContent = e.target.value || e.target.placeholder || '';
-    let more = 42;
+    measureSpan.textContent = e.value || e.placeholder || '';
+    let more = 75;
     const width = measureSpan.offsetWidth + more;
-    e.target.style.width = `${width}px`;
+    e.style.width = `${width}px`;
 
     
     saveWindow();
     let windows = loadFromStorage("windows")
     cleanWindow();
-    e.target.style.backgroundColor = "#b2b2b2";
-    windowName = e.target.value;
-    windowDateCreated = e.target.querySelector("#date").innerHTML
+    e.style.backgroundColor = "#b2b2b2";
+    windowName = e.value;
+    windowDateCreated = e.querySelector("#date").innerHTML
     for (let i = 0; i < windows.length; i++) {
         if(windows[i].date == windowDateCreated){
             id_product = windows[i].id_product+1
@@ -1448,6 +1650,8 @@ function openWindow(e){
             for (let j = 0; j < allProductsBofill.length; j++) {
                 allProductsBofill[j].addEventListener('mouseover', changeColor);
                 allProductsBofill[j].addEventListener('mouseout', changeColor);
+                allProductsBofill[j].querySelector(".quantity-product").value = allProductsBofill[j].querySelector("#value-input").innerHTML
+                allProductsBofill[j].querySelector(".diam-product").value = allProductsBofill[j].querySelector("#value-select").innerHTML
             }
             for (let j = 0; j < windows[i].competitors.length; j++) {
                 let competitor = addCompetitor(windows[i].competitors[j].name)
@@ -1463,18 +1667,41 @@ function openWindow(e){
         }
     }
     loadTotal();
+
+    const productes = document.querySelector("#Bofill").querySelectorAll(".quantity-product");
+    for (let i = 0; i < productes.length; i++) {
+        productes[i].addEventListener("input", (event) => {
+            productes[i].closest(".product-card").querySelector("#value-input").innerHTML = productes[i].value;
+        
+            const card = productes[i].closest(".product-card")
+            const a = card.querySelector("#price-unit").innerHTML
+            const price = (productes[i].value * parseFloat(a.substring(0, a.length - 3).toLocaleString('en-EN',numberOptionsEN)));
+            card.querySelector("#price").innerHTML = `${price.toLocaleString('es-ES', numberOptionsEU)}¤`
+            let discount = document.getElementById("discount-bofill").value
+            if(discount >= 100 || discount < 0){
+                document.getElementById("discount-bofill").value = 0
+                discount = 0
+            }
+            card.querySelector("#netprice").innerHTML = `${(price*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤`
+            card.querySelector("#price-unit-netprice").innerHTML = `${(parseFloat(a.substring(0, a.length - 3).toLocaleString('en-EN',numberOptionsEN))*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤/u`
+            loadTotal()
+        });
+    }
 }
 
 function adjustWidth(e) {
-    windowName = e.target.value
-    measureSpan.textContent = e.target.value || e.target.placeholder || '';
-    let more = 22;
-    if(e.target.style.backgroundColor == "rgb(178, 178, 178)") more = 42;
+    windowName = e.value
+    measureSpan.textContent = e.value || e.placeholder || '';
+    let more = 44;
+    if(window.getComputedStyle(e.closest("div").querySelector(".cross")).display != "none") more = 75;
     const width = measureSpan.offsetWidth + more;
-    e.target.style.width = `${width}px`;
+    e.style.width = `${width}px`;
 }
 
 window.addEventListener("load", function () {
+    document.body.style.cursor = 'wait';
+
+
     fetch('../config.json')
         .then((response) => response.json())
         .then((config) => {
@@ -1498,7 +1725,7 @@ fetch(fileUrl)
     .then(response => response.arrayBuffer())
     .then(data => {
 
-        document.getElementById("div-referencia").addEventListener("click", searchByREF)
+        document.getElementById("div-referencia").addEventListener("mosuedown", searchByREF)
 
         const popup = this.document.getElementById("popup");
 
@@ -1526,12 +1753,18 @@ fetch(fileUrl)
             worker.onmessage = function (e) {
                 range = e.data.range
                 worksheet = e.data.worksheet
+                let diameters = [];
+                let diametersWithoutDuplicatesC = [];
                 
                 for (let row = range.s.r+1; row <= range.e.r; row++) {
 
                     colIndex = columnLetterToNumber(columnName);
                     cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
                     const Name = cell ? cell.v : ''
+
+                    colIndex = columnLetterToNumber(columnPvp);
+                    cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
+                    const Pvp = cell ? cell.v : ''
         
                     colIndex = columnLetterToNumber(columnFamily);
                     cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
@@ -1547,21 +1780,61 @@ fetch(fileUrl)
         
                     colIndex = columnLetterToNumber(columnEanCode);
                     cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
-                    const Ean = cell ? cell.v : ''
-        
+                    const Ean = cell ? cell.v : '';
+
+                    colIndex = columnLetterToNumber(columnImage);
+                    cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
+                    const Namefam = cell ? cell.v : '';
+
+                    
+                    colIndex = columnLetterToNumber(columnDiameter)
+                    let colIndex2 = columnLetterToNumber(columnInletDiameter)
+                    let colIndex3 = columnLetterToNumber(columnOutletDiameter)
+                    const cell2 = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex2 - 1 })];
+                    const cell3 = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex3 - 1 })];
+                    cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
+                    let Diameter;
+                    if((cell2 ? cell2.v : '') != (cell3 ? cell3.v : '')){
+                        Diameter = `${cell2 ? cell2.v : ''}-${cell3 ? cell3.v : ''}`;
+                        diameters.push(`${cell2 ? cell2.v : ''}-${cell3 ? cell3.v : ''}`)
+                    }else{
+                        Diameter = cell ? cell.v : '';
+                        diameters.push(cell ? cell.v : '')
+                    }
+                    
+
                     const Product = {
                         name: Name,
                         family: Family,
                         subfamily: Subfamily,
                         reference: Reference,
-                        ean: Ean
+                        ean: Ean,
+                        diameter: Diameter,
+                        namefam: Namefam,
+                        pvp: Pvp
                     }
+
         
                     products.push(Product)
     
 
                 }
+                const arrayDiam = Array.from(new Set(diameters))
+                const numbers = arrayDiam.filter(item => typeof item === 'number');
+                const strings = arrayDiam.filter(item => typeof item === 'string');
+                numbers.sort((a, b) => a - b);
+                strings.sort();
+                diametersWithoutDuplicatesC = [...numbers, ...strings];
+                let inputDiameter = popup.querySelector("#filtre-diametro");
+                inputDiameter.innerHTML = `<option value="">DIÁMETRO</option>`;
+                for (let i = 0; i < diametersWithoutDuplicatesC.length; i++) {
+                    const newOption = document.createElement('option');
+                    newOption.value = diametersWithoutDuplicatesC[i];
+                    newOption.text = `Ø${diametersWithoutDuplicatesC[i]}`;
+                    inputDiameter.appendChild(newOption)
+                }
                 addFirstElements();
+                document.body.style.cursor = 'default';
                 document.getElementById("Bofill").querySelector(".loader").style.display = "none";
             };
             worker.onerror = function (error) {
@@ -1591,7 +1864,6 @@ fetch(fileUrl)
             }
             for (let i = page*105; i < end; i++) {
                 let row = productsAdd[i]
-                //console.log(row)
 
                 let favorites = loadFromStorage("bofill")
                 if(favorites == undefined) favorites = [];
@@ -1628,17 +1900,15 @@ fetch(fileUrl)
                 desiredCell = worksheet[cellAddress];
                 const cellContentEAN = desiredCell ? desiredCell.v : 'EANCODE';
 
-                cellAddress = `${columnDiameter}${row}`
-                desiredCell = worksheet[cellAddress];
-                const cellContentDIAMETER = desiredCell ? desiredCell.v : 'DIAMETER';
-
-                cellAddress = `${columnInletDiameter}${row}`
-                desiredCell = worksheet[cellAddress];
-                const cellContentINLETDIAMETER = desiredCell ? desiredCell.v : 'INLETDIAMETER';
-
-                cellAddress = `${columnOutletDiameter}${row}`
-                desiredCell = worksheet[cellAddress];
-                const cellContentOUTLETDIAMETER = desiredCell ? desiredCell.v : 'OUTLETDIAMETER';
+                const cell2 = worksheet[`${columnInletDiameter}${row}`]
+                const cell3 = worksheet[`${columnOutletDiameter}${row}`]
+                let cell = worksheet[`${columnDiameter}${row}`];
+                let cellContentDIAMETER;
+                if((cell2 ? cell2.v : '') != (cell3 ? cell3.v : '')){
+                    cellContentDIAMETER = `${cell2 ? cell2.v : ''}-${cell3 ? cell3.v : ''}`;
+                }else{
+                    cellContentDIAMETER = cell ? cell.v : '';
+                }
 
                 let imgFavorite = "./img/favorites-white.svg";
                 let idFavorite = "favorites-white";
@@ -1657,6 +1927,7 @@ fetch(fileUrl)
                 <p id="desc" style="font-size: 10px;margin-bottom: 20px;">${cellContentDESC}</p>
                 <p id="ref" style="font-size: 10px;left: 10px;position:absolute; bottom:7px;">${cellContentREF}</p>
                 <p id="diam" style="font-size: 10px;right: 10px;position:absolute; bottom:7px;">Ø${cellContentDIAMETER}</p>
+                <p id="namefam" style="display:none;">${cellContentIMAGE}</p>
                 <p id="fam" style="display:none;">${cellContentFAM}</p>
                 <p id="sfam" style="display:none;">${cellContentSFAM}</p>
                 <p id="pvp" style="display:none;">${cellContentPVP}</p>
@@ -1697,8 +1968,6 @@ fetch(fileUrl)
                     popup.querySelector("#page-next").style.opacity = "50%";
                 }
             }
-            console.log("maxpages:", maxpages)
-            console.log("page", page)
         });
         
         popup.querySelector("#page-before").addEventListener("click", (event) => {
@@ -1712,13 +1981,10 @@ fetch(fileUrl)
                     popup.querySelector("#page-before").style.opacity = "50%";
                 }
             }
-            console.log("maxpages:", maxpages)
-            console.log("page", page)
         });
 
         let favorites = loadFromStorage("bofill")
         if(favorites == undefined) favorites = []
-        console.log(favorites.length)
         if(favorites.length == 0) popup.querySelector("hr").style.display = "none"
 
         function searchByREF(ref){
@@ -1813,6 +2079,14 @@ fetch(fileUrl)
                 addFirstElements();
                 return;
             }
+
+            if(diameter.value != ""){
+                for (let k = productsAdd.length-1; k >=0 ; k--) {   
+                    if(products[productsAdd[k]-2].diameter != diameter.value){
+                        productsAdd.splice(k, 1);
+                    }
+                }
+            }
             addElements(productsAdd);
         }
 
@@ -1873,6 +2147,7 @@ fetch(fileUrl)
         function addFirstElements(){
             popup.querySelector("hr").style.display = "block";
             popup.querySelector(".products-favorites").style.display = "flex";
+
             removeElements()
             let index = 0;
             productsAdd = []
@@ -1903,14 +2178,133 @@ fetch(fileUrl)
             document.getElementById("codigoean").value = "";
         }
 
+        function addProduct(e){
+            if(e.target.id != "favorite" && e.target.id != "favorites-white"){
+                closePopup()
+            const input = e.target
+            const card = input.closest(".card-product")
+            const name = card.querySelector("#name").innerHTML
+            const ref = card.querySelector("#ref").innerHTML
+            const fam = card.querySelector("#fam").innerHTML
+            const nameFam = card.querySelector("#namefam").innerHTML
+            const pvp = parseFloat(card.querySelector("#pvp").innerHTML)
+            const np = (pvp*(100-document.getElementById("discount-bofill").value)/100)
+            const diam = card.querySelector("#diam").innerHTML.substring(1);            ;
+            const bofill = document.querySelector("#Bofill")
+            const parent = bofill.querySelector(".products-container")
+            
+            const id_sel = `select-${id_product}`
+            const id_quantity = `price-${id_product}`
+            let caracter = name[name.length - 6];
+            let nameImg;
+            if(name.startsWith("CODPRP")){
+                nameImg = "CODPRP"
+            }else if(!isNaN(caracter) && caracter >= '0' && caracter <= '9'){
+                nameImg = name.slice(0, -6);
+            }else{
+                nameImg = name.slice(0, -3);
+            }
+            const Content_bofill = `
+            <p id="namefam" style="display:none">${nameFam}</p>
+                                    <img loading="lazy" style="height: 90px;margin-left:5px" src="./img/FOTOS ${fam}/${nameImg}.png" onerror="this.onerror=null; this.src=&#39;https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg&#39;" alt="">
+                                    <div style="height: 100%;width: 210px; align-items: center; display: flex;margin-left:10px;max-width:205px; overflow-x:visible;">
+                                        <div>
+                                            <h5 class="fam-product">${fam.toUpperCase()}</h5>
+                                            <h4 class="name-product">${name.toUpperCase()}</h4>
+                                            <p class="ref-product">${ref}</p>
+                                        </div>
+                                    </div>
+                                    <div style="width: 80px;display: flex;align-items: center;justify-content: center;position: absolute;right: 285px;flex-direction:column;gap:10px">
+                                        <select id="${id_sel}" class="diam-product" name="diameter">
+                                            
+                                        </select>
+                                        <label style="display: none;" id="value-select" for="">450</label>
+                                        <input id="${id_quantity}" class="quantity-product" type="number" min="1" max="999" value="1" name="">
+                                        <label style="display: none;" id="value-input" for="">1</label>
+                                        </div>
+                                    <div style="height: 120px;width: 35px;position: absolute;right: 240px;"><p style="font-size: 17px;
+                                    position: absolute;
+                                    right: 27px;
+                                    font-family: 'Gotham-title';left: 0px;top: 26px">PVP:</p><p style="left: 0px;bottom: 26px;font-size: 17px;
+                                    position: absolute;
+                                    right: 27px;
+                                    color: #105378;
+                                    font-family: 'Gotham-title';" >NETO:</p></div>
+                                    <div style="height: 120px;width: 150px;position: absolute;right: 65px;">
+                                        <h4 id="price" style="right:5px" class="pvp-product">${pvp.toLocaleString('es-ES', numberOptionsEU)}¤</h4>
+                                        <p id="price-unit" style="right:27px" class="ppu-product">${pvp.toLocaleString('es-ES', numberOptionsEU)}¤/u</p>
+                                        <h4 id="netprice" style="right:5px" class="netprice-product">${np.toLocaleString('es-ES', numberOptionsEU)}¤</h4>
+                                        <p id="price-unit-netprice" style="right:27px" class="ppu-netprice-product">${np.toLocaleString('es-ES', numberOptionsEU)}¤/u</p>
+                                    </div>
+                                    <button onclick="removeProduct(this)" style="position: absolute;right: 10px;" class="cross">
+                                        <span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
+                                        <span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
+                                    </button>
+            `
+            const card_product = document.createElement("div")
+            card_product.setAttribute('id',`product-${id_product}`);
+            card_product.innerHTML = Content_bofill;
+            card_product.classList.add("product-card")
+            card_product.addEventListener('mouseover', changeColor);
+            card_product.addEventListener('mouseout', changeColor);
+            parent.append(card_product)
+            id_product++
+
+            let diametersOfProduct = []
+            for (let i = 0; i < products.length; i++) {
+                if(nameFam == products[i].namefam){
+                    diametersOfProduct.push(products[i].diameter)
+                    const option = document.createElement("option");
+                    option.text = `Ø${products[i].diameter}` ;
+                    option.value = products[i].diameter;
+                    card_product.querySelector(".diam-product").appendChild(option)
+                }
+            }
+            console.log("aqui els diametres:",diametersOfProduct)
+        
+            loadTotal()
+            document.getElementById(id_sel).value = diam;
+            card_product.querySelector("#value-select").innerHTML = diam;
+            document.getElementById(id_quantity).addEventListener("input", loadPrice);
+            card_product.querySelector(".diam-product").addEventListener("change", newDiameter);
+            }
+        }
+
+        function newDiameter(e){
+            //per fer
+            console.log( "ei?",e.target.value, )
+            let namefam = e.target.closest(".product-card").querySelector("#namefam").innerHTML
+            for (let i = 0; i < products.length; i++) {
+                if(products[i].namefam == namefam && products[i].diameter == e.target.value){
+                    console.log(products[i]);
+                    e.target.closest(".product-card").querySelector(".name-product").innerHTML = products[i].name
+                    e.target.closest(".product-card").querySelector(".fam-product").innerHTML = products[i].family
+                    e.target.closest(".product-card").querySelector(".ref-product").innerHTML = products[i].reference
+                    e.target.closest(".product-card").querySelector("#price-unit").innerHTML = `${products[i].pvp.toLocaleString('es-ES', numberOptionsEU)}¤/u`; 
+                }
+            }
+            
+            const card = e.target.closest(".product-card");
+            e.target.closest(".product-card").querySelector("#value-input").innerHTML = card.querySelector("#price-unit").value;
+            const a = card.querySelector("#price-unit").innerHTML
+            const price = (card.querySelector(".quantity-product").value * parseFloat(a.substring(0, a.length - 3).replace(/\./g, '').replace(/,/g, '.')));
+            card.querySelector("#price").innerHTML = `${price.toLocaleString('es-ES', numberOptionsEU)}¤`
+            let discount = document.getElementById("discount-bofill").value
+            if(discount >= 100 || discount < 0){
+                document.getElementById("discount-bofill").value = 0
+                discount = 0
+            }
+            card.querySelector("#netprice").innerHTML = `${(price*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤`
+            card.querySelector("#price-unit-netprice").innerHTML = `${(parseFloat(a.substring(0, a.length - 3).replace(/\./g, '').replace(/,/g, '.'))*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤/u`
+            loadTotal()
+        }
+
         function renderFavorites(){
             let refsFavorites = loadFromStorage("bofill")
             if(refsFavorites == undefined) refsFavorites = [];
             document.getElementById("popup").querySelector(".products-favorites").innerHTML = "";
             if(refsFavorites.length <= 0){
                 document.getElementById("popup").querySelector("hr").style.display = "none";
-            }else{
-                document.getElementById("popup").querySelector("hr").style.display = "block";
             }
             for (let i = 0; i < refsFavorites.length; i++) {
                 for (let j = 0; j < products.length; j++) {
@@ -1946,15 +2340,17 @@ fetch(fileUrl)
                         cellAddress = `${columnEanCode}${row}`
                         desiredCell = worksheet[cellAddress];
                         const cellContentEAN = desiredCell ? desiredCell.v : 'EANCODE';
-                        cellAddress = `${columnDiameter}${row}`
-                        desiredCell = worksheet[cellAddress];
-                        const cellContentDIAMETER = desiredCell ? desiredCell.v : 'DIAMETER';
-                        cellAddress = `${columnInletDiameter}${row}`
-                        desiredCell = worksheet[cellAddress];
-                        const cellContentINLETDIAMETER = desiredCell ? desiredCell.v : 'INLETDIAMETER';
-                        cellAddress = `${columnOutletDiameter}${row}`
-                        desiredCell = worksheet[cellAddress];
-                        const cellContentOUTLETDIAMETER = desiredCell ? desiredCell.v : 'OUTLETDIAMETER';
+                        
+                        const cell2 = worksheet[`${columnInletDiameter}${row}`]
+                        const cell3 = worksheet[`${columnOutletDiameter}${row}`]
+                        let cell = worksheet[`${columnDiameter}${row}`];
+                        let cellContentDIAMETER;
+                        if((cell2 ? cell2.v : '') != (cell3 ? cell3.v : '')){
+                            cellContentDIAMETER = `${cell2 ? cell2.v : ''}-${cell3 ? cell3.v : ''}`;
+                        }else{
+                            cellContentDIAMETER = cell ? cell.v : '';
+                        }
+
                         const element = document.createElement('div')
                         const Content = `
                         <button id="favorites-white" style="align-items: center; justify-content: center;display: flex;height: 20px;width:20px;position:absolute;top:10px;right:10px;cursor:pointer;background:transparent;border:none;"> <img style=";height: 20px;width:20px;" id="favorite" src="./img/favorites-yellow.svg" alt=""> </button>
@@ -1964,6 +2360,7 @@ fetch(fileUrl)
                         <p id="ref" style="font-size: 10px;left: 10px;position:absolute; bottom:7px;">${cellContentREF}</p>
                         <p id="diam" style="font-size: 10px;right: 10px;position:absolute; bottom:7px;">Ø${cellContentDIAMETER}</p>
                         <p id="fam" style="display:none;">${cellContentFAM}</p>
+                        <p id="namefam" style="display:none;">${cellContentIMAGE}</p>
                         <p id="sfam" style="display:none;">${cellContentSFAM}</p>
                         <p id="pvp" style="display:none;">${cellContentPVP}</p>
                         <p id="ean" style="display:none;">${cellContentEAN}</p>
@@ -2028,36 +2425,124 @@ fetch(fileUrl)
             document.getElementById("popup").style.visibility = "visible";
         }
 
-        document.getElementById("referencia").addEventListener("change", (event) => {
+        document.getElementById("referencia").addEventListener("input", (event) => {
           removeElements()
           searchByREF(document.getElementById("referencia").value)
         });
-        document.getElementById("codigoean").addEventListener("change", (event) => {
+        document.getElementById("codigoean").addEventListener("input", (event) => {
           removeElements()
           searchByEAN(document.getElementById("codigoean").value)
         });
-        document.getElementById("div-codigoean").addEventListener("click", (event) => {
+        document.getElementById("div-codigoean").addEventListener("mousedown", (event) => {
           removeElements()
           searchByEAN(document.getElementById("codigoean").value)
         });
-        document.getElementById("div-referencia").addEventListener("click", (event) => {
+        document.getElementById("div-referencia").addEventListener("mousedown", (event) => {
           removeElements()
           searchByREF(document.getElementById("referencia").value)
         });
-        document.getElementById("div-filtre").addEventListener("click", (event) => {
-          removeElements()
+        document.getElementById("div-filtre").addEventListener("mousedown", (event) => {
           searchByFILTRE()
         });
-        document.getElementById("nombre").addEventListener("change", (event) => {
+        document.getElementById("filtre-categoria").addEventListener("change", (event) => {
+            searchByFILTRE()
+            let diametersRepetits = [];
+            let diametersWithoutDuplicates = [];
+            let category = document.getElementById('filtre-categoria')
+            let famsShow = Object.entries(filtersJSON[category.value]);
+            for (let i = 0; i < products.length; i++) {
+                for (let j = 0; j < famsShow.length; j++) {
+                    if(products[i].family == famsShow[j][0]){
+                        diametersRepetits.push(products[i].diameter)
+                    }
+                }
+            }
+            const arrayDiam = Array.from(new Set(diametersRepetits))
+            const numbers = arrayDiam.filter(item => typeof item === 'number');
+            const strings = arrayDiam.filter(item => typeof item === 'string');
+            numbers.sort((a, b) => a - b);
+            strings.sort();
+            diametersWithoutDuplicates = [...numbers, ...strings];
+            let inputDiameter = popup.querySelector("#filtre-diametro");
+            inputDiameter.innerHTML = `<option value="">DIÁMETRO</option>`;
+            for (let i = 0; i < diametersWithoutDuplicates.length; i++) {
+                const newOption = document.createElement('option');
+                newOption.value = diametersWithoutDuplicates[i];
+                newOption.text = `Ø${diametersWithoutDuplicates[i]}`;
+                inputDiameter.appendChild(newOption)
+            }
+        });
+        document.getElementById("filtre-familia").addEventListener("change", (event) => {
+            searchByFILTRE()
+            let diametersRepetits = [];
+            let diametersWithoutDuplicates = [];
+            let family = document.getElementById('filtre-familia')
+            let famShow = family.value
+            for (let i = 2; i < products.length; i++) {
+                if(products[i].family == famShow){
+                    diametersRepetits.push(products[i].diameter)
+                }
+            }
+            const arrayDiam = Array.from(new Set(diametersRepetits))
+            const numbers = arrayDiam.filter(item => typeof item === 'number');
+            const strings = arrayDiam.filter(item => typeof item === 'string');
+            numbers.sort((a, b) => a - b);
+            strings.sort();
+            diametersWithoutDuplicates = [...numbers, ...strings];
+            let inputDiameter = popup.querySelector("#filtre-diametro");
+            inputDiameter.innerHTML = `<option value="">DIÁMETRO</option>`;
+            for (let i = 0; i < diametersWithoutDuplicates.length; i++) {
+                const newOption = document.createElement('option');
+                newOption.value = diametersWithoutDuplicates[i];
+                newOption.text = `Ø${diametersWithoutDuplicates[i]}`;
+                inputDiameter.appendChild(newOption)
+            }
+        });
+        document.getElementById("filtre-subfamilia").addEventListener("change", (event) => {
+            searchByFILTRE()
+            let diametersRepetits = [];
+            let diametersWithoutDuplicates = [];
+            let category = document.getElementById('filtre-categoria')
+            let family = document.getElementById('filtre-familia')
+            let subfamily = document.getElementById('filtre-subfamilia')
+            let subfamsShow = filtersJSON[category.value][family.value][subfamily.value]
+            let famShow = family.value
+
+            for (let i = 0; i < products.length; i++) {
+                if(products[i].family == famShow){
+                    for (let j = 0; j < subfamsShow.length; j++) {
+                        if(products[i].subfamily == subfamsShow[j]){
+                            diametersRepetits.push(products[i].diameter)
+                        }
+                    }
+                }
+            }
+            const arrayDiam = Array.from(new Set(diametersRepetits))
+            const numbers = arrayDiam.filter(item => typeof item === 'number');
+            const strings = arrayDiam.filter(item => typeof item === 'string');
+            numbers.sort((a, b) => a - b);
+            strings.sort();
+            diametersWithoutDuplicates = [...numbers, ...strings];
+            let inputDiameter = popup.querySelector("#filtre-diametro");
+            inputDiameter.innerHTML = `<option value="">DIÁMETRO</option>`;
+            for (let i = 0; i < diametersWithoutDuplicates.length; i++) {
+                const newOption = document.createElement('option');
+                newOption.value = diametersWithoutDuplicates[i];
+                newOption.text = `Ø${diametersWithoutDuplicates[i]}`;
+                inputDiameter.appendChild(newOption)
+            }
+        });
+        document.getElementById("nombre").addEventListener("input", (event) => {
           removeElements()
           searchByNAME(document.getElementById("nombre").value)
         });
-        document.getElementById("div-nombre").addEventListener("click", (event) => {
+        document.getElementById("div-nombre").addEventListener("mousedown", (event) => {
           removeElements()
           searchByNAME(document.getElementById("nombre").value)
         });
-        document.getElementById("deleteFilters").addEventListener("click", (event) => {
+        document.getElementById("deleteFilters").addEventListener("mousedown", (event) => {
           deleteFilters();
+          document.getElementById("deleteFilters").style.borderWidth = "3px";
         });
         document.getElementById("button-add-product").addEventListener("click", (event) => {
             openPopup("bofill")
@@ -2083,13 +2568,11 @@ fetch(fileUrl)
         }
         let a = this.document.getElementById("Bofill").querySelectorAll(".product-card")
         for (let i = 0; i < a.length; i++) {
-            const priceunit = parseFloat(a[i].querySelector("#price-unit").innerHTML.slice(0,-3).toLocaleString('en-EN', numberOptionsEN))
-            console.log("price unit",priceunit)
+            const priceunit = parseFloat(a[i].querySelector("#price-unit").innerHTML.slice(0,-3).replace(/\./g, '').replace(/,/g, '.'));
             const price = (a[i].querySelector(".quantity-product").value * priceunit);
-            console.log("price",price)
             a[i].querySelector("#price").innerHTML = `${price.toLocaleString('es-ES', numberOptionsEU)}¤`
             a[i].querySelector("#netprice").innerHTML = `${(price*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤`
-            a[i].querySelector("#price-unit-netprice").innerHTML = `${(priceunit*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤`
+            a[i].querySelector("#price-unit-netprice").innerHTML = `${(priceunit*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤/u`
             loadTotal()
         }
     });
@@ -2102,10 +2585,9 @@ fetch(fileUrl)
     a = document.querySelectorAll('.quantity-product')
     for (let i = 0; i < a.length; i++) {
         a[i].addEventListener("input", loadPrice);
-    }
+    } 
+});
 
-    
-    
-    
-    setInterval(saveWindow, 5000);
+window.addEventListener('beforeunload', function (event) {
+    saveWindow();
 });

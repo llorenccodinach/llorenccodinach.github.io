@@ -39,6 +39,8 @@
     </div>
     
     <div id="page" style="height: 100%; width: 100%; display: none;">
+        
+        
 
         <div style="height: 100px; width: 100%;display: flex;justify-content: center;">
             
@@ -48,8 +50,17 @@
             <button title="Imprimir/Descargar" style="position: absolute;right: 10px; top: 35px;background-color: transparent;border: none;cursor: pointer;" id="download"><img style="height: 50px;" src="./img/download.svg" alt=""></button>
             <div id="loader-download" style="position: absolute;width: 30px;right:90px;top: 50px;display: none;" class="loader"></div>
         <script>
-            document.getElementById('download').addEventListener('click', function() {
+            document.getElementById('download').addEventListener('mousedown', function() {
                 document.getElementById("loader-download").style.display = "block";
+                let inputs = document.querySelectorAll("input");
+                for (let i = 0; i < inputs.length; i++) {
+                    inputs[i].style.paddingTop = "8px";
+                }
+                let selects = document.querySelectorAll("select")
+                for (let i = 0; i < selects.length; i++) {
+                    selects[i].style.paddingTop = "8px";
+                }
+                
                 var element = document.getElementById('page');
                 var opt = {
                     margin:       [0.5, 0.5, 0.5, 0.5], // Márgenes: [superior, izquierda, inferior, derecha] en pulgadas
@@ -59,10 +70,18 @@
                     jsPDF:        { unit: 'in', format: 'b2', orientation: 'portrait' } // Formato de página y orientación
                 };
                 html2pdf().from(element).set(opt).save();
+                
                 setTimeout(hiddenLoaderDownload, 1000); 
                 function hiddenLoaderDownload(){
                     document.getElementById("loader-download").style.display = "none";
+                    for (let i = 0; i < inputs.length; i++) {
+                    inputs[i].style.paddingTop = "0px";
                 }
+                for (let i = 0; i < selects.length; i++) {
+                    selects[i].style.paddingTop = "0px";
+                }
+                }
+                
             });
         </script>
         
@@ -82,10 +101,15 @@
             <div class="container">
                 <div id="Bofill" style="min-width: 710px;position: relative;" class="card-container">
                     <h3>BOFILL</h3>
-                    <div style="position:absolute; top:15px; right:15px; border: solid 1px; height: 40px;width: 90px;border-radius: 10px;">
+                    <div id="div-discount-bofill" style="position:absolute; top:15px; right:15px; border: solid 1px; height: 40px;width: 105px;border-radius: 10px;">
                         <h3 style="font-size: 20px; margin-top: 5px;margin-left: 10px;">-</h3>
                         <input id="discount-bofill" class="input-discount" type="number" name="discount" min="0" max="99" value="0" id="">
-                        <h3 style="position: absolute;top: 10px;right: 0px;font-size: 20px; margin-top: -4px;margin-left: 10px;">%</h3>
+                        
+                        <h3 style="position: absolute;top: 10px;right: 15px;font-size: 20px; margin-top: -4px;margin-left: 10px;">%</h3>
+                        <div style="z-index: 50;cursor: pointer;flex-direction: column;display: flex;gap: 0px;width: 20px;height: 100%;position: absolute;top: 0px;right: 5px;">
+                            <button id="sumDiscount" style="background: transparent;border: none;height: 19px;width: 19px;cursor: pointer;"><img style="height: 19px;width: 19px;" src="./img/arrow-top.svg" alt=""></button>
+                            <button id="restDiscount" style="background: transparent;border: none;height: 19px;width: 19px;cursor: pointer;"><img style="height: 19px;width: 19px;" src="./img/arrow-bottom.svg" alt=""></button>
+                        </div>
                     </div>
                     <div style="position: absolute;top: 27px;left: 120px;width: 40px;" class="loader"></div>
                     <script src="scripts/script.js"></script>
