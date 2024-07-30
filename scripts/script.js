@@ -1,6 +1,4 @@
 let competitors;
-let competitorsJSON;
-let filtersJSON;
 
 const numberOptionsEU = {
     minimumFractionDigits: 2,
@@ -19,19 +17,6 @@ const numberOptionsEN = {
     maximumFractionDigits: 2,
     useGrouping: false
 };
-
-document.getElementById("sumDiscount").addEventListener("click",  (e) => {
-    console.log("sum discount",e.target.closest("#div-discount-bofill").querySelector("input"))
-    if(e.target.closest("#div-discount-bofill").querySelector("input").value < 99){
-        e.target.closest("#div-discount-bofill").querySelector("input").value++;
-    }
-});
-document.getElementById("restDiscount").addEventListener("click",  (e) => {
-    console.log("sum discount",e.target.closest("#div-discount-bofill").querySelector("input"))
-    if(e.target.closest("#div-discount-bofill").querySelector("input").value > 0){
-        e.target.closest("#div-discount-bofill").querySelector("input").value--;
-    }
-});
 
 function saveToStorage(category, data) {
     let save = JSON.parse(localStorage.getItem('BPricingTool')) || {};
@@ -54,10 +39,27 @@ function columnLetterToNumber(columnLetter) {
     return columnNumber;
 }
 
+document.getElementById("sumDiscount").addEventListener("click",  (e) => {
+    if(e.target.closest("#div-discount-bofill").querySelector("input").value < 99){
+        e.target.closest("#div-discount-bofill").querySelector("input").value++;
+        
+        let event = new Event('input');
+        document.getElementById("discount-bofill").dispatchEvent(event);
+    }
+});
+document.getElementById("restDiscount").addEventListener("click",  (e) => {
+    if(e.target.closest("#div-discount-bofill").querySelector("input").value > 0){
+        e.target.closest("#div-discount-bofill").querySelector("input").value--;
+
+        let event = new Event('input');
+        document.getElementById("discount-bofill").dispatchEvent(event);
+    }
+});
+
 let id_product = 0;
 let productEdit;
 let windowName = "";
-let windowDateCreated = "";
+let windowDateCreated = createName();
 
 function createName(){
     let fechaActual = new Date();
@@ -91,147 +93,7 @@ function removeCompetitor(e){
     card.remove()
 }
 
-function addCompetitor(name){
-    const Content = `
-    <select title="Seleccionar competidor" class="select-competitor" name="competitors">
-        <option value="COMPETIDOR">COMPETIDOR</option>
-    </select>
-    <div id="div-discount" style="position:absolute; top:15px; right:80px; border: solid 1px; height: 40px;width: 105px;border-radius: 10px;">
-        <h3 style="font-size: 20px; margin-top: 5px;margin-left: 10px;">-</h3>
-        <input class="input-discount" type="number" name="discount" min="0" max="99" value="0" id="">
-        
-        <h3 style="position: absolute;top: 10px;right: 15px;font-size: 20px; margin-top: -4px;margin-left: 10px;">%</h3>
-        <div style="z-index: 50;cursor: pointer;flex-direction: column;display: flex;gap: 0px;width: 20px;height: 100%;position: absolute;top: 0px;right: 5px;">
-            <button id="sumDiscountCompetitor" style="background: transparent;border: none;height: 19px;width: 19px;cursor: pointer;"><img style="height: 19px;width: 19px;" src="./img/arrow-top.svg" alt=""></button>
-            <button id="restDiscountCompetitor" style="background: transparent;border: none;height: 19px;width: 19px;cursor: pointer;"><img style="height: 19px;width: 19px;" src="./img/arrow-bottom.svg" alt=""></button>
-        </div>
-    </div>
-                    <div style="position: absolute;top: 27px;right: 200px;width: 40px;display:none" class="loader"></div>
-    <button onclick="removeCompetitor(this)" class="button-competitor cross">
-        <span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
-        <span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
-    </button>
-    <div class="products-container">
-    </div>
-    <div style="width: 90%;height: 50px;color: #333;right: 0px;display: flex;position: absolute;font-size: 30px;margin-bottom: 15px;margin-right: 4%;align-items: center;justify-content: center;gap: 10%;bottom: 145px;">
-            <div style="width: 158px;justify-content: center;align-items: center;display: flex;"></div>
-            <div style="width: calc(10% + 320px);justify-content: center;align-items: center;display: flex;"><h4 id="competitorvsbofill" style="font-size: 20px;">COMPETIDOR VS BOFILL</h4></div>
-            
-        </div>
-        <div style="width: 90%;height: 50px;color: #333;right: 0px;display: flex;position: absolute;font-size: 30px;margin-bottom: 15px;margin-right: 4%;align-items: center;justify-content: center;gap: 10%;bottom: 110px;">
-        <div style="
 
-width: 160px;
-justify-content: center;
-align-items: center;
-display: flex;
-"></div>
-        <div style="
-
-width: 160px;
-justify-content: center;
-align-items: center;
-display: flex;
-"><h4 style="font-size: 18px;">%</h4></div>
-        <div style="
-
-width: 160px;
-justify-content: center;
-align-items: center;
-display: flex;
-"><h4 style="font-size: 18px;">¤</h4></div>
-    </div>
-    <div class="total-competitor" style="margin-right: 4%;align-items: center;justify-content: center;gap: 10%;bottom: 73px;">
-            <div style="
-
-    width: 160px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-"><h4 id="total-pvpprice">XX,XX¤</h4></div>
-            <div style="
-
-    width: 160px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-"><h4 id="pvp-difference-percentatge" style="font-size: 30px; color: rgb(152, 10, 10);" class="difference-percentatge">+XX,X%</h4></div>
-            <div style="
-
-    width: 160px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-"><h4 id="pvp-difference-absolute" style="font-size: 30px; color: rgb(152, 10, 10);" class="difference-absolute">+XX,X¤</h4></div>
-        </div>
-    <div class="total-competitor" style="margin-right: 4%;align-items: center;justify-content: center;gap: 10%;">
-            <div style="
-
-    width: 160px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-"><h4 id="total-netprice" style="color:#105378">XX,XX¤</h4></div>
-            <div style="
-
-    width: 160px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-"><h4 id="netprice-difference-percentatge" style="font-size: 30px; color: rgb(152, 10, 10);" class="difference-percentatge">+XX,X%</h4></div>
-            <div style="
-
-    width: 160px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-"><h4 id="netprice-difference-absolute" style="font-size: 30px; color: rgb(152, 10, 10);" class="difference-absolute">+XX,X¤</h4></div>
-        </div>
-        
-    `
-    const card_container = document.createElement("div")
-    card_container.classList.add("card-container")
-    card_container.innerHTML = Content;
-    const parent = document.querySelector(".container")
-    console.log(card_container.querySelector("#restDiscountCompetitor"))
-    card_container.querySelector("#sumDiscountCompetitor").addEventListener("click",  (e) => {
-        console.log("sum discount",e.target.closest("#div-discount").querySelector("input"))
-        if(e.target.closest("#div-discount").querySelector("input").value < 99){
-            e.target.closest("#div-discount").querySelector("input").value++;
-        }
-    });
-    card_container.querySelector("#restDiscountCompetitor").addEventListener("click",  (e) => {
-        console.log("sum discount",e.target.closest("#div-discount").querySelector("input"))
-        if(e.target.closest("#div-discount").querySelector("input").value > 0){
-            e.target.closest("#div-discount").querySelector("input").value--;
-        }
-    });
-
-    const select = card_container.querySelector(".select-competitor")
-    for (let i = 0; i < competitors.length; i++) {
-        if(competitors[i][0].toUpperCase() != "BOFILL"){
-            const newOption = document.createElement('option');
-            newOption.value = competitors[i][0];
-            newOption.text = competitors[i][0].toUpperCase();
-            if(name != undefined && newOption.value == name) newOption.selected = true;
-            select.appendChild(newOption)
-        }
-    }
-    parent.append(card_container)
-
-    card_container.querySelector(".select-competitor").addEventListener("change", (event) => {
-        getCompetitor(card_container,true)
-    });
-    const products = document.getElementById("Bofill").querySelectorAll(".product-card")
-
-    if(document.querySelectorAll('.card-container').length >= 3){
-        document.querySelector(".comparar-mes").style.display = "none";
-        document.querySelector(".container").style.paddingRight = "10px";
-    }
-
-    adjustSelectWidth()
-    return card_container;
-}
 
 function closePopup(){
     let a = document.querySelectorAll(".popup");
@@ -344,7 +206,7 @@ function getCompetitor(a,putFirstProducts) {
 
             let competitorInfo = competitorsJSON[a.querySelector(".select-competitor").value]
 
-            const Content = `<div class="popup-card"><h3 style="font-size: 30px;margin: 40px;">${a.querySelector(".select-competitor").value.toUpperCase()}</h3><button style="top:30px;right: 30px;" class="cross close"><span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span><span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span></button><div class="popup-filtre-competitor"><div id="name" class="filtre"><input id="nombre" style="text-transform:none;" placeholder="NOMBRE" type="text"></div><div id="reference" class="filtre"><input id="referencia" placeholder="REFERENCIA" type="text"></div><div id="div-filtre" class="filtre"><select id="filtre-familia" class="select-filtre" name="FAMILIA" title="FAMILIA"><option value="" disabled="" selected="">FAMILIA</option></select><select id="filtre-subfamilia" class="select-filtre" name="SUBFAMILIA" title="SUBFAMILIA"><option value="" disabled="" selected="">SUBFAMILIA</option></select><select id="filtre-diametro" class="select-filtre" name="DIAMETRO" title="DIAMETRO"><option value="" selected="">DIÁMETRO</option></select></div><div id="ean" class="filtre"><input id="codigoean" placeholder="CÓDIGO EAN" type="text"></div><button class="filtre-delete"><img loading="lazy" style="height: 30px;" src="./img/borrar-filtres.svg" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt=""></button></div><div id="all-products-popup" style="overflow-y: scroll;height: 573px; width: 100%;margin-top: 2em;"><div class="products-created" style="width: 500px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;"><div class="card-create-product"><button style="background-color: #b2b2b2;position: relative;" class="cross add"><span style="transform: translateX(-52%) rotate(0deg);" class="cross-X"></span><span style="transform: translateX(-52%) rotate(90deg);" class="cross-Y"></span></button></div></div><hr class="hr-created" style="background-color: #333;height: 5px;margin-left: 5%; width: 90%; margin-top: 30px;margin-bottom: 30px;"><div class="products-favorites" style="width: 500px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;"></div><hr class="hr-favorites" style="background-color: rgb(51, 51, 51); height: 5px; margin-left: 5%; width: 90%; margin-top: 30px; margin-bottom: 30px; display: block;"><div class="products-competitor"></div> <div class="products-favorites" style="height: 100px;width: 100%;display: flex;flex-wrap: wrap;justify-content: center;gap: 2rem;align-items: center;"><button title="Página anterior" id="page-before" style="opacity: 50%;height: 50px;width: 50px;background: #b2b2b2;border: none;border-radius: 25px;cursor: pointer;"><img style="height: 50px; width: 50px;" src="./img/arrow-left.svg" alt=""></button><button title="Página siguiente" id="page-next" style="height: 50px; width: 50px; background: rgb(178, 178, 178); border: none; border-radius: 25px; cursor: pointer; opacity: 1;"><img style="height: 50px; width: 50px;" src="./img/arrow-right.svg" alt=""></button></div></div></div>`
+            const Content = `<div class="popup-card"><h3 style="font-size: 30px;margin: 40px;">${a.querySelector(".select-competitor").value.toUpperCase()}</h3><button style="top:30px;right: 30px;" class="cross close"><span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span><span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span></button><div class="popup-filtre-competitor"><div id="name" class="filtre"><input id="nombre" style="text-transform:none;" placeholder="NOMBRE" type="text"></div><div id="reference" class="filtre"><input id="referencia" placeholder="REFERENCIA" type="text"></div><div id="div-filtre" class="filtre"><select id="filtre-familia" class="select-filtre" name="FAMILIA" title="FAMILIA"><option value="" disabled="" selected="">FAMILIA</option></select><select id="filtre-subfamilia" class="select-filtre" name="SUBFAMILIA" title="SUBFAMILIA"><option value="" disabled="" selected="">SUBFAMILIA</option></select><select id="filtre-diametro" class="select-filtre" name="DIAMETRO" title="DIAMETRO"><option value="" selected="">DIÁMETRO</option></select></div><div id="ean" class="filtre"><input id="codigoean" placeholder="CÓDIGO EAN" type="text"></div><button class="filtre-delete"><img loading="lazy" style="height: 30px;" src="./img/borrar-filtres.svg" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt=""></button></div><div id="all-products-popup" style="overflow-y: scroll;height: 573px; width: 100%;margin-top: 2em;"><div class="products-created" style="width: 500px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;"><div class="card-create-product"><button style="background-color: #b2b2b2;position: relative;" class="cross add"><span style="transform: translateX(-52%) rotate(0deg);" class="cross-X"></span><span style="transform: translateX(-52%) rotate(90deg);" class="cross-Y"></span></button></div></div><hr class="hr-created" style="background-color: #333;height: 5px;margin-left: 5%; width: 90%; margin-top: 30px;margin-bottom: 30px;"><div class="products-favorites" style="width: 500px; width: 100%;display: flex; flex-wrap: wrap;justify-content: center; gap: 2rem;"></div><hr class="hr-favorites" style="background-color: rgb(51, 51, 51); height: 5px; margin-left: 5%; width: 90%; margin-top: 30px; margin-bottom: 30px; display: block;"><div class="products-competitor"></div> <div class="products-favorites" style="height: 100px;width: 100%;display: flex;flex-wrap: wrap;justify-content: center;gap: 2rem;align-items: center;"><button title="Página anterior" id="page-before" style="opacity: 50%;height: 50px;width: 50px;background: #b2b2b2;border: none;border-radius: 25px;cursor: pointer;"><img style="height: 50px; width: 50px;" src="./img/arrow-left.svg" alt=""></button><h4 id="pages-counting">1/1</h4><button title="Página siguiente" id="page-next" style="height: 50px; width: 50px; background: rgb(178, 178, 178); border: none; border-radius: 25px; cursor: pointer; opacity: 1;"><img style="height: 50px; width: 50px;" src="./img/arrow-right.svg" alt=""></button></div></div></div>`
             const popup = document.createElement("div");
             popup.setAttribute("id", `popup-${a.id}`)
             popup.setAttribute("class", "popup")
@@ -380,7 +242,6 @@ function getCompetitor(a,putFirstProducts) {
             let haveOutletdiameter = false;
             if(competitorInfo.outletDiameter != "") haveOutletdiameter = true;
             
-            let colIndex;
             let names = []
             let descriptions = []
             let eans = []
@@ -390,135 +251,43 @@ function getCompetitor(a,putFirstProducts) {
             let subfamilies = []
             let diameters = []
 
-            
+            let products;
 
             const worker = new Worker('./scripts/worker.js');
-            worker.postMessage(data);
+            worker.postMessage({
+                data:data,
+                startingRow: competitorInfo.startingRow,
+                columnImage: undefined,
+                columnName: competitorInfo.name,
+                columnDescription: competitorInfo.description,
+                columnEanCode: competitorInfo.eanCode,
+                columnReference: competitorInfo.reference,
+                columnPvp: competitorInfo.pvp,
+                columnFamily: competitorInfo.family,
+                columnSubfamily: competitorInfo.subfamily,
+                columnDiameter: competitorInfo.diameter,
+                columnInletDiameter: competitorInfo.inletDiameter,
+                columnOutletDiameter: competitorInfo.outletDiameter,
+                columnAdditionalFamily1: undefined,
+                columnAdditionalFamily2: undefined,
+                columnAdditionalFamily3: undefined,
+                columnAdditionalFamily4: undefined,
+                columnAdditionalFamily5: undefined,
+            });
             worker.onmessage = function (e) {
-                const worksheet = e.data.worksheet;
-                const range = e.data.range;
+                diameters = e.data.diameters
+                products = e.data.products
+                
 
-                if(haveName){
-                    colIndex = columnLetterToNumber(competitorInfo.name)
+                names = products.map(product => product.name);
+                descriptions = products.map(product => product.description);
+                eans = products.map(product => product.ean);
+                references = products.map(product => product.reference);
+                pvps = products.map(product => product.pvp);
+                families = products.map(product => product.family);
+                subfamilies = products.map(product => product.subfamily);
 
-                    for (let row = range.s.r+competitorInfo.startingRow-1; row <= range.e.r; row++) {
-                        const cellAddress = XLSX.utils.encode_cell({ r: row, c: colIndex - 1 });
-                        const cell = worksheet[cellAddress];
-                        names.push(cell ? cell.v : '');
-                    }
-                }
-
-                if(haveDescription){
-                    colIndex = columnLetterToNumber(competitorInfo.description)
-
-                    for (let row = range.s.r+competitorInfo.startingRow-1; row <= range.e.r; row++) {
-                        const cellAddress = XLSX.utils.encode_cell({ r: row, c: colIndex - 1 });
-                        const cell = worksheet[cellAddress];
-                        descriptions.push(cell ? cell.v : '');
-                    }
-                }
-
-                if(haveEan){
-                    colIndex = columnLetterToNumber(competitorInfo.eanCode)
-
-                    for (let row = range.s.r+competitorInfo.startingRow-1; row <= range.e.r; row++) {
-                        const cellAddress = XLSX.utils.encode_cell({ r: row, c: colIndex - 1 });
-                        const cell = worksheet[cellAddress];
-                        eans.push(cell ? cell.v : '');
-                    }
-                }
-
-                if(haveReference){
-                    colIndex = columnLetterToNumber(competitorInfo.reference)
-
-                    for (let row = range.s.r+competitorInfo.startingRow-1; row <= range.e.r; row++) {
-                        const cellAddress = XLSX.utils.encode_cell({ r: row, c: colIndex - 1 });
-                        const cell = worksheet[cellAddress];
-                        references.push(cell ? cell.v : '');
-                    }
-                }
-
-                if(havePvp){
-                    colIndex = columnLetterToNumber(competitorInfo.pvp)
-
-                    for (let row = range.s.r+competitorInfo.startingRow-1; row <= range.e.r; row++) {
-                        const cellAddress = XLSX.utils.encode_cell({ r: row, c: colIndex - 1 });
-                        const cell = worksheet[cellAddress];
-                        pvps.push(cell ? cell.v : '');
-                    }
-                }
-
-                if(haveFamily){
-                    colIndex = columnLetterToNumber(competitorInfo.family)
-
-                    for (let row = range.s.r+competitorInfo.startingRow-1; row <= range.e.r; row++) {
-                        const cellAddress = XLSX.utils.encode_cell({ r: row, c: colIndex - 1 });
-                        const cell = worksheet[cellAddress];
-                        families.push(cell ? cell.v : '');
-                    }
-                }
-
-                if(haveSubfamily){
-                    colIndex = columnLetterToNumber(competitorInfo.subfamily)
-
-                    for (let row = range.s.r+competitorInfo.startingRow-1; row <= range.e.r; row++) {
-                        const cellAddress = XLSX.utils.encode_cell({ r: row, c: colIndex - 1 });
-                        const cell = worksheet[cellAddress];
-                        subfamilies.push(cell ? cell.v : '');
-                    }
-                }
-
-                if(haveDiameter || (haveInletdiameter && haveOutletdiameter)){
-                    if(haveDiameter && haveInletdiameter && haveOutletdiameter){
-                        colIndex = columnLetterToNumber(competitorInfo.diameter)
-                        let colIndex2 = columnLetterToNumber(competitorInfo.outletDiameter)
-                        let colIndex3 = columnLetterToNumber(competitorInfo.outletDiameter)
-
-                        for (let row = range.s.r+competitorInfo.startingRow-1; row <= range.e.r; row++) {
-                            const cellAddress = XLSX.utils.encode_cell({ r: row, c: colIndex - 1 });
-                            const cell = worksheet[cellAddress];
-                            if((cell ? cell.v : '') == '' || (cell ? cell.v : '') == '-'){
-                                const cellAddress2 = XLSX.utils.encode_cell({ r: row, c: colIndex2 - 1 });
-                                const cell2 = worksheet[cellAddress2];
-                                const cellAddress3 = XLSX.utils.encode_cell({ r: row, c: colIndex3 - 1 });
-                                const cell3 = worksheet[cellAddress3];
-                                diameters.push(`${cell2 ? cell2.v : ''}-${cell3 ? cell3.v : ''}`);
-                            }else{
-                                diameters.push(cell ? cell.v : '');
-                            }
-                        }
-                    }else if(!haveDiameter){
-                        colIndex = columnLetterToNumber(competitorInfo.inletDiameter)
-                        let colIndex2 = columnLetterToNumber(competitorInfo.outletDiameter)
-
-                        for (let row = range.s.r+competitorInfo.startingRow-1; row <= range.e.r; row++) {
-                            const cellAddress = XLSX.utils.encode_cell({ r: row, c: colIndex - 1 });
-                            const cell = worksheet[cellAddress];
-                            const cellAddress2 = XLSX.utils.encode_cell({ r: row, c: colIndex2 - 1 });
-                            const cell2 = worksheet[cellAddress2];
-                            if((cell ? cell.v : '') == '' || (cell ? cell.v : '') == '-' || (cell2 ? cell2.v : '') == '' || (cell2 ? cell2.v : '') == '-'){
-                                if(((cell ? cell.v : '') == '' || (cell ? cell.v : '') == '-') && ((cell2 ? cell2.v : '') == '' || (cell2 ? cell2.v : '') == '-')){
-                                }
-                                else if((cell ? cell.v : '') == '' || (cell ? cell.v : '') == '-'){
-                                    diameters.push(cell2 ? cell2.v : '')
-                                }else{
-                                    diameters.push(cell ? cell.v : '')
-                                }
-                            }else{
-                                diameters.push(`${cell ? cell.v : ''}-${cell2 ? cell2.v : ''}`);
-                            }
-                            
-                        }
-                    }else{
-                        colIndex = columnLetterToNumber(competitorInfo.diameter)
-
-                        for (let row = range.s.r+competitorInfo.startingRow-1; row <= range.e.r; row++) {
-                            const cellAddress = XLSX.utils.encode_cell({ r: row, c: colIndex - 1 });
-                            const cell = worksheet[cellAddress];
-                            diameters.push(cell ? cell.v : '');
-                        }
-                    }
-                }
+                delete products;
 
                 if (!haveReference) {
                     popup.querySelector("#reference").remove()
@@ -807,14 +576,17 @@ function getCompetitor(a,putFirstProducts) {
                 page = 0;
                 popup.querySelector("#page-before").style.opacity = "50%";
                 maxpages = Math.ceil(productsAdd.length/105);
-                
-                print();
 
                 if(maxpages-1 == page || maxpages == 0){
                     popup.querySelector("#page-next").style.opacity = "50%";
+                    maxpages = 1;
                 }else{
                     popup.querySelector("#page-next").style.opacity = "100%";
                 }
+
+                popup.querySelector("#pages-counting").innerHTML = `${page+1}/${maxpages}`
+
+                print();
             }
 
             popup.querySelector("#page-next").addEventListener("click", (event) => {
@@ -823,6 +595,7 @@ function getCompetitor(a,putFirstProducts) {
                 }else{
                     ++page;
                     popup.querySelector("#page-before").style.opacity = "100%";
+                    popup.querySelector("#pages-counting").innerHTML = `${page+1}/${maxpages}`
                     print()
                     if(maxpages-1 == page){
                         popup.querySelector("#page-next").style.opacity = "50%";
@@ -836,6 +609,7 @@ function getCompetitor(a,putFirstProducts) {
                 }else{
                     --page;
                     popup.querySelector("#page-next").style.opacity = "100%";
+                    popup.querySelector("#pages-counting").innerHTML = `${page+1}/${maxpages}`
                     print()
                     if(page == 0){
                         popup.querySelector("#page-before").style.opacity = "50%";
@@ -908,6 +682,7 @@ function getCompetitor(a,putFirstProducts) {
                         element.querySelector("#diam").style.display = "none"
                     }
                 }
+                addEventCLickProducts();
             }
 
             function searchByREF(ref){
@@ -1130,7 +905,7 @@ function getCompetitor(a,putFirstProducts) {
                     popup.querySelector(".hr-favorites").style.display = "block";
                 }
 
-                for (let index = 2; index < references.length; index++) {
+                for (let index = 0; index < references.length; index++) {
                     productsAdd.push(index)
                 }
                 addElements();
@@ -1389,7 +1164,6 @@ function getCompetitor(a,putFirstProducts) {
                     addProductCompetitor(products[i].id)
                 }
             }
-            addFirstElements();
         })
         .catch(error => {
             console.error('Error al leer el archivo:', error);
@@ -1484,15 +1258,7 @@ function blurFunc() {
     }
 }
 
-function newWindow(){
-    saveWindow();
-    cleanWindow();
-    windowDateCreated = createName();
-    windowName = createName();
-    id_product = 0;
-    saveWindow();
-    renderWindows();
-}
+
 
 function saveWindow(){
     let windowsBefore = loadFromStorage("windows")
@@ -1549,66 +1315,6 @@ measureSpan.style.fontSize = '1.17em'
 measureSpan.style.fontFamily = 'Gotham-title'
 document.body.appendChild(measureSpan);
 
-function renderWindows(){
-    let windows = loadFromStorage("windows")
-    if(windows == undefined) windows = [];
-    document.querySelector(".windows-elements").innerHTML = "";
-
-    for (let i = 0; i < windows.length; i++) {
-        const div2 = document.createElement("div")
-        const div = document.createElement("input")
-        div.type = "text";
-        div.value = windows[i].name
-        div.innerHTML = `<p id="date" placeholder="Título..." style="display: none;">${windows[i].date}</p>
-        <p id="id_product" style="display: none;">${windows[i].id_product}</p>`
-        div.classList.add("windows-input")
-        div2.style.position = "relative"
-        div2.innerHTML = `<button class="edit-name-window" style="cursor:pointer;background: transparent;border:none;width: 30px;height: 35px;top: 1px;right: 1px;border-radius: 10px;position:absolute">
-        <img src="./img/edit.svg" style="width: 20px;height: 20px;margin-top:3px" alt=""> </button>
-        <button style="background: rgb(178, 178, 178);width: 30px;height: 35px;top: 1px;right: 1px;border-radius: 10px;display:none;" class="cross">
-        <span style="width: 1em;transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
-        <span style="width: 1em;transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
-        </button>`
-        div2.appendChild(div)
-        document.querySelector(".windows-elements").appendChild(div2);
-        div.addEventListener("input", (event) => {
-            adjustWidth(div);
-        });
-        div.addEventListener("change", (event) => {
-            saveWindow()
-        });
-        measureSpan.textContent = div.value || div.placeholder || '';
-        const width = measureSpan.offsetWidth + 44;
-        div.style.width = `${width}px`;
-
-        if(windows[i].name == windowName) div.style.backgroundColor = "#b2b2b2";
-        div2.querySelector(".cross").addEventListener("click", deleteWindow);
-        div2.querySelector(".edit-name-window").addEventListener("click", (event) => {
-            openWindow(div);
-            editNameWindow(event);
-        });
-        div.addEventListener("click", (event) => {
-            
-            openWindow(div);
-        });
-        div.addEventListener("click", focusWindow);
-    }
-}
-
-function deleteWindow(e){
-    let windows = loadFromStorage("windows")
-    let date = e.target.closest("div").querySelector("#date").innerHTML
-    for (let i = 0; i < windows.length; i++) {
-        if(windows[i].date == date){
-            windows.splice(i,1)
-            windowName = "";
-        }
-    }
-    saveToStorage("windows",windows)
-    cleanWindow();
-    renderWindows();
-}
-
 function editNameWindow(e){
     e.target.closest("div").querySelector("input").value = "";
     e.target.closest("div").querySelector("input").focus()
@@ -1622,73 +1328,6 @@ function focusWindow(e){
     e.target.closest("div").querySelector(".edit-name-window").style.right = "30px"
 }
 
-function openWindow(e){
-    let inputs = document.querySelector(".windows-elements").querySelectorAll(".windows-input")
-    for (let i = 0; i < inputs.length; i++) {
-        measureSpan.textContent = inputs[i].value || inputs[i].placeholder || '';
-        const width = measureSpan.offsetWidth + 44;
-        inputs[i].style.width = `${width}px`;
-    }
-    measureSpan.textContent = e.value || e.placeholder || '';
-    let more = 75;
-    const width = measureSpan.offsetWidth + more;
-    e.style.width = `${width}px`;
-
-    
-    saveWindow();
-    let windows = loadFromStorage("windows")
-    cleanWindow();
-    e.style.backgroundColor = "#b2b2b2";
-    windowName = e.value;
-    windowDateCreated = e.querySelector("#date").innerHTML
-    for (let i = 0; i < windows.length; i++) {
-        if(windows[i].date == windowDateCreated){
-            id_product = windows[i].id_product+1
-            document.querySelector("#discount-bofill").value = windows[i].bofill.discount
-            document.querySelector("#Bofill").querySelector(".products-container").innerHTML = windows[i].bofill.content
-            let allProductsBofill = document.querySelector("#Bofill").querySelectorAll(".product-card");
-            for (let j = 0; j < allProductsBofill.length; j++) {
-                allProductsBofill[j].addEventListener('mouseover', changeColor);
-                allProductsBofill[j].addEventListener('mouseout', changeColor);
-                allProductsBofill[j].querySelector(".quantity-product").value = allProductsBofill[j].querySelector("#value-input").innerHTML
-                allProductsBofill[j].querySelector(".diam-product").value = allProductsBofill[j].querySelector("#value-select").innerHTML
-            }
-            for (let j = 0; j < windows[i].competitors.length; j++) {
-                let competitor = addCompetitor(windows[i].competitors[j].name)
-                competitor.querySelector(".input-discount").value = windows[i].competitors[j].discount
-                if(windows[i].competitors[j].name != "COMPETIDOR") getCompetitor(competitor,false)
-                competitor.querySelector(".products-container").innerHTML = windows[i].competitors[j].content
-                let allProductsCompetitor = competitor.querySelectorAll(".product-card");
-                for (let k = 0; k < allProductsCompetitor.length; k++) {
-                    allProductsCompetitor[k].addEventListener('mouseover', changeColor);
-                    allProductsCompetitor[k].addEventListener('mouseout', changeColor);
-                }
-            }
-        }
-    }
-    loadTotal();
-
-    const productes = document.querySelector("#Bofill").querySelectorAll(".quantity-product");
-    for (let i = 0; i < productes.length; i++) {
-        productes[i].addEventListener("input", (event) => {
-            productes[i].closest(".product-card").querySelector("#value-input").innerHTML = productes[i].value;
-        
-            const card = productes[i].closest(".product-card")
-            const a = card.querySelector("#price-unit").innerHTML
-            const price = (productes[i].value * parseFloat(a.substring(0, a.length - 3).toLocaleString('en-EN',numberOptionsEN)));
-            card.querySelector("#price").innerHTML = `${price.toLocaleString('es-ES', numberOptionsEU)}¤`
-            let discount = document.getElementById("discount-bofill").value
-            if(discount >= 100 || discount < 0){
-                document.getElementById("discount-bofill").value = 0
-                discount = 0
-            }
-            card.querySelector("#netprice").innerHTML = `${(price*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤`
-            card.querySelector("#price-unit-netprice").innerHTML = `${(parseFloat(a.substring(0, a.length - 3).toLocaleString('en-EN',numberOptionsEN))*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤/u`
-            loadTotal()
-        });
-    }
-}
-
 function adjustWidth(e) {
     windowName = e.value
     measureSpan.textContent = e.value || e.placeholder || '';
@@ -1698,127 +1337,68 @@ function adjustWidth(e) {
     e.style.width = `${width}px`;
 }
 
-window.addEventListener("load", function () {
-    document.body.style.cursor = 'wait';
-
-
-    fetch('../config.json')
+let competitorsJSON;
+fetch('./config.json')
         .then((response) => response.json())
         .then((config) => {
             const files = Object.entries(config);
             competitors = files
             competitorsJSON = config
+            console.log(competitorsJSON["bofill"].startingRow)
     });
+
+window.addEventListener("load", function () {
+    
+    document.body.style.cursor = 'wait';
+
+
+    
 
     fetch('../filters.json')
         .then((response) => response.json())
         .then((f) => {
-            const file = Object.entries(f);
             filtersJSON = f
     });
 
-    renderWindows();
-
+    
     const fileUrl = '../bofill.xlsx';
 
 fetch(fileUrl)
     .then(response => response.arrayBuffer())
     .then(data => {
-
+        renderWindows();
         document.getElementById("div-referencia").addEventListener("mosuedown", searchByREF)
 
         const popup = this.document.getElementById("popup");
-
-        const columnImage = competitorsJSON["bofill"].imgName;
-        const columnName = competitorsJSON["bofill"].name
-        const columnDescription = competitorsJSON["bofill"].description;
-        const columnEanCode = competitorsJSON["bofill"].eanCode;
-        const columnReference = competitorsJSON["bofill"].reference;
-        const columnPvp = competitorsJSON["bofill"].pvp;
-        const columnFamily = competitorsJSON["bofill"].family;
-        const columnSubfamily = competitorsJSON["bofill"].subfamily;
-        const columnDiameter = competitorsJSON["bofill"].diameter;
-        const columnInletDiameter = competitorsJSON["bofill"].inletDiameter;
-        const columnOutletDiameter = competitorsJSON["bofill"].outletDiameter;
-
-        var colIndex;
-        var cell;
-        const products = [];
-
-        let range;
-        let worksheet;
-
+        
+        let products = [];
+        let diametersWithoutDuplicatesC = [];
+        console.log(competitorsJSON["bofill"].startingRow)
         const worker = new Worker('./scripts/worker.js');
-            worker.postMessage(data);
+            worker.postMessage({
+                data:data,
+                startingRow: competitorsJSON["bofill"].startingRow,
+                columnImage: competitorsJSON["bofill"].imgName,
+                columnName: competitorsJSON["bofill"].name,
+                columnDescription: competitorsJSON["bofill"].description,
+                columnEanCode: competitorsJSON["bofill"].eanCode,
+                columnReference: competitorsJSON["bofill"].reference,
+                columnPvp: competitorsJSON["bofill"].pvp,
+                columnFamily: competitorsJSON["bofill"].family,
+                columnSubfamily: competitorsJSON["bofill"].subfamily,
+                columnDiameter: competitorsJSON["bofill"].diameter,
+                columnInletDiameter: competitorsJSON["bofill"].inletDiameter,
+                columnOutletDiameter: competitorsJSON["bofill"].outletDiameter,
+                columnAdditionalFamily1: competitorsJSON["bofill"].additionalFamily1,
+                columnAdditionalFamily2: competitorsJSON["bofill"].additionalFamily2,
+                columnAdditionalFamily3: competitorsJSON["bofill"].additionalFamily3,
+                columnAdditionalFamily4: competitorsJSON["bofill"].additionalFamily4,
+                columnAdditionalFamily5: competitorsJSON["bofill"].additionalFamily5,
+            });
             worker.onmessage = function (e) {
-                range = e.data.range
-                worksheet = e.data.worksheet
-                let diameters = [];
-                let diametersWithoutDuplicatesC = [];
-                
-                for (let row = range.s.r+1; row <= range.e.r; row++) {
-
-                    colIndex = columnLetterToNumber(columnName);
-                    cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
-                    const Name = cell ? cell.v : ''
-
-                    colIndex = columnLetterToNumber(columnPvp);
-                    cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
-                    const Pvp = cell ? cell.v : ''
-        
-                    colIndex = columnLetterToNumber(columnFamily);
-                    cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
-                    const Family = cell ? cell.v : ''
-        
-                    colIndex = columnLetterToNumber(columnSubfamily);
-                    cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
-                    const Subfamily = cell ? cell.v : ''
-        
-                    colIndex = columnLetterToNumber(columnReference);
-                    cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
-                    const Reference = cell ? cell.v : ''
-        
-                    colIndex = columnLetterToNumber(columnEanCode);
-                    cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
-                    const Ean = cell ? cell.v : '';
-
-                    colIndex = columnLetterToNumber(columnImage);
-                    cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
-                    const Namefam = cell ? cell.v : '';
-
-                    
-                    colIndex = columnLetterToNumber(columnDiameter)
-                    let colIndex2 = columnLetterToNumber(columnInletDiameter)
-                    let colIndex3 = columnLetterToNumber(columnOutletDiameter)
-                    const cell2 = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex2 - 1 })];
-                    const cell3 = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex3 - 1 })];
-                    cell = worksheet[XLSX.utils.encode_cell({ r: row, c: colIndex - 1 })];
-                    let Diameter;
-                    if((cell2 ? cell2.v : '') != (cell3 ? cell3.v : '')){
-                        Diameter = `${cell2 ? cell2.v : ''}-${cell3 ? cell3.v : ''}`;
-                        diameters.push(`${cell2 ? cell2.v : ''}-${cell3 ? cell3.v : ''}`)
-                    }else{
-                        Diameter = cell ? cell.v : '';
-                        diameters.push(cell ? cell.v : '')
-                    }
-                    
-
-                    const Product = {
-                        name: Name,
-                        family: Family,
-                        subfamily: Subfamily,
-                        reference: Reference,
-                        ean: Ean,
-                        diameter: Diameter,
-                        namefam: Namefam,
-                        pvp: Pvp
-                    }
-
-        
-                    products.push(Product)
-    
-
-                }
+                diameters = e.data.diameters
+                products = e.data.products
+                console.log(products)
                 const arrayDiam = Array.from(new Set(diameters))
                 const numbers = arrayDiam.filter(item => typeof item === 'number');
                 const strings = arrayDiam.filter(item => typeof item === 'string');
@@ -1836,6 +1416,8 @@ fetch(fileUrl)
                 addFirstElements();
                 document.body.style.cursor = 'default';
                 document.getElementById("Bofill").querySelector(".loader").style.display = "none";
+                renderWindows();
+                renderFavorites();
             };
             worker.onerror = function (error) {
                 console.error('Worker error: ', error);
@@ -1848,7 +1430,7 @@ fetch(fileUrl)
 
         
         let productsAdd = []
-        let maxpages = 1;
+        let maxpages = 0;
         let page = 0;
         
         function print(){
@@ -1868,47 +1450,15 @@ fetch(fileUrl)
                 let favorites = loadFromStorage("bofill")
                 if(favorites == undefined) favorites = [];
 
-                var cellAddress = `${columnImage}${row}`;
-                var desiredCell = worksheet[cellAddress];
-                const cellContentIMAGE = desiredCell ? desiredCell.v : 'IMAGE';
-
-                var cellAddress = `${columnName}${row}`;
-                var desiredCell = worksheet[cellAddress];
-                const cellContentNAME = desiredCell ? desiredCell.v : 'NAME';
-
-                cellAddress = `${columnDescription}${row}`
-                desiredCell = worksheet[cellAddress];
-                const cellContentDESC = desiredCell ? desiredCell.v : 'DESCRIPTION';
-                
-                cellAddress = `${columnReference}${row}`
-                desiredCell = worksheet[cellAddress];
-                const cellContentREF = desiredCell ? desiredCell.v : 'REFERENCE';
-                
-                cellAddress = `${columnFamily}${row}`
-                desiredCell = worksheet[cellAddress];
-                const cellContentFAM = desiredCell ? desiredCell.v : 'FAMILY';
-                
-                cellAddress = `${columnSubfamily}${row}`
-                desiredCell = worksheet[cellAddress];
-                const cellContentSFAM = desiredCell ? desiredCell.v : 'SUBFAMILY';
-                
-                cellAddress = `${columnPvp}${row}`
-                desiredCell = worksheet[cellAddress];
-                const cellContentPVP = desiredCell ? desiredCell.v : 'PVP';
-                
-                cellAddress = `${columnEanCode}${row}`
-                desiredCell = worksheet[cellAddress];
-                const cellContentEAN = desiredCell ? desiredCell.v : 'EANCODE';
-
-                const cell2 = worksheet[`${columnInletDiameter}${row}`]
-                const cell3 = worksheet[`${columnOutletDiameter}${row}`]
-                let cell = worksheet[`${columnDiameter}${row}`];
-                let cellContentDIAMETER;
-                if((cell2 ? cell2.v : '') != (cell3 ? cell3.v : '')){
-                    cellContentDIAMETER = `${cell2 ? cell2.v : ''}-${cell3 ? cell3.v : ''}`;
-                }else{
-                    cellContentDIAMETER = cell ? cell.v : '';
-                }
+                const cellContentIMAGE = products[row].namefam;
+                const cellContentNAME = products[row].name;
+                const cellContentDESC = products[row].description;
+                const cellContentREF = products[row].reference;
+                const cellContentFAM = products[row].family
+                const cellContentSFAM = products[row].subfamily;
+                const cellContentPVP = products[row].pvp
+                const cellContentEAN = products[row].ean
+                const cellContentDIAMETER = products[row].diameter
 
                 let imgFavorite = "./img/favorites-white.svg";
                 let idFavorite = "favorites-white";
@@ -1922,7 +1472,7 @@ fetch(fileUrl)
                 const element = document.createElement('div')
                 const Content = `
                 <button id="favorites-white" style="align-items: center; justify-content: center;display: flex;height: 20px;width:20px;position:absolute;top:10px;right:10px;cursor:pointer;background:transparent;border:none;"> <img style=";height: 20px;width:20px;" id="${idFavorite}" src="${imgFavorite}" alt=""> </button>
-                <img loading="lazy" src="./img/FOTOS ${cellContentFAM}/${cellContentIMAGE}.png" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt="">
+                <img loading="lazy" id="img" src="./img/${cellContentFAM}/${cellContentIMAGE}.png" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt="">
                 <h5 id="name" style="font-size: 20px;white-space: nowrap;">${cellContentNAME}</h5>
                 <p id="desc" style="font-size: 10px;margin-bottom: 20px;">${cellContentDESC}</p>
                 <p id="ref" style="font-size: 10px;left: 10px;position:absolute; bottom:7px;">${cellContentREF}</p>
@@ -1946,23 +1496,29 @@ fetch(fileUrl)
             
             maxpages = Math.ceil(products.length/105);
 
+            if(maxpages-1 == page || maxpages == 0){
+                popup.querySelector("#page-next").style.opacity = "50%";
+                maxpages = 1;
+            }else{
+                popup.querySelector("#page-next").style.opacity = "100%";
+            }
+
+            popup.querySelector("#pages-counting").innerHTML = `${page+1}/${maxpages}`
+
             print()
 
             popup.querySelector("#page-before").style.opacity = "50%";
             
-            if(maxpages-1 == page){
-                popup.querySelector("#page-next").style.opacity = "50%";
-            }else{
-                popup.querySelector("#page-next").style.opacity = "100%";
-            }
+            
         }
 
         popup.querySelector("#page-next").addEventListener("click", (event) => {
-            if(maxpages-1 == page){
+            if(maxpages-1 == page || maxpages == 0){
                 
             }else{
                 ++page;
                 popup.querySelector("#page-before").style.opacity = "100%";
+                popup.querySelector("#pages-counting").innerHTML = `${page+1}/${maxpages}`
                 print()
                 if(maxpages-1 == page){
                     popup.querySelector("#page-next").style.opacity = "50%";
@@ -1976,6 +1532,7 @@ fetch(fileUrl)
             }else{
                 --page;
                 popup.querySelector("#page-next").style.opacity = "100%";
+                popup.querySelector("#pages-counting").innerHTML = `${page+1}/${maxpages}`
                 print()
                 if(page == 0){
                     popup.querySelector("#page-before").style.opacity = "50%";
@@ -1997,7 +1554,7 @@ fetch(fileUrl)
             productsAdd = []
             for (let i = 0; i < products.length; i++) {
                 if((products[i].reference.toString()).startsWith(ref.toString())){
-                    productsAdd.push(i+2)
+                    productsAdd.push(i)
                 }
             }
             addElements(productsAdd)
@@ -2013,7 +1570,7 @@ fetch(fileUrl)
             productsAdd = []
             for (let i = 0; i < products.length; i++) {
                 if((products[i].ean.toString()).startsWith(code.toString())){
-                    productsAdd.push(i+2)
+                    productsAdd.push(i)
                 }
             }
             addElements(productsAdd)
@@ -2029,7 +1586,7 @@ fetch(fileUrl)
             productsAdd = []
             for (let i = 0; i < products.length; i++) {
                 if((products[i].name.toString()).startsWith(name.toString().toUpperCase())){
-                    productsAdd.push(i+2)
+                    productsAdd.push(i)
                 }
             }
             addElements(productsAdd)
@@ -2045,45 +1602,52 @@ fetch(fileUrl)
             productsAdd = [];
             if(subfamily.value != ""){
                 removeElements()
-                let subfamsShow = filtersJSON[category.value][family.value][subfamily.value]
                 let famShow = family.value
+                let subfamsShow = subfamily.value;
 
                 for (let i = 0; i < products.length; i++) {
-                    if(products[i].family == famShow){
-                        for (let j = 0; j < subfamsShow.length; j++) {
-                            if(products[i].subfamily == subfamsShow[j]){
-                                productsAdd.push(i+2);
-                            }
+                    if(products[i].family == famShow || products[i].additionalFamily1 == famShow || products[i].additionalFamily2 == famShow || products[i].additionalFamily3 == famShow || products[i].additionalFamily4 == famShow || products[i].additionalFamily5 == famShow){
+                        if(products[i].subfamily.toUpperCase() == subfamsShow.toUpperCase()){
+                            productsAdd.push(i);
                         }
                     }
                 }
             }else if(family.value != ""){
                 removeElements()
                 let famShow = family.value
-                for (let i = 2; i < products.length; i++) {
-                    if(products[i].family == famShow){
-                        productsAdd.push(i+2)
+                for (let i = 0; i < products.length; i++) {
+                    if(products[i].family == famShow || products[i].additionalFamily1 == famShow || products[i].additionalFamily2 == famShow || products[i].additionalFamily3 == famShow || products[i].additionalFamily4 == famShow || products[i].additionalFamily5 == famShow){
+                        productsAdd.push(i)
                     }
                 }
             }else if(category.value != ""){
                 removeElements()
-                let famsShow = Object.entries(filtersJSON[category.value]);
+                let famsShow = filtersJSON[category.value];
                 for (let i = 0; i < products.length; i++) {
                     for (let j = 0; j < famsShow.length; j++) {
-                        if(products[i].family == famsShow[j][0]){
-                            productsAdd.push(i+2)
+                        if(products[i].family == famsShow[j] || products[i].additionalFamily1 == famsShow[j] || products[i].additionalFamily2 == famsShow[j] || products[i].additionalFamily3 == famsShow[j] || products[i].additionalFamily4 == famsShow[j] || products[i].additionalFamily5 == famsShow[j]){
+                            if(!productsAdd.includes(i)){
+                                productsAdd.push(i)
+                            }
                         }
                     }
                 }
-            }else{
+            }else if(diameter.value == ""){
                 addFirstElements();
                 return;
             }
 
-            if(diameter.value != ""){
+            if(diameter.value != "" && productsAdd.length != 0){
                 for (let k = productsAdd.length-1; k >=0 ; k--) {   
-                    if(products[productsAdd[k]-2].diameter != diameter.value){
+                    if(products[productsAdd[k]].diameter != diameter.value){
                         productsAdd.splice(k, 1);
+                    }
+                }
+            }else if(diameter.value != "" && productsAdd.length == 0){
+                productsAdd = [];
+                for (let k = 0; k < products.length; k++) {
+                    if(products[k].diameter == diameter.value){
+                        productsAdd.push(k)
                     }
                 }
             }
@@ -2111,36 +1675,58 @@ fetch(fileUrl)
             newOptionFamily.selected = true;
             family.appendChild(newOptionFamily)
 
-            let categoryFamilies = Object.entries(filtersJSON[category.value]);
+            let categoryFamilies = filtersJSON[category.value];
 
             for (let j = 0; j < categoryFamilies.length; j++) {
                 const newOption = document.createElement('option');
-                newOption.value = categoryFamilies[j][0];
-                newOption.text = categoryFamilies[j][0];
+                newOption.value = categoryFamilies[j];
+                newOption.text = categoryFamilies[j];
                 family.appendChild(newOption)
             }
         }
 
         function getFamilia(){
-            let category = document.getElementById('filtre-categoria')
             let family = document.getElementById('filtre-familia')
             let subfamily = document.getElementById('filtre-subfamilia')
+            let diameter = document.getElementById('filtre-diametro')
+            let famShow = family.value
 
-            let familySubfamily = Object.entries(filtersJSON[category.value][family.value]);
+            let subfamiliesRepetits = [];
+            let diametresRepetits = [];
+
+            for (let i = 0; i < products.length; i++) {
+                if(products[i].family == famShow || products[i].additionalFamily1 == famShow || products[i].additionalFamily2 == famShow || products[i].additionalFamily3 == famShow || products[i].additionalFamily4 == famShow || products[i].additionalFamily5 == famShow){
+                    subfamiliesRepetits.push(products[i].subfamily)
+                    diametresRepetits.push(products[i].diameter)
+                }
+            }
+            const subfamiliesToShow = [...new Set(subfamiliesRepetits)];
+
+            const diametersToShow = [...new Set(diametresRepetits)];
 
             subfamily.innerHTML = ""
+            diameter.innerHTML = ""
             const newOption = document.createElement('option');
+            const newOptionD = document.createElement('option');
             newOption.value = "";
+            newOptionD.value = "";
             newOption.text = "SUBFAMILIA";
+            newOptionD.text = "DIÁMETRO";
             newOption.disabled = true;
             newOption.selected = true;
+            newOptionD.selected = true;
             subfamily.appendChild(newOption)
+            diameter.appendChild(newOptionD)
 
-            for (let k = 0; k < familySubfamily.length; k++) {
+            for (let k = 0; k < subfamiliesToShow.length; k++) {
                 const newOption = document.createElement('option');
-                newOption.value = familySubfamily[k][0].toUpperCase();
-                newOption.text = familySubfamily[k][0].toUpperCase();
+                const newOptionD = document.createElement('option');
+                newOption.value = subfamiliesToShow[k].toUpperCase();
+                newOptionD.value = diametersToShow[k]
+                newOption.text = subfamiliesToShow[k].toUpperCase();
+                newOptionD.text = `Ø${diametersToShow[k]}`;
                 subfamily.appendChild(newOption)
+                diameter.appendChild(newOptionD)
             }
         }
 
@@ -2152,7 +1738,7 @@ fetch(fileUrl)
             let index = 0;
             productsAdd = []
             while(index < products.length){
-                productsAdd.push(index+2)
+                productsAdd.push(index)
                 ++index;
             }
             addElements(productsAdd)
@@ -2170,8 +1756,18 @@ fetch(fileUrl)
                 a[i].style.borderWidth = "1px"
             }
             document.getElementById("filtre-categoria").value = "";
+            document.getElementById("filtre-familia").innerHTML = `<option value="" disabled="">FAMILIA</option>`
             document.getElementById("filtre-familia").value = "";
+            document.getElementById("filtre-subfamilia").innerHTML = `<option value="" disabled="">SUBFAMILIA</option>`
             document.getElementById("filtre-subfamilia").value = "";
+            let inputDiameter = popup.querySelector("#filtre-diametro");
+                inputDiameter.innerHTML = `<option value="">DIÁMETRO</option>`;
+                for (let i = 0; i < diametersWithoutDuplicatesC.length; i++) {
+                    const newOption = document.createElement('option');
+                    newOption.value = diametersWithoutDuplicatesC[i];
+                    newOption.text = `Ø${diametersWithoutDuplicatesC[i]}`;
+                    inputDiameter.appendChild(newOption)
+                }
             document.getElementById("filtre-diametro").value = "";
             document.getElementById("referencia").value = "";
             document.getElementById("nombre").value = "";
@@ -2180,6 +1776,11 @@ fetch(fileUrl)
 
         function addProduct(e){
             if(e.target.id != "favorite" && e.target.id != "favorites-white"){
+                if(windowName == ""){
+                    windowName = windowDateCreated;
+                    saveWindow();
+                    renderWindows();
+                }
                 closePopup()
             const input = e.target
             const card = input.closest(".card-product")
@@ -2189,24 +1790,17 @@ fetch(fileUrl)
             const nameFam = card.querySelector("#namefam").innerHTML
             const pvp = parseFloat(card.querySelector("#pvp").innerHTML)
             const np = (pvp*(100-document.getElementById("discount-bofill").value)/100)
-            const diam = card.querySelector("#diam").innerHTML.substring(1);            ;
+            const diam = card.querySelector("#diam").innerHTML.substring(1);
             const bofill = document.querySelector("#Bofill")
             const parent = bofill.querySelector(".products-container")
+            const imgSRC = card.querySelector("#img").src
             
             const id_sel = `select-${id_product}`
             const id_quantity = `price-${id_product}`
             let caracter = name[name.length - 6];
-            let nameImg;
-            if(name.startsWith("CODPRP")){
-                nameImg = "CODPRP"
-            }else if(!isNaN(caracter) && caracter >= '0' && caracter <= '9'){
-                nameImg = name.slice(0, -6);
-            }else{
-                nameImg = name.slice(0, -3);
-            }
             const Content_bofill = `
             <p id="namefam" style="display:none">${nameFam}</p>
-                                    <img loading="lazy" style="height: 90px;margin-left:5px" src="./img/FOTOS ${fam}/${nameImg}.png" onerror="this.onerror=null; this.src=&#39;https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg&#39;" alt="">
+                                    <img loading="lazy" style="height: 90px;margin-left:5px" src="${imgSRC}" onerror="this.onerror=null; this.src=&#39;https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg&#39;" alt="">
                                     <div style="height: 100%;width: 210px; align-items: center; display: flex;margin-left:10px;max-width:205px; overflow-x:visible;">
                                         <div>
                                             <h5 class="fam-product">${fam.toUpperCase()}</h5>
@@ -2260,7 +1854,6 @@ fetch(fileUrl)
                     card_product.querySelector(".diam-product").appendChild(option)
                 }
             }
-            console.log("aqui els diametres:",diametersOfProduct)
         
             loadTotal()
             document.getElementById(id_sel).value = diam;
@@ -2271,12 +1864,9 @@ fetch(fileUrl)
         }
 
         function newDiameter(e){
-            //per fer
-            console.log( "ei?",e.target.value, )
             let namefam = e.target.closest(".product-card").querySelector("#namefam").innerHTML
             for (let i = 0; i < products.length; i++) {
                 if(products[i].namefam == namefam && products[i].diameter == e.target.value){
-                    console.log(products[i]);
                     e.target.closest(".product-card").querySelector(".name-product").innerHTML = products[i].name
                     e.target.closest(".product-card").querySelector(".fam-product").innerHTML = products[i].family
                     e.target.closest(".product-card").querySelector(".ref-product").innerHTML = products[i].reference
@@ -2285,7 +1875,7 @@ fetch(fileUrl)
             }
             
             const card = e.target.closest(".product-card");
-            e.target.closest(".product-card").querySelector("#value-input").innerHTML = card.querySelector("#price-unit").value;
+            e.target.closest(".product-card").querySelector("#value-select").innerHTML = card.querySelector(".diam-product").value;
             const a = card.querySelector("#price-unit").innerHTML
             const price = (card.querySelector(".quantity-product").value * parseFloat(a.substring(0, a.length - 3).replace(/\./g, '').replace(/,/g, '.')));
             card.querySelector("#price").innerHTML = `${price.toLocaleString('es-ES', numberOptionsEU)}¤`
@@ -2311,50 +1901,20 @@ fetch(fileUrl)
                     if(refsFavorites[i] == products[j].reference){
                         let row = j+2;
 
-                        var cellAddress = `${columnImage}${row}`;
-                        var desiredCell = worksheet[cellAddress];
-                        const cellContentIMAGE = desiredCell ? desiredCell.v : 'IMAGE';
-                        var cellAddress = `${columnName}${row}`;
-                        var desiredCell = worksheet[cellAddress];
-                        const cellContentNAME = desiredCell ? desiredCell.v : 'NAME';
-                        cellAddress = `${columnDescription}${row}`
-                        desiredCell = worksheet[cellAddress];
-                        const cellContentDESC = desiredCell ? desiredCell.v : 'DESCRIPTION';
-
-                        cellAddress = `${columnReference}${row}`
-                        desiredCell = worksheet[cellAddress];
-                        const cellContentREF = desiredCell ? desiredCell.v : 'REFERENCE';
-
-                        cellAddress = `${columnFamily}${row}`
-                        desiredCell = worksheet[cellAddress];
-                        const cellContentFAM = desiredCell ? desiredCell.v : 'FAMILY';
-
-                        cellAddress = `${columnSubfamily}${row}`
-                        desiredCell = worksheet[cellAddress];
-                        const cellContentSFAM = desiredCell ? desiredCell.v : 'SUBFAMILY';
-
-                        cellAddress = `${columnPvp}${row}`
-                        desiredCell = worksheet[cellAddress];
-                        const cellContentPVP = desiredCell ? desiredCell.v : 'PVP';
-
-                        cellAddress = `${columnEanCode}${row}`
-                        desiredCell = worksheet[cellAddress];
-                        const cellContentEAN = desiredCell ? desiredCell.v : 'EANCODE';
-                        
-                        const cell2 = worksheet[`${columnInletDiameter}${row}`]
-                        const cell3 = worksheet[`${columnOutletDiameter}${row}`]
-                        let cell = worksheet[`${columnDiameter}${row}`];
-                        let cellContentDIAMETER;
-                        if((cell2 ? cell2.v : '') != (cell3 ? cell3.v : '')){
-                            cellContentDIAMETER = `${cell2 ? cell2.v : ''}-${cell3 ? cell3.v : ''}`;
-                        }else{
-                            cellContentDIAMETER = cell ? cell.v : '';
-                        }
+                        const cellContentIMAGE = products[row].namefam;
+                        const cellContentNAME = products[row].name;
+                        const cellContentDESC = products[row].description;
+                        const cellContentREF = products[row].reference;
+                        const cellContentFAM = products[row].family
+                        const cellContentSFAM = products[row].subfamily;
+                        const cellContentPVP = products[row].pvp
+                        const cellContentEAN = products[row].ean
+                        const cellContentDIAMETER = products[row].diameter
 
                         const element = document.createElement('div')
                         const Content = `
                         <button id="favorites-white" style="align-items: center; justify-content: center;display: flex;height: 20px;width:20px;position:absolute;top:10px;right:10px;cursor:pointer;background:transparent;border:none;"> <img style=";height: 20px;width:20px;" id="favorite" src="./img/favorites-yellow.svg" alt=""> </button>
-                        <img loading="lazy" src="./img/FOTOS ${cellContentFAM}/${cellContentIMAGE}.png" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt="">
+                        <img loading="lazy" id="img" src="./img/${cellContentFAM}/${cellContentIMAGE}.png" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg';" alt="">
                         <h5 id="name" style="font-size: 20px;white-space: nowrap;">${cellContentNAME}</h5>
                         <p id="desc" style="font-size: 10px;margin-bottom: 20px;">${cellContentDESC}</p>
                         <p id="ref" style="font-size: 10px;left: 10px;position:absolute; bottom:7px;">${cellContentREF}</p>
@@ -2414,14 +1974,7 @@ fetch(fileUrl)
             renderFavorites();
         }
 
-        function openPopup(name){
-            renderFavorites()
-            if(name == "bofill"){
-                removeElements()
-                addFirstElements()
-            }else{
-
-            }
+        function openPopup(){
             document.getElementById("popup").style.visibility = "visible";
         }
 
@@ -2444,15 +1997,17 @@ fetch(fileUrl)
         document.getElementById("div-filtre").addEventListener("mousedown", (event) => {
           searchByFILTRE()
         });
-        document.getElementById("filtre-categoria").addEventListener("change", (event) => {
+        document.getElementById("filtre-diametro").addEventListener("change", (event) => {
             searchByFILTRE()
+          });
+        document.getElementById("filtre-categoria").addEventListener("change", (event) => {
             let diametersRepetits = [];
             let diametersWithoutDuplicates = [];
             let category = document.getElementById('filtre-categoria')
-            let famsShow = Object.entries(filtersJSON[category.value]);
+            let famsShow = filtersJSON[category.value];
             for (let i = 0; i < products.length; i++) {
                 for (let j = 0; j < famsShow.length; j++) {
-                    if(products[i].family == famsShow[j][0]){
+                    if(products[i].family == famsShow[j]){
                         diametersRepetits.push(products[i].diameter)
                     }
                 }
@@ -2471,49 +2026,23 @@ fetch(fileUrl)
                 newOption.text = `Ø${diametersWithoutDuplicates[i]}`;
                 inputDiameter.appendChild(newOption)
             }
+            searchByFILTRE();
         });
         document.getElementById("filtre-familia").addEventListener("change", (event) => {
-            searchByFILTRE()
-            let diametersRepetits = [];
-            let diametersWithoutDuplicates = [];
-            let family = document.getElementById('filtre-familia')
-            let famShow = family.value
-            for (let i = 2; i < products.length; i++) {
-                if(products[i].family == famShow){
-                    diametersRepetits.push(products[i].diameter)
-                }
-            }
-            const arrayDiam = Array.from(new Set(diametersRepetits))
-            const numbers = arrayDiam.filter(item => typeof item === 'number');
-            const strings = arrayDiam.filter(item => typeof item === 'string');
-            numbers.sort((a, b) => a - b);
-            strings.sort();
-            diametersWithoutDuplicates = [...numbers, ...strings];
-            let inputDiameter = popup.querySelector("#filtre-diametro");
-            inputDiameter.innerHTML = `<option value="">DIÁMETRO</option>`;
-            for (let i = 0; i < diametersWithoutDuplicates.length; i++) {
-                const newOption = document.createElement('option');
-                newOption.value = diametersWithoutDuplicates[i];
-                newOption.text = `Ø${diametersWithoutDuplicates[i]}`;
-                inputDiameter.appendChild(newOption)
-            }
+            
+            searchByFILTRE();
         });
         document.getElementById("filtre-subfamilia").addEventListener("change", (event) => {
-            searchByFILTRE()
             let diametersRepetits = [];
             let diametersWithoutDuplicates = [];
-            let category = document.getElementById('filtre-categoria')
-            let family = document.getElementById('filtre-familia')
-            let subfamily = document.getElementById('filtre-subfamilia')
-            let subfamsShow = filtersJSON[category.value][family.value][subfamily.value]
+            let subfamily = document.getElementById("filtre-subfamilia")
+            let family = document.getElementById("filtre-familia")
             let famShow = family.value
-
+            let subfamsShow = subfamily.value;
             for (let i = 0; i < products.length; i++) {
-                if(products[i].family == famShow){
-                    for (let j = 0; j < subfamsShow.length; j++) {
-                        if(products[i].subfamily == subfamsShow[j]){
-                            diametersRepetits.push(products[i].diameter)
-                        }
+                if(products[i].family == famShow || products[i].additionalFamily1 == famShow || products[i].additionalFamily2 == famShow || products[i].additionalFamily3 == famShow || products[i].additionalFamily4 == famShow || products[i].additionalFamily5 == famShow){
+                    if(products[i].subfamily.toUpperCase() == subfamsShow.toUpperCase()){
+                        diametersRepetits.push(products[i].diameter);
                     }
                 }
             }
@@ -2531,6 +2060,7 @@ fetch(fileUrl)
                 newOption.text = `Ø${diametersWithoutDuplicates[i]}`;
                 inputDiameter.appendChild(newOption)
             }
+            searchByFILTRE()
         });
         document.getElementById("nombre").addEventListener("input", (event) => {
           removeElements()
@@ -2543,10 +2073,335 @@ fetch(fileUrl)
         document.getElementById("deleteFilters").addEventListener("mousedown", (event) => {
           deleteFilters();
           document.getElementById("deleteFilters").style.borderWidth = "3px";
+          setTimeout(load1px, 1000); 
+            function load1px(){
+                document.getElementById("deleteFilters").style.borderWidth = "1px";
+            }
         });
+        document.getElementById("deleteFilters").addEventListener("mouseup", (event) => {
+            document.getElementById("deleteFilters").style.borderWidth = "1px";
+          });
         document.getElementById("button-add-product").addEventListener("click", (event) => {
             openPopup("bofill")
         });                
+        function openWindow(e){
+            let inputs = document.querySelector(".windows-elements").querySelectorAll(".windows-input")
+            for (let i = 0; i < inputs.length; i++) {
+                measureSpan.textContent = inputs[i].value || inputs[i].placeholder || '';
+                const width = measureSpan.offsetWidth + 44;
+                inputs[i].style.width = `${width}px`;
+            }
+            measureSpan.textContent = e.value || e.placeholder || '';
+            let more = 75;
+            const width = measureSpan.offsetWidth + more;
+            e.style.width = `${width}px`;
+        
+            
+            saveWindow();
+            let windows = loadFromStorage("windows")
+            cleanWindow();
+            e.style.backgroundColor = "#b2b2b2";
+            windowName = e.value;
+            windowDateCreated = e.querySelector("#date").innerHTML
+            for (let i = 0; i < windows.length; i++) {
+                if(windows[i].date == windowDateCreated){
+                    id_product = windows[i].id_product+1
+                    document.querySelector("#discount-bofill").value = windows[i].bofill.discount
+                    document.querySelector("#Bofill").querySelector(".products-container").innerHTML = windows[i].bofill.content
+                    let allProductsBofill = document.querySelector("#Bofill").querySelectorAll(".product-card");
+                    for (let j = 0; j < allProductsBofill.length; j++) {
+                        allProductsBofill[j].addEventListener('mouseover', changeColor);
+                        allProductsBofill[j].addEventListener('mouseout', changeColor);
+                        allProductsBofill[j].querySelector(".quantity-product").value = allProductsBofill[j].querySelector("#value-input").innerHTML
+                        allProductsBofill[j].querySelector(".diam-product").value = allProductsBofill[j].querySelector("#value-select").innerHTML
+                    }
+                    for (let j = 0; j < windows[i].competitors.length; j++) {
+                        let competitor = addCompetitor(windows[i].competitors[j].name)
+                        competitor.querySelector(".input-discount").value = windows[i].competitors[j].discount
+                        if(windows[i].competitors[j].name != "COMPETIDOR") getCompetitor(competitor,false)
+                        competitor.querySelector(".products-container").innerHTML = windows[i].competitors[j].content
+                        let allProductsCompetitor = competitor.querySelectorAll(".product-card");
+                        if(allProductsCompetitor.length > document.querySelector("#Bofill").querySelectorAll(".product-card").length){
+                            allProductsCompetitor[allProductsCompetitor.length - 1].remove()
+                        }
+                        for (let k = 0; k < allProductsCompetitor.length; k++) {
+                            allProductsCompetitor[k].addEventListener('mouseover', changeColor);
+                            allProductsCompetitor[k].addEventListener('mouseout', changeColor);
+                        }
+                    }
+                }
+            }
+            loadTotal();
+        
+            const productes = document.querySelector("#Bofill").querySelectorAll(".quantity-product");
+            for (let i = 0; i < productes.length; i++) {
+                productes[i].addEventListener("input", (event) => {
+                    productes[i].closest(".product-card").querySelector("#value-input").innerHTML = productes[i].value;
+                
+                    const card = productes[i].closest(".product-card")
+                    const a = card.querySelector("#price-unit").innerHTML
+                    const price = (productes[i].value * parseFloat(a.substring(0, a.length - 3).toLocaleString('en-EN',numberOptionsEN)));
+                    card.querySelector("#price").innerHTML = `${price.toLocaleString('es-ES', numberOptionsEU)}¤`
+                    let discount = document.getElementById("discount-bofill").value
+                    if(discount >= 100 || discount < 0){
+                        document.getElementById("discount-bofill").value = 0
+                        discount = 0
+                    }
+                    card.querySelector("#netprice").innerHTML = `${(price*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤`
+                    card.querySelector("#price-unit-netprice").innerHTML = `${(parseFloat(a.substring(0, a.length - 3).toLocaleString('en-EN',numberOptionsEN))*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤/u`
+                    loadTotal()
+                });
+            }
+        
+            const productesDiam = document.querySelector("#Bofill").querySelectorAll(".diam-product");
+            for (let i = 0; i < productesDiam.length; i++) {
+                productesDiam[i].addEventListener("change", (e) => {
+                    let namefam = e.target.closest(".product-card").querySelector("#namefam").innerHTML
+                    for (let i = 0; i < products.length; i++) {
+                        if(products[i].namefam == namefam && products[i].diameter == e.target.value){
+                            e.target.closest(".product-card").querySelector(".name-product").innerHTML = products[i].name
+                            e.target.closest(".product-card").querySelector(".fam-product").innerHTML = products[i].family
+                            e.target.closest(".product-card").querySelector(".ref-product").innerHTML = products[i].reference
+                            e.target.closest(".product-card").querySelector("#price-unit").innerHTML = `${products[i].pvp.toLocaleString('es-ES', numberOptionsEU)}¤/u`; 
+                        }
+                    }
+        
+                    const card = e.target.closest(".product-card");
+                    e.target.closest(".product-card").querySelector("#value-select").innerHTML = card.querySelector(".diam-product").value;
+                    const a = card.querySelector("#price-unit").innerHTML
+                    const price = (card.querySelector(".quantity-product").value * parseFloat(a.substring(0, a.length - 3).replace(/\./g, '').replace(/,/g, '.')));
+                    card.querySelector("#price").innerHTML = `${price.toLocaleString('es-ES', numberOptionsEU)}¤`
+                    let discount = document.getElementById("discount-bofill").value
+                    if(discount >= 100 || discount < 0){
+                        document.getElementById("discount-bofill").value = 0
+                        discount = 0
+                    }
+                    card.querySelector("#netprice").innerHTML = `${(price*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤`
+                    card.querySelector("#price-unit-netprice").innerHTML = `${(parseFloat(a.substring(0, a.length - 3).replace(/\./g, '').replace(/,/g, '.'))*(100-discount)/100).toLocaleString('es-ES', numberOptionsEU)}¤/u`
+                    loadTotal()
+                })
+            }
+        }
+        function renderWindows(){
+            let windows = loadFromStorage("windows")
+            if(windows == undefined) windows = [];
+            document.querySelector(".windows-elements").innerHTML = "";
+        
+            for (let i = 0; i < windows.length; i++) {
+                const div2 = document.createElement("div")
+                const div = document.createElement("input")
+                div.type = "text";
+                div.value = windows[i].name
+                div.innerHTML = `<p id="date" placeholder="Título..." style="display: none;">${windows[i].date}</p>
+                <p id="id_product" style="display: none;">${windows[i].id_product}</p>`
+                div.classList.add("windows-input")
+                div2.style.position = "relative"
+                div2.innerHTML = `<button class="edit-name-window" style="cursor:pointer;background: transparent;border:none;width: 30px;height: 35px;top: 1px;right: 1px;border-radius: 10px;position:absolute">
+                <img src="./img/edit.svg" style="width: 20px;height: 20px;margin-top:3px" alt=""> </button>
+                <button style="background: rgb(178, 178, 178);width: 30px;height: 35px;top: 1px;right: 1px;border-radius: 10px;display:none;" class="cross">
+                <span style="width: 1em;transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
+                <span style="width: 1em;transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
+                </button>`
+                div2.appendChild(div)
+                document.querySelector(".windows-elements").appendChild(div2);
+                div.addEventListener("input", (event) => {
+                    adjustWidth(div);
+                });
+                div.addEventListener("change", (event) => {
+                    saveWindow()
+                });
+                measureSpan.textContent = div.value || div.placeholder || '';
+                const width = measureSpan.offsetWidth + 44;
+                div.style.width = `${width}px`;
+        
+                if(windows[i].name == windowName) div.style.backgroundColor = "#b2b2b2";
+                div2.querySelector(".cross").addEventListener("click", deleteWindow);
+                div2.querySelector(".edit-name-window").addEventListener("click", (event) => {
+                    openWindow(div);
+                    editNameWindow(event);
+                });
+                div.addEventListener("click", (event) => {
+                    
+                    openWindow(div);
+                });
+                div.addEventListener("click", focusWindow);
+            }
+        }
+        function addCompetitor(name){
+            const Content = `
+            <select title="Seleccionar competidor" class="select-competitor" name="competitors">
+                <option value="COMPETIDOR">COMPETIDOR</option>
+            </select>
+            <div id="div-discount" style="position:absolute; top:15px; right:80px; border: solid 1px; height: 40px;width: 105px;border-radius: 10px;">
+                <h3 style="font-size: 20px; margin-top: 5px;margin-left: 10px;">-</h3>
+                <input class="input-discount" type="number" name="discount" min="0" max="99" value="0" id="">
+                
+                <h3 style="position: absolute;top: 10px;right: 15px;font-size: 20px; margin-top: -4px;margin-left: 10px;">%</h3>
+                <div style="z-index: 50;cursor: pointer;flex-direction: column;display: flex;gap: 0px;width: 20px;height: 100%;position: absolute;top: 0px;right: 5px;">
+                    <button id="sumDiscountCompetitor" style="background: transparent;border: none;height: 19px;width: 19px;cursor: pointer;"><img style="height: 19px;width: 19px;" src="./img/arrow-top.svg" alt=""></button>
+                    <button id="restDiscountCompetitor" style="background: transparent;border: none;height: 19px;width: 19px;cursor: pointer;"><img style="height: 19px;width: 19px;" src="./img/arrow-bottom.svg" alt=""></button>
+                </div>
+            </div>
+                            <div style="position: absolute;top: 27px;right: 200px;width: 40px;display:none" class="loader"></div>
+            <button onclick="removeCompetitor(this)" class="button-competitor cross">
+                <span style="transform: translateX(-50%) rotate(45deg);" class="cross-X"></span>
+                <span style="transform: translateX(-50%) rotate(-45deg);" class="cross-Y"></span>
+            </button>
+            <div class="products-container">
+            </div>
+            <div style="width: 90%;height: 50px;color: #333;right: 0px;display: flex;position: absolute;font-size: 30px;margin-bottom: 15px;margin-right: 4%;align-items: center;justify-content: center;gap: 10%;bottom: 145px;">
+                    <div style="width: 158px;justify-content: center;align-items: center;display: flex;"></div>
+                    <div style="width: calc(10% + 320px);justify-content: center;align-items: center;display: flex;"><h4 id="competitorvsbofill" style="font-size: 20px;">COMPETIDOR VS BOFILL</h4></div>
+                    
+                </div>
+                <div style="width: 90%;height: 50px;color: #333;right: 0px;display: flex;position: absolute;font-size: 30px;margin-bottom: 15px;margin-right: 4%;align-items: center;justify-content: center;gap: 10%;bottom: 110px;">
+                <div style="
+        
+        width: 160px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        "></div>
+                <div style="
+        
+        width: 160px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        "><h4 style="font-size: 18px;">%</h4></div>
+                <div style="
+        
+        width: 160px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        "><h4 style="font-size: 18px;">¤</h4></div>
+            </div>
+            <div class="total-competitor" style="margin-right: 4%;align-items: center;justify-content: center;gap: 10%;bottom: 73px;">
+                    <div style="
+        
+            width: 160px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        "><h4 id="total-pvpprice">XX,XX¤</h4></div>
+                    <div style="
+        
+            width: 160px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        "><h4 id="pvp-difference-percentatge" style="font-size: 30px; color: rgb(152, 10, 10);" class="difference-percentatge">+XX,X%</h4></div>
+                    <div style="
+        
+            width: 160px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        "><h4 id="pvp-difference-absolute" style="font-size: 30px; color: rgb(152, 10, 10);" class="difference-absolute">+XX,X¤</h4></div>
+                </div>
+            <div class="total-competitor" style="margin-right: 4%;align-items: center;justify-content: center;gap: 10%;">
+                    <div style="
+        
+            width: 160px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        "><h4 id="total-netprice" style="color:#105378">XX,XX¤</h4></div>
+                    <div style="
+        
+            width: 160px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        "><h4 id="netprice-difference-percentatge" style="font-size: 30px; color: rgb(152, 10, 10);" class="difference-percentatge">+XX,X%</h4></div>
+                    <div style="
+        
+            width: 160px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        "><h4 id="netprice-difference-absolute" style="font-size: 30px; color: rgb(152, 10, 10);" class="difference-absolute">+XX,X¤</h4></div>
+                </div>
+                
+            `
+            const card_container = document.createElement("div")
+            card_container.classList.add("card-container")
+            card_container.innerHTML = Content;
+            const parent = document.querySelector(".container")
+            card_container.querySelector("#sumDiscountCompetitor").addEventListener("click",  (e) => {
+                if(e.target.closest("#div-discount").querySelector("input").value < 99){
+                    e.target.closest("#div-discount").querySelector("input").value++;
+
+                    let event = new Event('input');
+                    e.target.closest("#div-discount").querySelector("input").dispatchEvent(event);
+                }
+            });
+            card_container.querySelector("#restDiscountCompetitor").addEventListener("click",  (e) => {
+                if(e.target.closest("#div-discount").querySelector("input").value > 0){
+                    e.target.closest("#div-discount").querySelector("input").value--;
+
+                    let event = new Event('input');
+                    e.target.closest("#div-discount").querySelector("input").dispatchEvent(event);
+                }
+            });
+        
+            const select = card_container.querySelector(".select-competitor")
+            for (let i = 0; i < competitors.length; i++) {
+                if(competitors[i][0].toUpperCase() != "BOFILL"){
+                    const newOption = document.createElement('option');
+                    newOption.value = competitors[i][0];
+                    newOption.text = competitors[i][0].toUpperCase();
+                    if(name != undefined && newOption.value == name) newOption.selected = true;
+                    select.appendChild(newOption)
+                }
+            }
+            parent.append(card_container)
+        
+            card_container.querySelector(".select-competitor").addEventListener("change", (event) => {
+                getCompetitor(card_container,true)
+            });
+            const products = document.getElementById("Bofill").querySelectorAll(".product-card")
+        
+            if(document.querySelectorAll('.card-container').length >= 3){
+                document.querySelector(".comparar-mes").style.display = "none";
+                document.querySelector(".container").style.paddingRight = "10px";
+            }
+        
+            adjustSelectWidth();
+            if(windowName == ""){
+                windowName = windowDateCreated;
+                saveWindow();
+                renderWindows();
+            }
+            return card_container;
+        }
+        this.document.getElementById("add-competitor-button").addEventListener("click", addCompetitor)
+
+        function newWindow(){
+            saveWindow();
+            cleanWindow();
+            windowDateCreated = createName();
+            windowName = createName();
+            id_product = 0;
+            saveWindow();
+            renderWindows();
+        }
+        this.document.getElementById("new-window-button").addEventListener("click", newWindow);
+
+        function deleteWindow(e){
+            let windows = loadFromStorage("windows")
+            let date = e.target.closest("div").querySelector("#date").innerHTML
+            for (let i = 0; i < windows.length; i++) {
+                if(windows[i].date == date){
+                    windows.splice(i,1)
+                    windowName = "";
+                }
+            }
+            saveToStorage("windows",windows)
+            cleanWindow();
+            renderWindows();
+        }
         document.getElementById("page").style.display = "block";
         document.getElementById("load").style.display = "none";
     })
