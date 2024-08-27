@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovawave</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="style-dark.css" id="dark-mode-stylesheet" disabled>
+    <link rel="icon" type="image/innovawave-icon" href="./img/favicon.ico">
+</head>
+<body>
+  <div class="div-top">
+    <div class="div-dark-position">
+      <label class="ui-switch">
+        <input id="darkModeToggle" type="checkbox" >
+        <div class="slider">
+          <div class="circle"></div>
+        </div>
+        </label>
+        <input type="checkbox" id="checkbox-rotate">
+        <label for="checkbox-rotate" class="button-rotate">
+            <div class="rectangulo-rotate"></div>
+        </label>
+    </div>
+  <div class="button-cliente-empresa">
+  <div class="radio-input poppins-black">
+    <label id="cliente">
+    <input value="value-1" name="value-radio" id="input-cliente" type="radio" checked="">
+    <span>CLIENTE</span>
+    </label>
+    <label id="empresa">
+      <input value="value-2" name="value-radio" id="input-empresa" type="radio">
+    <span>EMPRESA</span>
+    </label>
+    <span class="selection"></span>
+  </div>
+</div>
+</div>
+    <div class="div-cliente-empresa">
+      
+      
+        <div id="window-cliente" class="div-window center">
+          
+        </div>
+        <div id="window-empresa" class="div-window offscreen-left">
+  
+        </div>
+    </div>
+
+
+   <script src="script.js"></script> 
+</body>
+</html>

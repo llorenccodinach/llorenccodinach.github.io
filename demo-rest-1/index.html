@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Innovawave</title>
+  <link rel="stylesheet" >
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="style-dark.css" id="dark-mode-stylesheet" disabled>
+    <link rel="stylesheet" href="./rest-1/style.css">
+    <link rel="stylesheet" href="./rest-1/style-dark.css" id="dark-mode-rest-stylesheet" disabled>
+
+    <link rel="icon" type="image/innovawave-icon" href="./img/favicon.ico">
+</head>
+<body>
+  <div class="div-top">
+    <div class="div-dark-position">
+      <label class="ui-switch">
+        <input id="darkModeToggle" type="checkbox" >
+        <div class="slider">
+          <div class="circle"></div>
+        </div>
+        </label>
+        <input type="checkbox" id="checkbox-rotate">
+        <label for="checkbox-rotate" class="button-rotate">
+            <div class="rectangulo-rotate"></div>
+        </label>
+    </div>
+  <div class="button-cliente-empresa">
+  <div class="radio-input poppins-black">
+    <label id="cliente">
+    <input value="value-1" name="value-radio" id="input-cliente" type="radio" checked="">
+    <span>CLIENTE</span>
+    </label>
+    <label id="empresa">
+      <input value="value-2" name="value-radio" id="input-empresa" type="radio">
+    <span>EMPRESA</span>
+    </label>
+    <span class="selection"></span>
+  </div>
+</div>
+</div>
+
+    <div class="div-cliente-empresa poppins-medium">
+      
+        <div id="window-cliente" class="div-window center">
+          
+          <div class="rest">
+            
+            <header class="rest-head">
+              <img class="rest-logo" src="https://static.vecteezy.com/system/resources/previews/024/284/717/large_2x/restaurant-logo-4-free-png.png" alt="">
+              <div class="rest-div-pages">
+                
+                <a class="rest-page" >PÁGINA WEB</a>
+                <a class="rest-page" >NOTICIAS</a>
+                <a class="rest-page" >CONTACTO</a>
+                
+              </div>
+              <div class="rest-head-right">
+                <div class="rest-login">
+                  <h5>ACCEDER</h5>
+                </div>
+              </div>
+            </header>
+            <div class="rest-map">
+              <div class="rest-map-top">
+                <div class="rest-filter">
+                  <p>PERSONAS</p>
+                </div>
+                <div class="rest-filter">
+                  DIA
+                </div>
+                <div class="rest-filter">
+                  COMIDA
+                </div>
+                <div class="rest-filter">
+                  HORA
+                </div>
+                <div class="rest-filter">
+                  MESA
+                </div>
+              </div>
+              <div class="rest-map-bottom">
+                <button class="rest-zoom-button" style="top: 60px;" id="zoomIn">+</button>
+                <button class="rest-zoom-button" style="top: 20px;" id="zoomOut">-</button>
+                <svg id="svg" viewBox="-140 -70 1000 500" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;transition:0.5s">
+                  <a xlink:title="Mesa 1">
+                    <path d="M30 10 l50 0 l0 50 l-50 0 z M80 20 l20 0 l0 30 l-20 0 z M10 20 l20 0 l0 30 l-20 0 z M30 60 l50 0 l0 50 l-50 0 z M80 70 l20 0 l0 30 l-20 0 z M10 70 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+                  <a xlink:title="Mesa 2">
+                    <path d="M30 170 l50 0 l0 50 l-50 0 z M80 180 l20 0 l0 30 l-20 0 z M10 180 l20 0 l0 30 l-20 0 z M30 220 l50 0 l0 50 l-50 0 z M80 230 l20 0 l0 30 l-20 0 z M10 230 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+                  <a xlink:title="Mesa 3">
+                    <path d="M30 330 l50 0 l0 50 l-50 0 z M80 340 l20 0 l0 30 l-20 0 z M10 340 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+                  <a xlink:title="Mesa 4">
+                    <path d="M160 60 l50 0 l0 50 l-50 0 z M210 70 l20 0 l0 30 l-20 0 z M140 70 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+                  <a xlink:title="Mesa 5">
+                    <path d="M160 170 l50 0 l0 50 l-50 0 z M210 180 l20 0 l0 30 l-20 0 z M140 180 l20 0 l0 30 l-20 0 z M160 220 l50 0 l0 50 l-50 0 z M210 230 l20 0 l0 30 l-20 0 z M140 230 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+                  <a xlink:title="Mesa 6">
+                    <path d="M160 330 l50 0 l0 50 l-50 0 z M210 340 l20 0 l0 30 l-20 0 z M140 340 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+                  <a xlink:title="Mesa 7">
+                    <path d="M290 50 l70 0 l0 220 l-70 0 z M360 55 l20 0 l0 30 l-20 0 z M360 100 l20 0 l0 30 l-20 0 z M360 145 l20 0 l0 30 l-20 0 z M360 190 l20 0 l0 30 l-20 0 z M360 235 l20 0 l0 30 l-20 0 z M270 55 l20 0 l0 30 l-20 0 z M270 100 l20 0 l0 30 l-20 0 z M270 145 l20 0 l0 30 l-20 0 z M270 190 l20 0 l0 30 l-20 0 z M270 235 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+                  <a xlink:title="Mesa 8">
+                    <path d="M300 330 l50 0 l0 50 l-50 0 z M350 340 l20 0 l0 30 l-20 0 z M280 340 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+                  <a xlink:title="Mesa 9">
+                    <path d="M440 170 l50 0 l0 50 l-50 0 z M490 180 l20 0 l0 30 l-20 0 z M420 180 l20 0 l0 30 l-20 0 z M440 220 l50 0 l0 50 l-50 0 z M420 230 l20 0 l0 30 l-20 0 z M490 230 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+                  <a xlink:title="Mesa 10">
+                    <path d="M440 10 l50 0 l0 50 l-50 0 z M490 20 l20 0 l0 30 l-20 0 z M420 20 l20 0 l0 30 l-20 0 z M440 60 l50 0 l0 50 l-50 0 z M420 70 l20 0 l0 30 l-20 0 z M490 70 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+                  <a xlink:title="Mesa 11">
+                    <path d="M440 330 l50 0 l0 50 l-50 0 z M490 340 l20 0 l0 30 l-20 0 z M420 340 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+                  <a xlink:title="Mesa 12">
+                    <path d="M570 50 l70 0 l0 220 l-70 0 z M640 55 l20 0 l0 30 l-20 0 z M640 100 l20 0 l0 30 l-20 0 z M640 145 l20 0 l0 30 l-20 0 z M640 190 l20 0 l0 30 l-20 0 z M640 235 l20 0 l0 30 l-20 0 z M550 55 l20 0 l0 30 l-20 0 z M550 100 l20 0 l0 30 l-20 0 z M550 145 l20 0 l0 30 l-20 0 z M550 190 l20 0 l0 30 l-20 0 z M550 235 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+                  <a xlink:title="Mesa 13">
+                    <path d="M580 330 l50 0 l0 50 l-50 0 z M630 340 l20 0 l0 30 l-20 0 z M560 340 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+                  <a xlink:title="Mesa 14">
+                    <path d="M580 -60 l50 0 l0 50 l-50 0 z M630 -50 l20 0 l0 30 l-20 0 z M560 -50 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+                  <a xlink:title="Mesa 15">
+                    <path d="M-130 10 l50 0 l0 110 l-50 0 z M-80 50 l20 0 l0 30 l-20 0 z M-80 15 l20 0 l0 30 l-20 0 z M-80 85 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+                  <a xlink:title="Mesa 16">
+                    <path d="M-130 170 l50 0 l0 50 l-50 0 z M-80 180 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+                  <a xlink:title="Mesa 17">
+                    <path d="M-130 270 l50 0 l0 110 l-50 0 z M-80 310 l20 0 l0 30 l-20 0 z M-80 345 l20 0 l0 30 l-20 0 z M-80 275 l20 0 l0 30 l-20 0 z" class="rest-mesa"/>
+                  </a>
+
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="window-empresa" class="div-window offscreen-left">
+        </div>
+    </div>
+
+
+   <script src="script.js"></script> 
+   <script src="./rest-1/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+.rest-map{
+    background-color: #383838;
+    box-shadow:
+    4px 4px 4px 0px rgb(25, 25, 25) inset,-4px -4px 4px 0px rgb(25, 25, 25) inset;
+}
+
+.rest-head{
+    box-shadow: -8px -4px 8px 0px rgb(50, 50, 50),
+    8px 4px 12px 0px rgb(25, 25, 25);
+}
+
+.rest-login{
+    background-color: #383838;
+    color: #e8e8e8;
+}
+
+.rest-login:active{
+    box-shadow:
+    4px 4px 4px 0px rgb(25, 25, 25) inset,
+    -4px -4px 4px 0px rgb(50, 50, 50) inset;
+}
+
+.rest-map-bottom{
+    background-color: #383838;
+    box-shadow: 4px 4px 4px 0px rgb(25, 25, 25) inset, -4px -4px 4px 0px rgb(25, 25, 25) inset;
+}
+
+.rest-mesa{
+    stroke: #e8e8e8;
+}
+
+.rest-mesa:hover{
+    fill: #212121;
+}
+
+.rest-filter{
+    box-shadow: 4px 4px 4px 0px rgb(25, 25, 25) inset, -4px -4px 4px 0px rgb(25, 25, 25) inset;
+    background-color: #212121;
+    color: #e8e8e8;
+    border: 1px solid #212121;
+}

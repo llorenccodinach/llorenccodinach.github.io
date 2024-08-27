@@ -1,0 +1,24 @@
+body{
+    background-color: #212121;
+}
+
+.button-cliente-empresa {
+    border: 1px solid #212121;
+    background: #212121;
+    box-shadow: -8px -4px 8px 0px rgb(50, 50, 50),
+    8px 4px 12px 0px rgb(25, 25, 25), 4px 4px 4px 0px rgb(25, 25, 25) inset,
+    -4px -4px 4px 0px rgb(50, 50, 50) inset;
+}
+
+.radio-input {
+    color: #ffffff;
+}
+
+.div-window {
+    box-shadow: -8px -4px 8px 0px rgb(50, 50, 50),
+    8px 4px 12px 0px rgb(25, 25, 25), 
+    4px 4px 4px 0px rgb(25, 25, 25) inset,
+    -4px -4px 4px 0px rgb(50, 50, 50) inset;
+    border: 1px solid #212121;
+    background: #212121;
+}
