@@ -102,16 +102,22 @@ function startDrag(evt) {
 
 // Función para manejar el movimiento del arrastre
 function drag(evt) {
+    
     if (isDragging) {
-      const clientX = evt.type === 'touchmove' ? evt.touches[0].clientX : evt.clientX;
-      const clientY = evt.type === 'touchmove' ? evt.touches[0].clientY : evt.clientY;
-  
-      // Calcular la diferencia en la posición
-      const dx = (startX - clientX) * (viewBox[2] / svg.clientWidth) * 1.25;
-      const dy = (startY - clientY) * (viewBox[3] / svg.clientHeight);
-  
-      // Actualizar el viewBox del SVG
-      svg.setAttribute('viewBox', `${viewBoxX + dx} ${viewBoxY + dy} ${viewBox[2]} ${viewBox[3]}`);
+        viewBox = svg.getAttribute('viewBox').split(' ').map(Number);
+        const clientX = evt.type === 'touchmove' ? evt.touches[0].clientX : evt.clientX;
+    const clientY = evt.type === 'touchmove' ? evt.touches[0].clientY : evt.clientY;
+
+    // Calcular la diferencia en la posición del cursor
+    const dx = startX - clientX;
+    const dy = startY - clientY;
+
+    // Calcular la proporción entre el tamaño del viewBox y las dimensiones del SVG
+    const scaleX = viewBox[2] / svg.clientWidth;
+    const scaleY = viewBox[3] / svg.clientHeight;
+
+    // Aplicar la proporción al desplazamiento
+    svg.setAttribute('viewBox', `${viewBoxX + dx * scaleX} ${viewBoxY + dy * scaleY} ${viewBox[3]*svg.clientWidth/svg.clientHeight} ${viewBox[3]}`);
     }
   }
 
@@ -130,6 +136,7 @@ svg.addEventListener('mouseleave', endDrag);
 svg.addEventListener('touchstart', startDrag);
 svg.addEventListener('touchmove', drag);
 svg.addEventListener('touchend', endDrag);
+svg.addEventListener('touch', endDrag)
 
 document.addEventListener('wheel', function(event) {
     if (event.deltaY < 0) {
@@ -156,4 +163,56 @@ mesas.forEach(element => {
             element.querySelector("path").style.fill = "#e8e8e8";
         }
     })
+});
+
+window.addEventListener('load', () => {
+    for (let i = 0; i < 50; i++) {
+        for (let j = 0; j < 15; j++) {
+            const circle = document.createElement("circle")
+            circle.setAttribute("cx", j*10+700)
+            circle.setAttribute("cy", i*10-70)
+            circle.setAttribute("r", 5)
+            circle.setAttribute("fill", "none");
+            circle.setAttribute("stroke", "black")
+            document.querySelector("svg").appendChild(circle)
+        }
+    }
+})
+
+
+
+
+let initialDistance = null;
+
+function getDistance(touches) {
+    const [touch1, touch2] = touches;
+    const dx = touch2.clientX - touch1.clientX;
+    const dy = touch2.clientY - touch1.clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+svg.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 2) {
+        initialDistance = getDistance(e.touches);
+    }
+});
+
+svg.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 2 && initialDistance !== null) {
+        const currentDistance = getDistance(e.touches);
+        if (currentDistance > initialDistance) {
+            console.log('Zoom in (Acercar)');
+            document.querySelector("#cliente span").innerHTML = "Zoom in (Acercar)"
+        } else {
+            console.log('Zoom out (Alejar)');
+            document.querySelector("#cliente span").innerHTML = "Zoom out (Alejar)"
+        }
+        initialDistance = currentDistance;  // Actualiza la distancia inicial
+    }
+});
+
+svg.addEventListener('touchend', (e) => {
+    if (e.touches.length < 2) {
+        initialDistance = null;
+    }
 });

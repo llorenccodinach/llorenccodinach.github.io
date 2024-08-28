@@ -97,9 +97,6 @@ function resizeWindow(){
                 window.style.width = `${heightDiv*9/16}px`;
                 window.style.height = `${heightDiv}px`;
             }
-        }/*
-        setTimeout(() => {
-            svg.setAttribute("viewBox", `0 -70 ${svg.parentElement.clientWidth} ${svg.parentElement.clientHeight}`);
-        }, 1000);*/
+        }
     })
 }
