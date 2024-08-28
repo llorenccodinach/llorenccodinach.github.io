@@ -44,11 +44,10 @@ const zoomInButton = document.getElementById('zoomIn');
 const zoomOutButton = document.getElementById('zoomOut');
 
 let viewBox = svg.getAttribute('viewBox').split(' ').map(Number); // [x, y, width, height]
-const zoomFactor = 0.1; // Factor de zoom (10% por cada clic)
+ // Factor de zoom (10% por cada clic)
 
 // Función para hacer zoom
-function zoom(inOut) {
-    svg.style.transition = 'all 0.3s ease'; 
+function zoom(inOut, zoomFactor) {
     viewBox = svg.getAttribute('viewBox').split(' ').map(Number);
     const widthChange = viewBox[2] * zoomFactor;
     const heightChange = viewBox[3] * zoomFactor;
@@ -77,8 +76,8 @@ function zoom(inOut) {
 }
 
 // Asociar las funciones de zoom a los botones
-zoomInButton.addEventListener('click', () => zoom('in'));
-zoomOutButton.addEventListener('click', () => zoom('out'));
+zoomInButton.addEventListener('click', () => zoom('in',0.1));
+zoomOutButton.addEventListener('click', () => zoom('out',0.1));
 
 // Variables para el arrastre
 let isDragging = false;
@@ -140,9 +139,9 @@ svg.addEventListener('touch', endDrag)
 
 document.addEventListener('wheel', function(event) {
     if (event.deltaY < 0) {
-        zoom('in');
+        zoom('in',0.1);
     } else if (event.deltaY > 0) {
-        zoom('out')
+        zoom('out',0.1)
     }
 });
 
@@ -203,11 +202,11 @@ svg.addEventListener('touchmove', (e) => {
         if (currentDistance > initialDistance) {
             console.log('Zoom in (Acercar)');
             document.querySelector("#cliente span").innerHTML = "Zoom in (Acercar)"
-            zoom("in");
+            zoom("in",0.01);
         } else {
             console.log('Zoom out (Alejar)');
             document.querySelector("#cliente span").innerHTML = "Zoom out (Alejar)"
-            zoom("out");
+            zoom("out",0.01);
         }
         initialDistance = currentDistance;  // Actualiza la distancia inicial
     }
