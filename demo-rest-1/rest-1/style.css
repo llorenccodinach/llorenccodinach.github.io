@@ -24,7 +24,7 @@
 .rest-map{
     border-radius: 40px;
     background-color: #fff;
-    height: calc(100% - 100px);
+    height: 100%;
     width: 100%;
     box-shadow:
     4px 4px 4px 0px #d1d9e6 inset,-4px -4px 4px 0px #d1d9e6 inset;
@@ -38,6 +38,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    position: relative;
 }
 
 .rest-login{
@@ -177,5 +178,29 @@
 @media (max-width: 1300px) {
     .rest-login{
         font-size: 15px;
+    }
+    .rest-page{
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .rest-login{
+        font-size: 10px;
+    }
+    .rest-page{
+        font-size: 10px;
+    }
+    .div-window{
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .rest-login{
+        font-size: 5px;
+    }
+    .rest-page{
+        font-size: 5px;
     }
 }
