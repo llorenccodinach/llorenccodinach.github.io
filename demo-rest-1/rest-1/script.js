@@ -200,12 +200,8 @@ svg.addEventListener('touchmove', (e) => {
     if (e.touches.length === 2 && initialDistance !== null) {
         const currentDistance = getDistance(e.touches);
         if (currentDistance > initialDistance) {
-            console.log('Zoom in (Acercar)');
-            document.querySelector("#cliente span").innerHTML = "Zoom in (Acercar)"
             zoom("in",0.01);
         } else {
-            console.log('Zoom out (Alejar)');
-            document.querySelector("#cliente span").innerHTML = "Zoom out (Alejar)"
             zoom("out",0.01);
         }
         initialDistance = currentDistance;  // Actualiza la distancia inicial
