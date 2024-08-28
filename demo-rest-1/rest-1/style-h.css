@@ -1,0 +1,29 @@
+@media (max-width: 1300px) {
+    .rest-login{
+        font-size: 15px;
+    }
+    .rest-page{
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .rest-login{
+        font-size: 10px;
+    }
+    .rest-page{
+        font-size: 10px;
+    }
+    .div-window{
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .rest-login{
+        font-size: 5px;
+    }
+    .rest-page{
+        font-size: 5px;
+    }
+}

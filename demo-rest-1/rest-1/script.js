@@ -116,7 +116,7 @@ function drag(evt) {
     const scaleY = viewBox[3] / svg.clientHeight;
 
     // Aplicar la proporción al desplazamiento
-    svg.setAttribute('viewBox', `${viewBoxX + dx * scaleX} ${viewBoxY + dy * scaleY} ${viewBox[3]*svg.clientWidth/svg.clientHeight} ${viewBox[3]}`);
+    svg.setAttribute('viewBox', `${viewBoxX + dx * scaleX} ${viewBoxY + dy * scaleY} ${viewBox[2]} ${viewBox[3]}`);
     }
   }
 
