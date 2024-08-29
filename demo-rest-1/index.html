@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="./rest-1/style.css">
     <link rel="stylesheet" href="./rest-1/style-dark.css" id="dark-mode-rest-stylesheet" disabled>
 
+    <link rel="stylesheet" href="./rest-1/style-h.css" id="h-rest-stylesheet">
+    <link rel="stylesheet" href="./rest-1/style-v.css" id="v-rest-stylesheet" disabled>
+
     <link rel="icon" type="image/innovawave-icon" href="./img/favicon.ico">
 </head>
 <body>
@@ -49,14 +52,19 @@
           <div class="rest">
             
             <header class="rest-head">
-              <img class="rest-logo" src="https://static.vecteezy.com/system/resources/previews/024/284/717/large_2x/restaurant-logo-4-free-png.png" alt="">
+              <div class="rest-div-logo">
+                <img class="rest-logo" src="https://static.vecteezy.com/system/resources/previews/024/284/717/large_2x/restaurant-logo-4-free-png.png" alt="">
+              </div>
+              <input type="checkbox" id="menu" class="nav-input">
               <div class="rest-div-pages">
-                
                 <a class="rest-page" >PÁGINA WEB</a>
                 <a class="rest-page" >NOTICIAS</a>
                 <a class="rest-page" >CONTACTO</a>
-                
               </div>
+              
+              <label for="menu" class="nav-label">
+                <img src="./img/menu.svg" alt="menu" class="nav-img">
+              </label>
               <div class="rest-head-right">
                 <div class="rest-login">
                   <h5>ACCEDER</h5>

@@ -76,6 +76,9 @@ document.getElementById("checkbox-rotate").addEventListener('change', () => {
 window.addEventListener('resize', resizeWindow);
 window.addEventListener('load', resizeWindow)
 
+const restHStyle = document.getElementById("h-rest-stylesheet")
+const restVStyle = document.getElementById("v-rest-stylesheet")
+
 function resizeWindow(){
     const windows = document.querySelectorAll(".div-window")
     windows.forEach((window) => {
@@ -89,6 +92,10 @@ function resizeWindow(){
                 window.style.width = `${heightDiv*16/9}px`;
                 window.style.height = `${heightDiv}px`;
             }
+            setTimeout(() => {
+                restHStyle.removeAttribute('disabled')
+                restVStyle.setAttribute('disabled', 'true')
+            }, 100);
         }else{
             if(heightDiv*9/16 > widthDiv){
                 window.style.width = `${widthDiv}px`;
@@ -97,6 +104,11 @@ function resizeWindow(){
                 window.style.width = `${heightDiv*9/16}px`;
                 window.style.height = `${heightDiv}px`;
             }
+            setTimeout(() => {
+                restVStyle.removeAttribute('disabled')
+            restHStyle.setAttribute('disabled', 'true')
+            }, 100);
+            
         }
     })
 }
