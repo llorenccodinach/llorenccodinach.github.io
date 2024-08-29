@@ -154,9 +154,9 @@ mesas.forEach(element => {
             element.querySelector("path").style.strokeWidth = "1px";
             element.querySelector("path").style.fill = "transparent";
         }else{
-            paths.forEach(element => {
-                element.style.strokeWidth = "1px";
-                element.style.fill = "";
+            paths.forEach(elementP => {
+                elementP.style.strokeWidth = "1px";
+                elementP.style.fill = "";
             });
             element.querySelector("path").style.strokeWidth = "3px";
             element.querySelector("path").style.fill = "#e8e8e8";
