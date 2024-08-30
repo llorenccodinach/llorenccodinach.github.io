@@ -113,6 +113,7 @@
     align-items: center;
     padding-left: 25px;
     gap: 10px;
+    overflow-x: scroll;
 }
 
 .rest-map-bottom{
@@ -221,13 +222,6 @@
     height: 50%;
     width:max-content;
     appearance: none; /* Elimina la flecha en la mayoría de los navegadores */
-            -webkit-appearance: none; /* Para navegadores basados en WebKit como Chrome */
-            -moz-appearance: none; /* Para navegadores basados en Gecko como Firefox */
-
+    font-size: 15px;
+    font-family: sans-serif;
 }
-
-input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance:default-button;
-            margin: 0;
-        }
