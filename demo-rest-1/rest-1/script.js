@@ -145,19 +145,20 @@ document.addEventListener('wheel', function(event) {
     }
 });
 
-const mesas = svg.querySelectorAll("rest-mesa");
-const paths = svg.querySelectorAll(".rest-mesa")
+const mesas = svg.querySelectorAll(".rest-mesa");
 console.log(mesas)
 
 mesas.forEach(element => {
     element.addEventListener("click", () => {
-        if(element.querySelector("path").classList.contains("rest-mesa-selected")){
-            element.querySelector("path").classList.remove("rest-mesa-selected")
+        console.log(element.parentElement.getAttribute("xlink:title"))
+        document.querySelector("#cliente span").innerHTML = element.parentElement.getAttribute("xlink:title")
+        if(element.classList.contains("rest-mesa-selected")){
+            element.classList.remove("rest-mesa-selected")
         }else{
-            paths.forEach(elementP => {
+            mesas.forEach(elementP => {
                 elementP.classList.remove("rest-mesa-selected")
-            });
-            element.querySelector("path").classList.add("rest-mesa-selected")
+            })
+            element.classList.add("rest-mesa-selected")
         }
     })
 });
