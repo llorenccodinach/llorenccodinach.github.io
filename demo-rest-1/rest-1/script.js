@@ -165,6 +165,14 @@ mesas.forEach(element => {
     })
 });
 
+function obtenerFechaHoy() {
+    const hoy = new Date();
+    const año = hoy.getFullYear();
+    const mes = String(hoy.getMonth() + 1).padStart(2, '0'); // Meses en JavaScript van de 0 a 11
+    const día = String(hoy.getDate()).padStart(2, '0');
+    return `${año}-${mes}-${día}`;
+}
+
 window.addEventListener('load', () => {
     for (let i = 0; i < 50; i++) {
         for (let j = 0; j < 15; j++) {
@@ -177,7 +185,9 @@ window.addEventListener('load', () => {
             document.querySelector("svg").appendChild(circle)
         }
     }
-    inputFecha.valueAsDate = new Date();
+    let hoy = obtenerFechaHoy()
+    inputFecha.value = hoy;
+    inputFecha.min = hoy;
 })
 
 let initialDistance = null;
