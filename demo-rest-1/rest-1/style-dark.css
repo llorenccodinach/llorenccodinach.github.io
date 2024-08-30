@@ -63,6 +63,6 @@
     fill: #212121;
 }
 
-#fecha{
+.rest-filter input, .rest-filter select{
     color: white;
 }

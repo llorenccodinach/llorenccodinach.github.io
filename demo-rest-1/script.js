@@ -125,6 +125,6 @@ function viewBoxSvg() {
     setTimeout(() => {
         console.log(svg.clientHeight, svg.clientWidth)
         svg.setAttribute("viewBox", `-160 -290 ${svg.clientWidth*2-10} ${svg.clientHeight*2-10}`)
-        document.querySelector(".loader").style.display = "none";
+        /*document.querySelector(".loader").style.display = "none";*/
     }, 600);
 }

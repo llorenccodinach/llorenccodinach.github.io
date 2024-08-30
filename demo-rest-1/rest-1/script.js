@@ -1,7 +1,14 @@
 const restdarkModeStylesheet = document.getElementById("dark-mode-rest-stylesheet")
 const restdarkModeToggle = document.getElementById('darkModeToggle');
+
 const selectorFecha = document.getElementById('selectorFecha');
 const inputFecha = document.getElementById('fecha');
+const selectorPersonas = document.getElementById('selectorPersonas');
+const inputPersonas = document.getElementById('personas');
+const selectorHora = document.getElementById('selectorHora');
+const inputHora = document.getElementById('hora');
+const selectorMesa = document.getElementById('selectorMesa');
+const inputMesa = document.getElementById('mesa');
 
 if (localStorage.getItem('dark-mode') === 'enabled') {
     restdarkModeStylesheet.removeAttribute('disabled');
@@ -223,8 +230,18 @@ svg.addEventListener('touchend', (e) => {
     }
 });
 
-console.log(selectorFecha,inputFecha)
-
 selectorFecha.addEventListener('click', function() {
     inputFecha.focus();  // Hacer foco en el input para que aparezca el selector de fecha
+});
+
+selectorPersonas.addEventListener('click', function() {
+    inputPersonas.focus();  // Hacer foco en el input para que aparezca el selector de fecha
+});
+
+selectorHora.addEventListener('click', function() {
+    inputHora.focus(); 
+});
+
+selectorMesa.addEventListener('click', function() {
+    inputMesa.focus(); 
 });

@@ -224,4 +224,5 @@
     appearance: none; /* Elimina la flecha en la mayoría de los navegadores */
     font-size: 15px;
     font-family: sans-serif;
+    font-weight: 550;
 }
