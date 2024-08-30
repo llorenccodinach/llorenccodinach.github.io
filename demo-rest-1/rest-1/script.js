@@ -226,6 +226,5 @@ svg.addEventListener('touchend', (e) => {
 console.log(selectorFecha,inputFecha)
 
 selectorFecha.addEventListener('click', function() {
-    inputFecha.style.display = 'block';  // Mostrar el input
     inputFecha.focus();  // Hacer foco en el input para que aparezca el selector de fecha
 });
