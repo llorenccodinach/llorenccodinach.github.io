@@ -55,6 +55,10 @@
     border: 1px solid #212121;
 }
 
+.rest-zoom-button path{
+    fill: #fff;
+}
+
 .rest-mesa-selected{
     fill: #212121;
 }

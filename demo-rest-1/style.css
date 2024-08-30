@@ -305,3 +305,19 @@ body {
 .transition-dark {
     transition: all 0.5s ease-in-out !important;
 }
+
+.loader {
+    border: 10% solid transparent;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 10%;
+    animation: spin 2s linear infinite;
+    position: fixed;
+    aspect-ratio: 1 / 1;
+}
+
+/* Animación del spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

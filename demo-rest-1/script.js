@@ -46,9 +46,13 @@ function applyTransition() {
 
     document.querySelector(".rest-div-pages").style.transition = "clip-path 0.5s ease-in-out"
 
-    document.querySelector(".radio-input").style.transition = "none"
-    document.querySelector("#empresa").style.transition = "none"
-    document.querySelector("#cliente").style.transition = "none"
+    document.querySelector(".radio-input").style.transition = ""
+    document.querySelector("#empresa").style.transition = ""
+    document.querySelector("#cliente").style.transition = ""
+
+    setTimeout(() => {
+        elements.forEach(el => el.style.transition = "");
+    }, 500);
   }
 
 darkModeToggle.addEventListener('click', () => {
@@ -120,10 +124,7 @@ function viewBoxSvg() {
     svg.setAttribute("viewBox", `0 0 0 0`)
     setTimeout(() => {
         console.log(svg.clientHeight, svg.clientWidth)
-        svg.setAttribute("viewBox", `-160 -290 ${svg.clientWidth*2} ${svg.clientHeight*2}`)
-        setTimeout(() => {
-            console.log(svg.clientHeight, svg.clientWidth)
-            svg.setAttribute("viewBox", `-160 -290 ${svg.clientWidth*2} ${svg.clientHeight*2}`)
-        }, 100);
+        svg.setAttribute("viewBox", `-160 -290 ${svg.clientWidth*2-10} ${svg.clientHeight*2-10}`)
+        document.querySelector(".loader").style.display = "none";
     }, 600);
 }
