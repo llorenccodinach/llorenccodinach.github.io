@@ -29,6 +29,7 @@
     4px 4px 4px 0px #d1d9e6 inset,-4px -4px 4px 0px #d1d9e6 inset;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .rest-head-right{
@@ -114,6 +115,10 @@
     padding-left: 25px;
     gap: 10px;
     overflow-x: scroll;
+}
+
+.rest-map-top::-webkit-scrollbar {
+    display: none;
 }
 
 .rest-map-bottom{
