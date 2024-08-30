@@ -1,5 +1,7 @@
 const restdarkModeStylesheet = document.getElementById("dark-mode-rest-stylesheet")
 const restdarkModeToggle = document.getElementById('darkModeToggle');
+const selectorFecha = document.getElementById('selectorFecha');
+const inputFecha = document.getElementById('fecha');
 
 if (localStorage.getItem('dark-mode') === 'enabled') {
     restdarkModeStylesheet.removeAttribute('disabled');
@@ -175,6 +177,7 @@ window.addEventListener('load', () => {
             document.querySelector("svg").appendChild(circle)
         }
     }
+    inputFecha.valueAsDate = new Date();
 })
 
 let initialDistance = null;
@@ -209,9 +212,6 @@ svg.addEventListener('touchend', (e) => {
         initialDistance = null;
     }
 });
-
-const selectorFecha = document.getElementById('selectorFecha');
-const inputFecha = document.getElementById('fecha');
 
 console.log(selectorFecha,inputFecha)
 
