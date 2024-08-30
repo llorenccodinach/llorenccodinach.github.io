@@ -145,21 +145,19 @@ document.addEventListener('wheel', function(event) {
     }
 });
 
-const mesas = svg.querySelectorAll("a");
+const mesas = svg.querySelectorAll("rest-mesa");
 const paths = svg.querySelectorAll(".rest-mesa")
 console.log(mesas)
+
 mesas.forEach(element => {
     element.addEventListener("click", () => {
-        if(element.querySelector("path").style.strokeWidth == "3px"){
-            element.querySelector("path").style.strokeWidth = "1px";
-            element.querySelector("path").style.fill = "transparent";
+        if(element.querySelector("path").classList.contains("rest-mesa-selected")){
+            element.querySelector("path").classList.remove("rest-mesa-selected")
         }else{
             paths.forEach(elementP => {
-                elementP.style.strokeWidth = "1px";
-                elementP.style.fill = "";
+                elementP.classList.remove("rest-mesa-selected")
             });
-            element.querySelector("path").style.strokeWidth = "3px";
-            element.querySelector("path").style.fill = "#e8e8e8";
+            element.querySelector("path").classList.add("rest-mesa-selected")
         }
     })
 });
@@ -177,9 +175,6 @@ window.addEventListener('load', () => {
         }
     }
 })
-
-
-
 
 let initialDistance = null;
 

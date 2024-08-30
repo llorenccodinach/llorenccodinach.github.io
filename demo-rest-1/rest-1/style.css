@@ -33,7 +33,7 @@
 
 .rest-head-right{
     height: 100%;
-    width: 10%;
+    width: 11%;
     padding: 0.7%;
     display: flex;
     justify-content: flex-end;
@@ -42,7 +42,7 @@
 }
 
 .rest-login{
-    font-size: 20px;
+    font-size: 15px;
     width: 100%;
     height: 100%;
     background-color: #e8e8e8;
@@ -54,6 +54,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: 700;
 }
 
 .rest-login:hover{
@@ -68,7 +69,7 @@
 }
 
 .rest-logo{
-    height: 80%;
+    height: 70%;
     margin-left: 1%;
     cursor: pointer;
 }
@@ -144,6 +145,11 @@
     cursor: pointer;
 }
 
+.rest-mesa-selected{
+    fill: #e8e8e8;
+    stroke-width: 3px;
+}
+
 .rest-zoom-button{
     position: absolute;
     left: 20px;
@@ -191,7 +197,9 @@
     display: none;
     background-color: transparent;
     height: 100%;
+    aspect-ratio: 1/1;
     align-items: center;
+    justify-content: center;
     cursor: pointer;
     position: absolute;
     left: 50%;
@@ -200,5 +208,5 @@
 
 .nav-img{
     background-color: transparent;
-    height: 50px;
+    height: 60%;
 }

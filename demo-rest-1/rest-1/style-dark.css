@@ -39,3 +39,22 @@
     color: #e8e8e8;
     border: 1px solid #212121;
 }
+
+#svg path, #svg circle{
+    stroke: #e8e8e8;
+}
+
+#svg path:hover, #svg circle:hover{
+    fill: #212121;
+}
+
+.rest-zoom-button{
+    box-shadow: 4px 4px 4px 0px rgb(25, 25, 25) inset, -4px -4px 4px 0px rgb(25, 25, 25) inset;
+    background-color: #212121;
+    color: #e8e8e8;
+    border: 1px solid #212121;
+}
+
+.rest-mesa-selected{
+    fill: #212121;
+}

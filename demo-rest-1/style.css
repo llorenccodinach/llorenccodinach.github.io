@@ -6,10 +6,6 @@
     box-sizing: border-box;
 }
 
-.transition-dark {
-    transition: all 0.5s ease-in-out !important;
-}
-
 .radio-input input {
     display: none;
 }
@@ -304,4 +300,8 @@ body {
         height: calc(100% - 164px);
         top: 164px;
     }
+}
+
+.transition-dark {
+    transition: all 0.5s ease-in-out !important;
 }

@@ -40,13 +40,15 @@ if (localStorage.getItem('dark-mode') === 'enabled') {
 }
 
 function applyTransition() {
-    const elements = document.querySelectorAll('*');
-    
-    elements.forEach(el => el.classList.add('transition-dark'));
-    
-    setTimeout(() => {
-      elements.forEach(el => el.classList.remove('transition-dark'));
-    }, 500);
+    let elements = document.querySelectorAll('*');
+
+    elements.forEach(el => el.style.transition = "all 0.5s ease-in-out");
+
+    document.querySelector(".rest-div-pages").style.transition = "clip-path 0.5s ease-in-out"
+
+    document.querySelector(".radio-input").style.transition = "none"
+    document.querySelector("#empresa").style.transition = "none"
+    document.querySelector("#cliente").style.transition = "none"
   }
 
 darkModeToggle.addEventListener('click', () => {
@@ -111,4 +113,17 @@ function resizeWindow(){
             
         }
     })
+    viewBoxSvg()
+}
+
+function viewBoxSvg() {
+    svg.setAttribute("viewBox", `0 0 0 0`)
+    setTimeout(() => {
+        console.log(svg.clientHeight, svg.clientWidth)
+        svg.setAttribute("viewBox", `-160 -290 ${svg.clientWidth*2} ${svg.clientHeight*2}`)
+        setTimeout(() => {
+            console.log(svg.clientHeight, svg.clientWidth)
+            svg.setAttribute("viewBox", `-160 -290 ${svg.clientWidth*2} ${svg.clientHeight*2}`)
+        }, 100);
+    }, 600);
 }
