@@ -245,3 +245,33 @@ selectorHora.addEventListener('click', function() {
 selectorMesa.addEventListener('click', function() {
     inputMesa.focus(); 
 });
+
+const scrollable = document.querySelector(".rest-map-top");
+let isDown = false;
+let startX2;
+let scrollLeft;
+
+scrollable.addEventListener('mousedown', (e) => {
+    isDown = true;
+    scrollable.classList.add('active');
+    startX2 = e.pageX - scrollable.offsetLeft;
+    scrollLeft = scrollable.scrollLeft;
+});
+
+scrollable.addEventListener('mouseleave', () => {
+    isDown = false;
+    scrollable.classList.remove('active');
+});
+
+scrollable.addEventListener('mouseup', () => {
+    isDown = false;
+    scrollable.classList.remove('active');
+});
+
+scrollable.addEventListener('mousemove', (e) => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - scrollable.offsetLeft;
+    const walk = (x - startX2) * 2; // La cantidad de scroll, puedes ajustar este valor
+    scrollable.scrollLeft = scrollLeft - walk;
+});

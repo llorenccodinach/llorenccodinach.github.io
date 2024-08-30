@@ -30,3 +30,17 @@
     position: absolute;
     right: 0px;
 }
+
+.rest-map-bottom{
+    margin: 0px 4% 4% 4%;
+    width: 92%;
+}
+
+.rest-map-top{
+    padding-left: 4%;
+    cursor: grab !important;
+}
+
+.rest-map-top:active{
+    cursor: grabbing !important;
+}
