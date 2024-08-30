@@ -212,11 +212,22 @@
     height: 60%;
 }
 
-#fecha{
+.rest-filter input, .rest-filter select{
     background: transparent;
     border: none;
     cursor: pointer;
     color: black;
     margin-left: 10px;
     height: 50%;
+    width:max-content;
+    appearance: none; /* Elimina la flecha en la mayoría de los navegadores */
+            -webkit-appearance: none; /* Para navegadores basados en WebKit como Chrome */
+            -moz-appearance: none; /* Para navegadores basados en Gecko como Firefox */
+
 }
+
+input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance:default-button;
+            margin: 0;
+        }
