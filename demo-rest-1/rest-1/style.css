@@ -211,3 +211,8 @@
     background-color: transparent;
     height: 60%;
 }
+
+#fecha{
+    background: transparent;
+    border: none;
+}

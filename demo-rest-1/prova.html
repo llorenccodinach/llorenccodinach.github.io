@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Fecha</title>
+    <style>
+        /* Contenedor del botón y el campo de fecha */
+        .date-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Botón visible con ícono personalizado */
+        #selectorFecha {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Añadir un ícono personalizado (por ejemplo, con una imagen de calendario) */
+        #selectorFecha::after {
+            content: url('https://img.icons8.com/material-outlined/24/ffffff/calendar.png'); /* Cambia esta URL por la de tu ícono */
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Ocultar el campo de fecha pero mantener su tamaño */
+        #fecha {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Seleccione una Fecha</h1>
+
+    <!-- Contenedor del botón y el campo de fecha -->
+    <div class="date-container">
+        <div id="selectorFecha">Elegir Fecha</div>
+        <input type="date" id="fecha" name="fecha">
+    </div>
+
+    <p id="resultado"></p>
+
+    <script>
+        const selectorFecha = document.getElementById('selectorFecha');
+        const inputFecha = document.getElementById('fecha');
+
+        // Formatear la fecha a DD/MM/AAAA
+        function formatearFecha(fecha) {
+            const partes = fecha.split('-');
+            return `${partes[2]}/${partes[1]}/${partes[0]}`;
+        }
+
+        // Escuchar el click en el botón visible
+        selectorFecha.addEventListener('click', () => {
+            inputFecha.click();
+        });
+
+        // Escuchar el cambio en la selección de fecha
+        inputFecha.addEventListener('change', () => {
+            const fechaSeleccionada = formatearFecha(inputFecha.value);
+            selectorFecha.textContent = `Fecha seleccionada: ${fechaSeleccionada}`;
+            document.getElementById('resultado').textContent = `Fecha seleccionada: ${fechaSeleccionada}`;
+        });
+    </script>
+</body>
+</html>

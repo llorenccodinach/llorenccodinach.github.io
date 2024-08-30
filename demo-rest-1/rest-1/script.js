@@ -209,3 +209,13 @@ svg.addEventListener('touchend', (e) => {
         initialDistance = null;
     }
 });
+
+const selectorFecha = document.getElementById('selectorFecha');
+const inputFecha = document.getElementById('fecha');
+
+console.log(selectorFecha,inputFecha)
+
+selectorFecha.addEventListener('click', function() {
+    inputFecha.style.display = 'block';  // Mostrar el input
+    inputFecha.focus();  // Hacer foco en el input para que aparezca el selector de fecha
+});
