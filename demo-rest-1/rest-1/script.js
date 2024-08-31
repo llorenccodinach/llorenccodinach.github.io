@@ -159,10 +159,7 @@ console.log(mesas)
 
 mesas.forEach(element => {
     element.addEventListener("pointerdown", () => {
-        //inputMesa.querySelector(`[value="${element.parentElement.getAttribute("xlink:title")}"]`).select
         inputMesa.value = element.parentElement.getAttribute("xlink:title")
-        console.log(element.parentElement.getAttribute("xlink:title"))
-        document.querySelector("#cliente span").innerHTML = element.parentElement.getAttribute("xlink:title")
         if(element.classList.contains("rest-mesa-selected")){
             element.classList.remove("rest-mesa-selected")
         }else{
@@ -281,3 +278,21 @@ scrollable.addEventListener('mousemove', (e) => {
     const walk = (x - startX2) * 2; // La cantidad de scroll, puedes ajustar este valor
     scrollable.scrollLeft = scrollLeft - walk;
 });
+
+function openPopup(){
+    document.getElementById("popup-reservar").style.display = "";
+}
+
+function closePopup(){
+    document.getElementById("popup-reservar").style.display = "none";
+}
+
+function acceder(){
+    document.querySelector(".rest-login").innerHTML = `<div>
+    <div>
+      <img src="./img/profile.svg" alt="">
+    </div>
+  </div>
+  NAME`
+  document.querySelector(".rest-login").style.justifyContent = "flex-start";
+}

@@ -53,9 +53,10 @@
     cursor: pointer;
     transition: 0.1s;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     font-weight: 700;
+    position: relative;
 }
 
 .rest-login:hover{
@@ -67,6 +68,35 @@
     box-shadow:
     4px 4px 4px 0px #d1d9e6 inset,
     -4px -4px 4px 0px #ffffff inset;
+}
+
+.rest-login > div{
+    background-color: transparent;
+    border-radius: 50%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.rest-login > div > div{
+    height: 80%;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.rest-login > div > div > img{
+    height: 70%;
+    background-color: transparent;
+    aspect-ratio: 1 / 1;
 }
 
 .rest-logo{
@@ -276,4 +306,96 @@
     right: 20px;
     top: 20px;
     box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.5); 
+}
+
+.rest-popup-bk{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rest-popup-card{
+    padding: 50px;
+    background-color: #e8e8e8;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 350px;
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+
+.rest-popup-card > h5{
+    position: absolute;
+    top: 20px;
+    font-size: 20px;
+}
+
+.rest-popup-card > div{
+    height: 50px;
+    width: auto;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    box-shadow: -8px -4px 8px 0px #ffffff, 8px 4px 12px 0px #d1d9e6, 4px 4px 4px 0px #d1d9e6 inset, -4px -4px 4px 0px #ffffff inset;
+    border: 1px solid #e8e8e8;
+    background: #e8e8e8;
+    padding-left: 10px;
+    padding-right: 20px;
+    gap: 5px;
+}
+
+.rest-popup-card > div > svg{
+    height: 50%;
+    stroke: black;
+}
+
+.rest-popup-hecho{
+    background-color: var(--primary-color);
+    font-size: 25px;
+    padding: 10px 20px 10px 20px;
+    border: none;
+    color: white;
+    font-weight: 650;
+    border-radius: 50px;
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: all 0.2s;
+    position: absolute;
+    bottom: 30px;
+}
+
+.rest-popup-hecho:hover{
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 12px 0px rgba(0, 0, 0, 0.5);
+}
+
+.rest-popup-hecho:active{
+    transform: translateY(0px);
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
+}
+
+.rest-popup-close-button{
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    right: 10px;
+    top: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.rest-popup-close-button > img{
+    height: 100%;
+    width: 100%;
 }
