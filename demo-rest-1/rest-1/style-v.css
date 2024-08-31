@@ -44,3 +44,11 @@
 .rest-map-top:active{
     cursor: grabbing !important;
 }
+
+.rest-encargar-v{
+    display: flex;
+}
+
+.rest-encargar{
+    display: none;
+}
