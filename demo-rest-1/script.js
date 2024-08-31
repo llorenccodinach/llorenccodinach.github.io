@@ -121,6 +121,7 @@ function resizeWindow(){
 }
 
 function viewBoxSvg() {
+    document.querySelector(".loader").style.display = "block";
     svg.setAttribute("viewBox", `0 0 0 0`)
     setTimeout(() => {
         console.log(svg.clientHeight, svg.clientWidth)

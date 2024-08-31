@@ -159,6 +159,8 @@ console.log(mesas)
 
 mesas.forEach(element => {
     element.addEventListener("pointerdown", () => {
+        //inputMesa.querySelector(`[value="${element.parentElement.getAttribute("xlink:title")}"]`).select
+        inputMesa.value = element.parentElement.getAttribute("xlink:title")
         console.log(element.parentElement.getAttribute("xlink:title"))
         document.querySelector("#cliente span").innerHTML = element.parentElement.getAttribute("xlink:title")
         if(element.classList.contains("rest-mesa-selected")){
