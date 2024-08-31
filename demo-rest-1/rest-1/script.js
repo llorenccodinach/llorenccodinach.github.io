@@ -158,7 +158,7 @@ const mesas = svg.querySelectorAll(".rest-mesa");
 console.log(mesas)
 
 mesas.forEach(element => {
-    element.addEventListener("click", () => {
+    element.addEventListener("mousedown", () => {
         console.log(element.parentElement.getAttribute("xlink:title"))
         document.querySelector("#cliente span").innerHTML = element.parentElement.getAttribute("xlink:title")
         if(element.classList.contains("rest-mesa-selected")){
@@ -237,6 +237,10 @@ selectorFecha.addEventListener('click', function() {
 selectorPersonas.addEventListener('click', function() {
     inputPersonas.focus();  // Hacer foco en el input para que aparezca el selector de fecha
 });
+
+inputPersonas.addEventListener('change', function() {
+    console.log(inputPersonas.value)
+})
 
 selectorHora.addEventListener('click', function() {
     inputHora.focus(); 

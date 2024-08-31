@@ -223,8 +223,8 @@
     border: none;
     cursor: pointer;
     color: black;
-    margin-left: 10px;
-    height: 50%;
+    padding-left: 10px;
+    height: 100%;
     width:max-content;
     appearance: none; /* Elimina la flecha en la mayoría de los navegadores */
     font-size: 15px;
