@@ -10,6 +10,8 @@ const inputHora = document.getElementById('hora');
 const selectorMesa = document.getElementById('selectorMesa');
 const inputMesa = document.getElementById('mesa');
 
+let reservas = {}
+
 if (localStorage.getItem('dark-mode') === 'enabled') {
     restdarkModeStylesheet.removeAttribute('disabled');
     restdarkModeToggle.checked = true;
@@ -143,7 +145,7 @@ console.log(mesas)
 mesas.forEach(element => {
     element.addEventListener("pointerdown", () => {
         inputMesa.value = element.parentElement.getAttribute("xlink:title")
-        if(element.classList.contains("rest-mesa-selected")){
+        if(element.classList.contains("rest-mesa-selected") || element.style.fill == "rgba(128, 0, 0, 0.21)"){
             element.classList.remove("rest-mesa-selected")
         }else{
             mesas.forEach(elementP => {
@@ -189,6 +191,8 @@ window.addEventListener('load', () => {
                     <path d="M3 9H21M7 3V5M17 3V5M6 13H8M6 17H8M11 13H13M11 17H13M16 13H18M16 17H18M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg> ${arraydata[8]+arraydata[9]}/${arraydata[5]+arraydata[6]}/${arraydata[0]+arraydata[1]+arraydata[2]+arraydata[3]}
                 ` 
+                buscarTaula()
+                
 })
 
 let initialDistance = null;
@@ -296,16 +300,30 @@ function closePopup(){
     }, 500); // Duración de la transición en ms
 }
 
-function acceder(){
+function acceder() {
+    console.log("aquest click")
     document.querySelector(".rest-login").style.paddingLeft = "0px";
     setTimeout(() => {
-        document.querySelector(".rest-login").innerHTML = `<div>
-    <div>
-      <img src="./img/profile.svg" alt="">
-    </div>
-  </div>
-  NAME`
+        document.querySelector(".rest-login").innerHTML = `
+        <div>
+            <div>
+                <img src="./img/profile.svg" alt="">
+            </div>
+        </div>
+        NAME`
     }, 100);
+    document.querySelector(".rest-login").setAttribute("onclick","profile()");
+}
+
+function profile() {
+    console.log("profile")
+    if(document.getElementById("rest-web-map").style.display == "none"){
+        document.getElementById("rest-web-profile").style.display = "none";
+        document.getElementById("rest-web-map").style.display = "";
+    }else{
+        document.getElementById("rest-web-profile").style.display = "";
+        document.getElementById("rest-web-map").style.display = "none";
+    }
     
 }
 
@@ -316,6 +334,7 @@ inputFecha.addEventListener("change", () => {
                     <path d="M3 9H21M7 3V5M17 3V5M6 13H8M6 17H8M11 13H13M11 17H13M16 13H18M16 17H18M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg> ${arraydata[8]+arraydata[9]}/${arraydata[5]+arraydata[6]}/${arraydata[0]+arraydata[1]+arraydata[2]+arraydata[3]}
                 ` 
+                buscarTaula()
 })
 
 inputPersonas.addEventListener("change", () => {
@@ -323,6 +342,7 @@ inputPersonas.addEventListener("change", () => {
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
               ${inputPersonas.value} PERSONAS
     `
+    buscarTaula()
 })
 
 inputHora.addEventListener("change" , () => {
@@ -330,6 +350,7 @@ inputHora.addEventListener("change" , () => {
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 7V12L14.5 13.5M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                 ${inputHora.value}
               `
+              buscarTaula()
 })
 
 inputMesa.addEventListener("change", () => {
@@ -338,6 +359,7 @@ inputMesa.addEventListener("change", () => {
         <path class="mesa-confirm" fill-rule="evenodd" clip-rule="evenodd" d="M1.73306 1.03631C2.08026 0.94014 2.45235 1.03817 2.7071 1.29292L22.7071 21.2929C23.0976 21.6834 23.0976 22.3166 22.7071 22.7071C22.3166 23.0977 21.6834 23.0977 21.2929 22.7071L14 15.4142L12.9142 16.5C12.1341 17.2802 10.8684 17.2827 10.0865 16.5007L3.29296 9.70718C1.58311 7.99734 1.01881 6.00221 0.879106 4.46556C0.809325 3.698 0.844063 3.03552 0.896734 2.56147C0.926579 2.29285 0.964429 2.02212 1.02938 1.75935C1.11559 1.41264 1.38869 1.13169 1.73306 1.03631ZM2.87096 4.2852C2.98137 5.49843 3.41721 7.00301 4.70713 8.29291L11.5 15.0858L12.5858 14L2.87096 4.2852Z" fill="none" stroke="none"></path> <path class="mesa-confirm" d="M18.2071 1.79292C18.5976 2.18344 18.5976 2.81661 18.2071 3.20713L15.3113 6.10295C14.955 6.45919 14.9505 6.97388 15.1985 7.38727L18.7929 3.79292C19.1834 3.40239 19.8166 3.40239 20.2071 3.79292C20.5976 4.18344 20.5976 4.81661 20.2071 5.20713L16.6128 8.80148C17.0261 9.04952 17.5408 9.04498 17.8971 8.68873L20.7929 5.79292C21.1834 5.40239 21.8166 5.40239 22.2071 5.79292C22.5976 6.18344 22.5976 6.81661 22.2071 7.20713L19.3113 10.1029C18.3379 11.0764 16.8269 11.2624 15.6465 10.5541L15.155 10.2592L14.7071 10.7071C14.3166 11.0977 13.6834 11.0977 13.2929 10.7071C12.9024 10.3166 12.9024 9.68344 13.2929 9.29292L13.7408 8.84501L13.4459 8.35354C12.7377 7.17311 12.9237 5.66214 13.8971 4.68873L16.7929 1.79292C17.1834 1.40239 17.8166 1.40239 18.2071 1.79292Z" fill="none" stroke="none"></path> <path class="mesa-confirm" d="M8.20711 17.2071C8.59763 16.8166 8.59763 16.1834 8.20711 15.7929C7.81659 15.4024 7.18342 15.4024 6.7929 15.7929L1.2929 21.2929C0.902372 21.6834 0.902372 22.3166 1.2929 22.7071C1.68342 23.0977 2.31659 23.0977 2.70711 22.7071L8.20711 17.2071Z" fill="none" stroke="none"></path> 
       </svg>
     ${inputMesa.value.toString().toUpperCase()}`
+    buscarTaula()    
 })
 
 function reservar() {
@@ -349,4 +371,59 @@ function reservar() {
             document.querySelector(".rest-noti").classList.remove("rest-noti-active")
         }, 3000);
     }, 500);
+    if(reservas[`${inputFecha.value}|${inputHora.value}`] == undefined){
+        reservas[`${inputFecha.value}|${inputHora.value}`] = [];
+    }
+    reservas[`${inputFecha.value}|${inputHora.value}`].push(inputMesa.value);
+    console.log(reservas)
+    buscarTaula()
+}
+
+const mesasPorPersona = [[],["Mesa 16", "Mesa 22"],["Mesa 14","Mesa 3", "Mesa 6", "Mesa 8", "Mesa 11", "Mesa 4", "Mesa 13", "Mesa 18"],["Mesa 21","Mesa 23","Mesa 15","Mesa 17"],["Mesa 1","Mesa 2","Mesa 5","Mesa 9","Mesa 10","Mesa 19","Mesa 20"],["Mesa 7","Mesa 12"]]
+
+function buscarTaula(){
+    let persones = inputPersonas.value;
+    const dia = new Date(inputFecha.value)
+    const hora = inputHora.value
+    const mesa = inputMesa.value
+
+    console.log(mesasPorPersona[persones]);
+    if(persones > 5){
+        persones = 5;
+    }else if(persones < 0){
+        persones = 1;
+    }
+    for (let i = 0; i < mesas.length; i++) {
+        mesas[i].style.fill = ""
+    }
+    for (let index = 0; index < mesasPorPersona[persones].length; index++) {
+        const element = mesasPorPersona[persones][index];
+        console.log(mesas[0].parentElement.getAttribute("xlink:title"));
+        for (let j = 0; j < mesas.length; j++) {
+            if(mesas[j].parentElement.getAttribute("xlink:title") == element){
+                mesas[j].style.fill = "#00800036";
+            }
+        }
+    }
+
+    if(reservas[`${inputFecha.value}|${inputHora.value}`] != undefined){
+        for (let i = 0; i < reservas[`${inputFecha.value}|${inputHora.value}`].length; i++) {
+            const element = reservas[`${inputFecha.value}|${inputHora.value}`][i];
+            for (let j = 0; j < mesas.length; j++) {
+                if(mesas[j].parentElement.getAttribute("xlink:title") == element){
+                    mesas[j].style.fill = "#80000036";
+                }
+            }
+        }
+    }
+
+    mesas.forEach(elementP => {
+        console.log(elementP.parentElement.getAttribute("xlink:title"), inputMesa.value)
+        if(elementP.parentElement.getAttribute("xlink:title") == inputMesa.value){
+            elementP.classList.add("rest-mesa-selected")
+            console.log("hola?",elementP)
+        }else{
+            elementP.classList.remove("rest-mesa-selected")
+        }
+    })
 }
