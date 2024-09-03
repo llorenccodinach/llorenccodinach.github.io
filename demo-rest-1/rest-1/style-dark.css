@@ -66,3 +66,46 @@
 .rest-filter input, .rest-filter select{
     color: white;
 }
+
+.rest-popup-card{
+    background-color: #212121;
+}
+
+.rest-popup-card > h5{
+    color: white;
+}
+
+.rest-popup-card > div{
+    box-shadow: -8px -4px 8px 0px rgb(50, 50, 50), 8px 4px 12px 0px rgb(25, 25, 25), 4px 4px 4px 0px rgb(25, 25, 25) inset, -4px -4px 4px 0px rgb(50, 50, 50) inset;
+    border: 1px solid #212121;
+    background: #212121;
+    color: white;
+}
+
+.rest-popup-card > div > svg path{
+    stroke: white;
+}
+
+.mesa-confirm{
+    fill: white;
+    stroke: none !important;
+}
+
+.rest-popup-close-path{
+    fill: white;
+}
+
+.rest-filter select option{
+    background-color: #212121;
+    border-radius: 20px;
+    color: white;
+}
+
+.rest-noti{
+    background-color: #212121;
+    color: white;
+}
+
+.rest-noti:hover{
+    background-color: #383838;
+}
