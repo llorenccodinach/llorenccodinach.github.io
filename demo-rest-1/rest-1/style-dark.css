@@ -109,3 +109,67 @@
 .rest-noti:hover{
     background-color: #383838;
 }
+
+.rest-info-profile{
+    box-shadow: #212121 4px 4px 4px 0px inset, #212121 -4px -4px 4px 0px inset;
+}
+
+.rest-info-profile h5 {
+    color: white;
+}
+
+.rest-info-profile-card {
+    box-shadow: -8px -4px 8px 0px #383838, 8px 4px 12px 0px #212121, 4px 4px 4px 0px #212121 inset, -4px -4px 4px 0px #383838 inset;
+    border: 1px solid #212121;
+    background-color: #212121;
+    color: white;
+}
+
+.rest-info-profile-card path{
+    stroke: white;
+}
+
+.rest-profile-card{
+    box-shadow: #21212188 4px 4px 4px 0px, #21212188 -4px -4px 4px 0px;
+    background: #212121;
+}
+
+.rest-profile-info{
+    box-shadow: -8px -4px 8px 0px #383838, 8px 4px 12px 0px #212121, 4px 4px 4px 0px #212121 inset, -4px -4px 4px 0px #383838 inset;
+    border: 1px solid #212121;
+    background-color: #212121;
+    color: white;
+}
+
+.rest-profile-info path{
+    stroke: white;
+}
+
+.rest-profile-card-right path{
+    stroke: white;
+}
+
+.rest-emp-right, .rest-emp-right-card{
+    border: solid 1px #212121;
+    background-color: #383838;
+    box-shadow: 4px 4px 4px 0px rgb(25, 25, 25) inset, -4px -4px 4px 0px rgb(25, 25, 25) inset;
+}
+
+.rest-emp-right-card{
+    border: solid 1px #212121;
+    background-color: transparent;
+    box-shadow: 4px 4px 4px 0px rgb(25, 25, 25) inset, -4px -4px 4px 0px rgb(25, 25, 25) inset;
+}
+
+.rest-emp-left{
+    background-color: #383838;
+    box-shadow: 4px 4px 4px 0px rgb(25, 25, 25) inset, -4px -4px 4px 0px rgb(25, 25, 25) inset;
+}
+
+.rest-emp-right-card h5, .rest-emp-right-card p{
+    color: white;
+}
+
+.rest-emp-right-card-selected{
+    background-color: #212121;
+}

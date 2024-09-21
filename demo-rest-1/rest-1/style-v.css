@@ -52,3 +52,39 @@
 .rest-encargar{
     display: none;
 }
+
+.rest-profile-card{
+    flex-direction: column;
+    height: 300px;
+    padding: 2%;
+    gap: 4%;
+    width: calc(100% - 60px);
+    margin-left: 30px;
+}
+
+.rest-profile-card-left{
+    flex-direction: column;
+    margin-top: 2%;
+}
+
+.rest-profile-card-right{
+    height: 15%;
+}
+
+.rest-profile-info{
+    height: 20%;
+}
+
+#rest-web-profile{
+    padding: 4%;
+}
+
+.rest-info-profile-i{
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.rest-profile-card-left{
+    gap: 15px;
+}

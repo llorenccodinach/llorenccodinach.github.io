@@ -307,7 +307,6 @@ body {
 }
 
 .loader {
-    border: 10% solid transparent;
     border-radius: 50%;
     border-top: 7px solid #3498db;
     width: 10%;
