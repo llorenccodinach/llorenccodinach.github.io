@@ -319,9 +319,9 @@
           </div>
         </div>
         <div id="window-empresa" class="div-window offscreen-left">
-          <div class="rest-popup-bk">
+          <div class="rest-popup-bk" id="emp-crear-reserva">
             <div class="rest-popup-card">
-              <button class="rest-popup-close-button">
+              <button onclick="closePopupE()" class="rest-popup-close-button">
                 <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path class="rest-popup-close-path" d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z"/>
                   </svg>
@@ -330,21 +330,21 @@
               <h5>CREAR RESERVA</h5>
               <div style="padding-left: 20px;">
                 Nombre:
-                <input placeholder="NAME" style="font-size: 15px;width:150px;height: 80%;background-color: transparent;border: none;" type="text">
+                <input id="emp-name-res" placeholder="NAME" style="font-size: 15px;width:150px;height: 80%;background-color: transparent;border: none;" type="text">
               </div>
               <div style="padding-left: 20px;">
                 Apellidos:
-                <input placeholder="LASTNAME" style="font-size: 15px;width:150px;height: 80%;background-color: transparent;border: none;" type="text">
+                <input id="emp-lastname-res" placeholder="LASTNAME" style="font-size: 15px;width:150px;height: 80%;background-color: transparent;border: none;" type="text">
               </div>
               <div style="padding-left: 20px;">
                 Telefono:
-                <input placeholder="PHONE" style="font-size: 15px;width:150px;height: 80%;background-color: transparent;border: none;" type="text">
+                <input id="emp-phone-res" placeholder="PHONE" style="font-size: 15px;width:150px;height: 80%;background-color: transparent;border: none;" type="text">
               </div>
               <div style="padding-left: 20px;">
                 Mail:
-                <input placeholder="MAIL" style="font-size: 15px;width:150px;height: 80%;background-color: transparent;border: none;" type="text">
+                <input id="emp-mail-res" placeholder="MAIL" style="font-size: 15px;width:150px;height: 80%;background-color: transparent;border: none;" type="text">
               </div>
-              <button class="rest-popup-hecho" onclick="reservar()">
+              <button class="rest-popup-hecho" onclick="reservarE()">
                 RESERVAR
               </button>
             </div>
@@ -377,7 +377,7 @@
             <div class="rest-map" style="display: flex;flex-direction: row;box-shadow: none; background-color: transparent;gap: 0.5%;">
               <div class="rest-emp-left">
                 <div id="aqui-filters" class="rest-map-top">
-                  <div class="rest-encargar" onclick="reservarNoAccount()">
+                  <div class="rest-encargar" onclick="reservarNoAccountE()">
                     RESERVAR
                   </div>
                 </div>
