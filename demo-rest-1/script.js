@@ -196,6 +196,7 @@ function resizeWindow(){
 
 function viewBoxSvg() {
     document.querySelector(".loader").style.display = "block";
+    document.querySelector("#aqui-svg").querySelector(".loader").style.display = "block";
     svg.setAttribute("viewBox", `0 0 0 0`)
     setTimeout(() => {
         let widthSVG = (svg.parentElement.clientWidth - 1410)/2;
@@ -236,5 +237,6 @@ function viewBoxSvg() {
 
         //svg.setAttribute("viewBox", `${-140 - 10 - widthSVG} ${-280 - 10 - heightSVG} ${svg.parentElement.clientWidth} ${svg.parentElement.clientHeight}`)
         document.querySelector(".loader").style.display = "none";
+        document.querySelector("#aqui-svg").querySelector(".loader").style.display = "none";
     }, 600);
 }

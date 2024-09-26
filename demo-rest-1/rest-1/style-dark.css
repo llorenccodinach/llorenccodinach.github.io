@@ -110,6 +110,15 @@
     background-color: #383838;
 }
 
+.rest-noti-e{
+    background-color: #212121;
+    color: white;
+}
+
+.rest-noti-e:hover{
+    background-color: #383838;
+}
+
 .rest-info-profile{
     box-shadow: #212121 4px 4px 4px 0px inset, #212121 -4px -4px 4px 0px inset;
 }

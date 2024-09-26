@@ -94,15 +94,15 @@
               <input type="checkbox" id="menu" class="nav-input">
               <div class="rest-div-pages">
                 <a class="rest-page" >PÁGINA WEB</a>
-                <a class="rest-page" >NOTICIAS</a>
                 <a class="rest-page" >CONTACTO</a>
+                <a class="rest-page" >RESERVAR</a>
               </div>
               
               <label for="menu" class="nav-label">
                 <img src="./img/menu.svg" alt="menu" class="nav-img">
               </label>
               <div class="rest-head-right">
-                <div class="rest-login" onclick="acceder()">
+                <div class="rest-login" style="padding-left: 10px; padding-right: 10px;" onclick="acceder()">
                   ACCEDER
                 </div>
               </div>
@@ -181,6 +181,7 @@
                     <path d="M2 12C2 11.4477 2.44772 11 3 11H21C21.5523 11 22 11.4477 22 12C22 12.5523 21.5523 13 21 13H3C2.44772 13 2 12.5523 2 12Z" fill="#000"></path> 
                   </svg>
                 </button>
+                
                 <div class="loader"></div>
                 <div class="rest-encargar-v" onclick="openPopup()">
                   RESERVAR
@@ -344,6 +345,10 @@
                 Mail:
                 <input id="emp-mail-res" placeholder="MAIL" style="font-size: 15px;width:150px;height: 80%;background-color: transparent;border: none;" type="text">
               </div>
+              <div style="padding-left: 20px;">
+                Personas:
+                <input id="emp-people-res" placeholder="NUMBER" style="font-size: 15px;width:150px;height: 80%;background-color: transparent;border: none;" type="number">
+              </div>
               <button class="rest-popup-hecho" onclick="reservarE()">
                 RESERVAR
               </button>
@@ -357,8 +362,8 @@
               <input type="checkbox" class="nav-input">
               <div class="rest-div-pages">
                 <a class="rest-page">PÁGINA WEB</a>
-                <a class="rest-page">NOTICIAS</a>
                 <a class="rest-page">CONTACTO</a>
+                <a class="rest-page">RESERVAR</a>
               </div>
               
               <label for="menu" class="nav-label">
@@ -371,7 +376,7 @@
                 <img src="./img/profile.svg" alt="">
             </div>
         </div>
-        ADMIN</div>
+        <h5>ADMIN</h5></div>
               </div>
             </header>
             <div class="rest-map" style="display: flex;flex-direction: row;box-shadow: none; background-color: transparent;gap: 0.5%;">
@@ -381,11 +386,14 @@
                     RESERVAR
                   </div>
                 </div>
-                <div id="aqui-svg" class="rest-map-bottom"></div>
+                <div id="aqui-svg" class="rest-map-bottom">
+                  <div class="loader"></div>
+                </div>
               </div>
+              
               <div class="rest-emp-right">
                 <div class="rest-emp-right-card">
-                  <h5 style="margin-left: 20px; margin-top: 20px; font-size: 18px; font-weight: 550;">MESA 4</h5>
+                  <h5 class="rest-emp-right-card-h5">MESA 4</h5>
                   <p style="margin-left: 30px; margin-top: 5px;">Nombre: NAME</p>
                   <p style="margin-left: 30px; margin-top: 5px;">Apellidos: LASTNAME</p>
                   <p style="margin-left: 30px; margin-top: 5px;">Telefono: +34 999 999 999</p>

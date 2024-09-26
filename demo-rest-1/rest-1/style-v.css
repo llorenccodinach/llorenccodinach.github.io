@@ -88,3 +88,17 @@
 .rest-profile-card-left{
     gap: 15px;
 }
+
+.rest-login{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.rest-login > h5{
+    margin-left: 72px;
+    margin-right: 5px;
+}
+
+@media (max-width: 1300px) {
+
+}

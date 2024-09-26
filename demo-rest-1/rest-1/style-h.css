@@ -1,18 +1,120 @@
 @media (max-width: 1300px) {
+    
+    .rest-login > h5{
+        margin-left: 45px;
+        margin-right: 10px;
+        font-size: 15px;
+    }
     .rest-login{
         font-size: 15px;
     }
     .rest-page{
         font-size: 15px;
+    }
+    .rest-emp-right-card-h5{
+        font-size: 14px;
+    }
+    .rest-emp-right-card > p{
+        font-size: 12px;
+    }
+    .rest-zoom-button{
+        width: 20px;
+    }
+    #zoomIn{
+        top: 50px !important;
+    }
+    .rest-filter, .rest-filter > select, .rest-filter > input{
+        font-size: 13px;
+    }
+    .rest-filter{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .rest-encargar{
+        font-size: 14px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 
 @media (max-width: 1000px) {
+    .rest-popup-card > h5{
+        font-size: 15px;
+        top: 15px;
+    }
+    .rest-popup-card{
+        padding-bottom: 70px;
+        padding-top: 50px;
+        gap: 10px;
+    }
+    .rest-popup-hecho{
+        font-size: 20px;
+        bottom: 10px;
+    }
+    .rest-popup-card > div{
+        height: 30px;
+        font-size: 14px;
+    }
+    .rest-login > h5{
+        margin-left: 35px;
+        margin-right: 10px;
+        font-size: 10px;
+    }
     .rest-login{
         font-size: 10px;
     }
     .rest-page{
         font-size: 10px;
+    }
+    .rest-emp-left{
+        border-radius: 25px;
+    }
+    .rest-emp-right{
+        border-radius: 25px;
+    }
+    .rest-emp-right-card{
+        border-radius: 20px;
+    }
+    .rest-emp-right-card-h5{
+        font-size: 10px;
+        margin-top: 15px;
+        margin-left: 15px;
+    }
+    .rest-emp-right-card > p {
+        font-size: 8px;
+        margin-left: 20px !important;
+    }
+    .rest-zoom-button{
+        width: 15px;
+    }
+    #zoomIn{
+        top: 40px !important;
+        left: 20px !important;
+    }
+    #zoomOut{
+        top: 20px !important;
+        left: 20px !important;
+    }
+    .rest-filter, .rest-filter > select, .rest-filter > input{
+        font-size: 10px;
+    }
+    .rest-filter{
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    .rest-encargar{
+        font-size: 11px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    #personas{
+        width: 35px !important;
+    }
+    .rest-map{
+        border-radius: 25px;
+    }
+    .rest-map-bottom{
+        border-radius: 20px;
     }
     .div-window{
         border-radius: 20px;
@@ -20,10 +122,100 @@
 }
 
 @media (max-width: 600px) {
+    .rest-popup-card > h5{
+        font-size: 10px;
+        top: 10px;
+    }
+    .rest-popup-card{
+        padding-bottom: 50px;
+        padding-top: 40px;
+        gap: 10px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .rest-popup-card input{
+        font-size: 5px;
+    }
+    .rest-popup-hecho{
+        font-size: 5px;
+        bottom: 10px;
+    }
+    .rest-popup-card > div{
+        height: 15px;
+        font-size: 5px;
+    }
+    .rest-login > h5{
+        margin-left: 35px;
+        margin-right: 10px;
+        font-size: 10px;
+    }
+    .rest-login > h5{
+        margin-left: 20px;
+        margin-right: 5px;
+        font-size: 5px;
+    }
     .rest-login{
         font-size: 5px;
     }
     .rest-page{
         font-size: 5px;
+    }
+    .rest-emp-left{
+        border-radius: 15px;
+    }
+    .rest-emp-right{
+        border-radius: 15px;
+    }
+    .rest-emp-right-card{
+        border-radius: 10px;
+        padding-bottom: 10px;
+    }
+    .rest-emp-right-card-h5{
+        font-size: 6px;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+    .rest-emp-right-card > p{
+        font-size: 5px;
+        margin-top: 3px !important;
+        margin-left: 15px !important;
+    }
+    .rest-zoom-button{
+        width: 10px;
+    }
+    #zoomIn{
+        top: 25px !important;
+        left: 10px !important;
+    }
+    #zoomOut{
+        top: 10px !important;
+        left: 10px !important;
+    }
+    .rest-filter, .rest-filter > select, .rest-filter > input{
+        font-size: 5px;
+    }
+    .rest-filter{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .rest-map-top{
+        gap: 1px;
+    }
+    .rest-encargar{
+        font-size: 6px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    #personas{
+        width: 25px !important;
+    }
+    .rest-map{
+        border-radius: 15px;
+    }
+    .rest-map-bottom{
+        border-radius: 10px;
+    }
+    .div-window{
+        border-radius: 15px;
     }
 }
