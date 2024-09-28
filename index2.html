@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrusel</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.carousel-container {
+    position: relative;
+    width: 500px;
+    overflow: hidden;
+}
+
+.carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+
+.carousel-item {
+    min-width: 300px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #fff;
+    user-select: none;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 0.5rem;
+    cursor: pointer;
+    z-index: 100;
+    user-select: none;
+}
+
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}
+
+/* Para mejorar el arrastre */
+.carousel-wrapper {
+    cursor: grab;
+}
+
+.carousel-wrapper:active {
+    cursor: grabbing;
+}
+
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel-wrapper" id="carousel">
+            <div class="carousel-item" style="background-color: #f00;">1</div>
+            <div class="carousel-item" style="background-color: #0f0;">2</div>
+            <div class="carousel-item" style="background-color: #00f;">3</div>
+            <div class="carousel-item" style="background-color: #ff0;">4</div>
+            <div class="carousel-item" style="background-color: #f0f;">5</div>
+        </div>
+        <!-- Flechas de navegación -->
+        <div class="arrow left-arrow" id="prev">←</div>
+        <div class="arrow right-arrow" id="next">→</div>
+    </div>
+
+    <script>
+        const carousel = document.getElementById("carousel");
+let isDragging = false;
+let startPos = 150;
+let currentTranslate = 0;
+let prevTranslate = 0;
+let currentIndex = 0;
+const totalItems = document.querySelectorAll('.carousel-item').length;
+
+// Navegación por flechas
+document.getElementById('prev').addEventListener('click', () => {
+    moveToIndex(currentIndex - 1);
+});
+
+document.getElementById('next').addEventListener('click', () => {
+    moveToIndex(currentIndex + 1);
+});
+
+// Para el arrastre (drag)
+carousel.addEventListener("mousedown", dragStart);
+carousel.addEventListener("mouseup", dragEnd);
+carousel.addEventListener("mouseleave", dragEnd);
+carousel.addEventListener("mousemove", dragMove);
+
+carousel.addEventListener("touchstart", dragStart);
+carousel.addEventListener("touchend", dragEnd);
+carousel.addEventListener("touchmove", dragMove);
+
+function dragStart(event) {
+    isDragging = true;
+    startPos = getPositionX(event);
+    carousel.classList.add('grabbing');
+}
+
+function dragEnd() {
+    isDragging = false;
+    const movedBy = currentTranslate - prevTranslate;
+
+    if (movedBy < -100 && currentIndex < totalItems - 1) {
+        currentIndex += 1;
+    }
+
+    if (movedBy > 100 && currentIndex > 0) {
+        currentIndex -= 1;
+    }
+
+    moveToIndex(currentIndex);
+    carousel.classList.remove('grabbing');
+}
+
+function dragMove(event) {
+    if (isDragging) {
+        const currentPosition = getPositionX(event);
+        currentTranslate = prevTranslate + currentPosition - startPos;
+        carousel.style.transform = `translateX(${currentTranslate}px)`;
+    }
+}
+
+function getPositionX(event) {
+    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+}
+
+function moveToIndex(index) {
+    currentIndex = Math.max(0, Math.min(index, totalItems - 1));
+    currentTranslate = currentIndex * -300;
+    prevTranslate = currentTranslate;
+    carousel.style.transform = `translateX(${currentTranslate+100}px)`;
+}
+
+    </script>
+</body>
+</html>
