@@ -252,7 +252,6 @@ body {
     align-items: center;
     cursor: pointer;
     transition: background-color 0.3s;
-
 }
 
 .rectangulo-rotate {
@@ -275,18 +274,45 @@ body {
     top: 40px;
 }
 
+.button-home{
+    width: 48px;
+    height: 48px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-home-big{
+    position: absolute;
+    left: 50px;
+}
+
+.button-home-little{
+    display: none;
+}
+
 .div-dark-position{
     display: flex;
     flex-direction: row;
     position: absolute;
     height: 62px;
-    width: 140px;
+    width: auto;
     right: 50px;
     align-items: center;
     gap: 20px;
 }
 
 @media only screen and (max-width: 750px) {
+    .button-home-little{
+        display: flex;
+    }
+    .button-home-big{
+        display: none;
+    }
     .div-dark-position{
         position: relative;
         right: auto;
