@@ -89,7 +89,7 @@
     display: flex;
     align-items: center;
     gap: 100px;
-    transform: translateX(calc(50% - 250px));
+    transition: 500ms;
 }
 
 .single-demo{
@@ -153,6 +153,13 @@
     height: 50%;
 }
 
+.wrapper-1{
+    transform: translateX(calc(50% - 255px));
+}
+
+.wrapper-2{
+    transform: translateX(calc(50% - 865px));
+}
 
 @media (max-width: 1000px) {
     .faqs h2{
@@ -161,8 +168,11 @@
     .single-demo{
         height: 400px;
     }
-    .demos-wrapper{
-        transform: translateX(calc(50% - 200px));
+    .wrapper-1{
+        transform: translateX(calc(50% - 205px));
+    }
+    .wrapper-2{
+        transform: translateX(calc(50% - 715px));
     }
     .demos{
         mask-image: linear-gradient(to right, 
@@ -209,8 +219,11 @@
     .single-demo{
         height: 300px;
     }
-    .demos-wrapper{
+    .wrapper-1{
         transform: translateX(calc(50% - 155px));
+    }
+    .wrapper-2{
+        transform: translateX(calc(50% - 565px));
     }
     .demos{
         mask-image: linear-gradient(to right, 
@@ -260,8 +273,11 @@
     .single-demo{
         height: 200px;
     }
-    .demos-wrapper{
+    .wrapper-1{
         transform: translateX(calc(50% - 105px));
+    }
+    .wrapper-2{
+        transform: translateX(calc(50% - 415px));
     }
     .demos{
         mask-image: linear-gradient(to right, 
@@ -297,8 +313,11 @@
     .single-demo{
         height: 180px;
     }
-    .demos-wrapper{
+    .wrapper-1{
         transform: translateX(calc(50% - 95px));
+    }
+    .wrapper-2{
+        transform: translateX(calc(50% - 385px));
     }
     .demos{
         mask-image: linear-gradient(to right, 
