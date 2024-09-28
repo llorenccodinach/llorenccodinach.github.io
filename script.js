@@ -13,6 +13,22 @@ window.addEventListener("load", () => {
     console.log("hi",document.getElementById("proximamente"))
     document.getElementById("proximamente").scrollIntoView({ behavior: 'smooth', block: 'center' });
     document.querySelector("body").style.overflow = 'hidden';
+
+    this.window.scroll(0,0);
+    this.window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth' // O 'auto' para un desplazamiento instantáneo
+      });
+    console.log("ho fa ")
+    setTimeout(() => {
+        this.window.scroll(0,0);
+        this.window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth' // O 'auto' para un desplazamiento instantáneo
+          });
+    }, 100);
 })
 
 window.addEventListener('scroll', function() {
@@ -165,7 +181,7 @@ dragBox.addEventListener('touchmove', (e) => {
                 dragBox.style.transform = `translateX(${translateX+distance}px)`
             }
         } else {
-            dragBox.style.transform = `translateX(${distance}px)`
+            dragBox.style.transform = `translateX(${distance}px)`;
         }
     }
 });
@@ -197,7 +213,7 @@ dragBox.addEventListener('touchend', () => {
     }
 
     dragBox.style.transform = "";
-    
+
     startX = undefined;
     endX = undefined;
     dragBox.style.cursor = 'grab';
