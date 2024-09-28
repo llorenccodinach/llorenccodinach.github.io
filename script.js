@@ -76,6 +76,7 @@ function dragUp(){
 
     startX = undefined;
     endX = undefined;
+    dragBox.style.transition = "";
 }
 
 dragBox.addEventListener('mousemove', (e) => {
@@ -91,11 +92,13 @@ dragBox.addEventListener('mousemove', (e) => {
 dragBox.addEventListener('mouseup', dragUp);
 
 dragBox.addEventListener('mousedown', (e) => {
+    dragBox.style.transition = "0s";
     startX = e.clientX;
     sumTrans = parseFloat(window.getComputedStyle(dragBox).transform.match(/matrix.*\((.+)\)/)[1].split(', ')[4]); 
 });
 
 dragBox.addEventListener('touchstart', (e) => {
+    dragBox.style.transition = "0s";
     startX = e.touches[0].clientX;
     sumTrans = parseFloat(window.getComputedStyle(dragBox).transform.match(/matrix.*\((.+)\)/)[1].split(', ')[4]); 
 });
