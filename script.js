@@ -86,7 +86,7 @@ function dragUp(){
     dragBox.style.cursor = 'grab';
 }
 
-dragBox.addEventListener('mousemove', () => {
+dragBox.addEventListener('mousemove', (e) => {
     if (startX !== undefined) {
         endX = e.clientX;
     }
@@ -103,8 +103,14 @@ dragBox.addEventListener('mousedown', (e) => {
     sumTrans = parseFloat(window.getComputedStyle(dragBox).transform.match(/matrix.*\((.+)\)/)[1].split(', ')[4]); 
 });
 
+
+
+
+
+
 dragBox.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
+    sumTrans = parseFloat(window.getComputedStyle(dragBox).transform.match(/matrix.*\((.+)\)/)[1].split(', ')[4]); 
 });
 
 dragBox.addEventListener('touchmove', (e) => {

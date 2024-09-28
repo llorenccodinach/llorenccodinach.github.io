@@ -112,6 +112,8 @@
     position: absolute;
     top: 20%;
     font-size: 35px;
+    align-items: center;
+    text-align: center;
 }
 
 .single-demo p{
