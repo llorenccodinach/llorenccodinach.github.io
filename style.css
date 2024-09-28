@@ -57,7 +57,7 @@
 }
 
 .faqs h2 {
-    color: black;
+    color: white;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -155,6 +155,9 @@
 
 
 @media (max-width: 1000px) {
+    .faqs h2{
+        font-size: 20px;
+    }
     .single-demo{
         height: 400px;
     }
@@ -189,6 +192,17 @@
 }
 
 @media (max-width: 600px) {
+    .demos-flecha{
+        height: 80px;
+    }
+    .faqs h2{
+        font-size: 14px;
+    }
+    .faqs{
+        padding: 0px 18px 0px 18px;
+        height: 7%;
+        bottom: 4%;
+    }
     .desc p{
         font-size: 15px;
     }
@@ -226,6 +240,17 @@
 }
 
 @media (max-width: 450px) {
+    .demos-flecha{
+        height: 70px;
+    }
+    .faqs h2{
+        font-size: 10px;
+    }
+    .faqs{
+        padding: 0px 18px 0px 18px;
+        height: 6%;
+        bottom: 4.5%;
+    }
     .desc p{
         font-size: 10px;
     }
@@ -266,11 +291,14 @@
 }
 
 @media (max-width: 350px) {
+    .demos-flecha{
+        height: 60px;
+    }
     .single-demo{
-        height: 150px;
+        height: 180px;
     }
     .demos-wrapper{
-        transform: translateX(calc(50% - 80px));
+        transform: translateX(calc(50% - 95px));
     }
     .demos{
         mask-image: linear-gradient(to right, 
