@@ -49,11 +49,9 @@ window.addEventListener('scroll', function() {
     }, 100);
 });
 
-
-
-
-
-
+document.addEventListener('touchmove', function(e) {
+    e.preventDefault(); // Previene el scroll en pantallas táctiles
+}, { passive: false });
 
 const dragBox = document.getElementById('carousel');
 
@@ -78,7 +76,6 @@ function dragUp(){
 
     startX = undefined;
     endX = undefined;
-    dragBox.style.cursor = 'grab';
 }
 
 dragBox.addEventListener('mousemove', (e) => {

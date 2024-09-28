@@ -90,6 +90,11 @@
     align-items: center;
     gap: 100px;
     transition: 500ms;
+    cursor: grab;
+}
+
+.demos-wrapper:active{
+    cursor: grabbing;
 }
 
 .single-demo{
