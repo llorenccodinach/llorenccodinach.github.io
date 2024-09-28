@@ -49,11 +49,6 @@ window.addEventListener('scroll', function() {
     }, 100);
 });
 
-document.addEventListener('touchmove', function(e) {
-    e.preventDefault(); // Previene el scroll en pantallas táctiles
-}, { passive: false });
-
-
 
 
 
@@ -102,11 +97,6 @@ dragBox.addEventListener('mousedown', (e) => {
     startX = e.clientX;
     sumTrans = parseFloat(window.getComputedStyle(dragBox).transform.match(/matrix.*\((.+)\)/)[1].split(', ')[4]); 
 });
-
-
-
-
-
 
 dragBox.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
