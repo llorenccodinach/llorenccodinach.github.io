@@ -50,7 +50,6 @@ body{
     overflow: hidden;
     flex-direction: column;
     transition: height 0.5s ease;
-    cursor: pointer;
     border-bottom: solid 2px white;
 }
 
@@ -105,7 +104,7 @@ body{
 }
 
 .question img{
-    height: 40px;
+    height: 30px;
     position: absolute;
     right: 40px;
     transition: all 500ms ease;
@@ -144,4 +143,27 @@ body{
 
 .question input{
     display: none;
+}
+
+#last{
+    border-bottom: none;
+}
+
+@media (max-width: 1200px) {
+    .title{
+        position: relative;
+        left: 0px;
+        top: 5%;
+    }
+    .title-faqs{
+        top: 12%;
+    }
+    .faqs{
+        top: 27%;
+        height: auto;
+        overflow-y: visible;
+    }
+    body{
+        padding-bottom: 5%;
+    }
 }
