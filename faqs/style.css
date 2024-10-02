@@ -162,8 +162,53 @@ body{
         top: 27%;
         height: auto;
         overflow-y: visible;
+        border-radius: 40px;
     }
     body{
         padding-bottom: 5%;
+    }
+}
+
+@media (max-width: 700px){
+    .title-faqs{
+        font-size: 80px;
+    }
+    .title h1{
+        font-size: 27px;
+    }
+    .title img{
+        height: 90%;
+    }
+    .question-top h2{
+        font-size: 30px;
+    }
+    .question-top{
+        height: 80px;
+    }
+    .question-top img{
+        height: 25px;
+    }
+}
+
+@media (max-width: 400px){
+    .title h1{
+        font-size: 22px;
+    }
+    .title img{
+        height: 80%;
+    }
+    .title{
+        top: 4%;
+    }
+    .title-faqs{
+        font-size: 70px;
+        top: 10%;
+    }
+    .faqs{
+        top: 23%;
+        border-radius: 35px;
+    }
+    .question-top h2{
+        font-size: 25px;
     }
 }
