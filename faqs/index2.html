@@ -54,6 +54,7 @@ body {
     background-color: #fff;
     padding: 0 15px;
     transition: height 0.5s ease;
+    interpolate-size: allow-keywords;
 }
 
 .faq-answer p {
@@ -67,7 +68,7 @@ body {
 }
 
 .faq-item input:checked ~ .faq-answer {
-    height:100px; /* Ajusta este valor según el contenido máximo */
+    height: fit-content; /* Ajusta este valor según el contenido máximo */
 }
 
     </style>
