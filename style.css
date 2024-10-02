@@ -362,7 +362,6 @@ body {
 }
 
 .wrap {
-    transform-style: preserve-3d;
     perspective: 800px;
     width: 100%;
     position: absolute;
