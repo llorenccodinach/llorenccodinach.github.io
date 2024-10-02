@@ -310,6 +310,9 @@ body{
     .question h2{
         left: 30px;
     }
+    .question{
+        border-bottom: solid 1px white;
+    }
 }
 
 @media (max-width: 450px){
