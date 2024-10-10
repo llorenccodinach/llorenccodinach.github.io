@@ -1,2100 +1,2100 @@
 
 .tri:nth-child(1) {
-    border-top: 100px solid rgb(52.82483352241307 52.82483352241307 52.82483352241307);
+    border-top: 100px solid rgb(103.77039221456229 103.77039221456229 103.77039221456229);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim1 23.908890885259005s infinite ease-in-out;
+    animation: anim1 20.257063972121298s infinite ease-in-out;
     animation-delay: -0.2s;
 }
 
 @keyframes anim1 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(8.8519541235068vw, -100vh) scale(0.9564104576786954);
+        transform: rotate(440deg) translate(-28.657930718232237vw, -100vh) scale(0.5566347989053284);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(240deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(2) {
-    border-top: 100px solid rgb(55.91463215056568 55.91463215056568 55.91463215056568);
+    border-top: 100px solid rgb(152.36693967604808 152.36693967604808 152.36693967604808);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim2 20.738665673724498s infinite ease-in-out;
+    animation: anim2 22.765369298897507s infinite ease-in-out;
     animation-delay: -0.4s;
 }
 
 @keyframes anim2 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(27.491493016239488vw, 100vh) scale(0.8196753336843103);
+        transform: rotate(458deg) translate(-150vw, -38.461158112973806vh) scale(0.5297658394144306);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(258deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(3) {
-    border-top: 100px solid rgb(98.6101296087374 98.6101296087374 98.6101296087374);
+    border-top: 100px solid rgb(139.81289810308164 139.81289810308164 139.81289810308164);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim3 23.221203567151846s infinite ease-in-out;
+    animation: anim3 22.250682277784477s infinite ease-in-out;
     animation-delay: -0.6000000000000001s;
 }
 
 @keyframes anim3 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(53.573118066678944vw, -100vh) scale(0.5796238298959082);
+        transform: rotate(201deg) translate(41.20627435091379vw, -100vh) scale(0.9922043317572575);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(1deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(4) {
-    border-top: 100px solid rgb(95.7831677711664 95.7831677711664 95.7831677711664);
+    border-top: 100px solid rgb(61.934068095615935 61.934068095615935 61.934068095615935);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim4 22.8298542637835s infinite ease-in-out;
+    animation: anim4 21.633807790262882s infinite ease-in-out;
     animation-delay: -0.8s;
 }
 
 @keyframes anim4 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, 1.2066035295291044vh) scale(0.5969872332375827);
+        transform: rotate(271deg) translate(25.342029508136562vw, -100vh) scale(0.44901792506124116);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(71deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(5) {
-    border-top: 100px solid rgb(198.47923586144 198.47923586144 198.47923586144);
+    border-top: 100px solid rgb(166.95767904596556 166.95767904596556 166.95767904596556);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim5 23.115330631199345s infinite ease-in-out;
+    animation: anim5 24.81659167490205s infinite ease-in-out;
     animation-delay: -1s;
 }
 
 @keyframes anim5 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(9.461269436575222vw, 100vh) scale(0.5059009216073357);
+        transform: rotate(353deg) translate(-51.727070757464126vw, -100vh) scale(0.28201236304398003);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(153deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(6) {
-    border-top: 100px solid rgb(190.81043513559638 190.81043513559638 190.81043513559638);
+    border-top: 100px solid rgb(191.65338386820625 191.65338386820625 191.65338386820625);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim6 24.156077469244398s infinite ease-in-out;
+    animation: anim6 23.090454440890547s infinite ease-in-out;
     animation-delay: -1.2s;
 }
 
 @keyframes anim6 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, -37.16945464925963vh) scale(0.19058041879445659);
+        transform: rotate(514deg) translate(-150vw, 23.02625926445026vh) scale(0.21061302187451084);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(314deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(7) {
-    border-top: 100px solid rgb(75.8771908627838 75.8771908627838 75.8771908627838);
+    border-top: 100px solid rgb(99.46935530927732 99.46935530927732 99.46935530927732);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim7 24.848839343722105s infinite ease-in-out;
+    animation: anim7 20.604668700980845s infinite ease-in-out;
     animation-delay: -1.4s;
 }
 
 @keyframes anim7 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-34.8872087140252vw, 100vh) scale(0.2970158017783682);
+        transform: rotate(387deg) translate(40.06020463207372vw, -100vh) scale(0.4731645546030385);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(187deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(8) {
-    border-top: 100px solid rgb(96.82450359385265 96.82450359385265 96.82450359385265);
+    border-top: 100px solid rgb(160.42220024312826 160.42220024312826 160.42220024312826);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim8 21.94007966772128s infinite ease-in-out;
+    animation: anim8 20.03112986459387s infinite ease-in-out;
     animation-delay: -1.5999999999999999s;
 }
 
 @keyframes anim8 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(25.809097875785582vw, -100vh) scale(0.42376383707309295);
+        transform: rotate(502deg) translate(-18.994660398646467vw, -100vh) scale(0.45097876169439055);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(302deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(9) {
-    border-top: 100px solid rgb(116.68569615758652 116.68569615758652 116.68569615758652);
+    border-top: 100px solid rgb(86.35515596088277 86.35515596088277 86.35515596088277);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim9 22.725216415445495s infinite ease-in-out;
+    animation: anim9 21.506285927839542s infinite ease-in-out;
     animation-delay: -1.7999999999999998s;
 }
 
 @keyframes anim9 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(11.012566435920093vw, 100vh) scale(0.48768690710874363);
+        transform: rotate(426deg) translate(-150vw, 60.60303934964372vh) scale(0.8175098953711549);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(226deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(10) {
-    border-top: 100px solid rgb(60.556567090413544 60.556567090413544 60.556567090413544);
+    border-top: 100px solid rgb(51.283146172568706 51.283146172568706 51.283146172568706);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim10 22.739623426231688s infinite ease-in-out;
+    animation: anim10 23.954275470890217s infinite ease-in-out;
     animation-delay: -1.9999999999999998s;
 }
 
 @keyframes anim10 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-7.583746514381438vw, 100vh) scale(0.6467296595072892);
+        transform: rotate(478deg) translate(-150vw, 57.0547828588133vh) scale(0.5378915601781026);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(278deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(11) {
-    border-top: 100px solid rgb(176.2436301295709 176.2436301295709 176.2436301295709);
+    border-top: 100px solid rgb(128.524898414319 128.524898414319 128.524898414319);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim11 22.753952896748974s infinite ease-in-out;
+    animation: anim11 22.827214810742312s infinite ease-in-out;
     animation-delay: -2.1999999999999997s;
 }
 
 @keyframes anim11 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(28.177049490466658vw, -100vh) scale(0.5364682039778117);
+        transform: rotate(225deg) translate(-150vw, -57.15223977302412vh) scale(0.8434286082584829);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(25deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(12) {
-    border-top: 100px solid rgb(155.52680942723634 155.52680942723634 155.52680942723634);
+    border-top: 100px solid rgb(61.438026377838966 61.438026377838966 61.438026377838966);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim12 22.928531315720544s infinite ease-in-out;
+    animation: anim12 22.14246848887176s infinite ease-in-out;
     animation-delay: -2.4s;
 }
 
 @keyframes anim12 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(30.423660974411746vw, 100vh) scale(0.20177950229065977);
+        transform: rotate(422deg) translate(68.0037863313897vw, -100vh) scale(0.29981359777391803);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(222deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(13) {
-    border-top: 100px solid rgb(61.48204021777745 61.48204021777745 61.48204021777745);
+    border-top: 100px solid rgb(68.7425897854373 68.7425897854373 68.7425897854373);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim13 22.176633876405198s infinite ease-in-out;
+    animation: anim13 22.33839029628787s infinite ease-in-out;
     animation-delay: -2.6s;
 }
 
 @keyframes anim13 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-49.99950107350287vw, -100vh) scale(0.588993222685688);
+        transform: rotate(232deg) translate(-150vw, -35.511097945488295vh) scale(0.6638455070451791);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(32deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(14) {
-    border-top: 100px solid rgb(186.22867677038286 186.22867677038286 186.22867677038286);
+    border-top: 100px solid rgb(81.47741502137447 81.47741502137447 81.47741502137447);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim14 20.782836248515213s infinite ease-in-out;
+    animation: anim14 22.93107444770714s infinite ease-in-out;
     animation-delay: -2.8000000000000003s;
 }
 
 @keyframes anim14 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-38.95241795266932vw, -100vh) scale(0.4106603354193086);
+        transform: rotate(320deg) translate(-150vw, -53.094280822228924vh) scale(0.4427014271325854);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(120deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(15) {
-    border-top: 100px solid rgb(191.28777357124915 191.28777357124915 191.28777357124915);
+    border-top: 100px solid rgb(84.16508165941843 84.16508165941843 84.16508165941843);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim15 21.98602019615659s infinite ease-in-out;
+    animation: anim15 22.645955435858333s infinite ease-in-out;
     animation-delay: -3.0000000000000004s;
 }
 
 @keyframes anim15 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-27.0476043810365vw, 100vh) scale(0.8314552002933433);
+        transform: rotate(416deg) translate(-57.97773931514557vw, -100vh) scale(0.11709097038809074);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(216deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(16) {
-    border-top: 100px solid rgb(107.60544979526831 107.60544979526831 107.60544979526831);
+    border-top: 100px solid rgb(142.04999585046482 142.04999585046482 142.04999585046482);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim16 20.266984643718217s infinite ease-in-out;
+    animation: anim16 22.5250475802124s infinite ease-in-out;
     animation-delay: -3.2000000000000006s;
 }
 
 @keyframes anim16 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(3.38699055897537vw, 100vh) scale(0.4825296657473064);
+        transform: rotate(412deg) translate(-150vw, -67.59725124068797vh) scale(0.4125301000432884);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(212deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(17) {
-    border-top: 100px solid rgb(73.41788750448113 73.41788750448113 73.41788750448113);
+    border-top: 100px solid rgb(98.87287055309301 98.87287055309301 98.87287055309301);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim17 20.691727685173205s infinite ease-in-out;
+    animation: anim17 22.28447117492768s infinite ease-in-out;
     animation-delay: -3.400000000000001s;
 }
 
 @keyframes anim17 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-31.458863401405324vw, -100vh) scale(0.21114518495037074);
+        transform: rotate(373deg) translate(-150vw, -51.40628572370839vh) scale(0.970002226254637);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(173deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(18) {
-    border-top: 100px solid rgb(191.01876478594536 191.01876478594536 191.01876478594536);
+    border-top: 100px solid rgb(83.06619579447911 83.06619579447911 83.06619579447911);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim18 24.33515758888116s infinite ease-in-out;
+    animation: anim18 21.034357787548284s infinite ease-in-out;
     animation-delay: -3.600000000000001s;
 }
 
 @keyframes anim18 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(11.852714133756336vw, 100vh) scale(0.8272962387643538);
+        transform: rotate(431deg) translate(-150vw, -8.261873426868583vh) scale(0.22278775161507583);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(231deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(19) {
-    border-top: 100px solid rgb(99.09046053470391 99.09046053470391 99.09046053470391);
+    border-top: 100px solid rgb(146.6568010049566 146.6568010049566 146.6568010049566);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim19 22.43159738220988s infinite ease-in-out;
+    animation: anim19 24.484959004329568s infinite ease-in-out;
     animation-delay: -3.800000000000001s;
 }
 
 @keyframes anim19 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, -65.84940557224624vh) scale(0.13061641872858254);
+        transform: rotate(433deg) translate(34.52453930273688vw, -100vh) scale(0.7829096539925734);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(233deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(20) {
-    border-top: 100px solid rgb(102.6826574404742 102.6826574404742 102.6826574404742);
+    border-top: 100px solid rgb(192.90697173988963 192.90697173988963 192.90697173988963);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim20 24.901399663327393s infinite ease-in-out;
+    animation: anim20 22.734766783329874s infinite ease-in-out;
     animation-delay: -4.000000000000001s;
 }
 
 @keyframes anim20 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(50.53770329808172vw, -100vh) scale(0.28026040291675663);
+        transform: rotate(485deg) translate(-150vw, 13.787175001504323vh) scale(0.41146360039959373);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(285deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(21) {
-    border-top: 100px solid rgb(130.3589644017416 130.3589644017416 130.3589644017416);
+    border-top: 100px solid rgb(139.5947008127262 139.5947008127262 139.5947008127262);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim21 22.788439879178746s infinite ease-in-out;
+    animation: anim21 23.019447155175964s infinite ease-in-out;
     animation-delay: -4.200000000000001s;
 }
 
 @keyframes anim21 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, 28.513635852480846vh) scale(0.923261206381984);
+        transform: rotate(530deg) translate(-150vw, 32.20454036012789vh) scale(0.6278117291510389);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(330deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(22) {
-    border-top: 100px solid rgb(144.02237889479818 144.02237889479818 144.02237889479818);
+    border-top: 100px solid rgb(109.633019219707 109.633019219707 109.633019219707);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim22 20.400564466284905s infinite ease-in-out;
+    animation: anim22 22.74577395480101s infinite ease-in-out;
     animation-delay: -4.400000000000001s;
 }
 
 @keyframes anim22 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, -17.777407930434293vh) scale(0.9006744072159617);
+        transform: rotate(546deg) translate(-150vw, 13.32804581040753vh) scale(0.38483183687879996);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(346deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(23) {
-    border-top: 100px solid rgb(96.61512061082354 96.61512061082354 96.61512061082354);
+    border-top: 100px solid rgb(80.60356065910273 80.60356065910273 80.60356065910273);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim23 24.759795837257208s infinite ease-in-out;
+    animation: anim23 20.048920827668866s infinite ease-in-out;
     animation-delay: -4.600000000000001s;
 }
 
 @keyframes anim23 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, 28.221323587527266vh) scale(0.13344492185869286);
+        transform: rotate(349deg) translate(-150vw, 28.626847600874868vh) scale(0.27457172878873837);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(149deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(24) {
-    border-top: 100px solid rgb(58.264588702625176 58.264588702625176 58.264588702625176);
+    border-top: 100px solid rgb(172.71247781404608 172.71247781404608 172.71247781404608);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim24 20.994364694351503s infinite ease-in-out;
+    animation: anim24 21.235068603063752s infinite ease-in-out;
     animation-delay: -4.800000000000002s;
 }
 
 @keyframes anim24 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(56.009769007329524vw, -100vh) scale(0.9604950789747502);
+        transform: rotate(550deg) translate(43.15095920705937vw, -100vh) scale(0.7328547928705704);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(350deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(25) {
-    border-top: 100px solid rgb(125.07728873958574 125.07728873958574 125.07728873958574);
+    border-top: 100px solid rgb(148.76731886305683 148.76731886305683 148.76731886305683);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim25 21.681815882848113s infinite ease-in-out;
+    animation: anim25 23.217699216701003s infinite ease-in-out;
     animation-delay: -5.000000000000002s;
 }
 
 @keyframes anim25 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(38.02427949577566vw, 100vh) scale(0.34923757519589743);
+        transform: rotate(337deg) translate(-48.6903706865222vw, -100vh) scale(0.9723268552163911);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(137deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(26) {
-    border-top: 100px solid rgb(182.20436009156376 182.20436009156376 182.20436009156376);
+    border-top: 100px solid rgb(163.4943022376865 163.4943022376865 163.4943022376865);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim26 22.06918865043764s infinite ease-in-out;
+    animation: anim26 22.255792478849255s infinite ease-in-out;
     animation-delay: -5.200000000000002s;
 }
 
 @keyframes anim26 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(18.752553901521736vw, -100vh) scale(0.7396625044821842);
+        transform: rotate(368deg) translate(-150vw, -33.33367262605883vh) scale(0.95826893249968);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(168deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(27) {
-    border-top: 100px solid rgb(99.82130422041466 99.82130422041466 99.82130422041466);
+    border-top: 100px solid rgb(184.49730067911497 184.49730067911497 184.49730067911497);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim27 23.931969812736s infinite ease-in-out;
+    animation: anim27 20.527170772170738s infinite ease-in-out;
     animation-delay: -5.400000000000002s;
 }
 
 @keyframes anim27 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-2.2525493412234994vw, -100vh) scale(0.2046462885988827);
+        transform: rotate(251deg) translate(-54.63347875569132vw, -100vh) scale(0.818754119056576);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(51deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(28) {
-    border-top: 100px solid rgb(101.56864089442458 101.56864089442458 101.56864089442458);
+    border-top: 100px solid rgb(171.90849360080574 171.90849360080574 171.90849360080574);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim28 23.84877332990952s infinite ease-in-out;
+    animation: anim28 23.138242320716596s infinite ease-in-out;
     animation-delay: -5.600000000000002s;
 }
 
 @keyframes anim28 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(3.2272364240404414vw, -100vh) scale(0.46126594402131693);
+        transform: rotate(318deg) translate(69.21103752749991vw, -100vh) scale(0.7304462591194304);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(118deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(29) {
-    border-top: 100px solid rgb(119.62553997796456 119.62553997796456 119.62553997796456);
+    border-top: 100px solid rgb(158.62166804380206 158.62166804380206 158.62166804380206);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim29 22.88103590644029s infinite ease-in-out;
+    animation: anim29 20.697249271614993s infinite ease-in-out;
     animation-delay: -5.8000000000000025s;
 }
 
 @keyframes anim29 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, 51.734947354257244vh) scale(0.4611061267609651);
+        transform: rotate(436deg) translate(-150vw, 0.47140037806099144vh) scale(0.5875966929999925);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(236deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(30) {
-    border-top: 100px solid rgb(76.28275151643214 76.28275151643214 76.28275151643214);
+    border-top: 100px solid rgb(104.8406132174978 104.8406132174978 104.8406132174978);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim30 21.72100578359909s infinite ease-in-out;
+    animation: anim30 24.39288806490083s infinite ease-in-out;
     animation-delay: -6.000000000000003s;
 }
 
 @keyframes anim30 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, -14.774072555362999vh) scale(0.7162822946294335);
+        transform: rotate(206deg) translate(-41.400994350199916vw, -100vh) scale(0.9085685963737995);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(6deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(31) {
-    border-top: 100px solid rgb(107.35596273912029 107.35596273912029 107.35596273912029);
+    border-top: 100px solid rgb(116.88996837459486 116.88996837459486 116.88996837459486);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim31 21.793527053680673s infinite ease-in-out;
+    animation: anim31 24.541986674014503s infinite ease-in-out;
     animation-delay: -6.200000000000003s;
 }
 
 @keyframes anim31 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, -65.52833611797126vh) scale(0.35301877734596676);
+        transform: rotate(261deg) translate(-66.02531902929532vw, -100vh) scale(0.8089480527669352);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(61deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(32) {
-    border-top: 100px solid rgb(155.81055502139918 155.81055502139918 155.81055502139918);
+    border-top: 100px solid rgb(186.8240405328627 186.8240405328627 186.8240405328627);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim32 24.135640960304745s infinite ease-in-out;
+    animation: anim32 20.48105285338258s infinite ease-in-out;
     animation-delay: -6.400000000000003s;
 }
 
 @keyframes anim32 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(56.34708913455226vw, 100vh) scale(0.2123642798637301);
+        transform: rotate(406deg) translate(41.03794672271644vw, -100vh) scale(0.15934994199559346);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(206deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(33) {
-    border-top: 100px solid rgb(60.42371262434642 60.42371262434642 60.42371262434642);
+    border-top: 100px solid rgb(67.23772528356011 67.23772528356011 67.23772528356011);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim33 21.498631524391218s infinite ease-in-out;
+    animation: anim33 21.027443980639866s infinite ease-in-out;
     animation-delay: -6.600000000000003s;
 }
 
 @keyframes anim33 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, -7.5674844470159215vh) scale(0.3392093647513675);
+        transform: rotate(469deg) translate(-150vw, -64.06428628012398vh) scale(0.8164208193923899);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(269deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(34) {
-    border-top: 100px solid rgb(107.7336911238838 107.7336911238838 107.7336911238838);
+    border-top: 100px solid rgb(125.07954711954777 125.07954711954777 125.07954711954777);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim34 24.528679096883984s infinite ease-in-out;
+    animation: anim34 22.81166029304725s infinite ease-in-out;
     animation-delay: -6.800000000000003s;
 }
 
 @keyframes anim34 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, 3.6990871345516325vh) scale(0.875538283896092);
+        transform: rotate(539deg) translate(32.653749865874005vw, -100vh) scale(0.10303728832678816);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(339deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(35) {
-    border-top: 100px solid rgb(189.6023773333013 189.6023773333013 189.6023773333013);
+    border-top: 100px solid rgb(116.69999301598634 116.69999301598634 116.69999301598634);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim35 23.235536649217128s infinite ease-in-out;
+    animation: anim35 23.525562395790246s infinite ease-in-out;
     animation-delay: -7.0000000000000036s;
 }
 
 @keyframes anim35 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, -38.1753156669584vh) scale(0.2364466216858816);
+        transform: rotate(241deg) translate(-15.89046299932697vw, -100vh) scale(0.9738165611210453);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(41deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(36) {
-    border-top: 100px solid rgb(186.5161185755028 186.5161185755028 186.5161185755028);
+    border-top: 100px solid rgb(114.17726234372898 114.17726234372898 114.17726234372898);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim36 23.135496793139758s infinite ease-in-out;
+    animation: anim36 21.117426879306166s infinite ease-in-out;
     animation-delay: -7.200000000000004s;
 }
 
 @keyframes anim36 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, 14.434920156442473vh) scale(0.5807554923781357);
+        transform: rotate(372deg) translate(-150vw, 32.831208828193894vh) scale(0.7293550098284124);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(172deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(37) {
-    border-top: 100px solid rgb(105.01898760483601 105.01898760483601 105.01898760483601);
+    border-top: 100px solid rgb(174.60757806892144 174.60757806892144 174.60757806892144);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim37 20.805920085629843s infinite ease-in-out;
+    animation: anim37 21.19351818857437s infinite ease-in-out;
     animation-delay: -7.400000000000004s;
 }
 
 @keyframes anim37 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, -63.294858393514794vh) scale(0.7050323337846803);
+        transform: rotate(450deg) translate(-150vw, 27.44116292327979vh) scale(0.7240750050745477);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(250deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(38) {
-    border-top: 100px solid rgb(140.2275758878164 140.2275758878164 140.2275758878164);
+    border-top: 100px solid rgb(135.52672940275394 135.52672940275394 135.52672940275394);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim38 24.559602798053785s infinite ease-in-out;
+    animation: anim38 23.371545910950804s infinite ease-in-out;
     animation-delay: -7.600000000000004s;
 }
 
 @keyframes anim38 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-47.03573079308984vw, 100vh) scale(0.8682222982256765);
+        transform: rotate(426deg) translate(-150vw, 49.55618981550916vh) scale(0.15780251093901668);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(226deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(39) {
-    border-top: 100px solid rgb(97.88239128763068 97.88239128763068 97.88239128763068);
+    border-top: 100px solid rgb(71.44920689851696 71.44920689851696 71.44920689851696);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim39 21.208813748371526s infinite ease-in-out;
+    animation: anim39 24.34709312778763s infinite ease-in-out;
     animation-delay: -7.800000000000004s;
 }
 
 @keyframes anim39 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, 3.3118027341556626vh) scale(0.3969185118563834);
+        transform: rotate(527deg) translate(69.4299857565901vw, -100vh) scale(0.24680111380633407);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(327deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(40) {
-    border-top: 100px solid rgb(135.1792590378642 135.1792590378642 135.1792590378642);
+    border-top: 100px solid rgb(92.10407020203225 92.10407020203225 92.10407020203225);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim40 22.4329317701378s infinite ease-in-out;
+    animation: anim40 21.734517064558688s infinite ease-in-out;
     animation-delay: -8.000000000000004s;
 }
 
 @keyframes anim40 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(61.618406078776616vw, 100vh) scale(0.6717494691733037);
+        transform: rotate(525deg) translate(-67.4088851579481vw, -100vh) scale(0.897552240212895);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(325deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(41) {
-    border-top: 100px solid rgb(55.88088577941813 55.88088577941813 55.88088577941813);
+    border-top: 100px solid rgb(120.91241926867302 120.91241926867302 120.91241926867302);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim41 23.049979297199535s infinite ease-in-out;
+    animation: anim41 23.274664899341698s infinite ease-in-out;
     animation-delay: -8.200000000000003s;
 }
 
 @keyframes anim41 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(45.11463270413316vw, 100vh) scale(0.4767290809045551);
+        transform: rotate(234deg) translate(-150vw, -29.547291253619512vh) scale(0.9107364356101053);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(34deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(42) {
-    border-top: 100px solid rgb(185.4085951576984 185.4085951576984 185.4085951576984);
+    border-top: 100px solid rgb(81.02185785657116 81.02185785657116 81.02185785657116);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim42 20.826054409556924s infinite ease-in-out;
+    animation: anim42 21.927739124196847s infinite ease-in-out;
     animation-delay: -8.400000000000002s;
 }
 
 @keyframes anim42 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, 47.753224559627824vh) scale(0.7134054070154249);
+        transform: rotate(420deg) translate(-150vw, 38.62181549598833vh) scale(0.287880286625492);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(220deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(43) {
-    border-top: 100px solid rgb(177.03059459570522 177.03059459570522 177.03059459570522);
+    border-top: 100px solid rgb(120.7252936455489 120.7252936455489 120.7252936455489);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim43 24.70103785455335s infinite ease-in-out;
+    animation: anim43 24.487214352712837s infinite ease-in-out;
     animation-delay: -8.600000000000001s;
 }
 
 @keyframes anim43 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(47.46387063749506vw, 100vh) scale(0.9093942548559755);
+        transform: rotate(464deg) translate(-28.819210404250853vw, -100vh) scale(0.6798245023813723);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(264deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(44) {
-    border-top: 100px solid rgb(192.58722528957517 192.58722528957517 192.58722528957517);
+    border-top: 100px solid rgb(163.39501186946876 163.39501186946876 163.39501186946876);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim44 22.378725191447582s infinite ease-in-out;
+    animation: anim44 23.297979745734843s infinite ease-in-out;
     animation-delay: -8.8s;
 }
 
 @keyframes anim44 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(7.094527929213314vw, 100vh) scale(0.4073294260010185);
+        transform: rotate(370deg) translate(-13.232047128966236vw, -100vh) scale(0.17034128567438556);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(170deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(45) {
-    border-top: 100px solid rgb(199.96735232206163 199.96735232206163 199.96735232206163);
+    border-top: 100px solid rgb(186.65072312338245 186.65072312338245 186.65072312338245);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim45 20.134646422993487s infinite ease-in-out;
+    animation: anim45 24.58978378712476s infinite ease-in-out;
     animation-delay: -9s;
 }
 
 @keyframes anim45 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(65.919238395133vw, -100vh) scale(0.803983777946113);
+        transform: rotate(449deg) translate(-26.45558525573862vw, -100vh) scale(0.7864888399778224);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(249deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(46) {
-    border-top: 100px solid rgb(130.34859836884 130.34859836884 130.34859836884);
+    border-top: 100px solid rgb(111.79144590508733 111.79144590508733 111.79144590508733);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim46 21.505041802212272s infinite ease-in-out;
+    animation: anim46 21.35395089381096s infinite ease-in-out;
     animation-delay: -9.2s;
 }
 
 @keyframes anim46 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-24.025836549645987vw, 100vh) scale(0.3071179725568556);
+        transform: rotate(465deg) translate(48.02938144456125vw, -100vh) scale(0.3054376801600762);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(265deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(47) {
-    border-top: 100px solid rgb(148.84543105986273 148.84543105986273 148.84543105986273);
+    border-top: 100px solid rgb(181.45253774720692 181.45253774720692 181.45253774720692);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim47 23.148542347876724s infinite ease-in-out;
+    animation: anim47 24.225594588235552s infinite ease-in-out;
     animation-delay: -9.399999999999999s;
 }
 
 @keyframes anim47 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(43.11546342586796vw, 100vh) scale(0.9386135955211593);
+        transform: rotate(220deg) translate(-150vw, 35.85071548455352vh) scale(0.3586860927031982);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(20deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(48) {
-    border-top: 100px solid rgb(125.6274075604658 125.6274075604658 125.6274075604658);
+    border-top: 100px solid rgb(141.46675045848207 141.46675045848207 141.46675045848207);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim48 21.114182999564683s infinite ease-in-out;
+    animation: anim48 23.000755871057237s infinite ease-in-out;
     animation-delay: -9.599999999999998s;
 }
 
 @keyframes anim48 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, -15.455093852469787vh) scale(0.749671818516148);
+        transform: rotate(347deg) translate(33.67542502587693vw, -100vh) scale(0.8479794788480212);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(147deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(49) {
-    border-top: 100px solid rgb(96.43594615336306 96.43594615336306 96.43594615336306);
+    border-top: 100px solid rgb(68.40389844053512 68.40389844053512 68.40389844053512);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim49 22.638810458671948s infinite ease-in-out;
+    animation: anim49 20.51089933431849s infinite ease-in-out;
     animation-delay: -9.799999999999997s;
 }
 
 @keyframes anim49 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, 14.073354527299017vh) scale(0.3835615303768368);
+        transform: rotate(437deg) translate(12.516140338166096vw, -100vh) scale(0.4021850425859217);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(237deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(50) {
-    border-top: 100px solid rgb(170.4449159523955 170.4449159523955 170.4449159523955);
+    border-top: 100px solid rgb(112.42214733106601 112.42214733106601 112.42214733106601);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim50 24.977640501361165s infinite ease-in-out;
+    animation: anim50 22.169314145556225s infinite ease-in-out;
     animation-delay: -9.999999999999996s;
 }
 
 @keyframes anim50 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, -64.69598776827287vh) scale(0.13907741766158632);
+        transform: rotate(391deg) translate(-150vw, 26.012199516219027vh) scale(0.9524969817092135);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(191deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(51) {
-    border-top: 100px solid rgb(196.1277249812382 196.1277249812382 196.1277249812382);
+    border-top: 100px solid rgb(189.43347856788432 189.43347856788432 189.43347856788432);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim51 23.68911390419482s infinite ease-in-out;
+    animation: anim51 23.54346715832324s infinite ease-in-out;
     animation-delay: -10.199999999999996s;
 }
 
 @keyframes anim51 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(66.40670122812205vw, -100vh) scale(0.3863787956078253);
+        transform: rotate(218deg) translate(-150vw, 12.855093683966473vh) scale(0.32891057450809275);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(18deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(52) {
-    border-top: 100px solid rgb(193.69634346226098 193.69634346226098 193.69634346226098);
+    border-top: 100px solid rgb(204.47888589668705 204.47888589668705 204.47888589668705);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim52 20.177087082601282s infinite ease-in-out;
+    animation: anim52 21.419181772509933s infinite ease-in-out;
     animation-delay: -10.399999999999995s;
 }
 
 @keyframes anim52 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, 25.82129858875085vh) scale(0.5111465214381515);
+        transform: rotate(244deg) translate(-150vw, -56.393058150624285vh) scale(0.7549024283026515);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(44deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(53) {
-    border-top: 100px solid rgb(164.1906848127394 164.1906848127394 164.1906848127394);
+    border-top: 100px solid rgb(59.05868224516314 59.05868224516314 59.05868224516314);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim53 21.146752685025405s infinite ease-in-out;
+    animation: anim53 22.174456436129873s infinite ease-in-out;
     animation-delay: -10.599999999999994s;
 }
 
 @keyframes anim53 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(34.83082765185472vw, -100vh) scale(0.3070766121385933);
+        transform: rotate(360deg) translate(56.89236840428926vw, -100vh) scale(0.102264829922719);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(160deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(54) {
-    border-top: 100px solid rgb(129.89196952610405 129.89196952610405 129.89196952610405);
+    border-top: 100px solid rgb(66.72758974588464 66.72758974588464 66.72758974588464);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim54 20.080894080838s infinite ease-in-out;
+    animation: anim54 20.090379064149786s infinite ease-in-out;
     animation-delay: -10.799999999999994s;
 }
 
 @keyframes anim54 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, -53.60900291796794vh) scale(0.6869615542376727);
+        transform: rotate(554deg) translate(-55.29080196502615vw, -100vh) scale(0.9657155323055704);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(354deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(55) {
-    border-top: 100px solid rgb(81.35397170238717 81.35397170238717 81.35397170238717);
+    border-top: 100px solid rgb(165.4427072542191 165.4427072542191 165.4427072542191);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim55 23.69202014356521s infinite ease-in-out;
+    animation: anim55 20.03612973709463s infinite ease-in-out;
     animation-delay: -10.999999999999993s;
 }
 
 @keyframes anim55 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-59.487807118432016vw, 100vh) scale(0.43562655871724276);
+        transform: rotate(355deg) translate(-150vw, 10.171006223370114vh) scale(0.27111937647356144);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(155deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(56) {
-    border-top: 100px solid rgb(78.70155801524729 78.70155801524729 78.70155801524729);
+    border-top: 100px solid rgb(67.10941549866388 67.10941549866388 67.10941549866388);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim56 23.942708003322995s infinite ease-in-out;
+    animation: anim56 21.64668360127843s infinite ease-in-out;
     animation-delay: -11.199999999999992s;
 }
 
 @keyframes anim56 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, -60.080216083962114vh) scale(0.7567621910302839);
+        transform: rotate(288deg) translate(-150vw, -23.494931022281065vh) scale(0.6771375974650796);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(88deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(57) {
-    border-top: 100px solid rgb(189.44616382556347 189.44616382556347 189.44616382556347);
+    border-top: 100px solid rgb(101.81856193502605 101.81856193502605 101.81856193502605);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim57 22.849441910915175s infinite ease-in-out;
+    animation: anim57 20.538610779527932s infinite ease-in-out;
     animation-delay: -11.399999999999991s;
 }
 
 @keyframes anim57 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, 34.285430627312195vh) scale(0.16582549258453633);
+        transform: rotate(323deg) translate(-63.663265730146705vw, -100vh) scale(0.8886010839184021);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(123deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(58) {
-    border-top: 100px solid rgb(67.50274797658702 67.50274797658702 67.50274797658702);
+    border-top: 100px solid rgb(87.62652529559533 87.62652529559533 87.62652529559533);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim58 22.51788443313248s infinite ease-in-out;
+    animation: anim58 23.5700180931937s infinite ease-in-out;
     animation-delay: -11.59999999999999s;
 }
 
 @keyframes anim58 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(23.63754000204372vw, -100vh) scale(0.2770137604538049);
+        transform: rotate(423deg) translate(-60.982145670341495vw, -100vh) scale(0.8350714613621352);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(223deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(59) {
-    border-top: 100px solid rgb(84.71108194689087 84.71108194689087 84.71108194689087);
+    border-top: 100px solid rgb(63.992877411522414 63.992877411522414 63.992877411522414);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim59 22.191738304556672s infinite ease-in-out;
+    animation: anim59 20.496299986649134s infinite ease-in-out;
     animation-delay: -11.79999999999999s;
 }
 
 @keyframes anim59 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, -42.43707172137108vh) scale(0.9565388892296919);
+        transform: rotate(501deg) translate(-150vw, -46.392756351168856vh) scale(0.12605795294300795);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(301deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(60) {
-    border-top: 100px solid rgb(196.92728859964976 196.92728859964976 196.92728859964976);
+    border-top: 100px solid rgb(92.3147331490778 92.3147331490778 92.3147331490778);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim60 23.12830134231008s infinite ease-in-out;
+    animation: anim60 22.415514410292563s infinite ease-in-out;
     animation-delay: -11.99999999999999s;
 }
 
 @keyframes anim60 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, 10.067449898454058vh) scale(0.585077682165116);
+        transform: rotate(255deg) translate(12.29943001823149vw, -100vh) scale(0.4316358198715077);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(55deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(61) {
-    border-top: 100px solid rgb(186.18449292718248 186.18449292718248 186.18449292718248);
+    border-top: 100px solid rgb(57.92361249136548 57.92361249136548 57.92361249136548);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim61 24.189806540356088s infinite ease-in-out;
+    animation: anim61 20.07473237273199s infinite ease-in-out;
     animation-delay: -12.199999999999989s;
 }
 
 @keyframes anim61 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, -61.17137090536903vh) scale(0.24102556781134477);
+        transform: rotate(425deg) translate(68.39748914468899vw, -100vh) scale(0.8995481950660646);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(225deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(62) {
-    border-top: 100px solid rgb(154.75811012088582 154.75811012088582 154.75811012088582);
+    border-top: 100px solid rgb(179.76411239927756 179.76411239927756 179.76411239927756);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim62 22.036725526208368s infinite ease-in-out;
+    animation: anim62 21.87919176289942s infinite ease-in-out;
     animation-delay: -12.399999999999988s;
 }
 
 @keyframes anim62 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, -67.5777595086721vh) scale(0.11652476692310756);
+        transform: rotate(480deg) translate(-150vw, -44.648978021785425vh) scale(0.8386281652617839);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(280deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(63) {
-    border-top: 100px solid rgb(106.94448004495143 106.94448004495143 106.94448004495143);
+    border-top: 100px solid rgb(114.13483918458209 114.13483918458209 114.13483918458209);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim63 23.678790616955865s infinite ease-in-out;
+    animation: anim63 22.078059205423465s infinite ease-in-out;
     animation-delay: -12.599999999999987s;
 }
 
 @keyframes anim63 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, 56.6448912568617vh) scale(0.21627744045333136);
+        transform: rotate(202deg) translate(-150vw, -53.58147393712309vh) scale(0.6792736088519229);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(2deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(64) {
-    border-top: 100px solid rgb(98.99884098894296 98.99884098894296 98.99884098894296);
+    border-top: 100px solid rgb(123.18784732945564 123.18784732945564 123.18784732945564);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim64 21.518465566536875s infinite ease-in-out;
+    animation: anim64 20.953525989570455s infinite ease-in-out;
     animation-delay: -12.799999999999986s;
 }
 
 @keyframes anim64 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(27.84985045155163vw, 100vh) scale(0.9031856039141631);
+        transform: rotate(469deg) translate(-150vw, 9.933756188682636vh) scale(0.5671907000813864);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(269deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(65) {
-    border-top: 100px solid rgb(146.68306155804842 146.68306155804842 146.68306155804842);
+    border-top: 100px solid rgb(128.66623730099823 128.66623730099823 128.66623730099823);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim65 21.793827396798847s infinite ease-in-out;
+    animation: anim65 20.80983475393983s infinite ease-in-out;
     animation-delay: -12.999999999999986s;
 }
 
 @keyframes anim65 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(34.69021449041966vw, 100vh) scale(0.2013347755567792);
+        transform: rotate(532deg) translate(-150vw, 44.4186733096827vh) scale(0.7542766928988326);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(332deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(66) {
-    border-top: 100px solid rgb(130.58979302649644 130.58979302649644 130.58979302649644);
+    border-top: 100px solid rgb(187.62450196787077 187.62450196787077 187.62450196787077);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim66 24.304917948087716s infinite ease-in-out;
+    animation: anim66 20.39030699255796s infinite ease-in-out;
     animation-delay: -13.199999999999985s;
 }
 
 @keyframes anim66 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-67.68314353602597vw, -100vh) scale(0.1411372886285568);
+        transform: rotate(227deg) translate(35.80004220730612vw, -100vh) scale(0.69890048971394);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(27deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(67) {
-    border-top: 100px solid rgb(193.9021581870258 193.9021581870258 193.9021581870258);
+    border-top: 100px solid rgb(197.83145464487453 197.83145464487453 197.83145464487453);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim67 21.009940158782616s infinite ease-in-out;
+    animation: anim67 24.131321581628114s infinite ease-in-out;
     animation-delay: -13.399999999999984s;
 }
 
 @keyframes anim67 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-30.29417041776233vw, -100vh) scale(0.15765742509438713);
+        transform: rotate(537deg) translate(-150vw, 66.36037361055327vh) scale(0.433576920124909);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(337deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(68) {
-    border-top: 100px solid rgb(73.20895830923806 73.20895830923806 73.20895830923806);
+    border-top: 100px solid rgb(105.68702134686237 105.68702134686237 105.68702134686237);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim68 21.83052221697043s infinite ease-in-out;
+    animation: anim68 24.113537907025012s infinite ease-in-out;
     animation-delay: -13.599999999999984s;
 }
 
 @keyframes anim68 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(69.4033831765845vw, -100vh) scale(0.13856079357645978);
+        transform: rotate(399deg) translate(-150vw, 67.55763943553302vh) scale(0.378437977953888);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(199deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(69) {
-    border-top: 100px solid rgb(199.57409287013888 199.57409287013888 199.57409287013888);
+    border-top: 100px solid rgb(168.24707171777283 168.24707171777283 168.24707171777283);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim69 24.865496401528418s infinite ease-in-out;
+    animation: anim69 22.715736521669946s infinite ease-in-out;
     animation-delay: -13.799999999999983s;
 }
 
 @keyframes anim69 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, 40.58149711330255vh) scale(0.4216762590756782);
+        transform: rotate(300deg) translate(-4.214003843699487vw, -100vh) scale(0.21870676983686516);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(100deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(70) {
-    border-top: 100px solid rgb(200.74681399574058 200.74681399574058 200.74681399574058);
+    border-top: 100px solid rgb(67.1198619544428 67.1198619544428 67.1198619544428);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim70 20.651096929772976s infinite ease-in-out;
+    animation: anim70 23.225024376067452s infinite ease-in-out;
     animation-delay: -13.999999999999982s;
 }
 
 @keyframes anim70 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(1.208974502156508vw, -100vh) scale(0.7842100764810722);
+        transform: rotate(512deg) translate(-24.043200986106065vw, -100vh) scale(0.9980353078333479);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(312deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(71) {
-    border-top: 100px solid rgb(169.49929754261422 169.49929754261422 169.49929754261422);
+    border-top: 100px solid rgb(93.8377113254792 93.8377113254792 93.8377113254792);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim71 23.24776001238897s infinite ease-in-out;
+    animation: anim71 22.033879202107556s infinite ease-in-out;
     animation-delay: -14.199999999999982s;
 }
 
 @keyframes anim71 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, -47.556556099281224vh) scale(0.608386133374598);
+        transform: rotate(449deg) translate(43.33698564164743vw, -100vh) scale(0.742151120385508);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(249deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(72) {
-    border-top: 100px solid rgb(176.44649616136525 176.44649616136525 176.44649616136525);
+    border-top: 100px solid rgb(105.4404221752431 105.4404221752431 105.4404221752431);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim72 21.003185090805438s infinite ease-in-out;
+    animation: anim72 20.380197662924587s infinite ease-in-out;
     animation-delay: -14.39999999999998s;
 }
 
 @keyframes anim72 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-41.88443993067453vw, 100vh) scale(0.3657962207000497);
+        transform: rotate(310deg) translate(-150vw, 14.481073686302409vh) scale(0.43000344922534883);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(110deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(73) {
-    border-top: 100px solid rgb(153.92864858880884 153.92864858880884 153.92864858880884);
+    border-top: 100px solid rgb(95.14783374267992 95.14783374267992 95.14783374267992);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim73 20.511219448407896s infinite ease-in-out;
+    animation: anim73 24.323590554649257s infinite ease-in-out;
     animation-delay: -14.59999999999998s;
 }
 
 @keyframes anim73 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-42.3859904592204vw, 100vh) scale(0.7798428886698404);
+        transform: rotate(292deg) translate(26.48914072280415vw, -100vh) scale(0.2631535838986345);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(92deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(74) {
-    border-top: 100px solid rgb(170.59765126534234 170.59765126534234 170.59765126534234);
+    border-top: 100px solid rgb(137.7172121161332 137.7172121161332 137.7172121161332);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim74 21.08020758546066s infinite ease-in-out;
+    animation: anim74 23.223963124873755s infinite ease-in-out;
     animation-delay: -14.79999999999998s;
 }
 
 @keyframes anim74 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(41.93728100030077vw, -100vh) scale(0.44760473668033784);
+        transform: rotate(550deg) translate(-150vw, -19.81482120665546vh) scale(0.48208592247402016);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(350deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(75) {
-    border-top: 100px solid rgb(111.2155770530208 111.2155770530208 111.2155770530208);
+    border-top: 100px solid rgb(103.04272556690256 103.04272556690256 103.04272556690256);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim75 22.572419256396095s infinite ease-in-out;
+    animation: anim75 20.126264780641904s infinite ease-in-out;
     animation-delay: -14.999999999999979s;
 }
 
 @keyframes anim75 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(46.646353027580275vw, 100vh) scale(0.15348570637707193);
+        transform: rotate(270deg) translate(12.520340991667808vw, -100vh) scale(0.21984330155587742);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(70deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(76) {
-    border-top: 100px solid rgb(91.93432416404644 91.93432416404644 91.93432416404644);
+    border-top: 100px solid rgb(63.770000455739364 63.770000455739364 63.770000455739364);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim76 22.15688130102295s infinite ease-in-out;
+    animation: anim76 22.544364186754883s infinite ease-in-out;
     animation-delay: -15.199999999999978s;
 }
 
 @keyframes anim76 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, 17.786642910822366vh) scale(0.6274006745445015);
+        transform: rotate(473deg) translate(31.27345559150369vw, -100vh) scale(0.9805224942807754);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(273deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(77) {
-    border-top: 100px solid rgb(62.21831656143257 62.21831656143257 62.21831656143257);
+    border-top: 100px solid rgb(188.38759237757105 188.38759237757105 188.38759237757105);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim77 21.943656740428377s infinite ease-in-out;
+    animation: anim77 21.98008588222694s infinite ease-in-out;
     animation-delay: -15.399999999999977s;
 }
 
 @keyframes anim77 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-34.343551451231136vw, 100vh) scale(0.9842608864841407);
+        transform: rotate(516deg) translate(-150vw, -42.37045772703122vh) scale(0.5969482257978243);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(316deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(78) {
-    border-top: 100px solid rgb(151.60066528538601 151.60066528538601 151.60066528538601);
+    border-top: 100px solid rgb(176.56378051813462 176.56378051813462 176.56378051813462);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim78 24.18081220568984s infinite ease-in-out;
+    animation: anim78 24.41867764110473s infinite ease-in-out;
     animation-delay: -15.599999999999977s;
 }
 
 @keyframes anim78 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-58.5338559781548vw, 100vh) scale(0.2813254882197483);
+        transform: rotate(297deg) translate(-150vw, -38.680119528000446vh) scale(0.29506114886571067);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(97deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(79) {
-    border-top: 100px solid rgb(147.89115325061732 147.89115325061732 147.89115325061732);
+    border-top: 100px solid rgb(97.74710732991609 97.74710732991609 97.74710732991609);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim79 22.36865564239232s infinite ease-in-out;
+    animation: anim79 24.845767132534753s infinite ease-in-out;
     animation-delay: -15.799999999999976s;
 }
 
 @keyframes anim79 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-2.391831507899994vw, -100vh) scale(0.750645289330717);
+        transform: rotate(489deg) translate(-6.607340327807428vw, -100vh) scale(0.6770391622226648);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(289deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(80) {
-    border-top: 100px solid rgb(199.43319476383726 199.43319476383726 199.43319476383726);
+    border-top: 100px solid rgb(85.59464546830532 85.59464546830532 85.59464546830532);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim80 22.705773897118924s infinite ease-in-out;
+    animation: anim80 24.75116448982711s infinite ease-in-out;
     animation-delay: -15.999999999999975s;
 }
 
 @keyframes anim80 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-31.506703497092012vw, 100vh) scale(0.5612575517870023);
+        transform: rotate(263deg) translate(-150vw, 5.28403526856215vh) scale(0.2714897354941228);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(63deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(81) {
-    border-top: 100px solid rgb(106.57936827354479 106.57936827354479 106.57936827354479);
+    border-top: 100px solid rgb(146.85540019829784 146.85540019829784 146.85540019829784);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim81 22.19905579115891s infinite ease-in-out;
+    animation: anim81 24.542098938230726s infinite ease-in-out;
     animation-delay: -16.199999999999974s;
 }
 
 @keyframes anim81 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, 56.94478209020784vh) scale(0.9937023459061263);
+        transform: rotate(534deg) translate(62.27424279295113vw, -100vh) scale(0.459202370437244);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(334deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(82) {
-    border-top: 100px solid rgb(136.1598402935983 136.1598402935983 136.1598402935983);
+    border-top: 100px solid rgb(138.2284188520554 138.2284188520554 138.2284188520554);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim82 23.144161004670206s infinite ease-in-out;
+    animation: anim82 21.480261302206493s infinite ease-in-out;
     animation-delay: -16.399999999999974s;
 }
 
 @keyframes anim82 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, 37.86751972238898vh) scale(0.7225157033709969);
+        transform: rotate(530deg) translate(-150vw, 41.76947980798229vh) scale(0.8731451092226867);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(330deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(83) {
-    border-top: 100px solid rgb(96.80918229784886 96.80918229784886 96.80918229784886);
+    border-top: 100px solid rgb(93.05934373885432 93.05934373885432 93.05934373885432);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim83 22.075059630101812s infinite ease-in-out;
+    animation: anim83 21.67861435967423s infinite ease-in-out;
     animation-delay: -16.599999999999973s;
 }
 
 @keyframes anim83 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, -53.92992316289342vh) scale(0.25301289710232805);
+        transform: rotate(509deg) translate(46.67005950174365vw, -100vh) scale(0.16012596801313347);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(309deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(84) {
-    border-top: 100px solid rgb(172.54131968983694 172.54131968983694 172.54131968983694);
+    border-top: 100px solid rgb(191.396601590697 191.396601590697 191.396601590697);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim84 24.623870777090275s infinite ease-in-out;
+    animation: anim84 20.04073484689109s infinite ease-in-out;
     animation-delay: -16.799999999999972s;
 }
 
 @keyframes anim84 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-19.711854941893947vw, 100vh) scale(0.4078789923065479);
+        transform: rotate(493deg) translate(-150vw, 16.803552346202608vh) scale(0.23767854035112174);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(293deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(85) {
-    border-top: 100px solid rgb(123.74268209990332 123.74268209990332 123.74268209990332);
+    border-top: 100px solid rgb(182.0551962218332 182.0551962218332 182.0551962218332);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim85 23.178248697784145s infinite ease-in-out;
+    animation: anim85 22.15323460736993s infinite ease-in-out;
     animation-delay: -16.99999999999997s;
 }
 
 @keyframes anim85 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, -40.44365622562556vh) scale(0.9200179241515425);
+        transform: rotate(553deg) translate(47.91688887147684vw, -100vh) scale(0.5932459073921872);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(353deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(86) {
-    border-top: 100px solid rgb(122.32397459855714 122.32397459855714 122.32397459855714);
+    border-top: 100px solid rgb(193.19782123036654 193.19782123036654 193.19782123036654);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim86 22.294127051254783s infinite ease-in-out;
+    animation: anim86 24.818820668458898s infinite ease-in-out;
     animation-delay: -17.19999999999997s;
 }
 
 @keyframes anim86 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-10.076179997349243vw, 100vh) scale(0.6384931511335964);
+        transform: rotate(498deg) translate(-150vw, 65.68287893135684vh) scale(0.5887246084541754);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(298deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(87) {
-    border-top: 100px solid rgb(169.46803389296247 169.46803389296247 169.46803389296247);
+    border-top: 100px solid rgb(204.52030472669176 204.52030472669176 204.52030472669176);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim87 20.017522981108705s infinite ease-in-out;
+    animation: anim87 23.912634595411543s infinite ease-in-out;
     animation-delay: -17.39999999999997s;
 }
 
 @keyframes anim87 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(6.478337822984315vw, -100vh) scale(0.22713048431798225);
+        transform: rotate(352deg) translate(-150vw, -59.2444273904614vh) scale(0.3570805739446392);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(152deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(88) {
-    border-top: 100px solid rgb(80.57037159680206 80.57037159680206 80.57037159680206);
+    border-top: 100px solid rgb(58.443758833330236 58.443758833330236 58.443758833330236);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim88 21.073981221626255s infinite ease-in-out;
+    animation: anim88 20.70246720664191s infinite ease-in-out;
     animation-delay: -17.59999999999997s;
 }
 
 @keyframes anim88 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(11.422089836958165vw, -100vh) scale(0.8744406576576949);
+        transform: rotate(335deg) translate(21.290972104936458vw, -100vh) scale(0.8980288733884294);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(135deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(89) {
-    border-top: 100px solid rgb(107.38135150067211 107.38135150067211 107.38135150067211);
+    border-top: 100px solid rgb(54.06472766259576 54.06472766259576 54.06472766259576);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim89 21.961210755719993s infinite ease-in-out;
+    animation: anim89 21.665174360801714s infinite ease-in-out;
     animation-delay: -17.79999999999997s;
 }
 
 @keyframes anim89 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, 57.04533254975395vh) scale(0.24597390166041022);
+        transform: rotate(316deg) translate(-150vw, 34.82618880228692vh) scale(0.17298584886142587);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(116deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(90) {
-    border-top: 100px solid rgb(155.00921022132357 155.00921022132357 155.00921022132357);
+    border-top: 100px solid rgb(131.6566941967198 131.6566941967198 131.6566941967198);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim90 23.404738835227096s infinite ease-in-out;
+    animation: anim90 23.694155737422093s infinite ease-in-out;
     animation-delay: -17.999999999999968s;
 }
 
 @keyframes anim90 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, 27.676133032604795vh) scale(0.9932761947443636);
+        transform: rotate(488deg) translate(-150vw, -3.5200704641463716vh) scale(0.19644737183875216);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(288deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(91) {
-    border-top: 100px solid rgb(108.1986360883804 108.1986360883804 108.1986360883804);
+    border-top: 100px solid rgb(136.0866509473364 136.0866509473364 136.0866509473364);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim91 20.978859064850848s infinite ease-in-out;
+    animation: anim91 20.645623155135986s infinite ease-in-out;
     animation-delay: -18.199999999999967s;
 }
 
 @keyframes anim91 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-22.563733499793344vw, 100vh) scale(0.6473986214234291);
+        transform: rotate(430deg) translate(10.571521988674732vw, -100vh) scale(0.4232983254857231);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(230deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(92) {
-    border-top: 100px solid rgb(66.51742140482953 66.51742140482953 66.51742140482953);
+    border-top: 100px solid rgb(87.22826731128143 87.22826731128143 87.22826731128143);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim92 21.826749937678773s infinite ease-in-out;
+    animation: anim92 23.92428290182837s infinite ease-in-out;
     animation-delay: -18.399999999999967s;
 }
 
 @keyframes anim92 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, -3.151597526973859vh) scale(0.956890189669116);
+        transform: rotate(482deg) translate(-150vw, 16.75676691952792vh) scale(0.4588750757269361);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(282deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(93) {
-    border-top: 100px solid rgb(120.19584707159393 120.19584707159393 120.19584707159393);
+    border-top: 100px solid rgb(131.25894918027797 131.25894918027797 131.25894918027797);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim93 24.37884786285047s infinite ease-in-out;
+    animation: anim93 20.8551234324196s infinite ease-in-out;
     animation-delay: -18.599999999999966s;
 }
 
 @keyframes anim93 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(29.13888412383386vw, 100vh) scale(0.950678304977562);
+        transform: rotate(366deg) translate(-55.944154289749775vw, -100vh) scale(0.3244919118625743);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(166deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(94) {
-    border-top: 100px solid rgb(82.06416279711112 82.06416279711112 82.06416279711112);
+    border-top: 100px solid rgb(53.8432401905621 53.8432401905621 53.8432401905621);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim94 24.18571272690312s infinite ease-in-out;
+    animation: anim94 20.50193877804266s infinite ease-in-out;
     animation-delay: -18.799999999999965s;
 }
 
 @keyframes anim94 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-51.19371104205605vw, 100vh) scale(0.3920475463398282);
+        transform: rotate(209deg) translate(-52.44259799063106vw, -100vh) scale(0.7680979031045667);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(9deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(95) {
-    border-top: 100px solid rgb(183.95399910352998 183.95399910352998 183.95399910352998);
+    border-top: 100px solid rgb(132.24680995172048 132.24680995172048 132.24680995172048);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim95 20.635387197616478s infinite ease-in-out;
+    animation: anim95 21.453558207251966s infinite ease-in-out;
     animation-delay: -18.999999999999964s;
 }
 
 @keyframes anim95 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, -27.398102366074284vh) scale(0.7680955802770455);
+        transform: rotate(518deg) translate(45.73780313856517vw, -100vh) scale(0.6396889314327805);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(318deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(96) {
-    border-top: 100px solid rgb(83.38978084497306 83.38978084497306 83.38978084497306);
+    border-top: 100px solid rgb(130.43061754201935 130.43061754201935 130.43061754201935);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim96 22.94487006438747s infinite ease-in-out;
+    animation: anim96 20.043429387506617s infinite ease-in-out;
     animation-delay: -19.199999999999964s;
 }
 
 @keyframes anim96 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, 55.31345209825449vh) scale(0.487187000804291);
+        transform: rotate(456deg) translate(36.064028723604864vw, -100vh) scale(0.6912298954066352);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(256deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(97) {
-    border-top: 100px solid rgb(130.00469989148456 130.00469989148456 130.00469989148456);
+    border-top: 100px solid rgb(144.59216709020347 144.59216709020347 144.59216709020347);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim97 20.966817280010545s infinite ease-in-out;
+    animation: anim97 21.998364708505775s infinite ease-in-out;
     animation-delay: -19.399999999999963s;
 }
 
 @keyframes anim97 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-34.972648697642235vw, 100vh) scale(0.3616693463188094);
+        transform: rotate(497deg) translate(49.81871736689658vw, -100vh) scale(0.21098430857585332);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(297deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(98) {
-    border-top: 100px solid rgb(94.87956169132275 94.87956169132275 94.87956169132275);
+    border-top: 100px solid rgb(163.378255808547 163.378255808547 163.378255808547);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim98 20.125494353327205s infinite ease-in-out;
+    animation: anim98 24.135041192147867s infinite ease-in-out;
     animation-delay: -19.599999999999962s;
 }
 
 @keyframes anim98 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(100vw, 63.76569569268122vh) scale(0.4538053797686966);
+        transform: rotate(398deg) translate(-150vw, 13.065249456980453vh) scale(0.6927566887726655);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(198deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(99) {
-    border-top: 100px solid rgb(90.04042982318117 90.04042982318117 90.04042982318117);
+    border-top: 100px solid rgb(139.57803358973322 139.57803358973322 139.57803358973322);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim99 23.844903592281575s infinite ease-in-out;
+    animation: anim99 23.081940023639845s infinite ease-in-out;
     animation-delay: -19.79999999999996s;
 }
 
 @keyframes anim99 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, 34.1517853087725vh) scale(0.7333926976826798);
+        transform: rotate(330deg) translate(-150vw, -13.421765094193823vh) scale(0.6704776471797289);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(130deg) translate(-50%, -50%) scale(0);
     }
 }
 
 .tri:nth-child(100) {
-    border-top: 100px solid rgb(151.08236546247298 151.08236546247298 151.08236546247298);
+    border-top: 100px solid rgb(63.054141873773396 63.054141873773396 63.054141873773396);
     transform: rotate(138deg) translate(0, 0) scale(0);
-    animation: anim100 23.573745134217162s infinite ease-in-out;
+    animation: anim100 23.698392645062505s infinite ease-in-out;
     animation-delay: -19.99999999999996s;
 }
 
 @keyframes anim100 {
     0% {
         opacity: 1;
-        transform: rotate(200deg) translate(-150vw, 10.95333561367417vh) scale(0.34410572129163186);
+        transform: rotate(339deg) translate(-150vw, 65.8274470496824vh) scale(0.5388168179078723);
     }
     50%{
         opacity: 0.8;
     }
     100% {
         opacity: 0;
-        transform: rotate(0deg) translate(-50%, -50%) scale(0);
+        transform: rotate(139deg) translate(-50%, -50%) scale(0);
     }
 }

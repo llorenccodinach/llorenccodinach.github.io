@@ -95,12 +95,12 @@ function create(numTriangles){
         let x,y;
         if(canto < 0.25){
             x = posicio;
-            y = 100;
+            y = -100;
         }else if(canto < 0.5){
             x = posicio;
             y = -100;
         }else if(canto < 0.75){
-            x = 100;
+            x = -150;
             y = posicio;
         }else{
             x = -150;
@@ -117,6 +117,9 @@ function create(numTriangles){
     
         document.body.appendChild(tri);
         delay -= 0.2;
+
+        const rotateS = parseInt(randomBetween(0,360))
+
         a += `
         .tri:nth-child(${i+1}) {
             border-top: 100px solid ${color};
@@ -128,14 +131,14 @@ function create(numTriangles){
         @keyframes anim${i+1} {
             0% {
                 opacity: 1;
-                transform: rotate(200deg) translate(${x}vw, ${y}vh) scale(${scale});
+                transform: rotate(${rotateS+200}deg) translate(${x}vw, ${y}vh) scale(${scale});
             }
             50%{
                 opacity: 0.8;
             }
             100% {
                 opacity: 0;
-                transform: rotate(0deg) translate(-50%, -50%) scale(0);
+                transform: rotate(${rotateS}deg) translate(-50%, -50%) scale(0);
             }
         }
         `
