@@ -115,3 +115,75 @@ dragBox.addEventListener('touchmove', (e) => {
 });
 
 dragBox.addEventListener('touchend', dragUp);
+
+function randomBetween(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+
+function create(numTriangles){
+    let delay = 0;
+    let a = "";
+    for (let i = 0; i < numTriangles; i++) {
+        const tri = document.createElement('div');
+        tri.classList.add('tri');
+        
+        const coloral = randomBetween(50, 205)
+        const color = `rgb(${coloral} ${coloral} ${coloral})`;
+    
+        tri.style.borderTop = `100px solid ${color}`;
+        tri.style.borderRight = '100px solid transparent';
+        tri.style.borderLeft = '100px solid transparent';
+    
+        const canto = randomBetween(0,1);
+        const posicio = randomBetween(-70,70);
+        let x,y;
+        if(canto < 0.25){
+            x = posicio;
+            y = 100;
+        }else if(canto < 0.5){
+            x = posicio;
+            y = -100;
+        }else if(canto < 0.75){
+            x = 100;
+            y = posicio;
+        }else{
+            x = -100;
+            y = posicio;
+        }
+        const scale = randomBetween(0.1, 1);
+        tri.style.setProperty('--start-x', `${x}vw`);
+        tri.style.setProperty('--start-y', `${y}vh`);
+        tri.style.setProperty('--start-scale', scale);
+    
+        const duration = randomBetween(20, 25);
+        tri.style.animation = `tornado ${duration}s infinite ease-in-out`;
+        tri.style.animationDelay = `${delay}s`;
+    
+        document.body.appendChild(tri);
+        delay -= 0.2;
+        a += `
+        .tri:nth-child(${i+1}) {
+            border-top: 100px solid ${color};
+            transform: rotate(138deg) translate(0, 0) scale(0);
+            animation: anim${i+1} ${duration}s infinite ease-in-out;
+            animation-delay: ${delay}s;
+        }
+        
+        @keyframes anim${i+1} {
+            0% {
+                opacity: 1;
+                transform: rotate(200deg) translate(${x}vw, ${y}vh) scale(${scale});
+            }
+            50%{
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+                transform: rotate(0deg) translate(-50%, -50%) scale(0);
+            }
+        }
+        `
+    }
+    console.log(a)
+}
