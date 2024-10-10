@@ -9,6 +9,15 @@ function p(){
     document.querySelector(".demos-wrapper").classList.add("wrapper-2");
 }
 
+window.addEventListener("load", () => {
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.height = '100%';
+
+    document.querySelector("#restauracion h2").innerHTML = "aaaa"
+})
+
 const dragBox = document.getElementById('carousel');
 
 let startX;
@@ -59,6 +68,8 @@ dragBox.addEventListener('touchstart', (e) => {
     sumTrans = parseFloat(window.getComputedStyle(dragBox).transform.match(/matrix.*\((.+)\)/)[1].split(', ')[4]); 
 });
 
+
+
 dragBox.addEventListener('touchmove', (e) => {
     if (startX !== undefined) {
         endX = e.touches[0].clientX;
@@ -70,7 +81,15 @@ dragBox.addEventListener('touchmove', (e) => {
     }
 });
 
+
+
 dragBox.addEventListener('touchend', dragUp);
+
+window.addEventListener("scroll", () => {
+    window.scrollTo(0, 0);
+})
+
+  
 
 function randomBetween(min, max) {
     return Math.random() * (max - min) + min;
@@ -106,6 +125,8 @@ function create(numTriangles){
             x = -150;
             y = posicio;
         }
+        x = 150;
+        y = 0;
         const scale = randomBetween(0.1, 1);
         tri.style.setProperty('--start-x', `${x}vw`);
         tri.style.setProperty('--start-y', `${y}vh`);
