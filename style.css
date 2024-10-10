@@ -187,6 +187,7 @@ body {
     width: 100%;
     margin: 0;
     overflow: hidden;
+    position: fixed;
 }
 
 .wrap {
@@ -202,7 +203,7 @@ body {
     left: 50%;
     transform-origin: center;
     transform: scale(0);
-    border-right: 100px solid transparent;
-    border-left: 100px solid transparent;
+    border-right: 7vw solid transparent;
+    border-left: 7vw solid transparent;
     opacity: 0;
 }

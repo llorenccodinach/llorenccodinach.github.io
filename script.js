@@ -9,15 +9,6 @@ function p(){
     document.querySelector(".demos-wrapper").classList.add("wrapper-2");
 }
 
-window.addEventListener("load", () => {
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
-    document.body.style.height = '100%';
-
-    document.querySelector("#restauracion h2").innerHTML = "aaaa"
-})
-
 const dragBox = document.getElementById('carousel');
 
 let startX;
@@ -81,15 +72,7 @@ dragBox.addEventListener('touchmove', (e) => {
     }
 });
 
-
-
-dragBox.addEventListener('touchend', dragUp);
-
-window.addEventListener("scroll", () => {
-    window.scrollTo(0, 0);
-})
-
-  
+dragBox.addEventListener('touchend', dragUp);  
 
 function randomBetween(min, max) {
     return Math.random() * (max - min) + min;
@@ -143,7 +126,7 @@ function create(numTriangles){
 
         a += `
         .tri:nth-child(${i+1}) {
-            border-top: 100px solid ${color};
+            border-top: 10vw solid ${color};
             transform: rotate(138deg) translate(0, 0) scale(0);
             animation: anim${i+1} ${duration}s infinite ease-in-out;
             animation-delay: ${delay}s;
