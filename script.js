@@ -9,10 +9,6 @@ function p(){
     document.querySelector(".demos-wrapper").classList.add("wrapper-2");
 }
 
-window.addEventListener("load", () => {
-    document.querySelector(".title h1").innerHTML = "aiaiaiaia";
-})
-
 const dragBox = document.getElementById('carousel');
 
 let startX;
@@ -80,7 +76,6 @@ function randomBetween(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-/*
 function create(numTriangles){
     let delay = 0;
     let a = "";
@@ -108,7 +103,7 @@ function create(numTriangles){
             x = 100;
             y = posicio;
         }else{
-            x = -100;
+            x = -150;
             y = posicio;
         }
         const scale = randomBetween(0.1, 1);
@@ -147,4 +142,3 @@ function create(numTriangles){
     }
     console.log(a)
 }
-*/
