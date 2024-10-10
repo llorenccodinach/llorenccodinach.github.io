@@ -1,5 +1,5 @@
 
-.tri:nth-child(101) {
+.tri:nth-child(1) {
     border-top: 100px solid rgb(165.5732244382347 165.5732244382347 165.5732244382347);
     transform: rotate(138deg) translate(0, 0) scale(0);
     animation: anim1 21.41759941498257s infinite ease-in-out;

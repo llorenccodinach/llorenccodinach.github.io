@@ -10,48 +10,8 @@ function p(){
 }
 
 window.addEventListener("load", () => {
-    console.log("hi",document.getElementById("proximamente"))
-    document.getElementById("proximamente").scrollIntoView({ behavior: 'smooth', block: 'center' });
-    document.querySelector("body").style.overflow = 'hidden';
-
-    this.window.scroll(0,0);
-    this.window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth' // O 'auto' para un desplazamiento instantáneo
-      });
-    console.log("ho fa ")
-    setTimeout(() => {
-        this.window.scroll(0,0);
-        this.window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth' // O 'auto' para un desplazamiento instantáneo
-          });
-    }, 100);
+    document.querySelector(".title h1").innerHTML = "aiaiaiaia";
 })
-
-window.addEventListener('scroll', function() {
-    this.window.scroll(0,0);
-    this.window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth' // O 'auto' para un desplazamiento instantáneo
-      });
-    console.log("ho fa ")
-    setTimeout(() => {
-        this.window.scroll(0,0);
-        this.window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth' // O 'auto' para un desplazamiento instantáneo
-          });
-    }, 100);
-});
-
-document.addEventListener('touchmove', function(e) {
-    e.preventDefault(); // Previene el scroll en pantallas táctiles
-}, { passive: false });
 
 const dragBox = document.getElementById('carousel');
 
@@ -120,7 +80,7 @@ function randomBetween(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-
+/*
 function create(numTriangles){
     let delay = 0;
     let a = "";
@@ -187,3 +147,4 @@ function create(numTriangles){
     }
     console.log(a)
 }
+*/

@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.tri {
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+    transform: scale(0);
+    border-right: 100px solid transparent;
+    border-left: 100px solid transparent;
+    opacity: 0;
+}
+
+body{
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    background: #2d9ae1;
+    background-image: radial-gradient(circle at center, black 0%, #2d9ae1 90%);
+}
