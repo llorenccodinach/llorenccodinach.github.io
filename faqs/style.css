@@ -94,6 +94,7 @@ body{
     font-size: 35px;
     left: 40px;
     position: absolute;
+    width: 80%;
 }
 
 .question img{
@@ -141,7 +142,7 @@ body{
     interpolate-size: allow-keywords;
 }
 
-.question-bottom p{
+.question-bottom p, .question-bottom li{
     color: white;
     font-family: "Roboto", sans-serif;
     font-weight: 300;
@@ -217,7 +218,7 @@ body{
     .question h2{
         font-size: 30px;
     }
-    .question-bottom p{
+    .question-bottom p, .question-bottom li{
         font-size: 18px;
     }
     .question-top{
@@ -252,7 +253,7 @@ body{
     .question h2{
         font-size: 25px;
     }
-    .question-bottom p{
+    .question-bottom p, .question-bottom li{
         font-size: 15px;
     }
     .question-top{
@@ -289,7 +290,7 @@ body{
     .question h2{
         font-size: 22px;
     }
-    .question-bottom p{
+    .question-bottom p, .question-bottom li{
         font-size: 13px;
     }
     .question-top{
@@ -333,7 +334,7 @@ body{
     .question h2{
         font-size: 18px;
     }
-    .question-bottom p{
+    .question-bottom p, .question-bottom li{
         font-size: 13px;
     }
     .question-top{

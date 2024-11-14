@@ -207,3 +207,126 @@ body {
     border-left: 7vw solid transparent;
     opacity: 0;
 }
+
+#demos-flecha-left{
+    left: 3%;
+}
+
+#demos-flecha-right{
+    right: 3%;
+}
+
+@media (max-width: 750px){
+    #demos-flecha-left{
+        left: 1%;
+    }
+    #demos-flecha-right{
+        right: 1%;
+    }
+    .demos-flecha{
+        height: 75px;
+    }
+    .single-demo{
+        height: 412px;
+    }
+    .demos-wrapper{
+        gap: 75px;
+    }
+    .wrapper-1{
+        transform: translateX(calc(50% - 211px));
+    }
+    .wrapper-2{
+        transform: translateX(calc(50% - 708px))
+    }
+    .faqs{
+        height: 70px;
+    }
+    .faqs h2{
+        font-size: 20px;
+    }
+    .demos{
+        mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) calc(2%+48.5px), rgba(0, 0, 0, 1) calc(2%+98.5px), rgba(0, 0, 0, 1) calc(50% + 250px), rgba(0, 0, 0, 0) 90%);
+        -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) calc(2%+48.5px), rgba(0, 0, 0, 1) calc(2%+98.5px), rgba(0, 0, 0, 1) calc(50% + 250px), rgba(0, 0, 0, 0) 90%);
+    }
+}
+
+@media (max-width: 530px){
+    #demos-flecha-left{
+        left: 0%;
+    }
+    #demos-flecha-right{
+        right: 0%;
+    }
+    .demos-flecha{
+        height: 50px;
+    }
+    .single-demo{
+        height: 275px;
+    }
+    .demos-wrapper{
+        gap: 50px;
+    }
+    .wrapper-1{
+        transform: translateX(calc(50% - 142.5px));
+    }
+    .wrapper-2{
+        transform: translateX(calc(50% - 478px))
+    }
+    .desc p{
+        font-size: 12px;
+    }
+    .title h1{
+        font-size: 28px;
+    }
+    .title img{
+        height: 90%;
+    }
+    .title{
+        gap: 15px;
+    }
+    .faqs{
+        height: 60px;
+    }
+    .faqs h2{
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 374px){
+    #demos-flecha-left{
+        left: 0%;
+    }
+    #demos-flecha-right{
+        right: 0%;
+    }
+    .demos-flecha{
+        height: 50px;
+    }
+    .single-demo{
+        height: 230px;
+    }
+    .demos-wrapper{
+        gap: 50px;
+    }
+    .wrapper-1{
+        transform: translateX(calc(50% - 120px));
+    }
+    .wrapper-2{
+        transform: translateX(calc(50% - 411px))
+    }
+    .desc p{
+        font-size: 10px;
+    }
+    .title h1{
+        font-size: 26px;
+    }
+    .title img{
+        height: 80%;
+    }
+    .title{
+        gap: 12px;
+    }
+    .faqs h2{
+        font-size: 15px;
+    }
+}
